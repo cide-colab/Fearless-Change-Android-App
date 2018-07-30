@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/wood">
+    android:background="@drawable/app_bg">
 
     <android.support.v7.widget.SearchView
         android:id="@+id/searchbar"
@@ -45,7 +45,7 @@
                     android:id="@+id/fab_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_outline_assignment_24px"
+                    android:src="@drawable/ic_assignment_white"
                     app:fabSize="normal"
                     app:borderWidth="0dp"
                     android:backgroundTint="#cddc39"/>
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     app:fabSize="normal"
                     app:borderWidth="0dp"
-                    android:src="@drawable/ic_favorite_border_black_24dp"
+                    android:src="@drawable/ic_favorite_white"
                     android:backgroundTint="@android:color/holo_blue_light"/>
 
             </LinearLayout>
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     app:fabSize="normal"
                     app:borderWidth="0dp"
-                    android:src="@drawable/ic_outline_assignment_24px"
+                    android:src="@drawable/ic_assignment_white"
                     android:backgroundTint="@android:color/holo_purple"/>
             </LinearLayout>
 
@@ -150,7 +150,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:text="Card of the Day"/>
                 <include
-                    layout="@layout/layout_card_front"
+                    layout="@layout/layout_card_large"
                     android:id="@+id/card"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:text="Random Cards"/>
                 <include
-                    layout="@layout/layout_card_front"
+                    layout="@layout/layout_card_small"
                     android:id="@+id/card3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
 
                 </include>
                 <include
-                    layout="@layout/layout_card_front"
+                    layout="@layout/layout_card_small"
                     android:id="@+id/card4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
 
                 </include>
                 <include
-                    layout="@layout/layout_card_front"
+                    layout="@layout/layout_card_small"
                     android:id="@+id/card5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

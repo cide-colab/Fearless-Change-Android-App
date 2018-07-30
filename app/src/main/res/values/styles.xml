@@ -9,23 +9,12 @@
         <item name="cardViewStyle">@style/CardView</item>
     </style>
 
-    <style name="CardContainer">
-        <item name="android:paddingBottom">32dp</item>
-    </style>
-
     <style name="CardTitle" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">#ffffff</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:background">@drawable/rotatable_black</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/title_bg</item>
         <item name="android:rotation">-2</item>
         <item name="android:textAlignment">center</item>
-    </style>
-
-    <style name="CardText">
-
     </style>
 
     <style name="Card" parent="CardView">
@@ -38,12 +27,7 @@
 
     <style name="CardContentWrapper">
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:background">@drawable/background_border</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:paddingTop">24dp</item>
-        <item name="android:paddingBottom">64dp</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">@drawable/card_content_bg</item>
     </style>
 
     <style name="CardButton" parent="Widget.Design.FloatingActionButton">
