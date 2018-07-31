@@ -7,7 +7,7 @@
     tools:showIn="@layout/dashboard_content">
 
 
-    <de.thkoeln.fherborn.fearlesschange.views.card.LargeCardView
+    <de.thkoeln.fherborn.fearlesschange.views.card.CardViewLarge
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/card_large"
@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <include layout="@layout/layout_card_small"
+    <de.thkoeln.fherborn.fearlesschange.views.card.CardViewSmall
         android:id="@+id/card_small"
         android:layout_width="0dp"
         android:layout_margin="4dp"
@@ -24,7 +24,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/card_small2"/>
 
-    <include layout="@layout/layout_card_small"
+    <de.thkoeln.fherborn.fearlesschange.views.card.CardViewSmall
         android:id="@+id/card_small2"
         android:layout_width="0dp"
         android:layout_margin="4dp"
