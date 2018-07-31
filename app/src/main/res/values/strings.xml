@@ -8,4 +8,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_codd_title">Card of the Day</string>
     <string name="fragment_random_cards_title">Random Cards</string>
+    <string name="popup_details_btn_text">Details</string>
 </resources>

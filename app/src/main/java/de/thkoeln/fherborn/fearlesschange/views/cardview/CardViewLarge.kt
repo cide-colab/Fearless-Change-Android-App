@@ -1,11 +1,9 @@
-package de.thkoeln.fherborn.fearlesschange.views.card
+package de.thkoeln.fherborn.fearlesschange.views.cardview
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import de.thkoeln.fherborn.fearlesschange.db.Card
 import android.view.LayoutInflater
-import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
 import kotlinx.android.synthetic.main.layout_card_large.view.*
 

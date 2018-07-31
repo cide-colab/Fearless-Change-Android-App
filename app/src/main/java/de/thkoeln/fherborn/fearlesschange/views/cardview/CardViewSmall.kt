@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.views.card
+package de.thkoeln.fherborn.fearlesschange.views.cardview
 
 import android.content.Context
 import android.util.AttributeSet

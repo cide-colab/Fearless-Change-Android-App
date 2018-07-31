@@ -1,8 +1,9 @@
-package de.thkoeln.fherborn.fearlesschange.views.card
+package de.thkoeln.fherborn.fearlesschange.views.cardview
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
@@ -12,11 +13,18 @@ import kotlinx.android.synthetic.main.layout_card.view.*
 /**
  * Created by Florian on 31.07.2018.
  */
-abstract class CardView: ConstraintLayout {
+abstract class CardView: ConstraintLayout, View.OnClickListener {
 
     var onCardClickedListener: ((CardView, Card?) -> Unit)? = null
+
     var card: Card? = null
-        set(value) { onCardChanged(value) }
+        set(value) {
+            onCardChanged(value)
+            field = value
+        }
+
+    var cardTransitionName = "popup_card"
+        set(value) { card_view?.transitionName = value }
 
     constructor(context: Context): super(context) { init(context, null) }
     constructor(context: Context, attributeSet: AttributeSet?): super(context, attributeSet) { init(context, attributeSet) }
@@ -27,8 +35,12 @@ abstract class CardView: ConstraintLayout {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.layout_card, this, true) as CardView
         card_view.addView(onCreateContentView(inflater, rootView, context, attributeSet))
-        card_view.setOnClickListener{onCardClickedListener?.invoke(this, card)}
+        card_view.setOnClickListener(this)
         afterContentViewInflated()
+    }
+
+    override fun onClick(v: View?) {
+        onCardClickedListener?.invoke(this, card)
     }
 
     protected open fun afterContentViewInflated() {}
