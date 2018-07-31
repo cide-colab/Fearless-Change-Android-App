@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.layout_card.view.*
 /**
  * Created by Florian on 31.07.2018.
  */
-abstract class CardView: ConstraintLayout, View.OnClickListener{
+abstract class CardView: ConstraintLayout {
 
     var onCardClickedListener: ((CardView, Card?) -> Unit)? = null
     var card: Card? = null
@@ -27,14 +27,11 @@ abstract class CardView: ConstraintLayout, View.OnClickListener{
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.layout_card, this, true) as CardView
         card_view.addView(onCreateContentView(inflater, rootView, context, attributeSet))
-        card_view.setOnClickListener(this)
+        card_view.setOnClickListener{onCardClickedListener?.invoke(this, card)}
         afterContentViewInflated()
     }
 
-    override fun onClick(v: View) {
-        onCardClickedListener?.invoke(this, card)
-    }
-    protected fun afterContentViewInflated() {}
+    protected open fun afterContentViewInflated() {}
     protected abstract fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View
     protected abstract fun onCardChanged(card: Card?)
 

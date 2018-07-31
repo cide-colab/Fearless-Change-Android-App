@@ -6,6 +6,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:layout_width="1000dp"
+        android:layout_height="0dp"
+        android:src="@drawable/title_bg"
+        android:scaleType="fitXY"
+        android:rotation="-2"
+        app:layout_constraintTop_toTopOf="@id/card_title"
+        app:layout_constraintBottom_toBottomOf="@id/card_title"
+        app:layout_constraintStart_toStartOf="@id/card_title"
+        app:layout_constraintEnd_toEndOf="@id/card_title"/>
     <TextView
         style="@style/CardTitle"
         android:id="@+id/card_title"
@@ -13,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

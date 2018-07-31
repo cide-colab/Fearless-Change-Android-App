@@ -2,6 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.views.card
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import de.thkoeln.fherborn.fearlesschange.db.Card
 import android.view.LayoutInflater
 import android.view.View
@@ -24,13 +25,11 @@ class CardViewLarge : CardView {
     override fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?)
             = inflater.inflate(R.layout.layout_card_large, rootView, false)
 
-    override fun onClick(v: View) {
-        when(v) {
-            card_fav_btn -> onFavoriteClickedListener?.invoke(this, card)
-            card_note_btn -> onNotesClickedListener?.invoke(this, card)
-            else -> super.onClick(v)
-        }
+    override fun afterContentViewInflated() {
+        card_fav_btn.setOnClickListener{onFavoriteClickedListener?.invoke(this, card)}
+        card_note_btn.setOnClickListener{onNotesClickedListener?.invoke(this, card)}
     }
+
     override fun onCardChanged(card: Card?) {
         card?.let {
             card_title.text = it.title

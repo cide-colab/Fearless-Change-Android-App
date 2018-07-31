@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/app_bg">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/main_nav_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/default_margin"
+        android:padding="16dp"
+        android:background="@color/component_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            app:fabSize="normal"
+            android:backgroundTint="@color/dashboard_nav_overview_bg"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            android:src="@drawable/ic_apps_white"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/fab_overview"
+            app:layout_constraintEnd_toEndOf="@id/fab_overview"
+            app:layout_constraintTop_toBottomOf="@id/fab_overview"
+            android:text="@string/dashboard_nav_overview_label"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fab_overview"
+            app:layout_constraintBottom_toTopOf="@id/fab_more"
+            app:fabSize="normal"
+            android:backgroundTint="@color/dashboard_nav_favorites_bg"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            android:src="@drawable/ic_favorite_white"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/fab_favorites"
+            app:layout_constraintEnd_toEndOf="@id/fab_favorites"
+            app:layout_constraintTop_toBottomOf="@id/fab_favorites"
+            android:text="@string/dashboard_nav_favorites_label"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            app:fabSize="normal"
+            android:backgroundTint="@color/dashboard_nav_more_bg"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            android:src="@drawable/ic_menu_white"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/label_fab_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/fab_more"
+            app:layout_constraintEnd_toEndOf="@id/fab_more"
+            app:layout_constraintTop_toBottomOf="@id/fab_more"
+            android:text="@string/dashboard_nav_more_label"/>
+
+    </android.support.constraint.ConstraintLayout>
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/main_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <SearchView
+                android:id="@+id/main_search_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/component_bg"/>
+
+
+
+
+            <include
+                layout="@layout/dashboard_content"
+                android:layout_margin="@dimen/default_margin"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_search_bar" />
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

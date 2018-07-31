@@ -6,15 +6,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <ImageView
+        android:layout_width="1000dp"
+        android:layout_height="0dp"
+        android:src="@drawable/title_bg"
+        android:scaleType="fitXY"
+        android:rotation="-2"
+        app:layout_constraintTop_toTopOf="@id/card_title"
+        app:layout_constraintBottom_toBottomOf="@id/card_title"
+        app:layout_constraintStart_toStartOf="@id/card_title"
+        app:layout_constraintEnd_toEndOf="@id/card_title"/>
+
+    <android.support.v7.widget.AppCompatTextView
         style="@style/CardTitle"
-        android:id="@+id/tv"
-        android:layout_width="500dp"
-        android:textSize="14sp"
+        android:id="@+id/card_title"
+        android:layout_width="0dp"
+        android:textSize="11sp"
         android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:padding="2dp"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv"
+        app:layout_constraintTop_toBottomOf="@id/card_title"
         app:layout_constraintVertical_bias="0"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 

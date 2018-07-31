@@ -3,4 +3,9 @@
     <string name="dashboard_nav_overview_label">Overview</string>
     <string name="dashboard_nav_favorites_label">Favorites</string>
     <string name="dashboard_nav_more_label">More</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_codd_title">Card of the Day</string>
+    <string name="fragment_random_cards_title">Random Cards</string>
 </resources>

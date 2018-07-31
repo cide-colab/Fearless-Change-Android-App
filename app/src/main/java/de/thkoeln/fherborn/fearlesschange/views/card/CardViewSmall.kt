@@ -1,11 +1,9 @@
 package de.thkoeln.fherborn.fearlesschange.views.card
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import de.thkoeln.fherborn.fearlesschange.db.Card
 import android.view.LayoutInflater
-import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
 import kotlinx.android.synthetic.main.layout_card_large.view.*
 
@@ -23,8 +21,8 @@ class CardViewSmall : CardView {
 
     override fun onCardChanged(card: Card?) {
         card?.let {
-            card_title.text = it.title
-            card_problem.text = it.problem
+            card_title?.text = it.title
+            card_problem?.text = it.problem
         }
     }
 
