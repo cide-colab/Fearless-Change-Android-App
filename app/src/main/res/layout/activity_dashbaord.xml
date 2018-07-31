@@ -106,7 +106,7 @@
 
 
         <include
-            layout="@layout/dashboard_content"
+            layout="@layout/content_dashboard"
             android:layout_margin="@dimen/default_margin"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
