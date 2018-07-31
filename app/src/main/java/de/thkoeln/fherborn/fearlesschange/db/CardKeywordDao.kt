@@ -6,15 +6,12 @@ import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import io.reactivex.Flowable
 
-/**
- * Created by florianherborn on 30.07.18.
- */
 @Dao
-interface CardDao {
+interface CardKeywordDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCards(card: List<Card>)
+    fun insertCardKeywords(cardKeyword: List<CardKeyword>)
 
-    @Query("SELECT * FROM card")
-    fun getCards(): Flowable<List<Card>>
+    @Query("SELECT keyword FROM card_keyword as ck WHERE ck.card_id =:cardId")
+    fun getKeywordsByCardId(cardId: Long): Flowable<List<String>>
 }

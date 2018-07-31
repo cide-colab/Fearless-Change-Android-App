@@ -10,33 +10,48 @@ import java.util.concurrent.Executors
 /**
  * Created by florianherborn on 30.07.18.
  */
-@Database(entities = [Card::class], version = 1, exportSchema = false)
+@Database(entities = [
+    Card::class,
+    Keyword::class,
+    CardKeyword::class],
+        version = 2,
+        exportSchema = false)
 abstract class CardDatabase : RoomDatabase() {
 
     abstract fun cardDao(): CardDao
+    abstract fun keywordDao(): KeywordDao
+    abstract fun cardKeywordDao(): CardKeywordDao
 
     companion object {
-        @Volatile
         private var INSTANCE: CardDatabase? = null
 
-        fun getInstance(context: Context): CardDatabase = INSTANCE ?: synchronized(this) {
-            buildDatabase(context).also { INSTANCE = it }
+        fun getInstance(context: Context): CardDatabase? {
+            if (INSTANCE == null) {
+                synchronized(CardDatabase::class) {
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
+                            CardDatabase::class.java, "CardDatabase.db")
+                            .fallbackToDestructiveMigration()
+                            .addCallback(object : Callback() {
+                                override fun onCreate(db: SupportSQLiteDatabase) {
+                                    super.onCreate(db)
+                                    println("Call on Create")
+                                    Executors.newSingleThreadExecutor().execute(Runnable() {
+                                        println("Call Thread")
+                                        getInstance(context)?.cardDao()?.insertCards(CardData.CARDS)
+                                        getInstance(context)?.keywordDao()?.insertKeywords(KeywordData.KEYWORDS)
+                                        getInstance(context)?.cardKeywordDao()?.insertCardKeywords(CardKeywordData.CARDKEYWORDS)
+                                    })
+
+                                }
+                            })
+                            .build()
+                }
+            }
+            return INSTANCE
         }
 
-
-        private fun buildDatabase(context: Context) =
-                Room.databaseBuilder(context.applicationContext, CardDatabase::class.java, "card_database")
-                        .fallbackToDestructiveMigration()
-                        .addCallback(object : Callback() {
-                            //Called when the database is created for the first time
-                            override fun onCreate(db: SupportSQLiteDatabase) {
-                                super.onCreate(db)
-                                // insert the data on the IO Thread
-                                Executors.newSingleThreadExecutor().execute {
-                                    getInstance(context).cardDao().insertCards(CardData.CARDS)
-                                }
-                            }
-                        })
-                        .build()
+        fun destroyInstance() {
+            INSTANCE = null
+        }
     }
 }
