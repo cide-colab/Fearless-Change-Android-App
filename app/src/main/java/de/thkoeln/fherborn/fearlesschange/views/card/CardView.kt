@@ -8,13 +8,13 @@ import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.db.Card
 import kotlinx.android.synthetic.main.layout_card.view.*
-import kotlinx.android.synthetic.main.layout_card_large.view.*
 
 /**
  * Created by Florian on 31.07.2018.
  */
-abstract class CardView: ConstraintLayout {
+abstract class CardView: ConstraintLayout, View.OnClickListener{
 
+    var onCardClickedListener: ((CardView, Card?) -> Unit)? = null
     var card: Card? = null
         set(value) { onCardChanged(value) }
 
@@ -27,11 +27,15 @@ abstract class CardView: ConstraintLayout {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.layout_card, this, true) as CardView
         card_view.addView(onCreateContentView(inflater, rootView, context, attributeSet))
+        card_view.setOnClickListener(this)
         afterContentViewInflated()
     }
 
+    override fun onClick(v: View) {
+        onCardClickedListener?.invoke(this, card)
+    }
+    protected fun afterContentViewInflated() {}
     protected abstract fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View
-    protected abstract fun afterContentViewInflated()
     protected abstract fun onCardChanged(card: Card?)
 
 }
