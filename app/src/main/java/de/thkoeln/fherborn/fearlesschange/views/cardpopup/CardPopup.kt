@@ -11,6 +11,8 @@ import android.view.Window.FEATURE_NO_TITLE
 import de.thkoeln.fherborn.fearlesschange.activities.CardDetailActivity
 import de.thkoeln.fherborn.fearlesschange.activities.CardDetailActivity.Companion.CARD_ID_KEY
 import de.thkoeln.fherborn.fearlesschange.db.Card
+import de.thkoeln.fherborn.fearlesschange.views.cardview.CardView
+import de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewLarge
 import kotlinx.android.synthetic.main.layout_card_popup.*
 
 class CardPopup(context: Context, val card: Card): Dialog(context) {
@@ -21,6 +23,10 @@ class CardPopup(context: Context, val card: Card): Dialog(context) {
         setContentView(R.layout.layout_card_popup)
         setParams()
         popup_card.card = card
+        setListeners()
+    }
+
+    private fun setListeners() {
         popup_details_btn.setOnClickListener {
             startCardDetailActivity()
         }

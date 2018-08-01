@@ -1,11 +1,14 @@
 package de.thkoeln.fherborn.fearlesschange.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
-import de.thkoeln.fherborn.fearlesschange.db.CardData
+import de.thkoeln.fherborn.fearlesschange.db.Card
+import de.thkoeln.fherborn.fearlesschange.db.CardDatabase
 import de.thkoeln.fherborn.fearlesschange.views.cardpopup.CardPopup
+import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.activity_favorites.*
 
 class FavoritesActivity : AppCompatActivity() {
@@ -13,17 +16,23 @@ class FavoritesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
+        loadCards()
+    }
 
-        //TODO PLACEHOLDER START ----
-        val cards = CardData.CARDS
-        //TODO PLACEHOLDER END ----
+    private fun loadCards() {
+        //TODO Load only favorites
+        CardDatabase.getInstance(baseContext)?.cardDao()?.getAll()?.subscribeBy(
+                onNext = { addCardsToLayout(it) },
+                onError = { Snackbar.make(container, it.localizedMessage, Snackbar.LENGTH_LONG) }
+//                onComplete = {  }
+        )
+    }
 
-
-        val adapter = CardRecyclerGridAdapter(cards)
-        adapter.onCardClickedListener = { card, itemView ->
-            CardPopup(itemView.context, card).show()
+    private fun addCardsToLayout(cards: List<Card>) {
+        favorites_recycler_view.adapter = CardRecyclerGridAdapter(cards).apply {
+            onCardClickedListener = { card, itemView ->
+                CardPopup(itemView.context, card).show()
+            }
         }
-        favorites_recycler_view.adapter = adapter
-
     }
 }

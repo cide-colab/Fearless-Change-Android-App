@@ -34,10 +34,9 @@ abstract class CardDatabase : RoomDatabase() {
                             .addCallback(object : Callback() {
                                 override fun onCreate(db: SupportSQLiteDatabase) {
                                     super.onCreate(db)
-                                    println("Call on Create")
-                                    Executors.newSingleThreadExecutor().execute(Runnable() {
-                                        println("Call Thread")
-                                        getInstance(context)?.cardDao()?.insertCards(CardData.CARDS)
+
+                                    Executors.newSingleThreadExecutor().execute({
+                                        getInstance(context)?.cardDao()?.insertAll(CardData.CARDS)
                                         getInstance(context)?.keywordDao()?.insertKeywords(KeywordData.KEYWORDS)
                                         getInstance(context)?.cardKeywordDao()?.insertCardKeywords(CardKeywordData.CARDKEYWORDS)
                                     })

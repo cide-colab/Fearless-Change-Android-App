@@ -13,8 +13,14 @@ import io.reactivex.Flowable
 interface CardDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCards(card: List<Card>)
+    fun insertAll(card: List<Card>)
 
     @Query("SELECT * FROM card")
-    fun getCards(): Flowable<List<Card>>
+    fun getAll(): Flowable<List<Card>>
+
+    @Query("SELECT * FROM card WHERE id = :id LIMIT 1")
+    fun getById(id: Int): Flowable<Card>
+
+    @Query("SELECT * FROM card ORDER BY RANDOM() LIMIT :count")
+    fun getRandom(count: Int): Flowable<List<Card>>
 }
