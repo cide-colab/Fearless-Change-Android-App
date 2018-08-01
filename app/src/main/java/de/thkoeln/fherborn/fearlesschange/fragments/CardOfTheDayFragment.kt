@@ -21,7 +21,7 @@ class CardOfTheDayFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         activity?.let {
-            //TODO insert logic fot card of the day
+            //TODO insert logic for card of the day
             (it.application as App).cardDB.cardDao().getById(2).subscribeBy(
                     onNext = { card_of_the_day.card = it },
                     onError = { Snackbar.make(container, it.localizedMessage, Snackbar.LENGTH_LONG) }

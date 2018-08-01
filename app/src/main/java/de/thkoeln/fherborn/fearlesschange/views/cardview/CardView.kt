@@ -23,9 +23,6 @@ abstract class CardView: ConstraintLayout, View.OnClickListener {
             field = value
         }
 
-    var cardTransitionName = "popup_card"
-        set(value) { card_view?.transitionName = value }
-
     constructor(context: Context): super(context) { init(context, null) }
     constructor(context: Context, attributeSet: AttributeSet?): super(context, attributeSet) { init(context, attributeSet) }
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int): super(context, attributeSet, defStyleAttr) { init(context, attributeSet) }

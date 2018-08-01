@@ -28,6 +28,8 @@ class FavoritesActivity : AppCompatActivity() {
         )
     }
 
+    //TODO Update favorites when favorites button is clicked
+
     private fun addCardsToLayout(cards: List<Card>) {
         favorites_recycler_view.adapter = CardRecyclerGridAdapter(cards).apply {
             onCardClickedListener = { card, itemView ->
