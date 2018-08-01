@@ -6,14 +6,13 @@ import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import de.thkoeln.fherborn.fearlesschange.App
 
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.db.Card
-import de.thkoeln.fherborn.fearlesschange.db.CardDatabase
 import de.thkoeln.fherborn.fearlesschange.views.cardpopup.CardPopup
 import de.thkoeln.fherborn.fearlesschange.views.cardview.CardView
 import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.android.synthetic.main.activity_overview.*
 import kotlinx.android.synthetic.main.fragment_random_cards.*
 
 class RandomCardsFragment : Fragment() {
@@ -40,8 +39,8 @@ class RandomCardsFragment : Fragment() {
     }
 
     private fun loadRandomCards() {
-        activity?.baseContext?.let {
-            CardDatabase.getInstance(it)?.cardDao()?.getRandom(3)?.subscribeBy(
+        activity?.let {
+            (it.application as App).cardDB.cardDao().getRandom(3).subscribeBy(
                     onNext = {
                         random_cards_1.card = it[0]
                         random_cards_2.card = it[1]

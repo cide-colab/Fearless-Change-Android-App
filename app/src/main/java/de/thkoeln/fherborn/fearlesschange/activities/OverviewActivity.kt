@@ -3,6 +3,7 @@ package de.thkoeln.fherborn.fearlesschange.activities
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import de.thkoeln.fherborn.fearlesschange.App
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.db.Card
@@ -22,7 +23,7 @@ class OverviewActivity : AppCompatActivity() {
     }
 
     private fun loadCards() {
-        CardDatabase.getInstance(baseContext)?.cardDao()?.getAll()?.subscribeBy(
+        (application as App).cardDB.cardDao().getAll().subscribeBy(
                 onNext = { addCardsToLayout(it) },
                 onError = { Snackbar.make(container, it.localizedMessage, Snackbar.LENGTH_LONG) }
         )
