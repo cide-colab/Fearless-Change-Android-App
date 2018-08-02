@@ -5,9 +5,9 @@ import android.content.Context
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import de.thkoeln.fherborn.fearlesschange.db.initializer.CardInitializer
 import de.thkoeln.fherborn.fearlesschange.db.initializer.CardKeywordInitializer
 import de.thkoeln.fherborn.fearlesschange.db.initializer.KeywordInitializer
-import de.thkoeln.fherborn.fearlesschange.db.migration.CardInitializer
 import java.util.concurrent.Executors
 
 /**
@@ -32,7 +32,7 @@ abstract class CardDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(context, CardDatabase::class.java, DB_NAME)
                 .fallbackToDestructiveMigration()
-                .addCallback(CardDatabaseCallback(context))
+                .addCallback(CardInitializer())
                 .build()
     }
 }
@@ -41,7 +41,7 @@ private class CardDatabaseCallback(val context: Context): RoomDatabase.Callback(
 
     override fun onCreate(db: SupportSQLiteDatabase) {
         Executors.newSingleThreadExecutor().execute({
-            CardInitializer(context).onInsert()
+//            CardInitializer(context).onInsert()
             KeywordInitializer(context).onInsert()
             CardKeywordInitializer(context).onInsert()
         })
