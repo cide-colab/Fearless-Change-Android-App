@@ -33,18 +33,8 @@ abstract class CardDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) = Room.databaseBuilder(context, CardDatabase::class.java, DB_NAME)
                 .fallbackToDestructiveMigration()
                 .addCallback(CardInitializer())
+                .addCallback(KeywordInitializer())
+                .addCallback(CardKeywordInitializer())
                 .build()
     }
-}
-
-private class CardDatabaseCallback(val context: Context): RoomDatabase.Callback() {
-
-    override fun onCreate(db: SupportSQLiteDatabase) {
-        Executors.newSingleThreadExecutor().execute({
-//            CardInitializer(context).onInsert()
-            KeywordInitializer(context).onInsert()
-            CardKeywordInitializer(context).onInsert()
-        })
-    }
-
 }

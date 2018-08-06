@@ -1,12 +1,12 @@
 package de.thkoeln.fherborn.fearlesschange.db.initializer
 
 import android.content.Context
-import de.thkoeln.fherborn.fearlesschange.db.CardDatabase
 import de.thkoeln.fherborn.fearlesschange.db.Keyword
 
-class KeywordInitializer(val context: Context): DataInitializer<Keyword>("keyword") {
-    override fun getItemValues(item: Keyword) = listOf(
-            item.keyword
+class KeywordInitializer: DataInitializer<Keyword>("keyword") {
+
+    override fun getItemValues(item: Keyword?) = hashMapOf<String, Any?>(
+            "keyword" to item?.keyword
     )
 
     override fun getItems() = listOf(

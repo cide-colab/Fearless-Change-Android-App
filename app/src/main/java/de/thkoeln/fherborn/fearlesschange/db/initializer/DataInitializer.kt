@@ -14,15 +14,16 @@ abstract class DataInitializer<T>(private val dbName: String): RoomDatabase.Call
     }
 
     private fun insertAllQuery(items: List<T>) =
-            items.joinToString(", ", prefix = "INSERT INTO $dbName VALUES ") { getValueString(it) }
+            items.joinToString(", ", prefix = "INSERT INTO $dbName ${getColumnString()} VALUES ") { getValueString(it) }
 
-    private fun getValueString(item: T) = getItemValues(item).joinToString(separator = ", ", prefix = "(", postfix = ")") {
+    private fun getValueString(item: T) = getItemValues(item).values.joinToString(separator = ", ", prefix = "(", postfix = ")") {
         when (it){
             is String -> """"$it""""
             else -> it.toString()
         }
     }
 
-    abstract fun getItemValues(item: T): List<Any>
+    private fun getColumnString() = getItemValues().keys.joinToString(separator = ", ", prefix = "(", postfix = ")")
+    abstract fun getItemValues(item: T? = null): HashMap<String, Any?>
     abstract fun getItems(): List<T>
 }

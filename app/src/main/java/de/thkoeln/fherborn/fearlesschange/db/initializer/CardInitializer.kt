@@ -3,6 +3,15 @@ package de.thkoeln.fherborn.fearlesschange.db.initializer
 import de.thkoeln.fherborn.fearlesschange.db.Card
 
 class CardInitializer : DataInitializer<Card>("card") {
+    override fun getItemValues(item: Card?) = hashMapOf(
+            "id" to item?.id,
+            "title" to item?.title,
+            "picture_path" to item?.picturePath,
+            "problem" to item?.problem,
+            "buts" to item?.buts,
+            "solution" to item?.solution
+    )
+
     override fun getItems(): List<Card> = listOf(
             Card(0,
                     "Elevator Pitch",
@@ -66,15 +75,6 @@ class CardInitializer : DataInitializer<Card>("card") {
                     "You wonder what your plan should be for introducing the new idea into your organization.",
                     "Take one small step at a time toward your goal.",
                     "Use an incremental approach in the change initiative, with shortterm goals, while keeping your long-term vision.")
-    )
-
-    override fun getItemValues(item: Card): List<Any> = listOf(
-            item.id,
-            item.title,
-            item.picturePath,
-            item.problem,
-            item.buts,
-            item.solution
     )
 
 }
