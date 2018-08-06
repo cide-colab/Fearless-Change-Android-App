@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.db.initializer
+package de.thkoeln.fherborn.fearlesschange.databases.initializer
 
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.RoomDatabase
