@@ -2,7 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.views.cardview
 
 import android.content.Context
 import android.util.AttributeSet
-import de.thkoeln.fherborn.fearlesschange.db.Card
+import de.thkoeln.fherborn.fearlesschange.databases.models.Card
 import android.view.LayoutInflater
 import de.thkoeln.fherborn.fearlesschange.R
 import kotlinx.android.synthetic.main.layout_card_large.view.*

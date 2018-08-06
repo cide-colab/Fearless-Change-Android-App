@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.db
+package de.thkoeln.fherborn.fearlesschange.databases.models
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
@@ -14,5 +14,6 @@ data class Card (
         val picturePath: String,
         val problem: String,
         val buts: String,
-        val solution: String
+        val solution: String,
+        val favorite: Boolean = false
 )

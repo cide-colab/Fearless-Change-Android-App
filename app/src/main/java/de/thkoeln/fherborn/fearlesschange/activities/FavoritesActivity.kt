@@ -1,41 +1,36 @@
 package de.thkoeln.fherborn.fearlesschange.activities
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import de.thkoeln.fherborn.fearlesschange.App
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
-import de.thkoeln.fherborn.fearlesschange.db.Card
-import de.thkoeln.fherborn.fearlesschange.db.CardDatabase
-import de.thkoeln.fherborn.fearlesschange.db.extensions.loadInBackground
+import de.thkoeln.fherborn.fearlesschange.databases.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.views.cardpopup.CardPopup
-import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.activity_favorites.*
 
 class FavoritesActivity : AppCompatActivity() {
 
+
+    private lateinit var cardRepository: CardRepository
+    private val adapter = CardRecyclerGridAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
-        loadCards()
-    }
 
-    private fun loadCards() {
-        //TODO Load only favorites
+        cardRepository = CardRepository(application)
 
-        loadInBackground({it.cardDB.cardDao().getAll()}) {
-            addCardsToLayout(it)
-        }
-    }
-
-    //TODO Update favorites when favorites button is clicked
-
-    private fun addCardsToLayout(cards: List<Card>) {
-        favorites_recycler_view.adapter = CardRecyclerGridAdapter(cards).apply {
+        favorites_recycler_view.adapter = adapter.apply {
             onCardClickedListener = { card, itemView ->
                 CardPopup(itemView.context, card).show()
             }
         }
+
+        cardRepository.getFavorites().observe(this, Observer { cards ->
+            adapter.cards = cards?: listOf()
+            adapter.notifyDataSetChanged()
+        })
     }
+
 }

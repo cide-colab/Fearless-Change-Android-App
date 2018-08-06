@@ -9,7 +9,8 @@ class CardInitializer : DataInitializer<Card>("card") {
             "picturePath" to item?.picturePath,
             "problem" to item?.problem,
             "buts" to item?.buts,
-            "solution" to item?.solution
+            "solution" to item?.solution,
+            "favorite" to item?.favorite
     )
 
     override fun getItems(): List<Card> = listOf(
@@ -32,19 +33,19 @@ class CardInitializer : DataInitializer<Card>("card") {
                     "https://s3.eu-central-1.amazonaws.com/fearlesschange-cardpics/easier_path.jpg",
                     "What can you do to make it easier for people to change?",
                     "To encourage adoption of a new idea, experiment with removing obstacles that might be standing in the way.",
-                    "Change the environment in a way that will encourage people to adopt the new idea."),
+                    "Change the environment in a way that will encourage people to adopt the new idea.", true),
             Card(3,
                     "Piggyback",
                     "https://s3.eu-central-1.amazonaws.com/fearlesschange-cardpics/piggyback.jpg",
                     "Several procedures or hurdles are required for the introduction of your new idea but you’re looking for an easier way.",
                     "To help the new idea be less threatening, build on existing practices and use current language.",
-                    "Piggyback the new idea on a well-accepted practice in the organization."),
+                    "Piggyback the new idea on a well-accepted practice in the organization.", true),
             Card(4,
                     "Accentuate the Positive",
                     "https://s3.eu-central-1.amazonaws.com/fearlesschange-cardpics/accentuate_the_positive.jpg",
                     "Your attempts to scare others are not working.",
                     "To influence others during the change initiative and inspire them to believe the change can happen, motivate them with a sense of hope rather than fear.",
-                    "Inspire people throughout the change initiative with a sense of optimism rather than fear."),
+                    "Inspire people throughout the change initiative with a sense of optimism rather than fear.", true),
             Card(5,
                     "Concrete Action Plan",
                     "https://s3.eu-central-1.amazonaws.com/fearlesschange-cardpics/concrete_action_plan.jpg",

@@ -10,7 +10,7 @@ import android.view.Window.FEATURE_NO_TITLE
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.activities.CardDetailActivity
 import de.thkoeln.fherborn.fearlesschange.activities.CardDetailActivity.Companion.CARD_ID_KEY
-import de.thkoeln.fherborn.fearlesschange.db.Card
+import de.thkoeln.fherborn.fearlesschange.databases.models.Card
 import kotlinx.android.synthetic.main.layout_card_popup.*
 
 class CardPopup(context: Context, val card: Card): Dialog(context) {

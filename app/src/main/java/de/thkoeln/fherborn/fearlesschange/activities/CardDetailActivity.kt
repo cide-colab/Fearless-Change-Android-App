@@ -1,17 +1,14 @@
 package de.thkoeln.fherborn.fearlesschange.activities
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import de.thkoeln.fherborn.fearlesschange.App
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.db.Card
-import de.thkoeln.fherborn.fearlesschange.db.CardDatabase
-import de.thkoeln.fherborn.fearlesschange.db.extensions.loadInBackground
-import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.android.synthetic.main.activity_overview.*
+import de.thkoeln.fherborn.fearlesschange.databases.repositories.CardRepository
 
 class CardDetailActivity : AppCompatActivity() {
+
+    private lateinit var cardRepository: CardRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,18 +16,15 @@ class CardDetailActivity : AppCompatActivity() {
 
         val id = getIdFromIntent()
 
-        loadInBackground({it.cardDB.cardDao().getById(id)}) {
-            onCardLoaded(it)
-        }
+        cardRepository = CardRepository(application)
+        cardRepository.getById(id).observe(this, Observer {
+            //TODO Set values
+        })
     }
 
     private fun getIdFromIntent(): Long {
         if(!intent.hasExtra(CARD_ID_KEY)) throw IllegalArgumentException("Missing card id in intent")
         return intent.getLongExtra(CARD_ID_KEY, -1)
-    }
-
-    private fun onCardLoaded(card: Card) {
-        //TODO Set values
     }
 
     companion object {

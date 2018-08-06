@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.db.Card
+import de.thkoeln.fherborn.fearlesschange.databases.models.Card
 import de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewSmall
 
 
-class CardRecyclerGridAdapter(var cards: List<Card>) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>() {
+class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>() {
 
     var onCardClickedListener: ((Card, View) -> Unit)? = null
 

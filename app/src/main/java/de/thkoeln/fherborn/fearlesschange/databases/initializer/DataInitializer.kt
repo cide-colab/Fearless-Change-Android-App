@@ -10,14 +10,18 @@ abstract class DataInitializer<T>(private val dbName: String): RoomDatabase.Call
 
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
-        db.execSQL(insertAllQuery(getItems()))
+        insertAllQuery(getItems())?.let { db.execSQL(it) }
     }
 
-    private fun insertAllQuery(items: List<T>) =
-            items.joinToString(", ", prefix = "INSERT INTO $dbName ${getColumnString()} VALUES ") { getValueString(it) }
+    private fun insertAllQuery(items: List<T>): String? {
+        if(items.isEmpty()) return null
+        return items.joinToString(", ", prefix = "INSERT INTO $dbName ${getColumnString()} VALUES ") { getValueString(it) }
+    }
+
 
     private fun getValueString(item: T) = getItemValues(item).values.joinToString(separator = ", ", prefix = "(", postfix = ")") {
         when (it){
+            is Boolean -> if(it) "1" else "0"
             is String -> """"$it""""
             else -> it.toString()
         }

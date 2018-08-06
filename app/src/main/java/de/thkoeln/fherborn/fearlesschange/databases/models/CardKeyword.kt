@@ -1,10 +1,10 @@
-package de.thkoeln.fherborn.fearlesschange.db
+package de.thkoeln.fherborn.fearlesschange.databases.models
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
 
 @Entity(tableName = "card_keyword",
-        primaryKeys = ["card_id", "keyword"],
+        primaryKeys = ["card_id", "keyword_id"],
         foreignKeys = [(ForeignKey(
                 entity = Card::class,
                 parentColumns = ["id"],
@@ -13,13 +13,13 @@ import android.arch.persistence.room.ForeignKey
                 onUpdate = ForeignKey.CASCADE
         )), (ForeignKey(
                 entity = Keyword::class,
-                parentColumns = ["keyword"],
-                childColumns = ["keyword"],
+                parentColumns = ["id"],
+                childColumns = ["keyword_id"],
                 onDelete = ForeignKey.CASCADE,
                 onUpdate = ForeignKey.CASCADE
         ))]
 )
 data class CardKeyword(
         val card_id: Long,
-        val keyword: String
+        val keyword_id: Long
 )

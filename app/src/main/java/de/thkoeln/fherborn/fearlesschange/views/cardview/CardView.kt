@@ -3,11 +3,10 @@ package de.thkoeln.fherborn.fearlesschange.views.cardview
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.db.Card
+import de.thkoeln.fherborn.fearlesschange.databases.models.Card
 import kotlinx.android.synthetic.main.layout_card.view.*
 
 /**

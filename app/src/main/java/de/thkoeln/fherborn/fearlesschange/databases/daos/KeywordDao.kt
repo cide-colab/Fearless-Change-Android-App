@@ -1,9 +1,10 @@
-package de.thkoeln.fherborn.fearlesschange.db
+package de.thkoeln.fherborn.fearlesschange.databases.daos
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
+import de.thkoeln.fherborn.fearlesschange.databases.models.Keyword
 import io.reactivex.Flowable
 
 @Dao
