@@ -6,7 +6,7 @@ class CardInitializer : DataInitializer<Card>("card") {
     override fun getItemValues(item: Card?) = hashMapOf(
             "id" to item?.id,
             "title" to item?.title,
-            "picture_path" to item?.picturePath,
+            "picturePath" to item?.picturePath,
             "problem" to item?.problem,
             "buts" to item?.buts,
             "solution" to item?.solution
