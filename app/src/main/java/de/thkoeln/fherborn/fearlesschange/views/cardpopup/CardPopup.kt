@@ -17,6 +17,7 @@ class CardPopup(context: Context, val card: Card): Dialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(FEATURE_NO_TITLE)
         setContentView(R.layout.layout_card_popup)
         setParams()
         popup_card.card = card
@@ -36,7 +37,6 @@ class CardPopup(context: Context, val card: Card): Dialog(context) {
     }
 
     private fun setParams() {
-        requestWindowFeature(FEATURE_NO_TITLE)
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window.setGravity(Gravity.CENTER)
         window.setBackgroundDrawableResource(android.R.color.transparent)

@@ -7,6 +7,7 @@ import de.thkoeln.fherborn.fearlesschange.App
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.db.Card
 import de.thkoeln.fherborn.fearlesschange.db.CardDatabase
+import de.thkoeln.fherborn.fearlesschange.db.extensions.loadInBackground
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.activity_overview.*
 
@@ -18,10 +19,9 @@ class CardDetailActivity : AppCompatActivity() {
 
         val id = getIdFromIntent()
 
-        (application as App).cardDB.cardDao().getById(id).subscribeBy(
-                onNext = { onCardLoaded(it) },
-                onError = { Snackbar.make(container, it.localizedMessage, Snackbar.LENGTH_LONG) }
-        )
+        loadInBackground({it.cardDB.cardDao().getById(id)}) {
+            onCardLoaded(it)
+        }
     }
 
     private fun getIdFromIntent(): Long {
