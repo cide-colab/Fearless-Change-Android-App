@@ -1,8 +1,8 @@
 package de.thkoeln.fherborn.fearlesschange.ui.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
@@ -31,8 +31,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_search -> {
-            startActivity(Intent(this, SearchActivity::class.java))
+        R.id.action_refresh -> {
+
             true
         }
         R.id.action_settings -> {

@@ -24,4 +24,5 @@
     <!-- Fragments -->
     <string name="title_fragment_card_of_the_day">Card of the Day</string>
     <string name="title_fragment_random_cards">Random Cards</string>
+    <string name="action_refresh">Refresh</string>
 </resources>
