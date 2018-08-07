@@ -28,9 +28,11 @@ class CardOfTheDayFragment : Fragment() {
         cardRepository = CardRepository(activity?.application)
 
         cardRepository.getCount().observe(this, Observer {
-            cardRepository.getElementWithIndex(calculateCardOfTheDay(it)).observe(this, Observer {
-                card_of_the_day.card = it
-            })
+            calculateCardOfTheDay(it)?.let {
+                cardRepository.getElementWithIndex(it).observe(this, Observer {
+                    card_of_the_day.card = it
+                })
+            }
         })
 
         card_of_the_day.onCardClickedListener = { view, card ->
@@ -38,8 +40,11 @@ class CardOfTheDayFragment : Fragment() {
         }
     }
 
-    private fun calculateCardOfTheDay(countOfCards: Long?): Long {
+    private fun calculateCardOfTheDay(countOfCards: Long?): Long? {
         val currentDay = System.currentTimeMillis()/1000/60/60/24
-        return currentDay % (countOfCards?:0) -1
+        return when (countOfCards) {
+            null, 0L -> null
+            else -> currentDay % countOfCards
+        }
     }
 }
