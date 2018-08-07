@@ -44,13 +44,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
-        <activity android:name=".ui.activities.SearchActivity" />
-        <activity
-            android:name=".ui.activities.SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity
-            android:name=".ui.activities.SettingsActivity2"
-            android:label="@string/title_activity_settings2" />
+        <activity android:name=".ui.activities.SearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
+        </activity>
+        <activity android:name=".ui.activities.SettingsActivity"/>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
     </application>
 
 </manifest>
