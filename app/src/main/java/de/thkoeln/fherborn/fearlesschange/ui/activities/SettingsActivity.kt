@@ -52,7 +52,7 @@ class SettingsActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.title_activity_settings)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.dashboard_activity_actions, menu)
+        menuInflater.inflate(R.menu.settings_activity_actions, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
