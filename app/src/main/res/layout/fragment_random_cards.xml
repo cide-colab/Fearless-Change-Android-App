@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/random_cards_title"/>
 
-    <de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewSmall
+    <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
         android:id="@+id/random_cards_1"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/random_cards_title" />
 
-    <de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewSmall
+    <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
         android:id="@+id/random_cards_2"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/random_cards_title" />
 
-    <de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewSmall
+    <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
         android:id="@+id/random_cards_3"
         android:layout_width="140dp"
         android:layout_height="wrap_content"

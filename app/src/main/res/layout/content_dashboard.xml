@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="@layout/activity_dashbaord">
 
-    <fragment android:name="de.thkoeln.fherborn.fearlesschange.fragments.CardOfTheDayFragment"
+    <fragment android:name="de.thkoeln.fherborn.fearlesschange.ui.fragments.CardOfTheDayFragment"
         android:id="@+id/card_of_the_day_fragment"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/main_nav_bar" />
 
-    <fragment android:name="de.thkoeln.fherborn.fearlesschange.fragments.RandomCardsFragment"
+    <fragment android:name="de.thkoeln.fherborn.fearlesschange.ui.fragments.RandomCardsFragment"
         android:id="@+id/random_cards_fragment"
         android:layout_height="wrap_content"
         android:layout_width="0dp"

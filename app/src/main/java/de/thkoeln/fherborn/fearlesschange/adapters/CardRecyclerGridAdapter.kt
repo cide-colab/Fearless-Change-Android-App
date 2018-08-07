@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.databases.models.Card
-import de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewSmall
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
 
 
 class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>() {

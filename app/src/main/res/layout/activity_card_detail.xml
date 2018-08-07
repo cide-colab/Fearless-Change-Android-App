@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:background="@drawable/app_bg"
     android:layout_height="match_parent"
-    tools:context=".activities.CardDetailActivity">
+    tools:context=".ui.activities.CardDetailActivity">
 
 </android.support.constraint.ConstraintLayout>

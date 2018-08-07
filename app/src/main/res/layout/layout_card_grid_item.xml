@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewSmall
+<de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
     android:id="@+id/overview_grid_card"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"

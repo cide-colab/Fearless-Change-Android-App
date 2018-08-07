@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_bg"
     android:id="@+id/container"
-    tools:context=".activities.OverviewActivity">
+    tools:context=".ui.activities.OverviewActivity">
 
 
     <android.support.v7.widget.RecyclerView

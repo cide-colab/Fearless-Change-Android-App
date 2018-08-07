@@ -31,7 +31,7 @@
         android:padding="8dp"
         android:text="@string/fragment_codd_title"/>
 
-    <de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewSmall
+    <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
         android:id="@+id/card_of_the_day"
         android:layout_width="200dp"
         android:layout_height="wrap_content"

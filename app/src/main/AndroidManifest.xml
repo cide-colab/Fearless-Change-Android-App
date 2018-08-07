@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DashboardActivity">
+        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CardDetailActivity" />
-        <activity android:name=".activities.OverviewActivity" />
-        <activity android:name=".activities.FavoritesActivity" />
-        <activity android:name=".activities.MoreActivity"/>
+        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.CardDetailActivity" />
+        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.OverviewActivity" />
+        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.FavoritesActivity" />
+        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.MoreActivity"/>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <de.thkoeln.fherborn.fearlesschange.views.cardview.CardViewLarge
+    <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewLarge
         android:id="@+id/popup_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
