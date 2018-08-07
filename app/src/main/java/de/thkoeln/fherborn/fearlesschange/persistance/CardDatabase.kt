@@ -4,9 +4,9 @@ import android.content.Context
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
-import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardDao
 import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardKeywordDao
 import de.thkoeln.fherborn.fearlesschange.persistance.daos.KeywordDao
+import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardDao
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.CardInitializer
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.CardKeywordInitializer
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.KeywordInitializer

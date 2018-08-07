@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.databases.daos
+package de.thkoeln.fherborn.fearlesschange.persistance.daos
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
