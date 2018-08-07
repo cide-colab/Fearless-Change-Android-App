@@ -19,7 +19,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Keyword
  */
 @Database(
         entities = [Card::class, Keyword::class, CardKeyword::class],
-        version = 2,
+        version = 3,
         exportSchema = false
 )
 abstract class CardDatabase : RoomDatabase() {

@@ -24,27 +24,33 @@ class RandomCardsFragment : Fragment() {
 
         cardRepository = CardRepository(activity?.application)
 
-        loadRandomCards()
+        reload()
         setListeners()
 
     }
 
     private fun setListeners() {
-        val openPopup: (CardView, Card?) -> Unit = { view, card ->
-            card?.let { CardPopup(view.context, card).show() }
-        }
-        random_cards_1.onCardClickedListener = openPopup
-        random_cards_2.onCardClickedListener = openPopup
-        random_cards_3.onCardClickedListener = openPopup
-        random_cards_reload.setOnClickListener { loadRandomCards() }
+        setCardListener(random_cards_1, random_cards_2, random_cards_3)
+        random_cards_reload.setOnClickListener { reload() }
     }
 
-    private fun loadRandomCards() {
+    fun reload() {
+        loadRandomCardsToView(random_cards_1, random_cards_2, random_cards_3)
+    }
 
-        cardRepository.getRandom(3).observe(this, Observer {
-            random_cards_1.card = it?.get(0)
-            random_cards_2.card = it?.get(1)
-            random_cards_3.card = it?.get(2)
+    private fun setCardListener(vararg cardViews: CardView) {
+        cardViews.forEach {
+            it.onCardClickedListener = { view, card ->
+                card?.let {
+                    CardPopup(view.context, card).show()
+                }
+            }
+        }
+    }
+
+    private fun loadRandomCardsToView(vararg cardViews: CardView) {
+        cardRepository.getRandom(cardViews.size).observe(this, Observer {
+            it?.forEachIndexed{index, card -> cardViews[index].card = card}
         })
     }
 }

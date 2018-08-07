@@ -1,11 +1,11 @@
-package de.thkoeln.fherborn.fearlesschange.persistance.daos
+package de.thkoeln.fherborn.fearlesschange.databases.daos
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Keyword
-import io.reactivex.Flowable
 
 @Dao
 interface KeywordDao {
@@ -14,5 +14,5 @@ interface KeywordDao {
     fun insertKeywords(keywords: List<Keyword>)
 
     @Query("SELECT * FROM keyword")
-    fun getKeywords(): Flowable<List<Keyword>>
+    fun getKeywords(): LiveData<List<Keyword>>
 }

@@ -9,4 +9,6 @@
     <string name="fragment_codd_title">Card of the Day</string>
     <string name="fragment_random_cards_title">Random Cards</string>
     <string name="popup_details_btn_text">Details</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
 </resources>
