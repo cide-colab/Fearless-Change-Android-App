@@ -1,9 +1,10 @@
 package de.thkoeln.fherborn.fearlesschange.databases.models
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 
-@Entity(tableName = "keyword")
+@Entity(tableName = "keyword", indices = [(Index(value = ["id"]))])
 data class Keyword (
 
         @PrimaryKey(autoGenerate = true)

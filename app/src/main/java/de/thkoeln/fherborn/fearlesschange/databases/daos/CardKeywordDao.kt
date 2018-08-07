@@ -6,8 +6,6 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import de.thkoeln.fherborn.fearlesschange.databases.models.CardKeyword
-import de.thkoeln.fherborn.fearlesschange.databases.models.Keyword
-import io.reactivex.Flowable
 
 @Dao
 interface CardKeywordDao {

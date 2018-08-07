@@ -16,10 +16,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CardDetailActivity" />
-        <activity android:name=".activities.OverviewActivity" />
-        <activity android:name=".activities.FavoritesActivity" />
-        <activity android:name=".activities.MoreActivity"/>
+        <activity android:name=".activities.CardDetailActivity"
+            android:parentActivityName=".activities.DashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity" />
+        </activity>
+        <activity android:name=".activities.OverviewActivity"
+            android:parentActivityName=".activities.DashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity" />
+        </activity>
+        <activity android:name=".activities.FavoritesActivity"
+            android:parentActivityName=".activities.DashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity" />
+        </activity>
+        <activity android:name=".activities.MoreActivity"
+            android:parentActivityName=".activities.DashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity" />
+        </activity>
     </application>
 
 </manifest>
