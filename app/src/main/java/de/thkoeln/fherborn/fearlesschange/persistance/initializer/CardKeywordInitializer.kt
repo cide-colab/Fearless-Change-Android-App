@@ -5,8 +5,8 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.CardKeyword
 class CardKeywordInitializer: DataInitializer<CardKeyword>("card_keyword") {
 
     override fun getItemValues(item: CardKeyword?) = hashMapOf<String, Any?>(
-        "card_id" to item?.card_id,
-        "keyword_id" to item?.keyword_id
+        "cardId" to item?.cardId,
+        "keywordId" to item?.keywordId
     )
 
     fun getValues() = hashMapOf(

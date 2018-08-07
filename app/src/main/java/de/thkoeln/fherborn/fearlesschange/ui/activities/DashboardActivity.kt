@@ -1,9 +1,9 @@
 package de.thkoeln.fherborn.fearlesschange.ui.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.SearchView
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
@@ -15,12 +15,18 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_dashbaord)
-        setSupportActionBar(action_bar)
-        // Get a support ActionBar corresponding to this toolbar and enable the Up button
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupActionBar()
         setListeners()
     }
 
+    /**
+     * Set up the [android.app.ActionBar], if the API is available.
+     */
+    private fun setupActionBar() {
+        setSupportActionBar(action_bar as Toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.title_activity_dashboard)
+    }
     private fun setListeners() {
         fab_favorites.setOnClickListener{ startActivity(Intent(this, FavoritesActivity::class.java))}
         fab_more.setOnClickListener{ startActivity(Intent(this, MoreActivity::class.java))}
@@ -29,25 +35,19 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.dashboard_activity_actions, menu)
-
-        val searchItem = menu?.findItem(R.id.action_search)
-        val searchView = searchItem?.actionView as SearchView
-
-        // Configure the search info and add any event listeners...
-
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_settings -> {
-            // User chose the "Settings" item, show the app settings UI...
+        R.id.action_search -> {
+            startActivity(Intent(this, SearchActivity::class.java))
             true
         }
-
-        else -> {
-            // If we got here, the user's action was not recognized.
-            // Invoke the superclass to handle it.
-            super.onOptionsItemSelected(item)
+        R.id.action_settings -> {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
+
 }

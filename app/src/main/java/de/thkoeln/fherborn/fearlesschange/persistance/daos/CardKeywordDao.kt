@@ -13,6 +13,6 @@ interface CardKeywordDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCardKeywords(cardKeyword: List<CardKeyword>)
 
-    @Query("SELECT * FROM card_keyword WHERE card_id =:cardId")
+    @Query("SELECT * FROM card_keyword WHERE cardId =:cardId")
     fun getKeywordsByCardId(cardId: Long): LiveData<List<CardKeyword>>
 }

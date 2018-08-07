@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey
 /**
  * Created by florianherborn on 30.07.18.
  */
-@Entity(tableName = "card", indices = [(Index(value = ["id"]))])
+@Entity(tableName = "card")
 data class Card (
         @PrimaryKey(autoGenerate = true)
         val id: Long,

@@ -4,11 +4,9 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 
-@Entity(tableName = "keyword", indices = [(Index(value = ["id"]))])
+@Entity(tableName = "keyword",indices = [(Index("id"))])
 data class Keyword (
-
         @PrimaryKey(autoGenerate = true)
         val id: Long,
-
         val keyword: String
 )

@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toStartOf="@id/random_cards_reload"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="8dp"
-        android:text="@string/fragment_random_cards_title"/>
+        android:text="@string/title_fragment_random_cards"/>
 
     <ImageView
         android:id="@+id/random_cards_reload"

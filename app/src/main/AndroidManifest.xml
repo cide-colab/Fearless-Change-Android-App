@@ -9,37 +9,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity">
+        <activity android:name=".ui.activities.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.CardDetailActivity"
-            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity">
+        <activity
+            android:name=".ui.activities.CardDetailActivity"
+            android:parentActivityName=".ui.activities.DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
-        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.OverviewActivity"
-            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity">
+        <activity
+            android:name=".ui.activities.OverviewActivity"
+            android:parentActivityName=".ui.activities.DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
-        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.FavoritesActivity"
-            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity">
+        <activity
+            android:name=".ui.activities.FavoritesActivity"
+            android:parentActivityName=".ui.activities.DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
-        <activity android:name="de.thkoeln.fherborn.fearlesschange.ui.activities.MoreActivity"
-            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity">
+        <activity
+            android:name=".ui.activities.MoreActivity"
+            android:parentActivityName=".ui.activities.DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
+        <activity android:name=".ui.activities.SearchActivity" />
+        <activity
+            android:name=".ui.activities.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".ui.activities.SettingsActivity2"
+            android:label="@string/title_activity_settings2" />
     </application>
 
 </manifest>

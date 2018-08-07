@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="32dp"
         android:padding="8dp"
-        android:text="@string/fragment_codd_title"/>
+        android:text="@string/title_fragment_card_of_the_day"/>
 
     <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
         android:id="@+id/card_of_the_day"
