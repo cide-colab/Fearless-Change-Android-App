@@ -18,25 +18,4 @@
         android:layout_width="match_parent"
         android:name="de.thkoeln.fherborn.fearlesschange.ui.fragments.RandomCardsFragment" />
 
-    <fragment
-        android:id="@+id/random_cards_fragment2"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:name="de.thkoeln.fherborn.fearlesschange.ui.fragments.RandomCardsFragment" />
-
-    <fragment
-        android:id="@+id/random_cards_fragment3"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:name="de.thkoeln.fherborn.fearlesschange.ui.fragments.RandomCardsFragment" />
-
-    <fragment
-        android:id="@+id/random_cards_fragment4"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:name="de.thkoeln.fherborn.fearlesschange.ui.fragments.RandomCardsFragment" />
-
 </LinearLayout>
