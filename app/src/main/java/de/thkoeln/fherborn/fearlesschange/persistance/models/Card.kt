@@ -12,7 +12,7 @@ data class Card (
         @PrimaryKey(autoGenerate = true)
         val id: Long,
         val title: String,
-        val picturePath: String,
+        val pictureName: String,
         val problem: String,
         val buts: String,
         val solution: String,

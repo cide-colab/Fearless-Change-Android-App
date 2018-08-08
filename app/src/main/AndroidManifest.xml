@@ -49,10 +49,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
-        <activity android:name=".ui.activities.SettingsActivity"/>
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
+        <activity android:name=".ui.activities.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
+        </activity>
     </application>
 
 </manifest>

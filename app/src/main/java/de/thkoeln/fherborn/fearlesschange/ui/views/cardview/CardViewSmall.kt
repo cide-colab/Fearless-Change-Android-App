@@ -5,7 +5,8 @@ import android.util.AttributeSet
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import android.view.LayoutInflater
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.layout_card_large.view.*
+import de.thkoeln.fherborn.fearlesschange.getResourceId
+import kotlinx.android.synthetic.main.layout_card_small.view.*
 
 
 /**
@@ -23,6 +24,9 @@ class CardViewSmall : CardView {
         card?.let {
             card_title?.text = it.title
             card_problem?.text = it.problem
+            card_image.setImageResource(
+                    getResourceId(context, card.pictureName, "drawable", context.packageName)
+                            ?:R.drawable.img_placeholder)
         }
     }
 

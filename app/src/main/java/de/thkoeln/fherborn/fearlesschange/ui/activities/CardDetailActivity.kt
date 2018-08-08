@@ -5,11 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.getResourceId
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import kotlinx.android.synthetic.main.default_app_bar.*
+import kotlinx.android.synthetic.main.activity_card_detail.*
 
 class CardDetailActivity : AppCompatActivity() {
 
@@ -18,14 +21,25 @@ class CardDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_detail)
+        setupActionBar()
 
         val id = getIdFromIntent()
 
         cardRepository = CardRepository(application)
         cardRepository.getById(id).observe(this, Observer {
-            //TODO Set values
+            it?.let { setCardValues(it) }
         })
-        setupActionBar()
+    }
+
+    private fun setCardValues(card: Card) {
+        card_image.setImageResource(
+                getResourceId(this, card.pictureName, "drawable", packageName)?.also { Log.e("TEST", it.toString()) }
+                ?:R.drawable.img_placeholder
+        )
+        card_title.text = card.title
+        card_problem.text = card.problem
+        card_solution.text = card.solution
+        card_buts.text = card.buts
     }
 
     /**

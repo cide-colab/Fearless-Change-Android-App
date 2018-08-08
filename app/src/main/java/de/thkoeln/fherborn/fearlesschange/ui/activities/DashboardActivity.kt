@@ -23,7 +23,6 @@ class DashboardActivity : AppCompatActivity() {
      */
     private fun setupActionBar() {
         setSupportActionBar(action_bar as Toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.title_activity_dashboard)
     }
 
