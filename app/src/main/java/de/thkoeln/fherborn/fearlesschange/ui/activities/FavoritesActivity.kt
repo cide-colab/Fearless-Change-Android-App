@@ -12,7 +12,7 @@ import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
 import kotlinx.android.synthetic.main.activity_favorites.*
-import kotlinx.android.synthetic.main.default_app_bar.*
+import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -45,7 +45,6 @@ class FavoritesActivity : AppCompatActivity() {
     private fun setupActionBar() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.title_activity_favorites)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.dashboard_activity_actions, menu)

@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/app_bg"
     android:id="@+id/preferences_root_view"
+    android:padding="@dimen/default_margin"
     tools:context=".ui.activities.SettingsActivity">
-    <include layout="@layout/default_app_bar"/>
+    <include layout="@layout/layout_default_app_bar"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

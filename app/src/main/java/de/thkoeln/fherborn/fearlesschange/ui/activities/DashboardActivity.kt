@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.activity_dashbaord.*
+import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -18,12 +18,8 @@ class DashboardActivity : AppCompatActivity() {
         setupActionBar()
     }
 
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
     private fun setupActionBar() {
         setSupportActionBar(action_bar as Toolbar)
-        supportActionBar?.title = getString(R.string.title_activity_dashboard)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

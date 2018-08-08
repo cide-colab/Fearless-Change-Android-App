@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewSmall
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
 
 
 class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>() {
@@ -28,7 +28,7 @@ class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.A
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var cardView: CardViewSmall = itemView.findViewById(R.id.overview_grid_card)
+        private var cardView: CardViewPreview = itemView.findViewById(R.id.overview_grid_card)
 
         fun bindCard(card: Card) {
             cardView.card = card

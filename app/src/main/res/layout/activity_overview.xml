@@ -5,22 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_bg"
+    android:padding="@dimen/default_margin"
     android:id="@+id/container"
     tools:context=".ui.activities.OverviewActivity">
 
 
-    <include layout="@layout/default_app_bar"/>
+    <include layout="@layout/layout_default_app_bar"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/overview_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/component_bg"
+        android:layout_marginTop="@dimen/default_margin"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/action_bar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

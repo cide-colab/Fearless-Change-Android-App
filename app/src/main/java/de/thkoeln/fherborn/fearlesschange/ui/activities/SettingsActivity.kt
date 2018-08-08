@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.default_app_bar.*
+import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 
 /**
@@ -32,7 +32,6 @@ class SettingsActivity : AppCompatActivity() {
     private fun setupActionBar() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.title_activity_settings)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.settings_activity_actions, menu)
