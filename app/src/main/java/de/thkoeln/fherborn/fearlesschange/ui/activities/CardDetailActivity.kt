@@ -9,7 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import kotlinx.android.synthetic.main.activity_card_detail.*
+import kotlinx.android.synthetic.main.default_app_bar.*
 
 class CardDetailActivity : AppCompatActivity() {
 

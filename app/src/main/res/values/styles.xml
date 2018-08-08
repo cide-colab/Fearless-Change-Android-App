@@ -11,9 +11,8 @@
 
     <style name="ActionBar">
         <item name="android:elevation">4dp</item>
-        <item name="android:background">@color/component_bg</item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
-        <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="popupTheme">@style/Theme.Design.NoActionBar</item>
     </style>
 
     <style name="CardTitle" parent="Base.TextAppearance.AppCompat.Title">
@@ -21,12 +20,14 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:rotation">-2</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="Card" parent="CardView">
         <item name="android:clipChildren">true</item>
         <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">6dp</item>
+        <item name="cardElevation">2dp</item>
         <item name="cardPreventCornerOverlap">false</item>
         <item name="layout_constraintDimensionRatio">55:86</item>
     </style>

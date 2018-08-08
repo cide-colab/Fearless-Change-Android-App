@@ -1,118 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg">
+    android:background="@drawable/app_bg"
+    android:fitsSystemWindows="true">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    <include layout="@layout/default_app_bar"/>
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            style="@style/ActionBar"
-            android:id="@+id/action_bar"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" />
-
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/main_nav_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:padding="16dp"
-            android:background="@color/component_bg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/action_bar">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_overview"
-                android:layout_width="wrap_content"
+            <fragment
+                android:id="@+id/main_nav_bar"
+                android:name="de.thkoeln.fherborn.fearlesschange.ui.fragments.NavigationFragment"
+                layout="@layout/fragment_navigation"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"
-                app:fabSize="normal"
-                android:backgroundTint="@color/dashboard_nav_overview_bg"
-                app:elevation="0dp"
-                app:borderWidth="0dp"
-                android:src="@drawable/ic_apps_white"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/fab_overview"
-                app:layout_constraintEnd_toEndOf="@id/fab_overview"
-                app:layout_constraintTop_toBottomOf="@id/fab_overview"
-                android:text="@string/label_nav_overview"/>
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_favorites"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/fab_overview"
-                app:layout_constraintEnd_toStartOf="@id/fab_more"
-                app:fabSize="normal"
-                android:backgroundTint="@color/dashboard_nav_favorites_bg"
-                app:elevation="0dp"
-                app:borderWidth="0dp"
-                android:src="@drawable/ic_favorite_white"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/fab_favorites"
-                app:layout_constraintEnd_toEndOf="@id/fab_favorites"
-                app:layout_constraintTop_toBottomOf="@id/fab_favorites"
-                android:text="@string/label_nav_favorites"/>
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/default_margin"
+                app:layout_collapseMode="parallax"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                app:fabSize="normal"
-                android:backgroundTint="@color/dashboard_nav_more_bg"
-                app:elevation="0dp"
-                app:borderWidth="0dp"
-                android:src="@drawable/ic_menu_white"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/fab_more"
-                app:layout_constraintEnd_toEndOf="@id/fab_more"
-                app:layout_constraintTop_toBottomOf="@id/fab_more"
-                android:text="@string/label_nav_more"/>
-
+            <include
+                layout="@layout/content_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_margin"
+                app:layout_constraintTop_toBottomOf="@id/main_nav_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-
-        <include
-            layout="@layout/content_dashboard"
-            android:layout_margin="@dimen/default_margin"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_nav_bar" />
-
-
-
-
-    </android.support.constraint.ConstraintLayout>
-
-</android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

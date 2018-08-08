@@ -16,7 +16,6 @@ class DashboardActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_dashbaord)
         setupActionBar()
-        setListeners()
     }
 
     /**
@@ -26,11 +25,6 @@ class DashboardActivity : AppCompatActivity() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.title_activity_dashboard)
-    }
-    private fun setListeners() {
-        fab_favorites.setOnClickListener{ startActivity(Intent(this, FavoritesActivity::class.java))}
-        fab_more.setOnClickListener{ startActivity(Intent(this, MoreActivity::class.java))}
-        fab_overview.setOnClickListener{ startActivity(Intent(this, OverviewActivity::class.java))}
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

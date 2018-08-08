@@ -12,6 +12,7 @@ import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
 import kotlinx.android.synthetic.main.activity_favorites.*
+import kotlinx.android.synthetic.main.default_app_bar.*
 
 class FavoritesActivity : AppCompatActivity() {
 

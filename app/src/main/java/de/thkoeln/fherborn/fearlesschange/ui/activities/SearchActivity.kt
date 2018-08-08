@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.activity_card_detail.*
+import kotlinx.android.synthetic.main.default_app_bar.*
 
 class SearchActivity : AppCompatActivity() {
 
