@@ -22,20 +22,20 @@ import android.view.View
 
 class RandomCardsFragment : Fragment() {
 
+    private lateinit var cardRepository: CardRepository
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.fragment_random_cards, container, false)
 
-    private lateinit var cardRepository: CardRepository
 
-    override fun onStart() {
-        super.onStart()
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         cardRepository = CardRepository(activity?.application)
 
         reloadAll()
         setListeners()
-
     }
+
 
     private fun reloadAll() {
         reload(random_cards_1, random_cards_2, random_cards_3)
@@ -52,7 +52,9 @@ class RandomCardsFragment : Fragment() {
             val oa1 = ObjectAnimator.ofFloat(cardView, "scaleX", 1f, 0f).apply {
                 interpolator = DecelerateInterpolator()
                 addListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) { run(cardView, index) }
+                    override fun onAnimationEnd(animation: Animator) {
+                        run(cardView, index)
+                    }
                 })
             }
             val oa2 = ObjectAnimator.ofFloat(cardView, "scaleX", 0f, 1f).apply { interpolator = AccelerateDecelerateInterpolator() }
@@ -65,14 +67,14 @@ class RandomCardsFragment : Fragment() {
                 startDelay = delayBetweenAnimations * index
             }
         }
-        animators.forEach{ it.start() }
+        animators.forEach { it.start() }
     }
 
     private fun reload(vararg cardViews: CardView) {
 
         cardRepository.getRandom(cardViews.size).observe(this, Observer { random_cards ->
             random_cards?.let {
-                if(random_cards.size < cardViews.size) return@Observer
+                if (random_cards.size < cardViews.size) return@Observer
                 animateCardsAndRun(*cardViews) { cardView, index ->
                     cardView.card = random_cards[index]
                 }
