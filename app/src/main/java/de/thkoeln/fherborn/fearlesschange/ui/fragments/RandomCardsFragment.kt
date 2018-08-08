@@ -46,39 +46,36 @@ class RandomCardsFragment : Fragment() {
         random_cards_reload.setOnClickListener { reloadAll() }
     }
 
-    private fun animateCardsAndRun(vararg cards: CardView, run: (CardView) -> Unit) {
+    private fun animateCardsAndRun(vararg cards: CardView, delayBetweenAnimations: Long = 100, durationPerAnimation: Long = 100, run: (CardView, Int) -> Unit) {
 
-        val animators = cards.flatMap {
-            val oa1 = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0f)
-            val oa2 = ObjectAnimator.ofFloat(it, "scaleX", 0f, 1f)
-            val oa3 = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0f)
-            val oa4 = ObjectAnimator.ofFloat(it, "scaleX", 0f, 1f)
+        val animators = cards.mapIndexed { index, cardView ->
+            val oa1 = ObjectAnimator.ofFloat(cardView, "scaleX", 1f, 0f).apply {
+                interpolator = DecelerateInterpolator()
+                addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) { run(cardView, index) }
+                })
+            }
+            val oa2 = ObjectAnimator.ofFloat(cardView, "scaleX", 0f, 1f).apply { interpolator = AccelerateDecelerateInterpolator() }
+            val oa3 = ObjectAnimator.ofFloat(cardView, "scaleX", 1f, 0f).apply { interpolator = DecelerateInterpolator() }
+            val oa4 = ObjectAnimator.ofFloat(cardView, "scaleX", 0f, 1f).apply { interpolator = AccelerateDecelerateInterpolator() }
 
-            oa1.interpolator = DecelerateInterpolator()
-            oa2.interpolator = AccelerateDecelerateInterpolator()
-            oa3.interpolator = DecelerateInterpolator()
-            oa4.interpolator = AccelerateDecelerateInterpolator()
-
-            oa1.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) { run(it) }
-            })
-
-            listOf(oa1, oa2, oa3, oa4)
+            AnimatorSet().apply {
+                playSequentially(oa1, oa2, oa3, oa4)
+                duration = durationPerAnimation
+                startDelay = delayBetweenAnimations * index
+            }
         }
-
-        AnimatorSet().apply {
-            playSequentially(animators)
-            duration = 100
-            start()
-        }
+        animators.forEach{ it.start() }
     }
 
     private fun reload(vararg cardViews: CardView) {
 
         cardRepository.getRandom(cardViews.size).observe(this, Observer { random_cards ->
-            var index = 0
-            animateCardsAndRun(*cardViews) {
-                it.card = random_cards?.get(index++)
+            random_cards?.let {
+                if(random_cards.size < cardViews.size) return@Observer
+                animateCardsAndRun(*cardViews) { cardView, index ->
+                    cardView.card = random_cards[index]
+                }
             }
         })
     }
