@@ -13,16 +13,16 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
-import kotlinx.android.synthetic.main.fragment_card_of_the_day.*
+import kotlinx.android.synthetic.main.fragment_most_clicked_card.*
 
 
-class CardOfTheDayFragment : Fragment() {
+class MostClickedCardFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
     private lateinit var cardActionRepository: CardActionRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            = inflater.inflate(R.layout.fragment_card_of_the_day, container, false)
+            = inflater.inflate(R.layout.fragment_most_clicked_card, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,29 +30,21 @@ class CardOfTheDayFragment : Fragment() {
         cardRepository = CardRepository(activity?.application)
         cardActionRepository = CardActionRepository(activity?.application)
 
-        cardRepository.getCount().observe(this, Observer {
-            calculateCardOfTheDay(it)?.let {
-                cardRepository.getElementWithIndex(it).observe(this, Observer {
-                    card_of_the_day.card = it
+        cardActionRepository.getMostByAction(Action.CLICK).observe( this, Observer {
+            it?.let {
+                cardRepository.getById(it.cardId).observe(this, Observer {
+                    most_clicked_card.card = it
                 })
             }
         })
 
-        card_of_the_day.onCardClickedListener = { view, card ->
+        most_clicked_card.onCardClickedListener = { view, card ->
             card?.let {
                 cardActionRepository.insert(
                         CardAction(cardId = card.id, action = Action.CLICK)
                 )
                 CardPopup(view.context, card).show()
             }
-        }
-    }
-
-    private fun calculateCardOfTheDay(countOfCards: Long?): Long? {
-        val currentDay = System.currentTimeMillis()/1000/60/60/24
-        return when (countOfCards) {
-            null, 0L -> null
-            else -> currentDay % countOfCards
         }
     }
 }

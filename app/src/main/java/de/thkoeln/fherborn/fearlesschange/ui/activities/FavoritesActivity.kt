@@ -9,6 +9,9 @@ import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Action
+import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
 import kotlinx.android.synthetic.main.activity_favorites.*
@@ -18,6 +21,7 @@ class FavoritesActivity : AppCompatActivity() {
 
 
     private lateinit var cardRepository: CardRepository
+    private lateinit var cardActionRepository: CardActionRepository
     private val adapter = CardRecyclerGridAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +29,13 @@ class FavoritesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_favorites)
 
         cardRepository = CardRepository(application)
+        cardActionRepository = CardActionRepository(application)
 
         favorites_recycler_view.adapter = adapter.apply {
             onCardClickedListener = { card, itemView ->
+                cardActionRepository.insert(
+                        CardAction(cardId = card.id, action = Action.CLICK)
+                )
                 CardPopup(itemView.context, card).show()
             }
         }

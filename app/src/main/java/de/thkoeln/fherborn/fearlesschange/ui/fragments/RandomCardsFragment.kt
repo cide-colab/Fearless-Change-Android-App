@@ -18,11 +18,15 @@ import android.view.animation.DecelerateInterpolator
 import android.animation.ObjectAnimator
 import android.animation.AnimatorSet
 import android.view.View
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Action
+import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
 
 
 class RandomCardsFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
+    private lateinit var cardActionRepository: CardActionRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.fragment_random_cards, container, false)
@@ -31,6 +35,7 @@ class RandomCardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cardRepository = CardRepository(activity?.application)
+        cardActionRepository = CardActionRepository(activity?.application)
 
         reloadAll()
         setListeners()
@@ -86,6 +91,9 @@ class RandomCardsFragment : Fragment() {
         cardViews.forEach {
             it.onCardClickedListener = { view, card ->
                 card?.let {
+                    cardActionRepository.insert(
+                            CardAction(cardId = card.id, action = Action.CLICK)
+                    )
                     CardPopup(view.context, card).show()
                 }
             }

@@ -28,4 +28,5 @@
     <string name="header_problem">Problem</string>
     <string name="header_solution">Solution</string>
     <string name="header_buts">Buts...</string>
+    <string name="title_fragment_most_clicked_card">Most Clicked Card</string>
 </resources>
