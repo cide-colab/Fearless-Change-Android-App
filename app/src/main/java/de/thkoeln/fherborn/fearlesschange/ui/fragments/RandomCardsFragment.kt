@@ -21,12 +21,14 @@ import android.view.View
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Action
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 
 
 class RandomCardsFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
     private lateinit var cardActionRepository: CardActionRepository
+    private var generated = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.fragment_random_cards, container, false)
@@ -76,10 +78,11 @@ class RandomCardsFragment : Fragment() {
     }
 
     private fun reload(vararg cardViews: CardView) {
-
+        generated = false
         cardRepository.getRandom(cardViews.size).observe(this, Observer { random_cards ->
             random_cards?.let {
-                if (random_cards.size < cardViews.size) return@Observer
+                if (random_cards.size < cardViews.size || generated) return@Observer
+                generated = true
                 animateCardsAndRun(*cardViews) { cardView, index ->
                     cardView.card = random_cards[index]
                 }
@@ -89,14 +92,7 @@ class RandomCardsFragment : Fragment() {
 
     private fun setCardListener(vararg cardViews: CardView) {
         cardViews.forEach {
-            it.onCardClickedListener = { view, card ->
-                card?.let {
-                    cardActionRepository.insert(
-                            CardAction(cardId = card.id, action = Action.CLICK)
-                    )
-                    CardPopup(view.context, card).show()
-                }
-            }
+            it.addOnCardClickedListener(DefaultCardPreviewBehavior(activity))
         }
     }
 }

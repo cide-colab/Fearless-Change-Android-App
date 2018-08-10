@@ -16,5 +16,5 @@ data class Card (
         val problem: String,
         val buts: String,
         val solution: String,
-        val favorite: Boolean = false
+        var favorite: Boolean = false
 )

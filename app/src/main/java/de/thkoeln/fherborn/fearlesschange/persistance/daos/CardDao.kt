@@ -1,10 +1,7 @@
 package de.thkoeln.fherborn.fearlesschange.persistance.daos
 
 import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 
 /**
@@ -15,6 +12,9 @@ interface CardDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg card: Card)
+
+    @Update
+    fun update(vararg card: Card)
 
     @Query("SELECT * FROM card")
     fun getAll(): LiveData<List<Card>>

@@ -1,22 +1,22 @@
 package de.thkoeln.fherborn.fearlesschange.persistance.repositories
 
 import android.app.Application
+import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.persistance.CardDatabase
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Action
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
-import android.os.AsyncTask
-import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardActionDao
+import de.thkoeln.fherborn.fearlesschange.persistance.runInBackground
 
 
 /**
  * Created by florianherborn on 06.08.18.
  */
-class CardActionRepository(application: Application?) {
+class CardActionRepository(context: Context?) {
 
-    private val dao = CardDatabase.getInstance(application
+    private val dao = CardDatabase.getInstance(context
             ?: throw RuntimeException("Application is null")).cardActionDao()
 
-    fun insert(vararg cardAction: CardAction) = AddActionAsyncTask(dao).execute(*cardAction)
+    fun insert(vararg cardAction: CardAction) = runInBackground { dao.insert(*cardAction) }
 
     fun getAll() = dao.getAll()
 
@@ -27,12 +27,4 @@ class CardActionRepository(application: Application?) {
     fun getCountOfAction(action: Action) = dao.getCountOfAction(action)
 
     fun getMostByAction(action: Action) = dao.getMostByAction(action)
-
-    private class AddActionAsyncTask(private val dao: CardActionDao) : AsyncTask<CardAction, Void, Void>() {
-
-        override fun doInBackground(vararg params: CardAction): Void? {
-            dao.insert(*params)
-            return null
-        }
-    }
 }

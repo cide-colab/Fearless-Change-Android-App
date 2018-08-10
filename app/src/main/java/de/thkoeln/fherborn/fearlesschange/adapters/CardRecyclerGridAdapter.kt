@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewActions
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.OnCardActionListener
 
 
-class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>() {
+class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewActions {
 
-    var onCardClickedListener: ((Card, View) -> Unit)? = null
+    override val onCardActionListeners = mutableListOf<OnCardActionListener>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardRecyclerGridAdapter.CardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_card_grid_item, parent, false)
@@ -32,9 +34,7 @@ class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.A
 
         fun bindCard(card: Card) {
             cardView.card = card
-            cardView.onCardClickedListener = { view, clickedCard ->
-                clickedCard?.let { onCardClickedListener?.invoke(it, itemView) }
-            }
+            cardView.addOnCardClickedListener(onCardActionListeners)
         }
     }
 }

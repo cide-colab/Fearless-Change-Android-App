@@ -18,9 +18,13 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewActions
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.OnCardActionListener
 import kotlinx.android.synthetic.main.layout_card_popup.*
 
-class CardPopup(context: Context, val card: Card): Dialog(context) {
+class CardPopup(context: Context?, val card: Card): Dialog(context), CardViewActions {
+
+    override val onCardActionListeners = mutableListOf<OnCardActionListener>()
 
     private var frontShown = true
 
@@ -28,26 +32,29 @@ class CardPopup(context: Context, val card: Card): Dialog(context) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(FEATURE_NO_TITLE)
         setContentView(R.layout.layout_card_popup)
-        setParams()
-        popup_card_front.card = card
-        popup_card_back.card = card
+        prepareDialog()
+        setCard()
         setListeners()
     }
 
+    private fun setCard() {
+        popup_card_front.card = card
+        popup_card_back.card = card
+    }
+
     private fun setListeners() {
-        popup_details_btn.setOnClickListener {
-            flipCard()
-//            startCardDetailActivity()
-        }
+        popup_card_back.addOnCardActionListener(onCardActionListeners)
+        popup_card_front.addOnCardActionListener(onCardActionListeners)
+        popup_details_btn.setOnClickListener { flipCard() }
     }
 
     @Synchronized private fun flipCard() {
-        if (frontShown) {
+        frontShown = if (frontShown) {
             switchViews(popup_card_back, popup_card_front)
-            frontShown = false
+            false
         } else {
             switchViews(popup_card_front, popup_card_back)
-            frontShown = true
+            true
         }
     }
 
@@ -72,7 +79,7 @@ class CardPopup(context: Context, val card: Card): Dialog(context) {
         }
     }
 
-    private fun setParams() {
+    private fun prepareDialog() {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window.setGravity(Gravity.CENTER)
         window.setBackgroundDrawableResource(android.R.color.transparent)

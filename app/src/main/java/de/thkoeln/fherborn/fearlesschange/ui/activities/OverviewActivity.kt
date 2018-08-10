@@ -14,6 +14,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.activity_overview.*
 import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
@@ -32,12 +33,7 @@ class OverviewActivity : AppCompatActivity() {
         cardActionRepository = CardActionRepository(application)
 
         overview_recycler_view.adapter = adapter.apply {
-            onCardClickedListener = { card, itemView ->
-                cardActionRepository.insert(
-                        CardAction(cardId = card.id, action = Action.CLICK)
-                )
-                CardPopup(itemView.context, card).show()
-            }
+            onCardActionListeners.add(DefaultCardPreviewBehavior(this@OverviewActivity))
         }
 
         cardRepository.getAll().observe(this, Observer { cards ->

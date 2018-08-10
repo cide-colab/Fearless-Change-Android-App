@@ -13,6 +13,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.fragment_card_of_the_day.*
 
 
@@ -38,14 +39,7 @@ class CardOfTheDayFragment : Fragment() {
             }
         })
 
-        card_of_the_day.onCardClickedListener = { view, card ->
-            card?.let {
-                cardActionRepository.insert(
-                        CardAction(cardId = card.id, action = Action.CLICK)
-                )
-                CardPopup(view.context, card).show()
-            }
-        }
+        card_of_the_day.addOnCardClickedListener(DefaultCardPreviewBehavior(activity))
     }
 
     private fun calculateCardOfTheDay(countOfCards: Long?): Long? {
