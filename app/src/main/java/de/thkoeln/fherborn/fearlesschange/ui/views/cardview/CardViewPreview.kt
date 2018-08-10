@@ -25,7 +25,7 @@ class CardViewPreview : CardView {
             card_title?.text = it.title
             card_problem?.text = it.problem
             card_image.setImageResource(
-                    getResourceId(context, card.pictureName, "drawable", context.packageName)
+                    getResourceId(context, card.pictureName, "drawable")
                             ?:R.drawable.img_placeholder)
         }
     }

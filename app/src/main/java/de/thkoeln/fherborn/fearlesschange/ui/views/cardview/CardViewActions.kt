@@ -5,35 +5,31 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 /**
  * Created by Florian on 10.08.2018.
  */
-interface CardViewActions: OnCardActionListener {
+interface NewCardViewActions {
 
-    val onCardActionListeners: MutableList<OnCardActionListener>
+    val onCardActionListeners: MutableList<NewOnCardActionListener>
 
-    fun addOnCardActionListener(vararg onCardActionListener: OnCardActionListener) {
+    fun addOnCardActionListener(vararg onCardActionListener: NewOnCardActionListener) {
         onCardActionListeners.addAll(onCardActionListener)
     }
-    fun addOnCardActionListener(onCardActionListener: List<out OnCardActionListener>) {
+    fun addOnCardActionListener(onCardActionListener: List<NewOnCardActionListener>) {
         onCardActionListeners.addAll(onCardActionListener)
     }
-    fun removeOnCardActionListener(vararg onCardActionListener: OnCardActionListener) {
+    fun removeOnCardActionListener(vararg onCardActionListener: NewOnCardActionListener) {
         onCardActionListeners.removeAll(onCardActionListener)
     }
 
-    fun performCardClick(cardView: CardView, card: Card?) {
-        onCardActionListeners.forEach{it.onCardClicked(cardView, card)}
+    fun performAction(cardView: CardView, card: Card?, action: CardAction) {
+        onCardActionListeners.forEach{it.onCardAction(cardView, card, action)}
     }
-
-    fun performFavoriteClick(cardView: CardView, card: Card?) {
-        onCardActionListeners.forEach{it.onFavoriteClickedListener(cardView, card)}
-    }
-
-    fun performNotesClick(cardView: CardView, card: Card?) {
-        onCardActionListeners.forEach{it.onNotesClickedListener(cardView, card)}
-    }
-
 }
 
-interface OnCardActionListener: CardView.OnCardClickedListener {
-    fun onFavoriteClickedListener(cardView: CardView, card: Card?) {}
-    fun onNotesClickedListener(cardView: CardView, card: Card?) {}
+enum class CardAction {
+    FAVORITE_CLICKED,
+    NOTES_CLICKED,
+    CARD_CLICKED
+}
+
+interface NewOnCardActionListener {
+    fun onCardAction(cardView: CardView, card: Card?, action: CardAction)
 }

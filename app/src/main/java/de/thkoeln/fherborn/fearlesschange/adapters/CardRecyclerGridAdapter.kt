@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewActions
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.OnCardActionListener
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
 
 
-class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewActions {
+class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), NewCardViewActions {
 
-    override val onCardActionListeners = mutableListOf<OnCardActionListener>()
+    override val onCardActionListeners = mutableListOf<NewOnCardActionListener>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardRecyclerGridAdapter.CardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_card_grid_item, parent, false)
@@ -30,11 +28,12 @@ class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.A
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var cardView: CardViewPreview = itemView.findViewById(R.id.overview_grid_card)
+        private var cardView = itemView.findViewById<CardViewPreview>(R.id.overview_grid_card).also {
+            it.addOnCardActionListener(onCardActionListeners)
+        }
 
         fun bindCard(card: Card) {
             cardView.card = card
-            cardView.addOnCardClickedListener(onCardActionListeners)
         }
     }
 }

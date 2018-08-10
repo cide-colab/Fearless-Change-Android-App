@@ -8,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Action
-import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
+import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardStatisticRepository
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.fragment_most_clicked_card.*
 
@@ -20,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_most_clicked_card.*
 class MostClickedCardFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
-    private lateinit var cardActionRepository: CardActionRepository
+    private lateinit var cardActionRepository: CardStatisticRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
             = inflater.inflate(R.layout.fragment_most_clicked_card, container, false)
@@ -29,9 +27,9 @@ class MostClickedCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         cardRepository = CardRepository(activity?.application)
-        cardActionRepository = CardActionRepository(activity?.application)
+        cardActionRepository = CardStatisticRepository(activity?.application)
 
-        cardActionRepository.getMostByAction(Action.CLICK).observe( this, Observer {
+        cardActionRepository.getMostByAction(CardStatisticAction.CLICK).observe( this, Observer {
             it?.let {
                 cardRepository.getById(it.cardId).observe(this, Observer {
                     most_clicked_card.card = it
@@ -39,6 +37,6 @@ class MostClickedCardFragment : Fragment() {
             }
         })
 
-        most_clicked_card.addOnCardClickedListener(DefaultCardPreviewBehavior(activity))
+        most_clicked_card.addOnCardActionListener(DefaultCardPreviewBehavior(activity))
     }
 }

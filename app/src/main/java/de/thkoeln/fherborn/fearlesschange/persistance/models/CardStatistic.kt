@@ -8,7 +8,7 @@ import java.util.*
 /**
  * Created by florianherborn on 09.08.18.
  */
-@Entity(tableName = "card_action",
+@Entity(tableName = "card_statistic",
         foreignKeys = [(ForeignKey(
                 entity = Card::class,
                 parentColumns = arrayOf("id"),
@@ -17,15 +17,15 @@ import java.util.*
                 onUpdate = ForeignKey.CASCADE
         ))]
 )
-data class CardAction (
+data class CardStatistic (
         @PrimaryKey(autoGenerate = true)
         val id: Long? = null,
         val cardId: Long,
-        val action: Action,
+        val action: CardStatisticAction,
         val timestamp: Date = Date()
 )
 
-enum class Action {
+enum class CardStatisticAction {
     CLICK,
     FLIP,
     FAVORITE_ON,

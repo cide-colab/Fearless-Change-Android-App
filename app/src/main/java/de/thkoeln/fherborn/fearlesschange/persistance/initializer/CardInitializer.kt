@@ -47,7 +47,7 @@ class CardInitializer : DataInitializer<Card>("card") {
                     "To influence others during the change initiative and inspire them to believe the change can happen, motivate them with a sense of hope rather than fear.",
                     "Inspire people throughout the change initiative with a sense of optimism rather than fear."),
             Card(5,
-                    "Concrete Action Plan",
+                    "Concrete CardStatisticAction Plan",
                     "concrete_action_plan",
                     "Leading a change initiative, with its many twists and turns and ever-growing list of things to do, can make you feel out of control.",
                     "To make progress toward your goal, state precisely what you will do as you take the next baby step.",

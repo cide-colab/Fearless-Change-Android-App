@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardpopup.CardPopup
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
 import kotlinx.android.synthetic.main.fragment_random_cards.*
 import android.animation.Animator
@@ -18,16 +17,14 @@ import android.view.animation.DecelerateInterpolator
 import android.animation.ObjectAnimator
 import android.animation.AnimatorSet
 import android.view.View
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Action
-import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardActionRepository
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardStatisticRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 
 
 class RandomCardsFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
-    private lateinit var cardActionRepository: CardActionRepository
+    private lateinit var cardActionRepository: CardStatisticRepository
     private var generated = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -37,7 +34,7 @@ class RandomCardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cardRepository = CardRepository(activity?.application)
-        cardActionRepository = CardActionRepository(activity?.application)
+        cardActionRepository = CardStatisticRepository(activity?.application)
 
         reloadAll()
         setListeners()
@@ -92,7 +89,7 @@ class RandomCardsFragment : Fragment() {
 
     private fun setCardListener(vararg cardViews: CardView) {
         cardViews.forEach {
-            it.addOnCardClickedListener(DefaultCardPreviewBehavior(activity))
+            it.addOnCardActionListener(DefaultCardPreviewBehavior(activity))
         }
     }
 }

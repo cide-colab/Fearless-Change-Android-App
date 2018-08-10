@@ -18,13 +18,12 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewActions
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.OnCardActionListener
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
 import kotlinx.android.synthetic.main.layout_card_popup.*
 
-class CardPopup(context: Context?, val card: Card): Dialog(context), CardViewActions {
+class CardPopup(context: Context?, val card: Card): Dialog(context), NewCardViewActions {
 
-    override val onCardActionListeners = mutableListOf<OnCardActionListener>()
+    override val onCardActionListeners = mutableListOf<NewOnCardActionListener>()
 
     private var frontShown = true
 

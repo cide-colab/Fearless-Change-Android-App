@@ -13,13 +13,9 @@ import kotlinx.android.synthetic.main.layout_card.view.*
 /**
  * Created by Florian on 31.07.2018.
  */
-abstract class CardView: ConstraintLayout, View.OnClickListener {
+abstract class CardView: ConstraintLayout, NewCardViewActions {
 
-    interface OnCardClickedListener {
-        fun onCardClicked(cardView: CardView, card: Card?) {}
-    }
-
-    private val onCardClickedListeners: MutableList<OnCardClickedListener> = mutableListOf()
+    override val onCardActionListeners = mutableListOf<NewOnCardActionListener>()
 
     var card: Card? = null
         set(value) {
@@ -36,39 +32,8 @@ abstract class CardView: ConstraintLayout, View.OnClickListener {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.layout_card, this, true) as CardView
         card_view.addView(onCreateContentView(inflater, rootView, context, attributeSet))
-        card_view.setOnClickListener(this)
+        card_view.setOnClickListener{ performAction(this, card, CardAction.CARD_CLICKED) }
         afterContentViewInflated()
-    }
-
-    override fun onClick(v: View?) {
-        onCardClickedListeners.forEach{
-            it.onCardClicked(this, card)
-        }
-    }
-
-    fun addOnCardClickedListener(vararg cardClickedListener: OnCardClickedListener){
-        this.onCardClickedListeners.addAll(cardClickedListener)
-    }
-
-    fun addOnCardClickedListener(cardClickedListener: MutableList<out OnCardClickedListener>){
-        this.onCardClickedListeners.addAll(cardClickedListener)
-    }
-    fun addOnCardClickedListener(f: (CardView, Card?) -> Unit){
-        this.onCardClickedListeners.add(object:OnCardClickedListener{
-            override fun onCardClicked(cardView: CardView, card: Card?) {
-                f.invoke(cardView, card)
-            }
-        })
-    }
-    fun addOnCardClickedListener(f: () -> Unit){
-        this.onCardClickedListeners.add(object:OnCardClickedListener{
-            override fun onCardClicked(cardView: CardView, card: Card?) {
-                f.invoke()
-            }
-        })
-    }
-    fun removeOnCardClickedListener(vararg cardClickedListener: OnCardClickedListener){
-        this.onCardClickedListeners.removeAll(cardClickedListener)
     }
 
     protected open fun afterContentViewInflated() {}

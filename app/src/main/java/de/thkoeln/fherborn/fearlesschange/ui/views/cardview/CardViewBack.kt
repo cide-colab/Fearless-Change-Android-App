@@ -11,9 +11,7 @@ import kotlinx.android.synthetic.main.layout_card_view_back.view.*
 /**
  * Created by florianherborn on 30.07.18.
  */
-class CardViewBack : CardView, CardViewActions {
-
-    override val onCardActionListeners = mutableListOf<OnCardActionListener>()
+class CardViewBack : CardView {
 
     constructor(context: Context): super(context)
     constructor(context: Context, attributeSet: AttributeSet?): super(context, attributeSet)
@@ -23,12 +21,11 @@ class CardViewBack : CardView, CardViewActions {
             = inflater.inflate(R.layout.layout_card_view_back, rootView, false)
 
     override fun afterContentViewInflated() {
-        addOnCardClickedListener{cardView, card ->  performCardClick(cardView, card)}
         card_fav_btn.setOnClickListener{
-            performFavoriteClick(this, card)
+            performAction(this, card, CardAction.FAVORITE_CLICKED)
             onCardChanged(card)
         }
-        card_note_btn.setOnClickListener{performNotesClick(this, card)}
+        card_note_btn.setOnClickListener{ performAction(this, card, CardAction.NOTES_CLICKED) }
     }
 
     override fun onCardChanged(card: Card?) {

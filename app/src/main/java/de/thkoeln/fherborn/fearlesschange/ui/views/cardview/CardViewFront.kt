@@ -12,9 +12,7 @@ import kotlinx.android.synthetic.main.layout_card_view_front.view.*
 /**
  * Created by florianherborn on 30.07.18.
  */
-class CardViewFront : CardView, CardViewActions {
-
-    override val onCardActionListeners = mutableListOf<OnCardActionListener>()
+class CardViewFront : CardView {
 
     constructor(context: Context): super(context)
     constructor(context: Context, attributeSet: AttributeSet?): super(context, attributeSet)
@@ -24,12 +22,11 @@ class CardViewFront : CardView, CardViewActions {
             = inflater.inflate(R.layout.layout_card_view_front, rootView, false)
 
     override fun afterContentViewInflated() {
-        addOnCardClickedListener{cardView, card ->  performCardClick(cardView, card)}
         card_fav_btn.setOnClickListener{
-            performFavoriteClick(this, card)
+            performAction(this, card, CardAction.FAVORITE_CLICKED)
             onCardChanged(card)
         }
-        card_note_btn.setOnClickListener{performNotesClick(this, card)}
+        card_note_btn.setOnClickListener{ performAction(this, card, CardAction.NOTES_CLICKED)}
     }
 
     override fun onCardChanged(card: Card?) {
@@ -41,7 +38,7 @@ class CardViewFront : CardView, CardViewActions {
             card_title.text = it.title
             card_problem.text = it.problem
             card_image.setImageResource(
-                    getResourceId(context, card.pictureName, "drawable", context.packageName)
+                    getResourceId(context, card.pictureName, "drawable")
             ?:R.drawable.img_placeholder)
         }
     }

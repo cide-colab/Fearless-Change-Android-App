@@ -5,23 +5,20 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardActionDao
+import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardStatisticDao
 import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardKeywordDao
 import de.thkoeln.fherborn.fearlesschange.persistance.daos.KeywordDao
 import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardDao
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.CardInitializer
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.CardKeywordInitializer
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.KeywordInitializer
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
-import de.thkoeln.fherborn.fearlesschange.persistance.models.CardAction
-import de.thkoeln.fherborn.fearlesschange.persistance.models.CardKeyword
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Keyword
+import de.thkoeln.fherborn.fearlesschange.persistance.models.*
 
 /**
  * Created by florianherborn on 30.07.18.
  */
 @Database(
-        entities = [Card::class, Keyword::class, CardKeyword::class, CardAction::class],
+        entities = [Card::class, Keyword::class, CardKeyword::class, CardStatistic::class],
         version = 1,
         exportSchema = false
 )
@@ -29,7 +26,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Keyword
 abstract class CardDatabase : RoomDatabase() {
 
     abstract fun cardDao(): CardDao
-    abstract fun cardActionDao(): CardActionDao
+    abstract fun cardActionDao(): CardStatisticDao
     abstract fun keywordDao(): KeywordDao
     abstract fun cardKeywordDao(): CardKeywordDao
 
