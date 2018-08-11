@@ -21,9 +21,9 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
 import kotlinx.android.synthetic.main.layout_card_popup.*
 
-class CardPopup(context: Context?, val card: Card): Dialog(context), NewCardViewActions {
+class CardPopup(context: Context?, val card: Card): Dialog(context), CardViewBehaviorProcessor {
 
-    override val onCardActionListeners = mutableListOf<NewOnCardActionListener>()
+    override val cardBehaviors = mutableListOf<CardViewBehavior>()
 
     private var frontShown = true
 
@@ -42,8 +42,8 @@ class CardPopup(context: Context?, val card: Card): Dialog(context), NewCardView
     }
 
     private fun setListeners() {
-        popup_card_back.addOnCardActionListener(onCardActionListeners)
-        popup_card_front.addOnCardActionListener(onCardActionListeners)
+        popup_card_back.addBehaviors(cardBehaviors)
+        popup_card_front.addBehaviors(cardBehaviors)
         popup_details_btn.setOnClickListener { flipCard() }
     }
 

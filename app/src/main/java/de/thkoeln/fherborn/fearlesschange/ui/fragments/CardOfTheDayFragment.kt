@@ -36,7 +36,7 @@ class CardOfTheDayFragment : Fragment() {
             }
         })
 
-        card_of_the_day.addOnCardActionListener(DefaultCardPreviewBehavior(activity))
+        card_of_the_day.addBehaviors(DefaultCardPreviewBehavior(activity))
     }
 
     private fun calculateCardOfTheDay(countOfCards: Long?): Long? {

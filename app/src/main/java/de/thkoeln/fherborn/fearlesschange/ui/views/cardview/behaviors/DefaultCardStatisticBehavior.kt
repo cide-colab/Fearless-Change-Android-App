@@ -5,20 +5,20 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatistic
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardStatisticRepository
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardAction
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.NewOnCardActionListener
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehavior
 
 /**
  * Created by Florian on 10.08.2018.
  */
-open class DefaultCardStatisticBehavior(context: Context?) : NewOnCardActionListener {
+open class DefaultCardStatisticBehavior(context: Context?) : CardViewBehavior {
 
     private val cardActionRepository = CardStatisticRepository(context)
 
-    override fun onCardAction(cardView: CardView, card: Card?, action: CardAction) {
+    override fun onCardAction(cardView: CardView, card: Card?, action: CardViewAction) {
         card?.let {
-            if (action == CardAction.CARD_CLICKED) {
+            if (action == CardViewAction.CARD_CLICKED) {
                 cardActionRepository.insert(
                         CardStatistic(
                                 cardId = card.id,

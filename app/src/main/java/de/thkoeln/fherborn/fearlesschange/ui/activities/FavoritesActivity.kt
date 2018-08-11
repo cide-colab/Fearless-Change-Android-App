@@ -30,7 +30,7 @@ class FavoritesActivity : AppCompatActivity() {
         cardActionRepository = CardStatisticRepository(application)
 
         favorites_recycler_view.adapter = adapter.apply {
-            addOnCardActionListener(DefaultCardPreviewBehavior(this@FavoritesActivity))
+            addBehaviors(DefaultCardPreviewBehavior(this@FavoritesActivity))
         }
 
         cardRepository.getFavorites().observe(this, Observer { cards ->

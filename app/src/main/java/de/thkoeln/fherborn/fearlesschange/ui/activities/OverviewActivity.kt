@@ -30,7 +30,7 @@ class OverviewActivity : AppCompatActivity() {
         cardActionRepository = CardStatisticRepository(application)
 
         overview_recycler_view.adapter = adapter.apply {
-            addOnCardActionListener(DefaultCardPreviewBehavior(this@OverviewActivity))
+            addBehaviors(DefaultCardPreviewBehavior(this@OverviewActivity))
         }
 
         cardRepository.getAll().observe(this, Observer { cards ->

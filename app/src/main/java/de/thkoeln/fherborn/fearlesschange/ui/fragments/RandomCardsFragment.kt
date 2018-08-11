@@ -89,7 +89,7 @@ class RandomCardsFragment : Fragment() {
 
     private fun setCardListener(vararg cardViews: CardView) {
         cardViews.forEach {
-            it.addOnCardActionListener(DefaultCardPreviewBehavior(activity))
+            it.addBehaviors(DefaultCardPreviewBehavior(activity))
         }
     }
 }

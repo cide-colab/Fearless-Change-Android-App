@@ -9,9 +9,9 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
 
 
-class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), NewCardViewActions {
+class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewBehaviorProcessor {
 
-    override val onCardActionListeners = mutableListOf<NewOnCardActionListener>()
+    override val cardBehaviors = mutableListOf<CardViewBehavior>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardRecyclerGridAdapter.CardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_card_grid_item, parent, false)
@@ -28,12 +28,11 @@ class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.A
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var cardView = itemView.findViewById<CardViewPreview>(R.id.overview_grid_card).also {
-            it.addOnCardActionListener(onCardActionListeners)
-        }
+        private var cardView = itemView.findViewById<CardViewPreview>(R.id.overview_grid_card)
 
         fun bindCard(card: Card) {
             cardView.card = card
+            cardView.addDistinctBehaviors(cardBehaviors)
         }
     }
 }
