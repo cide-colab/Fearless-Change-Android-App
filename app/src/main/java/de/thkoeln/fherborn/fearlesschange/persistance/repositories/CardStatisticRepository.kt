@@ -1,10 +1,13 @@
 package de.thkoeln.fherborn.fearlesschange.persistance.repositories
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Transformations
 import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.persistance.CardDatabase
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatistic
-import de.thkoeln.fherborn.fearlesschange.persistance.runInBackground
+import de.thkoeln.fherborn.fearlesschange.persistance.doAsync
 
 
 /**
@@ -12,18 +15,22 @@ import de.thkoeln.fherborn.fearlesschange.persistance.runInBackground
  */
 class CardStatisticRepository(context: Context?) {
 
-    private val dao = CardDatabase.getInstance(context
-            ?: throw RuntimeException("Application is null")).cardActionDao()
+    private val database = CardDatabase.getInstance(context
+            ?: throw RuntimeException("Application is null"))
+    private val cardActionDao = database.cardActionDao()
+    private val cardDao = database.cardDao()
 
-    fun insert(vararg cardStatistics: CardStatistic) = runInBackground { dao.insert(*cardStatistics) }
+    fun insert(vararg cardStatistics: CardStatistic) = doAsync { cardActionDao.insert(*cardStatistics) }
 
-    fun getAll() = dao.getAll()
+    fun getAll() = cardActionDao.getAll()
 
-    fun getById(id: Long) = dao.getById(id)
+    fun getById(id: Long) = cardActionDao.getById(id)
 
-    fun getCount() = dao.getCount()
+    fun getCount() = cardActionDao.getCount()
 
-    fun getCountOfAction(action: CardStatisticAction) = dao.getCountOfAction(action)
+    fun getCountOfAction(action: CardStatisticAction) = cardActionDao.getCountOfAction(action)
 
-    fun getMostByAction(action: CardStatisticAction) = dao.getMostByAction(action)
+    fun getCardByMostAction(action: CardStatisticAction): LiveData<Card> = Transformations.switchMap(cardActionDao.getMostByAction(action)) {
+        cardDao.getById(it.cardId)
+    }
 }

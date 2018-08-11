@@ -29,11 +29,9 @@ class MostClickedCardFragment : Fragment() {
         cardRepository = CardRepository(activity?.application)
         cardActionRepository = CardStatisticRepository(activity?.application)
 
-        cardActionRepository.getMostByAction(CardStatisticAction.CLICK).observe( this, Observer {
+        cardActionRepository.getCardByMostAction(CardStatisticAction.CLICK).observe( this, Observer {
             it?.let {
-                cardRepository.getById(it.cardId).observe(this, Observer {
-                    most_clicked_card.card = it
-                })
+                most_clicked_card.card = it
             }
         })
 
