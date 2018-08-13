@@ -17,14 +17,12 @@ import android.view.animation.DecelerateInterpolator
 import android.animation.ObjectAnimator
 import android.animation.AnimatorSet
 import android.view.View
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardStatisticRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 
 
 class RandomCardsFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
-    private lateinit var cardActionRepository: CardStatisticRepository
     private var generated = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -34,7 +32,6 @@ class RandomCardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cardRepository = CardRepository(activity?.application)
-        cardActionRepository = CardStatisticRepository(activity?.application)
 
         reloadAll()
         setListeners()

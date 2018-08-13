@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardStatisticRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.fragment_card_of_the_day.*
 
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.fragment_card_of_the_day.*
 class CardOfTheDayFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
-    private lateinit var cardActionRepository: CardStatisticRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
             = inflater.inflate(R.layout.fragment_card_of_the_day, container, false)
@@ -26,7 +24,6 @@ class CardOfTheDayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         cardRepository = CardRepository(activity?.application)
-        cardActionRepository = CardStatisticRepository(activity?.application)
 
         cardRepository.getCount().observe(this, Observer {
             calculateCardOfTheDay(it)?.let {

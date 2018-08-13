@@ -9,7 +9,6 @@ import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardStatisticRepository
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.activity_overview.*
@@ -19,7 +18,6 @@ import kotlinx.android.synthetic.main.layout_default_app_bar.*
 class OverviewActivity : AppCompatActivity() {
 
     private lateinit var cardRepository: CardRepository
-    private lateinit var cardActionRepository: CardStatisticRepository
     private val adapter = CardRecyclerGridAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +25,6 @@ class OverviewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_overview)
 
         cardRepository = CardRepository(application)
-        cardActionRepository = CardStatisticRepository(application)
 
         overview_recycler_view.adapter = adapter.apply {
             addBehaviors(DefaultCardPreviewBehavior(this@OverviewActivity))
