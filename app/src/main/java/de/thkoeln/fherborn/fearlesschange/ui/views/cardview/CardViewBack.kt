@@ -25,7 +25,6 @@ class CardViewBack : CardView {
             performAction(this, card, CardViewAction.FAVORITE_CLICKED)
             onCardChanged(card)
         }
-        card_note_btn.setOnClickListener{ performAction(this, card, CardViewAction.NOTES_CLICKED) }
     }
 
     override fun onCardChanged(card: Card?) {
