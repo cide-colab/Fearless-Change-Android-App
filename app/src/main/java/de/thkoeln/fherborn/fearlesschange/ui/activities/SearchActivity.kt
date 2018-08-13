@@ -9,21 +9,13 @@ import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
 import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        setupActionBar()
     }
 
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
-    private fun setupActionBar() {
-        setSupportActionBar(action_bar as Toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_activity_actions, menu)
         return super.onCreateOptionsMenu(menu)

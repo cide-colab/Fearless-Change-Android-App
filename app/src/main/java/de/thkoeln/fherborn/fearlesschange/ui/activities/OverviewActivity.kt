@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_overview.*
 import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 
-class OverviewActivity : AppCompatActivity() {
+class OverviewActivity : AppActivity() {
 
     private lateinit var cardRepository: CardRepository
     private val adapter = CardRecyclerGridAdapter()
@@ -31,19 +31,12 @@ class OverviewActivity : AppCompatActivity() {
         }
 
         cardRepository.getAll().observe(this, Observer { cards ->
-            adapter.cards = cards?: listOf()
+            adapter.cards = cards ?: listOf()
             adapter.notifyDataSetChanged()
         })
-        setupActionBar()
     }
 
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
-    private fun setupActionBar() {
-        setSupportActionBar(action_bar as Toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.dashboard_activity_actions, menu)
         return super.onCreateOptionsMenu(menu)

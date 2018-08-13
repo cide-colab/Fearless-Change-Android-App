@@ -14,7 +14,7 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCar
 import kotlinx.android.synthetic.main.activity_favorites.*
 import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
-class FavoritesActivity : AppCompatActivity() {
+class FavoritesActivity : AppActivity() {
 
 
     private lateinit var cardRepository: CardRepository
@@ -31,19 +31,11 @@ class FavoritesActivity : AppCompatActivity() {
         }
 
         cardRepository.getFavorites().observe(this, Observer { cards ->
-            adapter.cards = cards?: listOf()
+            adapter.cards = cards ?: listOf()
             adapter.notifyDataSetChanged()
         })
-        setupActionBar()
     }
 
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
-    private fun setupActionBar() {
-        setSupportActionBar(action_bar as Toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.dashboard_activity_actions, menu)
         return super.onCreateOptionsMenu(menu)
