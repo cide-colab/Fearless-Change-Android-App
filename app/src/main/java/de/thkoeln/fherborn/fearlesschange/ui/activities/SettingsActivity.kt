@@ -3,12 +3,9 @@ package de.thkoeln.fherborn.fearlesschange.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceActivity
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 
 /**

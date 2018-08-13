@@ -3,8 +3,6 @@ package de.thkoeln.fherborn.fearlesschange.ui.activities
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
@@ -12,7 +10,6 @@ import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.activity_favorites.*
-import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 class FavoritesActivity : AppActivity() {
 
