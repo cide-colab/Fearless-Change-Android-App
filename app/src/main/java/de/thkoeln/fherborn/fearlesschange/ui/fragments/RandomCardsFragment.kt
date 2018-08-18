@@ -16,6 +16,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.animation.ObjectAnimator
 import android.animation.AnimatorSet
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 
@@ -86,7 +87,7 @@ class RandomCardsFragment : Fragment() {
 
     private fun setCardListener(vararg cardViews: CardView) {
         cardViews.forEach {
-            it.addBehaviors(DefaultCardPreviewBehavior(activity))
+            it.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
         }
     }
 }

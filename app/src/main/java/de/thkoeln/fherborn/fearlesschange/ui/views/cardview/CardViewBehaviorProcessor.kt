@@ -37,7 +37,7 @@ interface CardViewBehaviorProcessor {
 
 enum class CardViewAction {
     FAVORITE_CLICKED,
-    NOTES_CLICKED,
+    ADD_NOTE_CLICKED,
     CARD_CLICKED
 }
 

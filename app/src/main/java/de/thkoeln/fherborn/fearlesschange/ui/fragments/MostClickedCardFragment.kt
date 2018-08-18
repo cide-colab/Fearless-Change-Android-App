@@ -4,6 +4,7 @@ package de.thkoeln.fherborn.fearlesschange.ui.fragments
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,6 @@ class MostClickedCardFragment : Fragment() {
             }
         })
 
-        most_clicked_card.addBehaviors(DefaultCardPreviewBehavior(activity))
+        most_clicked_card.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
     }
 }

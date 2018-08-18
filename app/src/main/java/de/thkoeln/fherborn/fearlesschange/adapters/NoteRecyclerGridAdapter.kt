@@ -13,6 +13,7 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
 
 class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.Adapter<NoteRecyclerGridAdapter.NoteViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteRecyclerGridAdapter.NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_note_item, parent, false)
         return NoteViewHolder(view)
