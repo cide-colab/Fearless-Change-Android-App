@@ -49,14 +49,14 @@ interface CardViewBehaviorProcessor {
      * @param cardBehaviors that should be added
      */
     fun addDistinctBehaviors(vararg cardBehaviors: CardViewBehavior) =
-            this.addBehaviors(cardBehaviors.filter { !cardBehaviors.contains(it) })
+            this.addBehaviors(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
 
     /**
      * Add behaviors to the cardView if it doesn't exist
      * @param cardBehaviors that should be added
      */
     fun addDistinctBehaviors(cardBehaviors: List<CardViewBehavior>) =
-            this.addBehaviors(cardBehaviors.filter { !cardBehaviors.contains(it) })
+            this.addBehaviors(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
 
     /**
      * Removes all behaviors from cardView
