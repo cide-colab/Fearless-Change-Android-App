@@ -23,7 +23,7 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehavior
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehaviorProcessor
-import kotlinx.android.synthetic.main.layout_card_popup.*
+import kotlinx.android.synthetic.main.layout_card_popup_fragment.*
 
 
 class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
@@ -41,7 +41,7 @@ class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.layout_card_popup, container, false)
+            inflater.inflate(R.layout.layout_card_popup_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,8 +56,8 @@ class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
 
     private fun setCard(card: Card?) {
         this.card = card
-        popup_card_front.card = card
-        popup_card_back.card = card
+        popup_card_front?.card = card
+        popup_card_back?.card = card
         card?.let {
             val notesFragment = CardNotesFragment.newInstance(cardId = it.id)
             childFragmentManager.beginTransaction()
