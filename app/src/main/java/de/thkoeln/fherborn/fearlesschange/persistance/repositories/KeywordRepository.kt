@@ -11,4 +11,6 @@ class KeywordRepository(context: Context?) {
             ?: throw RuntimeException("Application is null")).keywordDao()
 
     fun getAllKeywords() = dao.getKeywords()
+
+    fun getKeywordByKeyword(keyword: String) = dao.getKeywordByKeyword(keyword)
 }
