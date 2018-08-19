@@ -1,14 +1,12 @@
 package de.thkoeln.fherborn.fearlesschange.ui.activities
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.toBackgroundOf
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import kotlinx.android.synthetic.main.activity_app.*
 import kotlinx.android.synthetic.main.layout_default_app_bar.*
@@ -27,12 +25,8 @@ abstract class AppActivity : AppCompatActivity() {
 
     private fun onSetBackground() {
         GlideApp.with(this)
-                .load(R.drawable.app_bg).fitCenter().into(object: SimpleTarget<Drawable>(){
-                    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                        activity_wrapper.background = resource
-                    }
-
-                })
+                .load(R.drawable.app_bg).fitCenter()
+                .toBackgroundOf(activity_wrapper)
     }
 
     private fun setupActionBar() {
@@ -53,6 +47,4 @@ abstract class AppActivity : AppCompatActivity() {
     override fun setContentView(view: View?, params: ViewGroup.LayoutParams?) {
         setContentView(view)
     }
-
-    fun getContentView() = contentView
 }
