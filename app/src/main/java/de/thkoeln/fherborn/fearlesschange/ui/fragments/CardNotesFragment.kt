@@ -49,14 +49,14 @@ class CardNotesFragment : Fragment() {
 
     private fun setupView() {
 
-        GlideApp.with(this).load(R.drawable.notes_bg).fitCenter().into(object: SimpleTarget<Drawable>(){
+        GlideApp.with(this)
+                .load(R.drawable.notes_bg).fitCenter().into(object : SimpleTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                 notes_container.background = resource
             }
-
         })
 
-        GlideApp.with(this).load(R.drawable.wood).fitCenter().into(object: SimpleTarget<Drawable>(){
+        GlideApp.with(this).load(R.drawable.wood).fitCenter().into(object : SimpleTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                 notes_label.background = resource
             }

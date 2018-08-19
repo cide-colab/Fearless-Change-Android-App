@@ -25,8 +25,10 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehavior
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehaviorProcessor
 import kotlinx.android.synthetic.main.layout_card_popup_fragment.*
 
-
-class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
+/**
+ * A DialogFragment to show a flippable card detail with its notes
+ */
+class CardDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
 
 
     override val cardBehaviors = mutableListOf<CardViewBehavior>()
@@ -54,24 +56,38 @@ class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
         setListeners()
     }
 
-
+    /**
+     * Sets the content of the card to the cardviews and inflates the notes fragment
+     */
     private fun setCard(card: Card?) {
         this.card = card
         popup_card_front?.card = card
         popup_card_back?.card = card
+        inflateNotesFragment(card)
+    }
+
+    /**
+     * Inflates the notes fragment to show the notes of the given card
+     * @param card Card to show the notes of
+     */
+    private fun inflateNotesFragment(card: Card?) {
         card?.let {
-            if(!isAdded) return@let
+            //Bugfix return if fragment isn't attached
+            if (!isAdded) return@let
             val notesFragment = CardNotesFragment.newInstance(cardId = it.id)
             childFragmentManager.beginTransaction()
                     .replace(R.id.bottom_sheet_content, notesFragment).commit()
         }
     }
 
+    /**
+     * Sets given card behaviors and flip behavior
+     */
     private fun setListeners() {
         val flipBehavior = object : CardViewBehavior {
             override fun onCardAction(cardView: CardView, card: Card?, action: CardViewAction) {
                 if (action == CardViewAction.CARD_CLICKED)
-                    flipCard()
+                    flip()
             }
         }
         popup_card_back.addBehaviors(cardBehaviors)
@@ -80,27 +96,36 @@ class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
         popup_card_front.addDistinctBehaviors(flipBehavior)
     }
 
-    @Synchronized private fun flipCard() {
+    /**
+     * Flips the card
+     */
+    @Synchronized private fun flip() {
         frontShown = if (frontShown) {
-            switchViews(popup_card_back, popup_card_front)
+            switch(popup_card_front, popup_card_back)
             false
         } else {
-            switchViews(popup_card_front, popup_card_back)
+            switch(popup_card_back, popup_card_front)
             true
         }
     }
 
-    @Synchronized private fun switchViews(showView: View, hideView: View) {
-        val oaOut = ObjectAnimator.ofFloat(hideView, "scaleX", 1f, 0f).apply {
+    /**
+     * Switches and animates from [from] to [to]
+     * [from] will be hided and [to] will be visible
+     * @param from view to be hided
+     * @param to view to be shown
+     */
+    @Synchronized private fun switch(from: View, to: View) {
+        val oaOut = ObjectAnimator.ofFloat(from, "scaleX", 1f, 0f).apply {
             interpolator = DecelerateInterpolator()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
-                    hideView.visibility = GONE
-                    showView.visibility = VISIBLE
+                    from.visibility = GONE
+                    to.visibility = VISIBLE
                 }
             })
         }
-        val oaIn = ObjectAnimator.ofFloat(showView, "scaleX", 0f, 1f).apply {
+        val oaIn = ObjectAnimator.ofFloat(to, "scaleX", 0f, 1f).apply {
             interpolator = AccelerateDecelerateInterpolator()
         }
 
@@ -114,7 +139,7 @@ class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
     companion object {
         private const val CARD_ID_KEY = "card_id"
         fun newInstance(cardId: Long) =
-                CardPopupFragment().apply {
+                CardDialogFragment().apply {
                     arguments = Bundle().apply {
                         putLong(CARD_ID_KEY, cardId)
                     }
