@@ -8,7 +8,6 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -27,7 +26,7 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehaviorProc
 import kotlinx.android.synthetic.main.layout_card_popup.*
 
 
-class CardPopup : DialogFragment(), CardViewBehaviorProcessor {
+class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
 
 
     override val cardBehaviors = mutableListOf<CardViewBehavior>()
@@ -113,7 +112,7 @@ class CardPopup : DialogFragment(), CardViewBehaviorProcessor {
     companion object {
         private const val CARD_ID_KEY = "card_id"
         fun newInstance(cardId: Long) =
-                CardPopup().apply {
+                CardPopupFragment().apply {
                     arguments = Bundle().apply {
                         putLong(CARD_ID_KEY, cardId)
                     }

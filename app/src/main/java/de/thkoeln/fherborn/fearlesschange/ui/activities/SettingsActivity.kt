@@ -3,12 +3,9 @@ package de.thkoeln.fherborn.fearlesschange.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceActivity
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 
 /**
@@ -21,18 +18,14 @@ import kotlinx.android.synthetic.main.layout_default_app_bar.*
  * for design guidelines and the [Settings API Guide](http://developer.android.com/guide/topics/ui/settings.html)
  * for more information on developing a Settings UI.
  */
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        setupActionBar()
     }
 
-    private fun setupActionBar() {
-        setSupportActionBar(action_bar as Toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.settings_activity_actions, menu)
         return super.onCreateOptionsMenu(menu)

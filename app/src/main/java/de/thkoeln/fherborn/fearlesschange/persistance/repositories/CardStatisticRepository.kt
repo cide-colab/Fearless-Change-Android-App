@@ -31,8 +31,6 @@ class CardStatisticRepository(context: Context?) {
     fun getCountOfAction(action: CardStatisticAction) = cardActionDao.getCountOfAction(action)
 
     fun getCardByMostAction(action: CardStatisticAction): LiveData<Card> = Transformations.switchMap(cardActionDao.getMostByAction(action)) {
-        it?.let {
-            cardDao.getById(it.cardId)
-        }
+        it?.let { cardDao.getById(it.cardId) }
     }
 }
