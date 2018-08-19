@@ -2,6 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.ui.views
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MotionEvent
@@ -22,6 +23,13 @@ class NoteInputDialog(context: Context?, private val noteTitle: String = "", pri
         prepareDialog()
         setValues()
         setListeners()
+        setFont()
+    }
+
+    private fun setFont() {
+        val font = Typeface.createFromAsset(context.assets, "fonts/note_font.ttf")
+        note_title.typeface = font
+        note_description.typeface = font
     }
 
     private fun setValues() {
