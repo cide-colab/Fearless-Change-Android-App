@@ -18,7 +18,9 @@ import android.animation.ObjectAnimator
 import android.animation.AnimatorSet
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
+import kotlinx.android.synthetic.main.layout_card_view_preview.view.*
 
 
 class RandomCardsFragment : Fragment() {
@@ -48,7 +50,7 @@ class RandomCardsFragment : Fragment() {
         random_cards_reload.setOnClickListener { reloadAll() }
     }
 
-    private fun animateCardsAndRun(vararg cards: CardView, delayBetweenAnimations: Long = 100, durationPerAnimation: Long = 100, run: (CardView, Int) -> Unit) {
+    private fun animateCardsAndRun(vararg cards: CardViewPreview, delayBetweenAnimations: Long = 100, durationPerAnimation: Long = 100, run: (CardViewPreview, Int) -> Unit) {
 
         val animators = cards.mapIndexed { index, cardView ->
             val oa1 = ObjectAnimator.ofFloat(cardView, "scaleX", 1f, 0f).apply {
@@ -72,20 +74,21 @@ class RandomCardsFragment : Fragment() {
         animators.forEach { it.start() }
     }
 
-    private fun reload(vararg cardViews: CardView) {
+    private fun reload(vararg cardViews: CardViewPreview) {
         generated = false
-        cardRepository.getRandom(cardViews.size).observe(this, Observer { random_cards ->
+        cardRepository.getRandomWithNotesCount(cardViews.size).observe(this, Observer { random_cards ->
             random_cards?.let {
                 if (random_cards.size < cardViews.size || generated) return@Observer
                 generated = true
                 animateCardsAndRun(*cardViews) { cardView, index ->
-                    cardView.card = random_cards[index]
+                    cardView.card = random_cards[index].card
+                    cardView.notesCount = random_cards[index].noteCount
                 }
             }
         })
     }
 
-    private fun setCardListener(vararg cardViews: CardView) {
+    private fun setCardListener(vararg cardViews: CardViewPreview) {
         cardViews.forEach {
             it.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
         }

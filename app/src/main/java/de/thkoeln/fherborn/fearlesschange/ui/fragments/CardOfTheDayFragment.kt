@@ -18,7 +18,7 @@ class CardOfTheDayFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.fragment_card_of_the_day, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,8 +28,9 @@ class CardOfTheDayFragment : Fragment() {
 
         cardRepository.getCount().observe(this, Observer {
             calculateCardOfTheDay(it)?.let {
-                cardRepository.getElementWithIndex(it).observe(this, Observer {
-                    card_of_the_day.card = it
+                cardRepository.getElementWithIndexWithNoteCount(it).observe(this, Observer {
+                    card_of_the_day.card = it?.card
+                    card_of_the_day.notesCount = it?.noteCount?:0
                 })
             }
         })

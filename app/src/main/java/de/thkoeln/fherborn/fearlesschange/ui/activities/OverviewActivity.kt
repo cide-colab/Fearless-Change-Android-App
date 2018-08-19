@@ -27,7 +27,7 @@ class OverviewActivity : AppActivity() {
             addBehaviors(DefaultCardPreviewBehavior(this@OverviewActivity))
         }
 
-        cardRepository.getAll().observe(this, Observer { cards ->
+        cardRepository.getAllWithNoteCount().observe(this, Observer { cards ->
             adapter.cards = cards ?: listOf()
             adapter.notifyDataSetChanged()
         })

@@ -2,7 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.persistance.initializer
 
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 
-class CardInitializer : DataInitializer<Card>("cardId") {
+class CardInitializer : DataInitializer<Card>("card") {
     override fun getItemValues(item: Card?) = hashMapOf(
             "id" to item?.id,
             "title" to item?.title,

@@ -27,7 +27,7 @@ class FavoritesActivity : AppActivity() {
             addBehaviors(DefaultCardPreviewBehavior(this@FavoritesActivity))
         }
 
-        cardRepository.getFavorites().observe(this, Observer { cards ->
+        cardRepository.getFavoritesWithNoteCount().observe(this, Observer { cards ->
             adapter.cards = cards ?: listOf()
             adapter.notifyDataSetChanged()
         })

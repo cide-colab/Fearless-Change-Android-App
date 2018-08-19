@@ -42,8 +42,10 @@
         android:paddingEnd="8dp"
         android:paddingTop="16dp"
         android:paddingBottom="12dp"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/fav_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_title"
@@ -75,5 +77,38 @@
 
     </android.support.constraint.ConstraintLayout>
 
+
+
+    <ImageView
+        android:id="@+id/fav_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_favorite_white"
+        app:layout_constraintEnd_toEndOf="@id/card_title"
+        app:layout_constraintTop_toBottomOf="@id/card_content_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="@dimen/default_margin"/>
+
+    <ImageView
+        android:id="@+id/notes_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_assignment_white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/fav_icon"
+        app:layout_constraintTop_toTopOf="@id/fav_icon"
+        app:layout_constraintBottom_toBottomOf="@id/fav_icon"/>
+
+    <TextView
+        android:id="@+id/notes_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/notes_icon"
+        app:layout_constraintTop_toTopOf="@id/notes_icon"
+        app:layout_constraintBottom_toBottomOf="@id/notes_icon"
+        android:visibility="gone"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="#ffffff" />
 
 </android.support.constraint.ConstraintLayout>

@@ -30,9 +30,10 @@ class MostClickedCardFragment : Fragment() {
         cardRepository = CardRepository(activity?.application)
         cardActionRepository = CardStatisticRepository(activity?.application)
 
-        cardActionRepository.getCardByMostAction(CardStatisticAction.CLICK).observe( this, Observer {
+        cardActionRepository.getCardByMostActionWithNoteCount(CardStatisticAction.CLICK).observe( this, Observer {
             it?.let {
-                most_clicked_card.card = it
+                most_clicked_card.card = it.card
+                most_clicked_card.notesCount = it.noteCount
             }
         })
 

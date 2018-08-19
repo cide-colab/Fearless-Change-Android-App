@@ -1,11 +1,12 @@
 package de.thkoeln.fherborn.fearlesschange.adapters
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
 
 /**
@@ -13,11 +14,11 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
  *
  * @author Florian Herborn on 10.08.2018.
  * @since 0.0.1
- * @property cards cards to show
+ * @property cards cards to show and notesCount of each card
  * @see RecyclerView.Adapter
  * @see CardViewBehavior
  */
-class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewBehaviorProcessor {
+class CardRecyclerGridAdapter(var cards: List<CardWithNoteCount> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewBehaviorProcessor {
 
     override val cardBehaviors = mutableListOf<CardViewBehavior>()
 
@@ -51,8 +52,10 @@ class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.A
 
         private var cardView = itemView.findViewById<CardViewPreview>(R.id.overview_grid_card)
 
-        fun bindCard(card: Card) {
-            cardView.card = card
+        fun bindCard(cardWithNoteCount: CardWithNoteCount) {
+            Log.e("Count", cardWithNoteCount.noteCount.toString())
+            cardView.card = cardWithNoteCount.card
+            cardView.notesCount = cardWithNoteCount.noteCount
             cardView.addDistinctBehaviors(cardBehaviors)
         }
     }
