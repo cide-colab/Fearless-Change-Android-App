@@ -9,12 +9,12 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
 
 /**
- *
  * Adapter to adapt a card to a recycler view
  *
  * @author Florian Herborn on 10.08.2018.
  * @since 0.0.1
- * @property cardBehaviors
+ * @property cards cards to show
+ * @see RecyclerView.Adapter
  * @see CardViewBehavior
  */
 class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewBehaviorProcessor {
@@ -37,7 +37,7 @@ class CardRecyclerGridAdapter(var cards: List<Card> = listOf()) : RecyclerView.A
     }
 
     /**
-     * returns the size of the cardArray
+     * returns the size of the cardList
      * @see RecyclerView.Adapter
      */
     override fun getItemCount(): Int {

@@ -8,23 +8,47 @@ import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
 
-
+/**
+ *
+ * Adapter to adapt a notes to a recycler view
+ *
+ * @author Florian Herborn on 10.08.2018.
+ * @since 0.0.1
+ * @property notes notes to show
+ * @see RecyclerView.Adapter
+ */
 class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.Adapter<NoteRecyclerGridAdapter.NoteViewHolder>() {
 
 
+    /**
+     * Inflates ItemView and creates a ViewHolder with this view
+     * @see RecyclerView.Adapter
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteRecyclerGridAdapter.NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_note_item, parent, false)
         return NoteViewHolder(view)
     }
 
+    /**
+     * Binds a viewholder to
+     * @see RecyclerView.Adapter
+     */
     override fun onBindViewHolder(holder: NoteRecyclerGridAdapter.NoteViewHolder, position: Int) {
         holder.bindCard(notes[position])
     }
-
+    /**
+     * returns the size of the noteList
+     * @see RecyclerView.Adapter
+     */
     override fun getItemCount(): Int {
         return notes.size
     }
 
+    /**
+     * @see RecyclerView.ViewHolder
+     * @property noteDescriptionView textview to show note description
+     * @property noteTitleView textview to show note title
+     */
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var noteTitleView = itemView.findViewById<TextView>(R.id.note_title)
