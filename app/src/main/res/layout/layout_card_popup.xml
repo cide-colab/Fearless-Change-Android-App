@@ -12,8 +12,10 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <android.support.constraint.ConstraintLayout
+        android:layout_gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize">
 
         <ImageButton
             android:id="@+id/back_btn"
@@ -22,7 +24,7 @@
             android:background="@android:color/transparent"
             android:padding="@dimen/default_padding"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:src="@drawable/ic_arrow_back_white_24dp"/>
 
 
@@ -65,49 +67,13 @@
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
         android:fillViewport="true">
 
-        <android.support.constraint.ConstraintLayout
+        <FrameLayout
+            android:id="@+id/bottom_sheet_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"/>
 
-
-            <TextView
-                android:id="@+id/notes_label"
-                style="@style/ActionBar"
-                android:layout_width="match_parent"
-                android:padding="16dp"
-                android:textAlignment="center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Title"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/notes_recycler_view"
-                android:text="Notes"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/notes_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="android.support.v7.widget.GridLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_label"
-                app:spanCount="2" />
-        </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_note_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
-        android:src="@drawable/ic_add_white_24dp"
-        app:fabSize="normal"
-        app:layout_anchor="@id/bottom_sheet"
-        app:layout_anchorGravity="bottom|right|end"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior" />
 
 </android.support.design.widget.CoordinatorLayout>

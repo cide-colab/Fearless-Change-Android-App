@@ -15,7 +15,7 @@ class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteRecyclerGridAdapter.NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_note_item, parent, false)
-        return NoteViewHolder(view, Typeface.createFromAsset(parent.context.assets, "fonts/note_font.ttf"))
+        return NoteViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: NoteRecyclerGridAdapter.NoteViewHolder, position: Int) {
@@ -26,10 +26,10 @@ class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.A
         return notes.size
     }
 
-    inner class NoteViewHolder(itemView: View, font: Typeface) : RecyclerView.ViewHolder(itemView) {
+    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var noteTitleView = itemView.findViewById<TextView>(R.id.note_title).apply { typeface = font }
-        private var noteDescriptionView = itemView.findViewById<TextView>(R.id.note_description).apply { typeface = font }
+        private var noteTitleView = itemView.findViewById<TextView>(R.id.note_title)
+        private var noteDescriptionView = itemView.findViewById<TextView>(R.id.note_description)
 
         fun bindCard(note: Note) {
             noteTitleView.text = note.title

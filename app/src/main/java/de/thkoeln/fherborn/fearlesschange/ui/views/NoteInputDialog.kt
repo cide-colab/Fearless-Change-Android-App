@@ -11,7 +11,6 @@ import android.view.Window
 import de.thkoeln.fherborn.fearlesschange.R
 import kotlinx.android.synthetic.main.layout_edit_note.*
 
-//TODO Logik für notes auslagern?
 class NoteInputDialog(context: Context?, private val noteTitle: String = "", private val noteText: String = "") : Dialog(context) {
 
     var onConfirmListener: ((title: String, description: String) -> Unit)? = null
@@ -23,23 +22,15 @@ class NoteInputDialog(context: Context?, private val noteTitle: String = "", pri
         prepareDialog()
         setValues()
         setListeners()
-        setFont()
-    }
-
-    private fun setFont() {
-        val font = Typeface.createFromAsset(context.assets, "fonts/note_font.ttf")
-        note_title.typeface = font
-        note_description.typeface = font
     }
 
     private fun setValues() {
-        add_note_title.text = context.getString(R.string.label_new_note)
         note_title.setText(noteTitle)
         note_description.setText(noteText)
     }
 
     private fun setListeners() {
-        add_note_cancel.setOnClickListener { dismiss() }
+        //add_note_cancel.setOnClickListener { dismiss() }
         add_note_confirm.setOnClickListener {
             onConfirmListener?.invoke(
                     note_title.text.toString(),

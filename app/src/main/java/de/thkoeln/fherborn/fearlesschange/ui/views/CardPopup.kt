@@ -4,93 +4,70 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.app.Dialog
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.view.Gravity
+import android.support.v4.app.DialogFragment
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.view.Window.FEATURE_NO_TITLE
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.adapters.NoteRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
+import de.thkoeln.fherborn.fearlesschange.ui.fragments.CardNotesFragment
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehavior
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehaviorProcessor
 import kotlinx.android.synthetic.main.layout_card_popup.*
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
-import android.support.v7.widget.helper.ItemTouchHelper
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepository
 
 
-//TODO Logik für notes auslagern?
-class CardPopup(private val activity: AppCompatActivity?, val card: Card): Dialog(activity), CardViewBehaviorProcessor {
+class CardPopup : DialogFragment(), CardViewBehaviorProcessor {
 
 
     override val cardBehaviors = mutableListOf<CardViewBehavior>()
 
+    private lateinit var cardRepository: CardRepository
     private var frontShown = true
-    private val notesAdapter = NoteRecyclerGridAdapter()
-    private val noteRepository = NoteRepository(context)
+    private var card: Card? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(FEATURE_NO_TITLE)
-        setContentView(R.layout.layout_card_popup)
-        prepareDialog()
-        setCard()
-        setUpNotes()
-        setListeners()
+        setStyle(STYLE_NO_TITLE, R.style.AppDialog)
     }
-    private fun setUpNotes() {
-        notes_recycler_view.adapter = notesAdapter
-        notes_recycler_view.isNestedScrollingEnabled = false
-        notes_recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        activity?.let {
-            noteRepository.getByCardId(card.id).observe(it, Observer {
-                notesAdapter.notes = it?: listOf()
-                notesAdapter.notifyDataSetChanged()
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.layout_card_popup, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        cardRepository = CardRepository(context)
+        arguments?.getLong(CARD_ID_KEY)?.let {
+            cardRepository.getById(it).observe(activity as LifecycleOwner, Observer {
+                setCard(it)
             })
         }
-        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-                when (swipeDir) {
-                    ItemTouchHelper.LEFT -> removeNote(notesAdapter.notes[viewHolder.adapterPosition])
-                }
-            }
-        })
-        itemTouchHelper.attachToRecyclerView(notes_recycler_view)
+        setListeners()
     }
 
-    private fun addNoteClicked() {
-        val inputDialog = NoteInputDialog(context)
-        inputDialog.onConfirmListener = { title, description ->
-            val note = Note(title = title, description = description, cardId = card.id)
-            noteRepository.insert(note)
-            inputDialog.dismiss()
-        }
-        inputDialog.show()
-    }
-
-    private fun removeNote(note: Note) {
-        noteRepository.delete(note)
-        Snackbar.make(card_popup_container, context.getString(R.string.noteDeleted, note.title), Snackbar.LENGTH_SHORT).show()
-    }
-
-    private fun setCard() {
+    private fun setCard(card: Card?) {
+        this.card = card
         popup_card_front.card = card
         popup_card_back.card = card
+        card?.let {
+            val notesFragment = CardNotesFragment.newInstance(cardId = it.id)
+            childFragmentManager.beginTransaction()
+                    .replace(R.id.bottom_sheet_content, notesFragment).commit()
+        }
     }
 
     private fun setListeners() {
-        val flipBehavior = object: CardViewBehavior {
+        val flipBehavior = object : CardViewBehavior {
             override fun onCardAction(cardView: CardView, card: Card?, action: CardViewAction) {
                 if (action == CardViewAction.CARD_CLICKED)
                     flipCard()
@@ -100,7 +77,6 @@ class CardPopup(private val activity: AppCompatActivity?, val card: Card): Dialo
         popup_card_front.addBehaviors(cardBehaviors)
         popup_card_back.addDistinctBehaviors(flipBehavior)
         popup_card_front.addDistinctBehaviors(flipBehavior)
-        add_note_fab.setOnClickListener { addNoteClicked() }
     }
 
     @Synchronized private fun flipCard() {
@@ -134,17 +110,13 @@ class CardPopup(private val activity: AppCompatActivity?, val card: Card): Dialo
         }
     }
 
-    private fun prepareDialog() {
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        window.setGravity(Gravity.CENTER)
-        window.setBackgroundDrawableResource(android.R.color.transparent)
+    companion object {
+        private const val CARD_ID_KEY = "card_id"
+        fun newInstance(cardId: Long) =
+                CardPopup().apply {
+                    arguments = Bundle().apply {
+                        putLong(CARD_ID_KEY, cardId)
+                    }
+                }
     }
-
-    /*
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        super.onTouchEvent(event)
-        dismiss()
-        return true
-    }
-    */
 }

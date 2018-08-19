@@ -16,22 +16,22 @@ interface CardDao {
     @Update
     fun update(vararg card: Card)
 
-    @Query("SELECT * FROM card")
+    @Query("SELECT * FROM cardId")
     fun getAll(): LiveData<List<Card>>
 
-    @Query("SELECT * FROM card WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM cardId WHERE id = :id LIMIT 1")
     fun getById(id: Long): LiveData<Card>
 
-    @Query("SELECT * FROM card ORDER BY RANDOM() LIMIT :count")
+    @Query("SELECT * FROM cardId ORDER BY RANDOM() LIMIT :count")
     fun getRandom(count: Int): LiveData<List<Card>>
 
-    @Query("SELECT COUNT(*) FROM card")
+    @Query("SELECT COUNT(*) FROM cardId")
     fun getCount(): LiveData<Long>
 
-    @Query("SELECT * FROM card LIMIT :index, 1")
+    @Query("SELECT * FROM cardId LIMIT :index, 1")
     fun getElementWithIndex(index: Long): LiveData<Card>
 
-    @Query("SELECT * FROM card WHERE favorite")
+    @Query("SELECT * FROM cardId WHERE favorite")
     fun getFavorites(): LiveData<List<Card>>
 
 }

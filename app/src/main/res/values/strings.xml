@@ -30,9 +30,6 @@
     <string name="header_buts">Buts...</string>
 
 
-
-
-
     <string name="title_fragment_most_clicked_card">Most Clicked Card</string>
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
@@ -41,4 +38,7 @@
     <string name="hint_text">Text</string>
     <string name="noteDeleted">Note %1$s deleted</string>
     <string name="header_notes">Notes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
