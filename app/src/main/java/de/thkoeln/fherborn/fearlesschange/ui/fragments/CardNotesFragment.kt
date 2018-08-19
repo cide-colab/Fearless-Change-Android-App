@@ -2,6 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.ui.fragments
 
 
 import android.arch.lifecycle.Observer
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -12,11 +13,14 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.NoteRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepository
+import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import de.thkoeln.fherborn.fearlesschange.ui.views.NoteInputDialog
 import kotlinx.android.synthetic.main.fragment_card_notes.*
 
@@ -38,11 +42,29 @@ class CardNotesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         noteRepository = NoteRepository(context)
-        setUpNotes()
+        setupView()
+        setupNotes()
         setListeners()
     }
 
-    private fun setUpNotes() {
+    private fun setupView() {
+
+        GlideApp.with(this).load(R.drawable.notes_bg).fitCenter().into(object: SimpleTarget<Drawable>(){
+            override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                notes_container.background = resource
+            }
+
+        })
+
+        GlideApp.with(this).load(R.drawable.wood).fitCenter().into(object: SimpleTarget<Drawable>(){
+            override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                notes_label.background = resource
+            }
+
+        })
+    }
+
+    private fun setupNotes() {
         notes_recycler_view.adapter = notesAdapter
         notes_recycler_view.isNestedScrollingEnabled = false
         notes_recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)

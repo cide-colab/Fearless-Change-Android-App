@@ -2,7 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/default_padding"
+    android:padding="36dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -11,14 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@android:color/holo_orange_light"
+        android:background="@color/note_color"
         android:layout_marginBottom="36dp"
+        android:paddingStart="@dimen/default_padding"
+        android:paddingEnd="@dimen/default_padding"
+        android:paddingTop="@dimen/default_padding"
         android:paddingBottom="36dp"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <ImageView
             android:id="@+id/pin_icon"
-            android:layout_margin="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/pin"
