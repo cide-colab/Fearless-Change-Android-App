@@ -54,11 +54,13 @@ class CardPopupFragment : DialogFragment(), CardViewBehaviorProcessor {
         setListeners()
     }
 
+
     private fun setCard(card: Card?) {
         this.card = card
         popup_card_front?.card = card
         popup_card_back?.card = card
         card?.let {
+            if(!isAdded) return@let
             val notesFragment = CardNotesFragment.newInstance(cardId = it.id)
             childFragmentManager.beginTransaction()
                     .replace(R.id.bottom_sheet_content, notesFragment).commit()
