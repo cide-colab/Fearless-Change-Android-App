@@ -11,7 +11,9 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.adapters.SearchKeywordRecyclerAdapter
@@ -44,6 +46,8 @@ class SearchActivity : AppCompatActivity() {
         this.selectedKeywordsAdapter = SearchKeywordRecyclerAdapter()
         selected_keywords.layoutManager = LinearLayoutManager(this)
         selected_keywords.adapter = selectedKeywordsAdapter
+
+        search_error.visibility = View.GONE
 
         search_results.adapter = resultsAdapter.apply {
             addBehaviors(DefaultCardPreviewBehavior(this@SearchActivity))
@@ -78,6 +82,8 @@ class SearchActivity : AppCompatActivity() {
 
     private fun addKeyword() {
         val keywordInput: String = search_keyword.text.toString()
+        search_error.text = ""
+        search_error.visibility = View.GONE
         keywordRepository.getKeywordByKeyword(keywordInput).observe(this, Observer { selectedKeyword ->
             selectedKeyword?.let {
                 val elementExists = selectedKeywordsAdapter.keywords.contains(selectedKeyword)
@@ -85,10 +91,14 @@ class SearchActivity : AppCompatActivity() {
                     selectedKeywordsAdapter.keywords.add(selectedKeyword)
                     selectedKeywordsAdapter.notifyDataSetChanged()
                 } else {
-                    // TODO: Fehler, dass Element bereits vorhanden ist
+                    search_error.visibility = View.VISIBLE
+                    // TODO: In res auslagern
+                    search_error.text = "Keyword already in list."
                 }
             } ?: run {
-                // TODO: Fehlermeldung ausgeben, dass das Keyword nicht gefunden wurde
+                search_error.visibility = View.VISIBLE
+                // TODO: In res auslagern
+                search_error.text = "Keyword does not exist in database."
             }
         })
     }
@@ -99,14 +109,17 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun search() {
+        search_error.visibility = View.GONE
         val keywordIds = selectedKeywordsAdapter.keywords.map { k -> k.id }
         cardRepository.getCardsByKeywords(keywordIds).observe(this, Observer { cards ->
-            // TODO Zeige Karten...
-            Log.e("test", cards.toString())
             cards?.let {
-                Log.e("Test2", "test")
                 resultsAdapter.cards = cards
                 resultsAdapter.notifyDataSetChanged()
+                if (cards.isEmpty()) {
+                    // TODO: In res auslagern
+                    search_error.visibility = View.VISIBLE
+                    search_error.text = "No cards found matching search criteria."
+                }
             }
         })
     }

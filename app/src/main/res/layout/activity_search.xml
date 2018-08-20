@@ -32,7 +32,8 @@
                 android:layout_marginTop="@dimen/default_margin"
                 android:orientation="horizontal"
                 android:background="@color/component_bg"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/default_padding">
                 <AutoCompleteTextView
                     android:id="@+id/search_keyword"
                     android:layout_width="match_parent"
@@ -50,6 +51,18 @@
                     android:src="@drawable/ic_add_black_24dp"
                     app:layout_constraintEnd_toEndOf="@id/search_keyword" />
             </LinearLayout>
+            <TextView
+                android:id="@+id/search_error"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/search_line"
+                app:layout_constraintBottom_toTopOf="@id/selected_keywords"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="@color/component_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textAppearance="@style/TextAppearance.Design.Error"
+                android:padding="@dimen/default_padding"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/selected_keywords"
                 android:layout_width="0dp"
@@ -59,7 +72,7 @@
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_line" />
+                app:layout_constraintTop_toBottomOf="@id/search_error" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/search_results"
                 android:layout_width="0dp"
@@ -68,7 +81,6 @@
                 android:layout_marginTop="@dimen/default_margin"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="android.support.v7.widget.GridLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/selected_keywords"
