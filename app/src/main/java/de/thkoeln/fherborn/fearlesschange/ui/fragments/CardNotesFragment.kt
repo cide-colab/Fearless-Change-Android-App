@@ -3,7 +3,6 @@ package de.thkoeln.fherborn.fearlesschange.ui.fragments
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -14,8 +13,6 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.NoteRecyclerGridAdapter
@@ -23,8 +20,8 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepository
 import de.thkoeln.fherborn.fearlesschange.toBackgroundOf
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
-import de.thkoeln.fherborn.fearlesschange.ui.views.NoteInputDialog
-import de.thkoeln.fherborn.fearlesschange.ui.views.NoteInputViewModel
+import de.thkoeln.fherborn.fearlesschange.ui.views.CreateNoteDialog
+import de.thkoeln.fherborn.fearlesschange.ui.views.CreateNoteDialogViewModel
 import kotlinx.android.synthetic.main.fragment_card_notes.*
 
 
@@ -83,16 +80,10 @@ class CardNotesFragment : Fragment() {
     }
 
     private fun addNoteClicked() {
-        val noteInputViewModel = ViewModelProviders.of(this).get(NoteInputViewModel::class.java)
-        val inputDialog = NoteInputDialog(context)
-        noteInputViewModel.onConfirmListener = { title, description ->
-            cardId?.let {
-                val note = Note(title = title, description = description, cardId = it)
-                noteRepository.insert(note)
-            }
-            inputDialog.dismiss()
+        val noteInputViewModel = ViewModelProviders.of(this).get(CreateNoteDialogViewModel::class.java)
+        activity?.let {
+            CreateNoteDialog(it, cardId).show()
         }
-        inputDialog.show()
     }
 
     private fun removeNote(note: Note) {

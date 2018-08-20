@@ -4,7 +4,7 @@
     <data>
         <variable
             name="model"
-            type="de.thkoeln.fherborn.fearlesschange.ui.views.NoteInputViewModel"/>
+            type="de.thkoeln.fherborn.fearlesschange.ui.views.CreateNoteDialogViewModel"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -46,6 +46,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:hint="@string/hint_title"
                 android:text="@{model.title}"
+                android:onTextChanged="@{model.onTitleChanged}"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
@@ -58,6 +59,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/note_title"
                 android:text='@{model.description}'
+                android:onTextChanged="@{model.onDescriptionChanged}"
                 android:hint="@string/hint_text"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
