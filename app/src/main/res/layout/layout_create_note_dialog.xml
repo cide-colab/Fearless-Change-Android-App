@@ -5,9 +5,6 @@
         <variable
             name="model"
             type="de.thkoeln.fherborn.fearlesschange.ui.views.CreateNoteDialogViewModel"/>
-        <variable
-            name="handler"
-            type="de.thkoeln.fherborn.fearlesschange.ui.views.CreateNoteDialogHandler"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -48,7 +45,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:hint="@string/hint_title"
-                android:text="@={model.title}"
+                android:text="@={model.note.title}"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
@@ -60,7 +57,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/note_title"
-                android:text='@={model.description}'
+                android:text='@={model.note.description}'
                 android:hint="@string/hint_text"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
@@ -78,7 +75,7 @@
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/positive_button_color"
             app:borderWidth="0dp"
-            android:onClick="@{() -> handler.onConfirm()}"
+            android:onClick="@{() -> model.onConfirm()}"
             app:layout_anchor="@id/add_note_content"
             app:layout_anchorGravity="bottom|end"/>
     </android.support.design.widget.CoordinatorLayout>

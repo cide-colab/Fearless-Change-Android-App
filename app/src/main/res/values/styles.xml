@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="cardViewStyle">@style/CardView</item>
+        <item name="android:dialogTheme">@style/AppDialog</item>
     </style>
 
     <style name="ActionBar">
@@ -46,7 +47,9 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent</item>
         <item name="android:windowIsFloating">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="android:windowTitleStyle">@null</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>

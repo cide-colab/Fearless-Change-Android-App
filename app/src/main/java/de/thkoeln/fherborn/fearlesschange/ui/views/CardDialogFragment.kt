@@ -37,11 +37,6 @@ class CardDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
     private var frontShown = true
     private var card: Card? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_TITLE, R.style.AppDialog)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.layout_card_popup_fragment, container, false)
 

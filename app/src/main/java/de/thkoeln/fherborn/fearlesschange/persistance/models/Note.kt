@@ -19,7 +19,7 @@ import android.arch.persistence.room.PrimaryKey
 data class Note(
         @PrimaryKey(autoGenerate = true)
         val id: Long = 0,
-        val title: String,
-        val description: String,
+        var title: String,
+        var description: String,
         val cardId: Long
 )
