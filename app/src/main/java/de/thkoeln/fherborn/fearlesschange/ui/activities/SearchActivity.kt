@@ -12,17 +12,21 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.adapters.SearchKeywordRecyclerAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Keyword
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.KeywordRepository
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var keywordRepository: KeywordRepository
+    private lateinit var cardRepository: CardRepository
     private lateinit var selectedKeywordsAdapter: SearchKeywordRecyclerAdapter
+    private val resultsAdapter = CardRecyclerGridAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,7 @@ class SearchActivity : AppCompatActivity() {
         setupActionBar()
 
         keywordRepository = KeywordRepository(application)
+        cardRepository = CardRepository(application)
 
         keywordRepository.getAllKeywords().observe(this, Observer { keywords ->
             val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, keywords)
@@ -40,8 +45,16 @@ class SearchActivity : AppCompatActivity() {
         selected_keywords.layoutManager = LinearLayoutManager(this)
         selected_keywords.adapter = selectedKeywordsAdapter
 
+        search_results.adapter = resultsAdapter.apply {
+            addBehaviors(DefaultCardPreviewBehavior(this@SearchActivity))
+        }
+
         add_keyword.setOnClickListener {
             addKeyword()
+        }
+
+        search_button.setOnClickListener {
+            search()
         }
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -83,6 +96,19 @@ class SearchActivity : AppCompatActivity() {
     private fun removeKeyword(keywordToRemove: Keyword) {
         selectedKeywordsAdapter.keywords.remove(keywordToRemove)
         selectedKeywordsAdapter.notifyDataSetChanged()
+    }
+
+    private fun search() {
+        val keywordIds = selectedKeywordsAdapter.keywords.map { k -> k.id }
+        cardRepository.getCardsByKeywords(keywordIds).observe(this, Observer { cards ->
+            // TODO Zeige Karten...
+            Log.e("test", cards.toString())
+            cards?.let {
+                Log.e("Test2", "test")
+                resultsAdapter.cards = cards
+                resultsAdapter.notifyDataSetChanged()
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

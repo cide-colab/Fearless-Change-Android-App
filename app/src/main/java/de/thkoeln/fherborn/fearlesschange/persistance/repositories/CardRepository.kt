@@ -20,4 +20,5 @@ class CardRepository(context: Context?) {
     fun getElementWithIndex(index: Long) = dao.getElementWithIndex(index)
     fun getFavorites() = dao.getFavorites()
     fun update(vararg cards: Card) = doAsync { dao.update(*cards) }
+    fun getCardsByKeywords(keywordIds: List<Long>) = dao.getCardsByKeywords(keywordIds)
 }
