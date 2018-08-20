@@ -29,4 +29,9 @@
     <string name="header_solution">Solution</string>
     <string name="header_buts">Buts...</string>
     <string name="title_fragment_most_clicked_card">Most Clicked Card</string>
+
+    <!-- Search -->
+    <string name="search_error_keyword_not_found">Selected Keyword not found in database</string>
+    <string name="search_error_already_in_list">Keyword already in list.</string>
+    <string name="search_error_no_cards_found">No cards found matching search criteria.</string>
 </resources>

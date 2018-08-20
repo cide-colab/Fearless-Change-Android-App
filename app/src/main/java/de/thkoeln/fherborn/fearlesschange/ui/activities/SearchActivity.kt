@@ -94,13 +94,11 @@ class SearchActivity : AppCompatActivity() {
                     search_keyword.setText("")
                 } else {
                     search_error.visibility = View.VISIBLE
-                    // TODO: In res auslagern
-                    search_error.text = "Keyword already in list."
+                    search_error.text = getString(R.string.search_error_already_in_list)
                 }
             } ?: run {
                 search_error.visibility = View.VISIBLE
-                // TODO: In res auslagern
-                search_error.text = "Keyword does not exist in database."
+                search_error.text = getString(R.string.search_error_keyword_not_found)
             }
         })
     }
@@ -118,9 +116,8 @@ class SearchActivity : AppCompatActivity() {
                 resultsAdapter.cards = cards
                 resultsAdapter.notifyDataSetChanged()
                 if (cards.isEmpty()) {
-                    // TODO: In res auslagern
                     search_error.visibility = View.VISIBLE
-                    search_error.text = "No cards found matching search criteria."
+                    search_error.text = getString(R.string.search_error_no_cards_found)
                 }
             }
         })
