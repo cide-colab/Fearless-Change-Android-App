@@ -4,12 +4,14 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.adapters.SearchKeywordRecyclerAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Keyword
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.KeywordRepository
 import kotlinx.android.synthetic.main.activity_search.*
@@ -19,6 +21,8 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var keywordRepository: KeywordRepository
     private lateinit var textView: AutoCompleteTextView
     private lateinit var selectedKeywords: MutableList<Keyword>
+    private lateinit var selectedKeywordsView: RecyclerView
+    private lateinit var selectedKeywordsAdapter: SearchKeywordRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +39,13 @@ class SearchActivity : AppCompatActivity() {
             textView.setAdapter(adapter)
         })
 
+        this.selectedKeywordsAdapter = SearchKeywordRecyclerAdapter(selectedKeywords)
+        this.selectedKeywordsView = findViewById(R.id.selected_keywords)
+        this.selectedKeywordsView.adapter = selectedKeywordsAdapter
+
         add_keyword.setOnClickListener{
             addKeyword()
         }
-
     }
 
     /**
@@ -50,11 +57,16 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun addKeyword() {
-        val keyword: String = this.textView.text.toString()
-        keywordRepository.getKeywordByKeyword(keyword).observe(this, Observer { selectedKeyword ->
+        val keywordInput: String = this.textView.text.toString()
+        keywordRepository.getKeywordByKeyword(keywordInput).observe(this, Observer { selectedKeyword ->
             selectedKeyword?.let {
-                // TODO: Prüfen ob Element schon vorhanden und entsprechende Fälle behandeln
-                this.selectedKeywords.add(selectedKeyword)
+                val elementExists = this.selectedKeywords.find { keyword ->  keyword.keyword.equals(keywordInput)}
+                elementExists?.let {
+                    this.selectedKeywords.add(selectedKeyword)
+                    this.selectedKeywordsAdapter.notifyDataSetChanged()
+                } ?: run {
+                    // TODO: Fehler, dass Element bereits vorhanden ist
+                }
             } ?: run {
                 // TODO: Fehlermeldung ausgeben, dass das Keyword nicht gefunden wurde
             }

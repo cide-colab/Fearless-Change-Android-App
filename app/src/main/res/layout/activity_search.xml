@@ -34,9 +34,15 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="@id/search_keyword"/>
     </LinearLayout>
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/selected_keywords"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/search_line"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        app:layout_constraintTop_toBottomOf="@id/selected_keywords"/>
 </android.support.constraint.ConstraintLayout>
