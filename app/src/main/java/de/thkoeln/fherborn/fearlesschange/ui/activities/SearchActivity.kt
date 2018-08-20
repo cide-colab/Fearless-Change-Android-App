@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.text.Editable
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -90,6 +91,7 @@ class SearchActivity : AppCompatActivity() {
                 if (!elementExists) {
                     selectedKeywordsAdapter.keywords.add(selectedKeyword)
                     selectedKeywordsAdapter.notifyDataSetChanged()
+                    search_keyword.setText("")
                 } else {
                     search_error.visibility = View.VISIBLE
                     // TODO: In res auslagern
