@@ -8,7 +8,7 @@ class CardInitializer : DataInitializer<Card>("card") {
             "title" to item?.title,
             "pictureName" to item?.pictureName,
             "problem" to item?.problem,
-            "abstract" to item?.buts,
+            "summary" to item?.summary,
             "solution" to item?.solution,
             "favorite" to item?.favorite
     )

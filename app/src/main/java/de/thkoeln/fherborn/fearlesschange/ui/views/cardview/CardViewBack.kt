@@ -36,7 +36,7 @@ class CardViewBack : CardView {
             )
             card_title.text = it.title
             card_solution.text = it.solution
-            card_buts.text = it.buts
+            card_buts.text = it.summary
         }
     }
 
