@@ -10,8 +10,6 @@ import android.widget.Toast
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import kotlinx.android.synthetic.main.activity_settings.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.toast
 
 
 /**
@@ -69,11 +67,7 @@ class SettingsActivity : AppActivity(), View.OnClickListener {
 
     fun showAlert() {
 
-        alert("Please confirm this operation.") {
-            title = "Warning"
-            yesButton { toast("success") }
-            noButton { toast("canceled")  }
-        }.show()
+
     }
 
 
