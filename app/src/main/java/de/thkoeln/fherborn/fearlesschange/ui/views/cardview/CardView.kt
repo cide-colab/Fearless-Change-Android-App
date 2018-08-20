@@ -8,6 +8,11 @@ import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import kotlinx.android.synthetic.main.layout_card.view.*
+import com.github.amlcurran.showcaseview.ShowcaseView
+import com.github.amlcurran.showcaseview.SimpleShowcaseEventListener
+import com.github.amlcurran.showcaseview.targets.ViewTarget
+
+
 
 /**
  * Created by Florian on 31.07.2018.

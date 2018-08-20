@@ -15,6 +15,8 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import com.github.amlcurran.showcaseview.ShowcaseView
+import com.github.amlcurran.showcaseview.targets.ViewTarget
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
@@ -40,6 +42,12 @@ class CardDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_TITLE, R.style.AppDialog)
+        val viewTarget = ViewTarget(R.layout.fragment_card_notes, activity)
+        ShowcaseView.Builder(activity)
+                .setTarget(viewTarget)
+                .setStyle(R.style.CustomShowcaseTheme2)
+                .setContentTitle("Here you can put your personal Notes!")
+                .build()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -99,7 +107,8 @@ class CardDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
     /**
      * Flips the card
      */
-    @Synchronized private fun flip() {
+    @Synchronized
+    private fun flip() {
         frontShown = if (frontShown) {
             switch(popup_card_front, popup_card_back)
             false
@@ -115,7 +124,8 @@ class CardDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
      * @param from view to be hided
      * @param to view to be shown
      */
-    @Synchronized private fun switch(from: View, to: View) {
+    @Synchronized
+    private fun switch(from: View, to: View) {
         val oaOut = ObjectAnimator.ofFloat(from, "scaleX", 1f, 0f).apply {
             interpolator = DecelerateInterpolator()
             addListener(object : AnimatorListenerAdapter() {
