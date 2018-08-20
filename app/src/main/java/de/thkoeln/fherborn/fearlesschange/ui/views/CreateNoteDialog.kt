@@ -42,8 +42,10 @@ class CreateNoteDialog(private val activity: FragmentActivity, private val cardI
 
     private fun initDataBinding() {
         val binding = DataBindingUtil.inflate<LayoutEditNoteBinding>(LayoutInflater.from(context), R.layout.layout_edit_note, null, false)
+        val handler = CreateNoteDialogHandler(model, this)
         setContentView(binding.root)
         binding.model = model
+        binding.handler = handler
     }
 
     /**
@@ -64,36 +66,29 @@ class CreateNoteDialog(private val activity: FragmentActivity, private val cardI
     }
 
 
+
+
+}
+
+class CreateNoteDialogHandler(private val model: CreateNoteDialogViewModel, private val dialog: Dialog) {
+
+    fun onConfirm() {
+        model.createNote()
+        dialog.dismiss()
+    }
+
 }
 
 class CreateNoteDialogViewModel(application: Application): AndroidViewModel(application) {
 
     private var noteRepository = NoteRepository(application)
     var cardId: Long? = null
-    var title: String = "ascascasd"
+    var title: String = ""
     var description: String = ""
-
-
 
     fun createNote() {
         cardId?.let {
             noteRepository.insert(Note(title = title, description = description, cardId = it))
         }
-    }
-
-    val onTitleChanged = object: TextWatcher {
-        override fun afterTextChanged(p0: Editable?) {}
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { title = p0.toString() }
-    }
-
-    val onDescriptionChanged = object: TextWatcher {
-        override fun afterTextChanged(p0: Editable?) {}
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { description = p0.toString() }
-    }
-
-    fun onConfirm() {
-        createNote()
     }
 }
