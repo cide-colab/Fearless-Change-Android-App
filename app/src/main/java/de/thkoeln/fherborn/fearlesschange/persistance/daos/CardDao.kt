@@ -34,6 +34,6 @@ interface CardDao {
     @Query("SELECT * FROM card WHERE favorite")
     fun getFavorites(): LiveData<List<Card>>
 
-    @Query("SELECT c.* FROM card c, card_keyword ck WHERE (c.id = ck.cardId AND ck.keywordId) AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length")
+    @Query("SELECT c.* FROM card c, card_keyword ck WHERE c.id = ck.cardId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length")
     fun getCardsByKeywords(keywordIds: List<Long>, length: Int = keywordIds.size): LiveData<List<Card>>
 }
