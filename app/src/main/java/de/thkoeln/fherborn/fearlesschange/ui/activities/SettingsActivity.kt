@@ -5,7 +5,13 @@ import android.os.Bundle
 import android.preference.PreferenceActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
+import kotlinx.android.synthetic.main.activity_settings.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
 
 
 /**
@@ -18,11 +24,23 @@ import de.thkoeln.fherborn.fearlesschange.R
  * for design guidelines and the [Settings API Guide](http://developer.android.com/guide/topics/ui/settings.html)
  * for more information on developing a Settings UI.
  */
-class SettingsActivity : AppActivity() {
+class SettingsActivity : AppActivity(), View.OnClickListener {
+
+
+    private lateinit var cardRepository: CardRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        cardRepository = CardRepository(application)
+
+        setlisteners()
+    }
+
+    private fun setlisteners() {
+        reset_most_clicked.setOnClickListener(this)
+        reset_favorites.setOnClickListener(this)
+        reset_to_factory.setOnClickListener(this)
     }
 
 
@@ -38,5 +56,25 @@ class SettingsActivity : AppActivity() {
         }
         else -> super.onOptionsItemSelected(item)
     }
+
+    override fun onClick(view: View?) =
+            when(view?.id) {
+                R.id.reset_most_clicked -> showAlert()
+                R.id.reset_favorites -> Toast.makeText(this, "reset_favorites", Toast.LENGTH_SHORT).show()
+                R.id.reset_to_factory -> Toast.makeText(this, "reset_to_factory", Toast.LENGTH_SHORT).show()
+                else -> {
+                    throw NullPointerException()
+                }
+            }
+
+    fun showAlert() {
+
+        alert("Please confirm this operation.") {
+            title = "Warning"
+            yesButton { toast("success") }
+            noButton { toast("canceled")  }
+        }.show()
+    }
+
 
 }
