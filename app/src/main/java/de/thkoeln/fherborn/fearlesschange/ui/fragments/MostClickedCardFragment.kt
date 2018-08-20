@@ -4,6 +4,7 @@ package de.thkoeln.fherborn.fearlesschange.ui.fragments
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,12 +30,13 @@ class MostClickedCardFragment : Fragment() {
         cardRepository = CardRepository(activity?.application)
         cardActionRepository = CardStatisticRepository(activity?.application)
 
-        cardActionRepository.getCardByMostAction(CardStatisticAction.CLICK).observe( this, Observer {
+        cardActionRepository.getCardByMostActionWithNoteCount(CardStatisticAction.CLICK).observe( this, Observer {
             it?.let {
-                most_clicked_card.card = it
+                most_clicked_card.card = it.card
+                most_clicked_card.notesCount = it.noteCount
             }
         })
 
-        most_clicked_card.addBehaviors(DefaultCardPreviewBehavior(activity))
+        most_clicked_card.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
     }
 }

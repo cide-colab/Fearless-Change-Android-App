@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/overview_recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
-    android:padding="@dimen/default_margin"
-    android:id="@+id/container"
-    tools:context=".ui.activities.OverviewActivity">
-
-
-    <include layout="@layout/layout_default_app_bar"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/overview_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/component_bg"
-        android:layout_marginTop="@dimen/default_margin"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        app:spanCount="2"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-</android.support.design.widget.CoordinatorLayout>
+    android:background="@color/component_bg"
+    app:layoutManager="android.support.v7.widget.GridLayoutManager"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:spanCount="2" />

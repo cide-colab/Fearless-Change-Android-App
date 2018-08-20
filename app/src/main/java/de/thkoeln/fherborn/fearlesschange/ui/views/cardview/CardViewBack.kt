@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import android.view.LayoutInflater
+import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
 import kotlinx.android.synthetic.main.layout_card_view_back.view.*
 
@@ -17,7 +18,7 @@ class CardViewBack : CardView {
     constructor(context: Context, attributeSet: AttributeSet?): super(context, attributeSet)
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int): super(context, attributeSet, defStyleAttr)
 
-    override fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?)
+    override fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View
             = inflater.inflate(R.layout.layout_card_view_back, rootView, false)
 
     override fun afterContentViewInflated() {
@@ -25,7 +26,6 @@ class CardViewBack : CardView {
             performAction(this, card, CardViewAction.FAVORITE_CLICKED)
             onCardChanged(card)
         }
-        card_note_btn.setOnClickListener{ performAction(this, card, CardViewAction.NOTES_CLICKED) }
     }
 
     override fun onCardChanged(card: Card?) {

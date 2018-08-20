@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="36dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/add_note_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/note_color"
+        android:layout_marginBottom="36dp"
+        android:paddingStart="@dimen/default_padding"
+        android:paddingEnd="@dimen/default_padding"
+        android:paddingTop="@dimen/default_padding"
+        android:paddingBottom="36dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageView
+            android:id="@+id/pin_icon"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/pin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/note_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/pin_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/hint_title"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+            android:fontFamily="@font/note_font"/>
+        <EditText
+            android:id="@+id/note_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/note_title"
+            android:hint="@string/hint_text"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:fontFamily="@font/note_font"/>
+
+    </android.support.constraint.ConstraintLayout>
+<!--
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_note_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:backgroundTint="@color/negative_button_color"
+        app:borderWidth="0dp"
+        android:src="@drawable/ic_close_black_24dp"
+        android:layout_marginStart="16dp"
+        app:layout_anchor="@id/add_note_content"
+        app:layout_anchorGravity="bottom|start"/>
+-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_note_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:text="@string/action_ok"
+        android:src="@drawable/ic_check_white_24dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/positive_button_color"
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/add_note_content"
+        app:layout_anchorGravity="bottom|end"/>
+</android.support.design.widget.CoordinatorLayout>

@@ -3,8 +3,6 @@ package de.thkoeln.fherborn.fearlesschange.ui.activities
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
@@ -12,9 +10,8 @@ import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
 import kotlinx.android.synthetic.main.activity_favorites.*
-import kotlinx.android.synthetic.main.layout_default_app_bar.*
 
-class FavoritesActivity : AppCompatActivity() {
+class FavoritesActivity : AppActivity() {
 
 
     private lateinit var cardRepository: CardRepository
@@ -30,20 +27,12 @@ class FavoritesActivity : AppCompatActivity() {
             addBehaviors(DefaultCardPreviewBehavior(this@FavoritesActivity))
         }
 
-        cardRepository.getFavorites().observe(this, Observer { cards ->
-            adapter.cards = cards?: listOf()
+        cardRepository.getFavoritesWithNoteCount().observe(this, Observer { cards ->
+            adapter.cards = cards ?: listOf()
             adapter.notifyDataSetChanged()
         })
-        setupActionBar()
     }
 
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
-    private fun setupActionBar() {
-        setSupportActionBar(action_bar as Toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.dashboard_activity_actions, menu)
         return super.onCreateOptionsMenu(menu)
