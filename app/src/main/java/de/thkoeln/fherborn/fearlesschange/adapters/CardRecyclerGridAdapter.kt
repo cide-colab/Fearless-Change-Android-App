@@ -53,7 +53,6 @@ class CardRecyclerGridAdapter(var cards: List<CardWithNoteCount> = listOf()) : R
         private var cardView = itemView.findViewById<CardViewPreview>(R.id.overview_grid_card)
 
         fun bindCard(cardWithNoteCount: CardWithNoteCount) {
-            Log.e("Count", cardWithNoteCount.noteCount.toString())
             cardView.card = cardWithNoteCount.card
             cardView.notesCount = cardWithNoteCount.noteCount
             cardView.addDistinctBehaviors(cardBehaviors)
