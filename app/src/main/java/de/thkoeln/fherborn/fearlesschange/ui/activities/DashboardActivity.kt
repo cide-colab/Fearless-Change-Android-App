@@ -32,11 +32,39 @@ class DashboardActivity : AppActivity() {
     }
 
     fun onHiddenFirstShowcase() {
-        val viewTarget = ViewTarget(R.id.main_nav_bar, this)
+        val viewTarget = ViewTarget(R.id.fab_overview, this)
         ShowcaseView.Builder(this)
                 .setTarget(viewTarget)
                 .setStyle(R.style.CustomShowcaseTheme2)
-                .setContentTitle("This is your Navigation-Bar")
+                .setContentTitle("Here you can see an overview of all cards!")
+                .setShowcaseEventListener(object: SimpleShowcaseEventListener() {
+                    override fun onShowcaseViewDidHide(showcaseView: ShowcaseView) {
+                        (this@DashboardActivity).onHiddenSecondShowcase()
+                    }
+                })
+                .build()
+    }
+
+    fun onHiddenSecondShowcase() {
+        val viewTarget = ViewTarget(R.id.fab_favorites, this)
+        ShowcaseView.Builder(this)
+                .setTarget(viewTarget)
+                .setStyle(R.style.CustomShowcaseTheme2)
+                .setContentTitle("Here you can see your favorite cards!")
+                .setShowcaseEventListener(object: SimpleShowcaseEventListener() {
+                    override fun onShowcaseViewDidHide(showcaseView: ShowcaseView) {
+                        (this@DashboardActivity).onHiddenThirdShowcase()
+                    }
+                })
+                .build()
+    }
+
+    fun onHiddenThirdShowcase() {
+        val viewTarget = ViewTarget(R.id.fab_more, this)
+        ShowcaseView.Builder(this)
+                .setTarget(viewTarget)
+                .setStyle(R.style.CustomShowcaseTheme2)
+                .setContentTitle("Here you can see more cool things!")
                 .build()
     }
 
