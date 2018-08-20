@@ -2,6 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.ui.fragments
 
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -23,6 +24,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepositor
 import de.thkoeln.fherborn.fearlesschange.toBackgroundOf
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import de.thkoeln.fherborn.fearlesschange.ui.views.NoteInputDialog
+import de.thkoeln.fherborn.fearlesschange.ui.views.NoteInputViewModel
 import kotlinx.android.synthetic.main.fragment_card_notes.*
 
 
@@ -81,8 +83,9 @@ class CardNotesFragment : Fragment() {
     }
 
     private fun addNoteClicked() {
+        val noteInputViewModel = ViewModelProviders.of(this).get(NoteInputViewModel::class.java)
         val inputDialog = NoteInputDialog(context)
-        inputDialog.onConfirmListener = { title, description ->
+        noteInputViewModel.onConfirmListener = { title, description ->
             cardId?.let {
                 val note = Note(title = title, description = description, cardId = it)
                 noteRepository.insert(note)
