@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CardViewFront">
+        <attr name="cardTitle" format="string"/>
+        <attr name="cardSummary" format="string"/>
+        <attr name="cardImage" format="reference"/>
+    </declare-styleable>
+
+    <!--
+    <declare-styleable name="CardViewBack">
+        <attr name="cardTitle" format="string"/>
+        <attr name="cardProblem" format="string"/>
+        <attr name="cardSolution" format="string"/>
+    </declare-styleable>
+    -->
+</resources>

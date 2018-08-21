@@ -24,7 +24,7 @@ class OverviewActivity : AppActivity() {
         cardRepository = CardRepository(application)
 
         overview_recycler_view.adapter = adapter.apply {
-            addBehaviors(DefaultCardPreviewBehavior(this@OverviewActivity))
+            addCardActionListener(DefaultCardPreviewBehavior(this@OverviewActivity))
         }
 
         cardRepository.getAllWithNoteCount().observe(this, Observer { cards ->

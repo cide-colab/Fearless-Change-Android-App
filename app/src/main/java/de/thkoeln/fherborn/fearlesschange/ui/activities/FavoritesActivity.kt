@@ -24,7 +24,7 @@ class FavoritesActivity : AppActivity() {
         cardRepository = CardRepository(application)
 
         favorites_recycler_view.adapter = adapter.apply {
-            addBehaviors(DefaultCardPreviewBehavior(this@FavoritesActivity))
+            addCardActionListener(DefaultCardPreviewBehavior(this@FavoritesActivity))
         }
 
         cardRepository.getFavoritesWithNoteCount().observe(this, Observer { cards ->

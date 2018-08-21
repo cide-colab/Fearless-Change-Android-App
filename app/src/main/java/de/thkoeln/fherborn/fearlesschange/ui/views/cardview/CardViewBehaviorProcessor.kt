@@ -14,49 +14,55 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
  */
 interface CardViewBehaviorProcessor {
 
-    val cardBehaviors: MutableList<CardViewBehavior>
+    val cardBehaviors: MutableList<CardActionListener>
 
     /**
      * Add behaviors to the cardView
      * @param cardBehaviors that should be added
      */
-    fun addBehaviors(vararg cardBehaviors: CardViewBehavior) =
+    fun addCardActionListener(vararg cardBehaviors: CardActionListener) =
             this.cardBehaviors.addAll(cardBehaviors)
 
     /**
      * Add behaviors to the cardView
      * @param cardBehaviors that should be added
      */
-    fun addBehaviors(cardBehaviors: List<CardViewBehavior>) =
+    fun addCardActionListener(cardBehaviors: List<CardActionListener>) =
             this.cardBehaviors.addAll(cardBehaviors)
 
     /**
      * Removes behaviors from the cardView
      * @param cardBehaviors that should be removed
      */
-    fun removeBehaviors(vararg cardBehaviors: CardViewBehavior) =
+    fun removeBehaviors(vararg cardBehaviors: CardActionListener) =
             this.cardBehaviors.removeAll(cardBehaviors)
 
     /**
      * Removes behaviors from the cardView
      * @param cardBehaviors that should be removed
      */
-    fun removeBehaviors(cardBehaviors: List<CardViewBehavior>) =
+    fun removeBehaviors(cardBehaviors: List<CardActionListener>) =
             this.cardBehaviors.removeAll(cardBehaviors)
 
     /**
      * Add behaviors to the cardView if it doesn't exist
      * @param cardBehaviors that should be added
      */
-    fun addDistinctBehaviors(vararg cardBehaviors: CardViewBehavior) =
-            this.addBehaviors(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
+    fun addDistinctCardActionListener(vararg cardBehaviors: CardActionListener) =
+            this.addCardActionListener(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
+    /**
+     * Add behaviors to the cardView if it doesn't exist
+     * @param cardBehaviors that should be added
+     */
+    fun addDistinctCardActionListener(listener: (card: Card?, action: CardViewAction) -> Unit) =
+            this.addCardActionListener(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
 
     /**
      * Add behaviors to the cardView if it doesn't exist
      * @param cardBehaviors that should be added
      */
-    fun addDistinctBehaviors(cardBehaviors: List<CardViewBehavior>) =
-            this.addBehaviors(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
+    fun addDistinctCardActionListener(cardBehaviors: List<CardActionListener>) =
+            this.addCardActionListener(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
 
     /**
      * Removes all behaviors from cardView
@@ -67,8 +73,8 @@ interface CardViewBehaviorProcessor {
     /**
      * Invokes the behaviors that are added on the cardView
      */
-    fun performAction(cardView: CardView, card: Card?, action: CardViewAction) =
-            cardBehaviors.forEach { it.onCardAction(cardView, card, action) }
+    fun performAction(card: Card?, action: CardViewAction) =
+            cardBehaviors.forEach { it.onCardAction(card, action) }
 
 }
 
@@ -83,6 +89,6 @@ enum class CardViewAction {
 /**
  * Behavior that can be implemented to add it to the cardView
  */
-interface CardViewBehavior {
-    fun onCardAction(cardView: CardView, card: Card?, action: CardViewAction)
+interface CardActionListener {
+    fun onCardAction(card: Card?, action: CardViewAction)
 }

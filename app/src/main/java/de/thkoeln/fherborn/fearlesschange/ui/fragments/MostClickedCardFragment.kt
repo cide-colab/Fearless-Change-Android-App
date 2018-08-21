@@ -37,6 +37,6 @@ class MostClickedCardFragment : Fragment() {
             }
         })
 
-        most_clicked_card.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
+        most_clicked_card.addCardActionListener(DefaultCardPreviewBehavior(activity as AppCompatActivity))
     }
 }

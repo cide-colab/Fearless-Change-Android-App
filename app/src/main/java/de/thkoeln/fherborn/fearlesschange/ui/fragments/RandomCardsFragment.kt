@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
 import kotlinx.android.synthetic.main.fragment_random_cards.*
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -20,7 +19,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
-import kotlinx.android.synthetic.main.layout_card_view_preview.view.*
 
 
 class RandomCardsFragment : Fragment() {
@@ -90,7 +88,7 @@ class RandomCardsFragment : Fragment() {
 
     private fun setCardListener(vararg cardViews: CardViewPreview) {
         cardViews.forEach {
-            it.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
+            it.addCardActionListener(DefaultCardPreviewBehavior(activity as AppCompatActivity))
         }
     }
 }

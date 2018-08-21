@@ -15,11 +15,11 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
  * @since 0.0.1
  * @property cards cards to show and notesCount of each card
  * @see RecyclerView.Adapter
- * @see CardViewBehavior
+ * @see CardActionListener
  */
 class CardRecyclerGridAdapter(var cards: List<CardWithNoteCount> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewBehaviorProcessor {
 
-    override val cardBehaviors = mutableListOf<CardViewBehavior>()
+    override val cardBehaviors = mutableListOf<CardActionListener>()
 
     /**
      * Inflates ItemView and creates a ViewHolder with this view
@@ -54,7 +54,7 @@ class CardRecyclerGridAdapter(var cards: List<CardWithNoteCount> = listOf()) : R
         fun bindCard(cardWithNoteCount: CardWithNoteCount) {
             cardView.card = cardWithNoteCount.card
             cardView.notesCount = cardWithNoteCount.noteCount
-            cardView.addDistinctBehaviors(cardBehaviors)
+            cardView.addDistinctCardActionListener(cardBehaviors)
         }
     }
 }

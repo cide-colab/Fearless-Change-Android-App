@@ -2,47 +2,35 @@ package de.thkoeln.fherborn.fearlesschange.ui.fragments
 
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
+import de.thkoeln.fherborn.fearlesschange.ui.listeners.OpenDetailOnClick
+import de.thkoeln.fherborn.fearlesschange.ui.viewmodels.CardViewModel
 import kotlinx.android.synthetic.main.fragment_card_of_the_day.*
 
 
 class CardOfTheDayFragment : Fragment() {
 
-    private lateinit var cardRepository: CardRepository
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-            = inflater.inflate(R.layout.fragment_card_of_the_day, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.fragment_card_of_the_day, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cardRepository = CardRepository(activity?.application)
+        val viewModel = ViewModelProviders.of(this).get(CardViewModel::class.java)
 
-        cardRepository.getCount().observe(this, Observer {
-            calculateCardOfTheDay(it)?.let {
-                cardRepository.getElementWithIndexWithNoteCount(it).observe(this, Observer {
-                    card_of_the_day.card = it?.card
-                    card_of_the_day.notesCount = it?.noteCount?:0
-                })
-            }
+        viewModel.getCardOfTheDay().observe(this, Observer { cardWithNodeCount ->
+            card_of_the_day.card = cardWithNodeCount?.card
+            card_of_the_day.notesCount = cardWithNodeCount?.noteCount ?: 0
         })
 
-        card_of_the_day.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
-    }
-
-    private fun calculateCardOfTheDay(countOfCards: Long?): Long? {
-        val currentDay = System.currentTimeMillis()/1000/60/60/24
-        return when (countOfCards) {
-            null, 0L -> null
-            else -> currentDay % countOfCards
-        }
+        card_of_the_day.addDistinctCardActionListener(OpenDetailOnClick(activity))
     }
 }
+
+
