@@ -8,117 +8,99 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.NoteRecyclerGridAdapter
+import de.thkoeln.fherborn.fearlesschange.databinding.FragmentCardNotesBinding
 import de.thkoeln.fherborn.fearlesschange.databinding.LayoutCreateNoteDialogBinding
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepository
-import de.thkoeln.fherborn.fearlesschange.toBackgroundOf
-import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import de.thkoeln.fherborn.fearlesschange.ui.handler.CreateNoteHandler
 import de.thkoeln.fherborn.fearlesschange.ui.viewmodels.CardNoteViewModel
 import kotlinx.android.synthetic.main.fragment_card_notes.*
+import kotlinx.android.synthetic.main.layout_card_view_front.*
 
 
 class CardNotesFragment : Fragment() {
 
-    private lateinit var noteRepository: NoteRepository
-    private val notesAdapter = NoteRecyclerGridAdapter()
-    private var cardId: Long = 0
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.fragment_card_notes, container, false)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        cardId = arguments?.getLong(CARD_ID_KEY) ?: throw IllegalArgumentException("To show notes you need to pass a cardId as argument")
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        noteRepository = NoteRepository(context)
-        setupView()
-        setupNotes()
-        setListeners()
-    }
-
-    private fun setupView() {
-
-        GlideApp.with(this)
-                .load(R.drawable.notes_bg).fitCenter()
-                .toBackgroundOf(notes_container)
-
-        GlideApp.with(this)
-                .load(R.drawable.wood).fitCenter()
-                .toBackgroundOf(notes_label)
-    }
-
-    private fun setupNotes() {
-        notes_recycler_view.adapter = notesAdapter
-        notes_recycler_view.isNestedScrollingEnabled = false
-        notes_recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        noteRepository.getByCardId(cardId).observe(activity as AppCompatActivity, Observer {
-            notesAdapter.notes = it ?: listOf()
-            notesAdapter.notifyDataSetChanged()
-        })
-        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-                when (swipeDir) {
-                    ItemTouchHelper.LEFT -> removeNote(notesAdapter.notes[viewHolder.adapterPosition])
-                }
-            }
-        })
-        itemTouchHelper.attachToRecyclerView(notes_recycler_view)
-    }
-
-    private fun addNoteClicked() {
-        val noteViewModel = ViewModelProviders.of(this).get(CardNoteViewModel::class.java)
-
+    private lateinit var viewModel: CardNoteViewModel
+    private val createNoteDialog by lazy {
         val binding = DataBindingUtil.inflate<LayoutCreateNoteDialogBinding>(
                 LayoutInflater.from(context),
                 R.layout.layout_create_note_dialog,
                 null,
                 false
         ).apply {
-            note = noteViewModel.getRawNote(cardId)
-            handler = CreateNoteHandler(noteViewModel)
+            note = viewModel.getRawNote()
+            handler = CreateNoteHandler(viewModel)
         }
 
-        val dialog = Dialog(context).apply {
+        Dialog(context).apply {
             setContentView(binding.root)
-            show()
         }
-
-        noteViewModel.noteCreatedEvent.observe(this, Observer { it?.let {
-            if (it) {
-                dialog.dismiss()
-            }
-        } })
-
 
     }
 
-    private fun removeNote(note: Note) {
-        noteRepository.delete(note)
-        context?.let {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(CardNoteViewModel::class.java)
+        viewModel.cardId = arguments?.getLong(CARD_ID_KEY)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            DataBindingUtil.inflate<FragmentCardNotesBinding>(
+                    LayoutInflater.from(context),
+                    R.layout.fragment_card_notes,
+                    container,
+                    false
+            ).root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupNotes()
+        setListeners()
+    }
+
+    private fun setupNotes() {
+        val adapter = NoteRecyclerGridAdapter()
+        notes_recycler_view.adapter = adapter
+        notes_recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        viewModel.cardNotes.observe(this, Observer {
+            adapter.notes = it ?: listOf()
+            adapter.notifyDataSetChanged()
+        })
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+                when (swipeDir) {
+                    ItemTouchHelper.LEFT -> viewModel.removeNote(adapter.notes[viewHolder.adapterPosition])
+                }
+            }
+        }).attachToRecyclerView(notes_recycler_view)
+
+        viewModel.noteRemovedEvent.observe(this, Observer {
             Snackbar.make(
                     notes_container,
-                    it.getString(R.string.noteDeleted, note.title),
+                    getString(R.string.noteDeleted, it?.title),
                     Snackbar.LENGTH_SHORT
             ).show()
-        }
+        })
     }
 
     private fun setListeners() {
-        add_note_fab.setOnClickListener { addNoteClicked() }
+        add_note_fab.setOnClickListener {
+            createNoteDialog.show()
+            viewModel.noteCreatedEvent.observe(this, Observer { _ ->
+                Log.e("SS","SFAF")
+                createNoteDialog.dismiss()
+            })
+        }
     }
 
     companion object {

@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.ui.views
+package de.thkoeln.fherborn.fearlesschange.ui.dialogs
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

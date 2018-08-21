@@ -1,10 +1,14 @@
 package de.thkoeln.fherborn.fearlesschange
 
 import android.content.Context
+import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.View
+import android.widget.TextView
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideRequest
 
 
@@ -27,3 +31,8 @@ fun GlideRequest<Drawable>.toBackgroundOf(view: View) = into(object : SimpleTarg
         view.background = resource
     }
 })
+
+@BindingAdapter("optimizedBackground")
+fun View.setOptimizedBackground(drawable: Drawable) {
+    GlideApp.with(context).load(drawable).fitCenter().toBackgroundOf(this)
+}
