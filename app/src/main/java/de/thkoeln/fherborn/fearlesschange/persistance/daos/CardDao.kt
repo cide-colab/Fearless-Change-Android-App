@@ -59,7 +59,8 @@ interface CardDao {
             " WHERE favorite")
     fun getFavoritesWithNoteCount(): LiveData<List<CardWithNoteCount>>
 
-    @Query("SELECT c.* FROM card c, card_keyword ck WHERE c.id = ck.cardId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length")
-    fun getCardsByKeywords(keywordIds: List<Long>, length: Int = keywordIds.size): LiveData<List<Card>>
+         @Query("SELECT * FROM (SELECT c.* FROM card c, card_keyword ck WHERE c.id = ck.cardId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length) cards LEFT JOIN (SELECT COUNT(cardId) as noteCount, cardId FROM note GROUP BY cardId) n ON cards.id = n.cardId")
+//    @Query("SELECT c.* FROM card c, card_keyword ck WHERE c.id = ck.cardId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length")
+    fun getCardsByKeywords(keywordIds: List<Long>, length: Int = keywordIds.size): LiveData<List<CardWithNoteCount>>
 
 }

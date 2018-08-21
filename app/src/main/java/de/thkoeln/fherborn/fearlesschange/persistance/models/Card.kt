@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey
  */
 @Entity(tableName = "card")
 data class Card (
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey(autoGenerate = false)
         val id: Long,
         val title: String,
         val pictureName: String,

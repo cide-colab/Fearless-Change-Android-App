@@ -114,6 +114,7 @@ class SearchActivity : AppCompatActivity() {
         cardRepository.getCardsByKeywords(keywordIds).observe(this, Observer { cards ->
             cards?.let {
                 resultsAdapter.cards = cards
+                println(cards)
                 resultsAdapter.notifyDataSetChanged()
                 if (cards.isEmpty()) {
                     search_error.visibility = View.VISIBLE

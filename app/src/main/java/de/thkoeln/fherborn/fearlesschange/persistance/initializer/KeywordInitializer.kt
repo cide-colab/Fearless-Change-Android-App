@@ -5,6 +5,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Keyword
 class KeywordInitializer : DataInitializer<Keyword>("keyword") {
 
     override fun getItemValues(item: Keyword?) = hashMapOf<String, Any?>(
+            "id" to item?.id,
             "keyword" to item?.keyword
     )
 
