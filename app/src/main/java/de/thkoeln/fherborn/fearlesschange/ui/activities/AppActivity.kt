@@ -29,7 +29,7 @@ abstract class AppActivity : AppCompatActivity() {
                 .toBackgroundOf(activity_wrapper)
     }
 
-    private fun setupActionBar() {
+    protected open fun setupActionBar() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
