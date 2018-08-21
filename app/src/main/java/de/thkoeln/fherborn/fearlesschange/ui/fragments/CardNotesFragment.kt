@@ -22,7 +22,8 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepository
 import de.thkoeln.fherborn.fearlesschange.toBackgroundOf
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
-import de.thkoeln.fherborn.fearlesschange.ui.views.CreateNoteDialogViewModel
+import de.thkoeln.fherborn.fearlesschange.ui.handler.CreateNoteHandler
+import de.thkoeln.fherborn.fearlesschange.ui.viewmodels.CardNoteViewModel
 import kotlinx.android.synthetic.main.fragment_card_notes.*
 
 
@@ -79,21 +80,29 @@ class CardNotesFragment : Fragment() {
     }
 
     private fun addNoteClicked() {
+        val noteViewModel = ViewModelProviders.of(this).get(CardNoteViewModel::class.java)
 
-        val dialog = Dialog(context)
-        val binding = DataBindingUtil.inflate<LayoutCreateNoteDialogBinding>(LayoutInflater.from(context), R.layout.layout_create_note_dialog, null, false)
-        val noteViewModel = ViewModelProviders.of(this).get(CreateNoteDialogViewModel::class.java)
-        noteViewModel.noteCreatedEvent.observe(this, Observer {
-            it?.let {
-                if (it) {
-                    dialog.dismiss()
-                }
+        val binding = DataBindingUtil.inflate<LayoutCreateNoteDialogBinding>(
+                LayoutInflater.from(context),
+                R.layout.layout_create_note_dialog,
+                null,
+                false
+        ).apply {
+            note = noteViewModel.getRawNote(cardId)
+            handler = CreateNoteHandler(noteViewModel)
+        }
+
+        val dialog = Dialog(context).apply {
+            setContentView(binding.root)
+            show()
+        }
+
+        noteViewModel.noteCreatedEvent.observe(this, Observer { it?.let {
+            if (it) {
+                dialog.dismiss()
             }
-        })
-        noteViewModel.initNote(cardId)
-        binding.model = noteViewModel
-        dialog.setContentView(binding.root)
-        dialog.show()
+        } })
+
 
     }
 

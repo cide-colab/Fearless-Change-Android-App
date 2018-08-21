@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.ui.views
+package de.thkoeln.fherborn.fearlesschange.ui.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
@@ -8,7 +8,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepository
 
 
-class CreateNoteDialogViewModel(application: Application) : AndroidViewModel(application) {
+class CardNoteViewModel(application: Application) : AndroidViewModel(application) {
 
     private var noteRepository = NoteRepository(application)
 
@@ -16,18 +16,13 @@ class CreateNoteDialogViewModel(application: Application) : AndroidViewModel(app
     val noteCreatedEvent: LiveData<Boolean>
         get() = _noteCreatedEvent
 
-    lateinit var note: Note
 
-    fun initNote(cardId: Long) {
-        note = Note(title = "", description = "", cardId = cardId)
-    }
+    fun getRawNote(cardId: Long) =
+        Note(title = "", description = "", cardId = cardId)
 
-    private fun createNote() {
+    fun createNote(note: Note) {
         noteRepository.insert(note)
-    }
-
-    fun onConfirm() {
-        createNote()
         _noteCreatedEvent.value = true
     }
 }
+
