@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:label="@string/title_activity_dashboard"
             android:name=".ui.activities.DashboardActivity"
+            android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,48 +20,49 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="@string/title_activity_overview"
-            android:screenOrientation="portrait"
             android:name=".ui.activities.OverviewActivity"
-            android:parentActivityName=".ui.activities.DashboardActivity">
+            android:label="@string/title_activity_overview"
+            android:parentActivityName=".ui.activities.DashboardActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
         <activity
-            android:label="@string/title_activity_favorites"
-            android:screenOrientation="portrait"
             android:name=".ui.activities.FavoritesActivity"
-            android:parentActivityName=".ui.activities.DashboardActivity">
+            android:label="@string/title_activity_favorites"
+            android:parentActivityName=".ui.activities.DashboardActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
         <activity
-            android:label="@string/title_activity_more"
-            android:screenOrientation="portrait"
             android:name=".ui.activities.MoreActivity"
-            android:parentActivityName=".ui.activities.DashboardActivity">
+            android:label="@string/title_activity_more"
+            android:parentActivityName=".ui.activities.DashboardActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
         <activity
-            android:label="@string/title_activity_search"
             android:name=".ui.activities.SearchActivity"
+            android:label="@string/title_activity_search"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
         <activity
-            android:label="@string/title_activity_settings"
             android:name=".ui.activities.SettingsActivity"
+            android:label="@string/title_activity_settings"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
         </activity>
+
     </application>
 
 </manifest>

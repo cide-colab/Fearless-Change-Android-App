@@ -14,7 +14,7 @@ data class Card (
         val title: String,
         val pictureName: String,
         val problem: String,
-        val buts: String,
+        val summary: String,
         val solution: String,
         var favorite: Boolean = false
 )

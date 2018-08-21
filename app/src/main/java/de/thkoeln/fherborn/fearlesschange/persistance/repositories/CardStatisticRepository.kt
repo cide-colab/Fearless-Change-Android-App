@@ -8,6 +8,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatistic
 import de.thkoeln.fherborn.fearlesschange.persistance.doAsync
+import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
 
 
 /**
@@ -32,5 +33,9 @@ class CardStatisticRepository(context: Context?) {
 
     fun getCardByMostAction(action: CardStatisticAction): LiveData<Card> = Transformations.switchMap(cardActionDao.getMostByAction(action)) {
         it?.let { cardDao.getById(it.cardId) }
+    }
+
+    fun getCardByMostActionWithNoteCount(action: CardStatisticAction): LiveData<CardWithNoteCount> = Transformations.switchMap(cardActionDao.getMostByAction(action)) {
+        it?.let { cardDao.getByIdWithNoteCount(it.cardId) }
     }
 }

@@ -6,6 +6,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import android.view.LayoutInflater
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.getResourceId
+import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import kotlinx.android.synthetic.main.layout_card_view_front.view.*
 
 
@@ -26,7 +27,6 @@ class CardViewFront : CardView {
             performAction(this, card, CardViewAction.FAVORITE_CLICKED)
             onCardChanged(card)
         }
-        card_note_btn.setOnClickListener{ performAction(this, card, CardViewAction.NOTES_CLICKED)}
     }
 
     override fun onCardChanged(card: Card?) {
@@ -37,9 +37,13 @@ class CardViewFront : CardView {
             )
             card_title.text = it.title
             card_problem.text = it.problem
-            card_image.setImageResource(
-                    getResourceId(context, card.pictureName, "drawable")
-            ?:R.drawable.img_placeholder)
+
+            GlideApp.with(context)
+                    .load(getResourceId(context, card.pictureName, "drawable"))
+                    .placeholder(R.drawable.img_placeholder)
+                    .fitCenter()
+                    .into(card_image)
+
         }
     }
 

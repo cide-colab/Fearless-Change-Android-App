@@ -4,6 +4,7 @@ package de.thkoeln.fherborn.fearlesschange.ui.fragments
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ class CardOfTheDayFragment : Fragment() {
 
     private lateinit var cardRepository: CardRepository
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.fragment_card_of_the_day, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,13 +28,14 @@ class CardOfTheDayFragment : Fragment() {
 
         cardRepository.getCount().observe(this, Observer {
             calculateCardOfTheDay(it)?.let {
-                cardRepository.getElementWithIndex(it).observe(this, Observer {
-                    card_of_the_day.card = it
+                cardRepository.getElementWithIndexWithNoteCount(it).observe(this, Observer {
+                    card_of_the_day.card = it?.card
+                    card_of_the_day.notesCount = it?.noteCount?:0
                 })
             }
         })
 
-        card_of_the_day.addBehaviors(DefaultCardPreviewBehavior(activity))
+        card_of_the_day.addBehaviors(DefaultCardPreviewBehavior(activity as AppCompatActivity))
     }
 
     private fun calculateCardOfTheDay(countOfCards: Long?): Long? {

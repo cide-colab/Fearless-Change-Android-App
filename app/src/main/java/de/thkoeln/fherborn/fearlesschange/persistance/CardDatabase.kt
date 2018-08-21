@@ -5,10 +5,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardStatisticDao
-import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardKeywordDao
-import de.thkoeln.fherborn.fearlesschange.persistance.daos.KeywordDao
-import de.thkoeln.fherborn.fearlesschange.persistance.daos.CardDao
+import de.thkoeln.fherborn.fearlesschange.persistance.daos.*
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.CardInitializer
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.CardKeywordInitializer
 import de.thkoeln.fherborn.fearlesschange.persistance.initializer.KeywordInitializer
@@ -18,7 +15,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.*
  * Created by florianherborn on 30.07.18.
  */
 @Database(
-        entities = [Card::class, Keyword::class, CardKeyword::class, CardStatistic::class],
+        entities = [Card::class, Keyword::class, CardKeyword::class, CardStatistic::class, Note::class],
         version = 1,
         exportSchema = false
 )
@@ -29,6 +26,7 @@ abstract class CardDatabase : RoomDatabase() {
     abstract fun cardActionDao(): CardStatisticDao
     abstract fun keywordDao(): KeywordDao
     abstract fun cardKeywordDao(): CardKeywordDao
+    abstract fun noteDao(): NoteDao
 
     companion object {
         private const val DB_NAME = "CardDatabase.db"
