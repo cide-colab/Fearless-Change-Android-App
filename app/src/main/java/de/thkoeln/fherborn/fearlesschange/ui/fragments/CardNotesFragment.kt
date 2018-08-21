@@ -1,7 +1,7 @@
 package de.thkoeln.fherborn.fearlesschange.ui.fragments
 
 
-import android.app.Dialog
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,28 +21,11 @@ import de.thkoeln.fherborn.fearlesschange.databinding.LayoutCreateNoteDialogBind
 import de.thkoeln.fherborn.fearlesschange.ui.handler.CreateNoteHandler
 import de.thkoeln.fherborn.fearlesschange.ui.viewmodels.CardNoteViewModel
 import kotlinx.android.synthetic.main.fragment_card_notes.*
-import kotlinx.android.synthetic.main.layout_card_view_front.*
 
 
 class CardNotesFragment : Fragment() {
 
     private lateinit var viewModel: CardNoteViewModel
-    private val createNoteDialog by lazy {
-        val binding = DataBindingUtil.inflate<LayoutCreateNoteDialogBinding>(
-                LayoutInflater.from(context),
-                R.layout.layout_create_note_dialog,
-                null,
-                false
-        ).apply {
-            note = viewModel.getRawNote()
-            handler = CreateNoteHandler(viewModel)
-        }
-
-        Dialog(context).apply {
-            setContentView(binding.root)
-        }
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,28 +61,34 @@ class CardNotesFragment : Fragment() {
             override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
                 when (swipeDir) {
-                    ItemTouchHelper.LEFT -> viewModel.removeNote(adapter.notes[viewHolder.adapterPosition])
+                    ItemTouchHelper.LEFT ->{
+                        val note = adapter.notes[viewHolder.adapterPosition]
+                        viewModel.removeNote(note)
+                        Snackbar.make(notes_container, getString(R.string.noteDeleted, note.title), Snackbar.LENGTH_SHORT).show()
+                    }
                 }
             }
         }).attachToRecyclerView(notes_recycler_view)
 
-        viewModel.noteRemovedEvent.observe(this, Observer {
-            Snackbar.make(
-                    notes_container,
-                    getString(R.string.noteDeleted, it?.title),
-                    Snackbar.LENGTH_SHORT
-            ).show()
-        })
+        viewModel.noteRemovedEvent.observeOnce(this) { note ->
+        }
+
+
     }
 
+    private fun openNoteCreationDialog() = AlertDialog.Builder(context).create().apply {
+        val binding = DataBindingUtil.inflate<LayoutCreateNoteDialogBinding>(
+                LayoutInflater.from(context),
+                R.layout.layout_create_note_dialog,
+                null, false
+        )
+        binding.note = viewModel.getRawNote()
+        binding.handler = CreateNoteHandler(viewModel, this)
+        setView(binding.root)
+    }.show()
+
     private fun setListeners() {
-        add_note_fab.setOnClickListener {
-            createNoteDialog.show()
-            viewModel.noteCreatedEvent.observe(this, Observer { _ ->
-                Log.e("SS","SFAF")
-                createNoteDialog.dismiss()
-            })
-        }
+        add_note_fab.setOnClickListener { openNoteCreationDialog() }
     }
 
     companion object {
