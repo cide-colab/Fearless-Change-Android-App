@@ -35,7 +35,7 @@
                 android:src="@drawable/ic_arrow_back_white_24dp"/>
 
 
-            <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewFront
+            <de.thkoeln.fherborn.fearlesschange.v2.carddetail.custom.CardFrontView
                 android:id="@+id/popup_card_front"
                 style="@style/Card"
                 android:layout_width="0dp"
@@ -48,7 +48,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/back_btn" />
 
-            <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBack
+            <de.thkoeln.fherborn.fearlesschange.v2.carddetail.custom.CardBackView
                 android:id="@+id/popup_card_back"
                 style="@style/Card"
                 android:layout_width="0dp"

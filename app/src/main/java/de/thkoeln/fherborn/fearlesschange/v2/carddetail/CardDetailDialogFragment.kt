@@ -34,7 +34,6 @@ class CardDetailDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
 
     private lateinit var cardRepository: CardRepository
     private var frontShown = true
-    private var card: Card? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val cardId = arguments?.getLong(CARD_ID_KEY)
@@ -51,14 +50,8 @@ class CardDetailDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
         ).apply {
             viewModel = cardDetailViewModel
             setLifecycleOwner(this@CardDetailDialogFragment)
-            val flipBehavior = object : CardActionListener {
-                override fun onCardAction(card: Card?, action: CardViewAction) {
-                    if (action == CardViewAction.CARD_CLICKED)
-                        flip()
-                }
-            }
-            popup_card_front.addDistinctCardActionListener(flipBehavior)
-            popup_card_back.addDistinctCardActionListener(flipBehavior)
+            popup_card_front.setOnClickListener{flip()}
+            popup_card_back.setOnClickListener{flip()}
 
             //TODO via event ins viewmodel
             //popup_card_front.addCardActionListener(cardActionListener)

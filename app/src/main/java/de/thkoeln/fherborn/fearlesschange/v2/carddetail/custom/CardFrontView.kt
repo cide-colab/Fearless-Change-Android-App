@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.ui.views.cardview
+package de.thkoeln.fherborn.fearlesschange.v2.carddetail.custom
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
@@ -8,11 +8,10 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import kotlinx.android.synthetic.main.card_front_view.view.*
 
-
 /**
  * Created by florianherborn on 30.07.18.
  */
-class CardViewFront: ConstraintLayout {
+class CardFrontView : ConstraintLayout {
 
     constructor(context: Context): super(context) { init(context, null) }
     constructor(context: Context, attributeSet: AttributeSet?): super(context, attributeSet) { init(context, attributeSet) }
@@ -24,15 +23,19 @@ class CardViewFront: ConstraintLayout {
 
         context.theme.obtainStyledAttributes(attrs, R.styleable.CardViewFront, 0, 0).apply {
             try {
-                card_title.text = getString(R.styleable.CardViewFront_cardTitle)
-                card_problem.text = getString(R.styleable.CardViewFront_cardSummary)
-                val isFavorite = getBoolean(R.styleable.CardViewFront_isFavorite, false)
+                card_title.text = getString(R.styleable.CardFrontView_title)
+                card_problem.text = getString(R.styleable.CardFrontView_summary)
+
+
                 card_fav_btn.setImageResource(
-                        if(isFavorite) R.drawable.ic_favorite_full_white
-                        else R.drawable.ic_favorite_white
+                        when {
+                            getBoolean(R.styleable.CardFrontView_favorite, false) -> R.drawable.ic_favorite_full_white
+                            else -> R.drawable.ic_favorite_white
+                        }
                 )
+
                 GlideApp.with(context)
-                        .load(getDrawable(R.styleable.CardViewFront_cardImage))
+                        .load(getDrawable(R.styleable.CardFrontView_image))
                         .fitCenter()
                         .into(card_image)
             } finally {

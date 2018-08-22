@@ -6,7 +6,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.layout_card_view_back.view.*
+import kotlinx.android.synthetic.main.card_back_view.view.*
 
 
 /**
@@ -20,7 +20,7 @@ class CardViewBack : CardView {
 
     override fun init(context: Context, attrs: AttributeSet?) {
         super.init(context, attrs)
-//        context.theme.obtainStyledAttributes(attrs, R.styleable.CardViewBack, 0, 0).apply {
+//        context.theme.obtainStyledAttributes(attrs, R.styleable.CardBackView, 0, 0).apply {
 //            try {
 //                card_title.text = getString(R.styleable.CardViewBack_cardTitle)
 //                card_solution.text = getString(R.styleable.CardViewBack_cardProblem)
@@ -31,7 +31,7 @@ class CardViewBack : CardView {
 //        }
     }
     override fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View
-            = inflater.inflate(R.layout.layout_card_view_back, rootView, false)
+            = inflater.inflate(R.layout.card_back_view, rootView, false)
 
     override fun afterContentViewInflated() {
         card_fav_btn.setOnClickListener{
@@ -47,8 +47,8 @@ class CardViewBack : CardView {
                     else R.drawable.ic_favorite_white
             )
             card_title.text = it.title
-            card_solution.text = it.solution
-            card_buts.text = it.summary
+            card_problem.text = it.solution
+            card_solution.text = it.summary
         }
     }
 
