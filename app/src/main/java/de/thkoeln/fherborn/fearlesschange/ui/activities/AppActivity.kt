@@ -9,7 +9,7 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.extensions.toBackgroundOf
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import kotlinx.android.synthetic.main.activity_app.*
-import kotlinx.android.synthetic.main.layout_default_app_bar.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 abstract class AppActivity : AppCompatActivity() {
 

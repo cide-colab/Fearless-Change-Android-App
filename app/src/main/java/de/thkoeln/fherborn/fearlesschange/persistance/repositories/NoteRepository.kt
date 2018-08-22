@@ -17,9 +17,9 @@ class NoteRepository(context: Context?) {
     fun update(vararg notes: Note) = doAsync { dao.update(*notes) }
     fun delete(vararg notes: Note) = doAsync { dao.delete(*notes) }
     fun getAll() = dao.getAll()
-    fun getByCardId(id: Long) = dao.getByCardId(id)
+    fun getNotesForCard(id: Long) = dao.getByCardId(id)
     fun getById(id: Long) = dao.getById(id)
     fun getCount() = dao.getCount()
-    fun getCountByCardId(id: Long) = dao.getCountByCardId(id)
+    fun getNoteCountByCardId(id: Long) = dao.getNoteCountByCardId(id)
 
 }

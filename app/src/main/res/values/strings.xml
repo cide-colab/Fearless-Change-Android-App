@@ -43,4 +43,7 @@
     <string name="image_description_back">Back</string>
     <string name="image_description_title_bg">Title Background</string>
     <string name="image_description_pattern_image">Pattern Image</string>
+    <string name="image_description_favorite">Favorite icon</string>
+    <string name="image_description_notes">Notes icon</string>
+    <string name="image_description_feature_icon">Feature Icon</string>
 </resources>

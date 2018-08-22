@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activities.DashboardActivity"
+            android:name=".v2.dashbaord.DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait">
             <intent-filter>

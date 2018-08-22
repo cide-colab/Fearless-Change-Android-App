@@ -4,13 +4,13 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
-import de.thkoeln.fherborn.fearlesschange.v2.events.SingleLiveEvent
+import de.thkoeln.fherborn.fearlesschange.v2.events.Event
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 
 class CardViewModel(application: Application) : AndroidViewModel(application) {
 
-    val createNewNoteEvent = SingleLiveEvent<Void>()
+    val createNewNoteEvent = Event<Void>()
 
     private val cardRepository by lazy {
         CardRepository(application)

@@ -2,25 +2,25 @@
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
+    style="@style/DashboardFeature"
+    android:id="@+id/feature_card_of_the_day_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/component_bg"
-    android:padding="4dp">
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/codd_icon"
+        android:id="@+id/feature_card_of_the_day_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:src="@drawable/ic_today_black"
-        app:layout_constraintBottom_toBottomOf="@id/codd_title"
+        app:layout_constraintBottom_toBottomOf="@id/feature_card_of_the_day_title"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image_description_feature_icon" />
 
     <TextView
-        android:id="@+id/codd_title"
+        android:id="@+id/feature_card_of_the_day_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -29,17 +29,16 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/codd_icon"
+        app:layout_constraintStart_toEndOf="@id/feature_card_of_the_day_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
-        android:id="@+id/card_of_the_day"
+    <include layout="@layout/card_preview"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/codd_title" />
+        app:layout_constraintTop_toBottomOf="@id/feature_card_of_the_day_title" />
+
 
 </android.support.constraint.ConstraintLayout>

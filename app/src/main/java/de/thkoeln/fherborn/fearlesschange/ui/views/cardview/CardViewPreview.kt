@@ -8,7 +8,7 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.extensions.getResourceId
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
-import kotlinx.android.synthetic.main.layout_card_view_preview.view.*
+import kotlinx.android.synthetic.main.card_preview.view.*
 
 
 /**
@@ -19,7 +19,7 @@ class CardViewPreview : CardView {
     constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet)
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr)
 
-    override fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View = inflater.inflate(R.layout.layout_card_view_preview, rootView, false)
+    override fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View = inflater.inflate(R.layout.card_preview, rootView, false)
 
     var notesCount: Int = 0
         set(value) {
@@ -31,14 +31,15 @@ class CardViewPreview : CardView {
         if (count > 0) {
             notes_count.text = count.toString()
             notes_count.visibility = VISIBLE
-            notes_icon.visibility = VISIBLE
+            card_preview_notes_icon.visibility = VISIBLE
         } else {
             notes_count.visibility = GONE
-            notes_icon.visibility = GONE
+            card_preview_notes_icon.visibility = GONE
         }
     }
 
     override fun onCardChanged(card: Card?) {
+        /*
         card?.let {
             card_front_title?.text = it.title
             card_front_summary?.text = it.problem
@@ -51,10 +52,11 @@ class CardViewPreview : CardView {
 
             GlideApp.with(context)
                     .load(getResourceId(context, card.pictureName, "drawable"))
-                    .placeholder(R.drawable.pattern_image_placeholder)
+                    .placeholder(R.drawable.default_pattern_image)
                     .fitCenter()
                     .into(card_front_image)
         }
+        */
     }
 
 }

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/component_bg"
     android:padding="4dp"
-    android:id="@+id/container"
+    android:id="@+id/feature_card_of_the_day_container"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView

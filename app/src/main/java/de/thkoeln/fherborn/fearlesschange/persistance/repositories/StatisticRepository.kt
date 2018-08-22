@@ -14,7 +14,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
 /**
  * Created by florianherborn on 06.08.18.
  */
-class CardStatisticRepository(context: Context?) {
+class StatisticRepository(context: Context?) {
 
     private val database = CardDatabase.getInstance(context
             ?: throw RuntimeException("Application is null"))
@@ -32,10 +32,12 @@ class CardStatisticRepository(context: Context?) {
     fun getCountOfAction(action: CardStatisticAction) = cardActionDao.getCountOfAction(action)
 
     fun getCardByMostAction(action: CardStatisticAction): LiveData<Card> = Transformations.switchMap(cardActionDao.getMostByAction(action)) {
-        it?.let { cardDao.getById(it.cardId) }
+        it?.let { cardDao.get(it.cardId) }
     }
 
     fun getCardByMostActionWithNoteCount(action: CardStatisticAction): LiveData<CardWithNoteCount> = Transformations.switchMap(cardActionDao.getMostByAction(action)) {
         it?.let { cardDao.getByIdWithNoteCount(it.cardId) }
     }
+
+    fun getMostAction(action: CardStatisticAction) = cardActionDao.getMostByAction(action)
 }

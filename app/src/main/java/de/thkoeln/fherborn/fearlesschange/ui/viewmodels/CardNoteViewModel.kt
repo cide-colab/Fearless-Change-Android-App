@@ -35,6 +35,6 @@ class CardNoteViewModel(application: Application) : AndroidViewModel(application
         noteRemovedEvent.invoke(note)
     }
 
-    private fun getAllNotes() = noteRepository.getByCardId(getCardId())
+    private fun getAllNotes() = noteRepository.getNotesForCard(getCardId())
 }
 

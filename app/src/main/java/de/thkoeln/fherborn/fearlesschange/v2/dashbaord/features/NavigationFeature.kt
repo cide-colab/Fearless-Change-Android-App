@@ -1,10 +1,11 @@
-package de.thkoeln.fherborn.fearlesschange.ui.fragments
+package de.thkoeln.fherborn.fearlesschange.v2.dashbaord.features
 
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.ui.activities.FavoritesActivity
@@ -13,9 +14,9 @@ import de.thkoeln.fherborn.fearlesschange.ui.activities.OverviewActivity
 import kotlinx.android.synthetic.main.feature_navigation.*
 
 
-class NavigationFragment : Fragment() {
+class NavigationFeature : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.feature_navigation, container, false)
 
     override fun onStart() {

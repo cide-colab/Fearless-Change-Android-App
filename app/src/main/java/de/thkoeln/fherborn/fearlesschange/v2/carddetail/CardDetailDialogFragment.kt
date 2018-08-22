@@ -17,6 +17,7 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
 import de.thkoeln.fherborn.fearlesschange.v2.animation.FlipAnimationHelper
 import de.thkoeln.fherborn.fearlesschange.v2.extensions.setOptimizedBackground
 import de.thkoeln.fherborn.fearlesschange.v2.extensions.setOptimizedImage
+import de.thkoeln.fherborn.fearlesschange.v2.viewmodel.CardViewModel
 import kotlinx.android.synthetic.main.card_back.*
 import kotlinx.android.synthetic.main.card_detail_dialog.*
 import kotlinx.android.synthetic.main.card_front.*
@@ -27,12 +28,14 @@ import kotlinx.android.synthetic.main.card_front.*
  */
 class CardDetailDialogFragment : DialogFragment() {
 
-    private lateinit var viewModel: CardDetailViewModel
+    private lateinit var viewModel: CardViewModel
     private val noteAdapter = NoteRecyclerGridAdapter()
+    private var cardId: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, CardDetailViewModelFactory(context, getCardId())).get(CardDetailViewModel::class.java)
+        cardId = arguments?.getLong(CARD_ID_KEY)
+        viewModel = ViewModelProviders.of(this).get(CardViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -45,9 +48,6 @@ class CardDetailDialogFragment : DialogFragment() {
         initNotes()
     }
 
-    private fun getCardId() = (arguments?.getLong(CARD_ID_KEY)
-            ?: throw IllegalArgumentException("Missing CardId in arguments"))
-
     private fun initNotes() {
         card_detail_dialog_add_note_btn.setOnClickListener { openCreateNoteDialog() }
         card_detail_dialog_notes_recycler_view.adapter = noteAdapter
@@ -59,7 +59,7 @@ class CardDetailDialogFragment : DialogFragment() {
                 }
             }
         }).attachToRecyclerView(card_detail_dialog_notes_recycler_view)
-        viewModel.getNotes().observe(this, Observer { onNotesUpdate(it) })
+        viewModel.getNotes(cardId).observe(this, Observer { onNotesUpdate(it) })
     }
 
     private fun deleteNote(note: Note) {
@@ -70,12 +70,12 @@ class CardDetailDialogFragment : DialogFragment() {
     private fun initCards() {
         val flipAnimationHelper = FlipAnimationHelper(card_front, card_back)
         card_front_card.setOnClickListener { flipAnimationHelper.flipToBack() }
-        card_front_favorite_btn.setOnClickListener { viewModel.switchFavorite() }
+        card_front_favorite_btn.setOnClickListener { viewModel.switchFavorite(cardId) }
 
         card_back_card.setOnClickListener { flipAnimationHelper.flipToFront() }
-        card_back_favorite_btn.setOnClickListener { viewModel.switchFavorite() }
+        card_back_favorite_btn.setOnClickListener { viewModel.switchFavorite(cardId) }
 
-        viewModel.card.observe(this, Observer { onCardUpdate(it) })
+        viewModel.getCard(cardId).observe(this, Observer { onCardUpdate(it) })
     }
 
     private fun onNotesUpdate(it: List<Note>?) {
@@ -91,7 +91,7 @@ class CardDetailDialogFragment : DialogFragment() {
 
         card_front_title.text = card?.title
         card_front_summary.text = card?.summary
-        card_front_image.setOptimizedImage(card?.pictureName, R.drawable.pattern_image_placeholder)
+        card_front_image.setOptimizedImage(card?.pictureName, R.drawable.default_pattern_image)
         card_front_favorite_btn.setImageResource(favoriteDrawable)
 
         card_back_title.text = card?.title
@@ -103,7 +103,7 @@ class CardDetailDialogFragment : DialogFragment() {
     private fun openCreateNoteDialog() {
         val dialog = CreateNoteDialog(context)
         dialog.onConfirmListener = { title, description ->
-            viewModel.createNote(title, description)
+            viewModel.createNote(cardId, title, description)
         }
         dialog.show()
     }

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#616161</color>
     <color name="colorAccent">#FF5722</color>
     <color name="component_bg">#77ffffff</color>
+    <color name="feature_background">#77ffffff</color>
     <color name="dashboard_nav_overview_bg">#cddc39</color>
     <color name="dashboard_nav_more_bg">@android:color/holo_purple</color>
     <color name="dashboard_nav_favorites_bg">@android:color/holo_blue_light</color>

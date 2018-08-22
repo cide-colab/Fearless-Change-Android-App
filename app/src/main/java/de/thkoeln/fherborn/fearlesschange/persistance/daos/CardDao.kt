@@ -25,7 +25,10 @@ interface CardDao {
     fun getAllWithNoteCount(): LiveData<List<CardWithNoteCount>>
 
     @Query("SELECT * FROM card WHERE id = :id LIMIT 1")
-    fun getById(id: Long): LiveData<Card>
+    fun get(id: Long): LiveData<Card>
+
+    @Query("SELECT * FROM card WHERE id IN (:ids)")
+    fun get(ids: List<Long>): LiveData<List<Card>>
 
     @Query("SELECT * FROM card c " +
             " LEFT JOIN (SELECT COUNT(cardId) as noteCount, cardId FROM note GROUP BY cardId) n ON c.id = n.cardId" +
@@ -61,5 +64,8 @@ interface CardDao {
 
     @Query("UPDATE card SET favorite = NOT favorite  WHERE id = :id")
     fun switchFavorite(id: Long)
+
+    @Query("SELECT id FROM card")
+    fun getAllCardIds(): LiveData<List<Long>>
 
 }

@@ -7,13 +7,13 @@
     android:id="@+id/activity_wrapper"
     android:padding="@dimen/default_margin">
 
-    <include layout="@layout/layout_default_app_bar"/>
+    <include layout="@layout/app_bar"/>
 
     <FrameLayout
         android:id="@+id/activity_content"
-        android:layout_marginTop="@dimen/default_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/default_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </FrameLayout>

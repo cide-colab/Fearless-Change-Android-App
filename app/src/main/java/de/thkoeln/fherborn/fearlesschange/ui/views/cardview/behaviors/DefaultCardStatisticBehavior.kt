@@ -4,9 +4,8 @@ import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatistic
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardStatisticRepository
+import de.thkoeln.fherborn.fearlesschange.persistance.repositories.StatisticRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardActionListener
 
 /**
@@ -14,7 +13,7 @@ import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardActionListener
  */
 open class DefaultCardStatisticBehavior(context: Context?) : CardActionListener {
 
-    private val cardActionRepository = CardStatisticRepository(context)
+    private val cardActionRepository = StatisticRepository(context)
 
     override fun onCardAction(card: Card?, action: CardViewAction) {
         card?.let {

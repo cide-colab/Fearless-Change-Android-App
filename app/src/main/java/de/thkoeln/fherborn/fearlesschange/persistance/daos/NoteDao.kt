@@ -32,6 +32,6 @@ interface NoteDao {
     fun getCount(): LiveData<Long>
 
     @Query("SELECT COUNT(*) FROM note WHERE cardId = :id")
-    fun getCountByCardId(id: Long): LiveData<Long>
+    fun getNoteCountByCardId(id: Long): LiveData<Long>
 
 }

@@ -8,6 +8,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideRequest
+import javax.microedition.khronos.opengles.GL
 
 
 fun GlideRequest<Drawable>.toBackgroundOf(view: View) = into(object : SimpleTarget<Drawable>() {
@@ -17,32 +18,21 @@ fun GlideRequest<Drawable>.toBackgroundOf(view: View) = into(object : SimpleTarg
 })
 
 fun ImageView.setOptimizedImage(drawable: Drawable?, defaultImageResource: Int? = null) {
-    GlideApp.with(context).load(drawable).let {glide ->
-        defaultImageResource?.let {
-            glide.placeholder(it)
-        }
-        glide
-    }.fitCenter().into(this)
+    var glideRequest = GlideApp.with(context).load(drawable)
+    defaultImageResource?.let { glideRequest = glideRequest.placeholder(it) }
+    glideRequest.fitCenter().into(this)
 }
 
 fun ImageView.setOptimizedImage(resourceId: Int?, defaultImageResource: Int? = null) {
-    GlideApp.with(context).load(resourceId).let {glide ->
-        defaultImageResource?.let {
-            glide.placeholder(it)
-        }
-        glide
-    }.fitCenter().into(this)
+    var glideRequest = GlideApp.with(context).load(resourceId)
+    defaultImageResource?.let { glideRequest = glideRequest.placeholder(it) }
+    glideRequest.fitCenter().into(this)
 }
 
 fun ImageView.setOptimizedImage(name: String?, defaultImageResource: Int? = null) {
     name?.let {
-        setOptimizedImage(getResourceId(context, name, "drawable"), defaultImageResource)
+        setOptimizedImage(getResourceId(context, it, "drawable"), defaultImageResource)
     }
-}
-
-@BindingAdapter("optimizedBackground")
-fun View.setOptimizedBackground(drawable: Drawable) {
-    GlideApp.with(context).load(drawable).fitCenter().toBackgroundOf(this)
 }
 
 fun View.setOptimizedBackground(resourceId: Int) {

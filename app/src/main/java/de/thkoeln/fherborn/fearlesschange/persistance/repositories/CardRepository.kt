@@ -17,15 +17,14 @@ class CardRepository(context: Context?) {
 
     fun getAll() = dao.getAll()
     fun getAllWithNoteCount() = dao.getAllWithNoteCount()
-    fun getById(id: Long) = dao.getById(id)
-    fun getByIdWithNoteCount(id: Long) = dao.getByIdWithNoteCount(id)
-    fun getRandom(count: Int) = dao.getRandom(count)
+    fun get(id: Long) = dao.get(id)
+    fun get(ids: List<Long>) = dao.get(ids)
     fun getRandomWithNotesCount(count: Int) = dao.getRandomWithNoteCount(count)
     fun getCount() = dao.getCount()
-    fun getElementWithIndex(index: Long) = dao.getElementWithIndex(index)
     fun getElementWithIndexWithNoteCount(index: Long) = dao.getElementWithIndexWithNoteCount(index)
     fun getFavorites() = dao.getFavorites()
     fun getFavoritesWithNoteCount() = dao.getFavoritesWithNoteCount()
     fun update(vararg cards: Card) = doAsync { dao.update(*cards) }
     fun switchFavorite(id: Long) = doAsync { dao.switchFavorite(id) }
+    fun getAllCardIds() = dao.getAllCardIds()
 }
