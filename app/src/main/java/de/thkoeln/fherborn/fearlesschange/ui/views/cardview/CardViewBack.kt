@@ -43,7 +43,7 @@ class CardViewBack : CardView {
     override fun onCardChanged(card: Card?) {
         card?.let {
             card_fav_btn.setImageResource(
-                    if(it.favorite) R.drawable.ic_favorite_full_white_24dp
+                    if(it.favorite) R.drawable.ic_favorite_full_white
                     else R.drawable.ic_favorite_white
             )
             card_title.text = it.title

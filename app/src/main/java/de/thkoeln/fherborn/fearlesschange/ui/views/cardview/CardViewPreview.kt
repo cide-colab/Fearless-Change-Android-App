@@ -44,7 +44,7 @@ class CardViewPreview : CardView {
             card_problem?.text = it.problem
             fav_icon.setImageResource(
                     when {
-                        card.favorite -> R.drawable.ic_favorite_full_white_24dp
+                        card.favorite -> R.drawable.ic_favorite_full_white
                         else -> R.drawable.ic_favorite_white
                     }
             )

@@ -4,6 +4,7 @@
         <attr name="cardTitle" format="string"/>
         <attr name="cardSummary" format="string"/>
         <attr name="cardImage" format="reference"/>
+        <attr name="isFavorite" format="boolean"/>
     </declare-styleable>
 
     <!--
