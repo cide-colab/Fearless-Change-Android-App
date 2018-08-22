@@ -4,7 +4,6 @@ import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardActionListener
 
 /**

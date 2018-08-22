@@ -2,6 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.persistance.models
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.card.Card
 
 @Entity(tableName = "card_keyword",
         primaryKeys = ["cardId", "keywordId"],

@@ -3,7 +3,6 @@ package de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors
 import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardView
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardActionListener
 
 /**

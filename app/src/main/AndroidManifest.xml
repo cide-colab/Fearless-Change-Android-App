@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".v2.dashbaord.DashboardActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait">
             <intent-filter>

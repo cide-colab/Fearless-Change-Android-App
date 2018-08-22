@@ -2,6 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.ui.views.cardview
 
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 
+
 /**
  *
  * BehaviorProcessor is used to perform actions on an cardView. If some Behaviors for a cardview can be added to the Class,

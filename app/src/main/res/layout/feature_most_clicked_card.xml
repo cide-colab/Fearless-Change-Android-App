@@ -33,6 +33,7 @@
         android:text="@string/title_fragment_most_clicked_card"/>
 
     <include layout="@layout/card_preview"
+        android:id="@+id/card_preview"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

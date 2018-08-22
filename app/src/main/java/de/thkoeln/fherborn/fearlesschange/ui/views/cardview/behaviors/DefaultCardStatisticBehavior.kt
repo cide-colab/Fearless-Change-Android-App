@@ -1,8 +1,8 @@
 package de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors
 
 import android.content.Context
-import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatistic
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.StatisticRepository
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction

@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
-import de.thkoeln.fherborn.fearlesschange.v2.events.Event
+import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
 import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 

@@ -2,10 +2,10 @@ package de.thkoeln.fherborn.fearlesschange.ui.views.cardview
 
 import android.content.Context
 import android.util.AttributeSet
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 
 
 /**

@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.extensions.toBackgroundOf
+import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.toBackgroundOf
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import kotlinx.android.synthetic.main.activity_app.*
 import kotlinx.android.synthetic.main.app_bar.*

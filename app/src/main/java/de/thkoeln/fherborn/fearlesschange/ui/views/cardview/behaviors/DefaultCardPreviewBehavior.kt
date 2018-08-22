@@ -2,8 +2,8 @@ package de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors
 
 import android.support.v7.app.AppCompatActivity
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
-import de.thkoeln.fherborn.fearlesschange.v2.carddetail.CardDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
+import de.thkoeln.fherborn.fearlesschange.v2.ui.carddetail.CardDetailDialogFragment
 
 /**
  * Created by Florian on 10.08.2018.

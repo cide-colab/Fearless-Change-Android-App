@@ -2,8 +2,8 @@ package de.thkoeln.fherborn.fearlesschange.persistance.repositories
 
 import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.persistance.CardDatabase
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.doAsync
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 
 /**
  * Created by florianherborn on 06.08.18.

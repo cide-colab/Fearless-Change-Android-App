@@ -4,10 +4,10 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
 import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.persistance.CardDatabase
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatisticAction
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardStatistic
 import de.thkoeln.fherborn.fearlesschange.persistance.doAsync
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
 
 

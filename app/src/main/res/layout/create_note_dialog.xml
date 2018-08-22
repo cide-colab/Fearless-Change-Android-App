@@ -43,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/create_note_dialog_pin_icon" />
 
         <EditText
-            android:id="@+id/create_note_note_description"
+            android:id="@+id/create_note_note_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/note_font"

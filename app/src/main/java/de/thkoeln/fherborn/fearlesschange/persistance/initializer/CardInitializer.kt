@@ -1,6 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.persistance.initializer
 
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.card.Card
 
 class CardInitializer : DataInitializer<Card>("card") {
     override fun getItemValues(item: Card?) = hashMapOf(
@@ -19,7 +19,7 @@ class CardInitializer : DataInitializer<Card>("card") {
                     "Accentuate the Positive",
                     "", //Empty if not exist
                     "Your attempts to scare others are not working.",
-                    "To influence others during the change initiative and inspire them to believe the change can happen, motivate them with a sense of hope rather than fear.", 
+                    "To influence others during the change initiative and inspire them to believe the change can happen, motivate them with a sense of hope rather than fear.",
                     "Inspire people throughout the change initiative with a sense of optimism rather than fear."
             ),
             Card(
@@ -43,7 +43,7 @@ class CardInitializer : DataInitializer<Card>("card") {
                     "Elevator Pitch",
                     "", //Empty if not exist
                     "When you have a chance to introduce someone to your idea, you don’t want to stumble around for the right words to say.",
-                    "Have a couple of sentences on hand to introduce others to your new idea.", 
+                    "Have a couple of sentences on hand to introduce others to your new idea.",
                     "Craft a couple of sentences that contain your key message."
             ),
             Card(
@@ -51,7 +51,7 @@ class CardInitializer : DataInitializer<Card>("card") {
                     "Emotional Connection",
                     "", //Empty if not exist
                     "As you share information about your new idea, you might believe that logical argument is enough to persuade people.",
-                    "Connecting with the feelings of your audience is usually more effective in persuading them than just presenting facts.", 
+                    "Connecting with the feelings of your audience is usually more effective in persuading them than just presenting facts.",
                     "Create a connection with individuals on an emotional level by listening and addressing how they are feeling about the new idea."
             ),
             Card(
@@ -75,7 +75,7 @@ class CardInitializer : DataInitializer<Card>("card") {
                     "Go-To Person",
                     "", //Empty if not exist
                     "Once you’ve identified areas where you lack expertise, how do you start asking for help?",
-                    "Identify key people who can help with critical issues in your change initiative.", 
+                    "Identify key people who can help with critical issues in your change initiative.",
                     "Make a concrete action plan with a list of the things you need to do for the next milestone. Next to each item, write the names of those individuals with the specific expertise or resources to help you accomplish the task."
             ),
             Card(

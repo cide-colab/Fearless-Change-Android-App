@@ -23,6 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:name="de.thkoeln.fherborn.fearlesschange.v2.dashbaord.features.MostClickedCardFeature" />
+        android:name="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.features.MostClickedCardFeature" />
 
 </LinearLayout>
