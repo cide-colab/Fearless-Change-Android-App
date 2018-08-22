@@ -40,13 +40,16 @@ class CardOfTheDayFeature : Fragment() {
             else -> R.drawable.ic_favorite_white
         })
         viewModel.getNoteCountOfCard(card?.id).observe(this, Observer {
-            it?.let {
-                card_preview_notes_count.text = it.toString()
-                card_preview_notes_count.visibility = VISIBLE
-                card_preview_notes_icon.visibility = INVISIBLE
-            }?:let {
-                card_preview_notes_count.visibility = GONE
-                card_preview_notes_icon.visibility = GONE
+            when (it) {
+                null, 0L -> {
+                    card_preview_notes_count.visibility = VISIBLE
+                    card_preview_notes_icon.visibility = VISIBLE
+                }
+                else -> {
+                    card_preview_notes_count.text = it.toString()
+                    card_preview_notes_count.visibility = INVISIBLE
+                    card_preview_notes_icon.visibility = INVISIBLE
+                }
             }
         })
     }
