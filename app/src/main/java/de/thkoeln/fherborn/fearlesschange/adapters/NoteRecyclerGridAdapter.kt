@@ -51,8 +51,8 @@ class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.A
      */
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var noteTitleView = itemView.findViewById<TextView>(R.id.note_title)
-        private var noteDescriptionView = itemView.findViewById<TextView>(R.id.note_description)
+        private var noteTitleView = itemView.findViewById<TextView>(R.id.create_note_note_title)
+        private var noteDescriptionView = itemView.findViewById<TextView>(R.id.create_note_note_description)
 
         fun bindCard(note: Note) {
             noteTitleView.text = note.title

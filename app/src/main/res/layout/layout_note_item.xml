@@ -12,7 +12,7 @@
         android:padding="@dimen/default_padding">
 
         <ImageView
-            android:id="@+id/pin_icon"
+            android:id="@+id/create_note_dialog_pin_icon"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_width="18dp"
             android:layout_height="18dp"
@@ -22,25 +22,25 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/note_title"
+            android:id="@+id/create_note_note_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/note_font"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            app:layout_constraintTop_toBottomOf="@id/pin_icon"
+            app:layout_constraintTop_toBottomOf="@id/create_note_dialog_pin_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/note_description"
+            android:id="@+id/create_note_note_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:fontFamily="@font/note_font"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/note_title"
+            app:layout_constraintTop_toBottomOf="@id/create_note_note_title"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>

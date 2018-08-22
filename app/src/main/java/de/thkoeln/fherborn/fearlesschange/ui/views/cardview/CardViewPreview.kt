@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.getResourceId
+import de.thkoeln.fherborn.fearlesschange.v2.extensions.getResourceId
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
 import kotlinx.android.synthetic.main.layout_card_view_preview.view.*
@@ -40,8 +40,8 @@ class CardViewPreview : CardView {
 
     override fun onCardChanged(card: Card?) {
         card?.let {
-            card_title?.text = it.title
-            card_problem?.text = it.problem
+            card_front_title?.text = it.title
+            card_front_summary?.text = it.problem
             fav_icon.setImageResource(
                     when {
                         card.favorite -> R.drawable.ic_favorite_full_white
@@ -51,9 +51,9 @@ class CardViewPreview : CardView {
 
             GlideApp.with(context)
                     .load(getResourceId(context, card.pictureName, "drawable"))
-                    .placeholder(R.drawable.img_placeholder)
+                    .placeholder(R.drawable.pattern_image_placeholder)
                     .fitCenter()
-                    .into(card_image)
+                    .into(card_front_image)
         }
     }
 

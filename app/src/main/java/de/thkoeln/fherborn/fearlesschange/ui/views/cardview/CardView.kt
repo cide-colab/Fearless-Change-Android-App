@@ -1,7 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.ui.views.cardview
 
 import android.content.Context
-import android.databinding.BindingAdapter
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -31,8 +30,8 @@ abstract class CardView: ConstraintLayout, CardViewBehaviorProcessor {
     open fun init(context: Context, attributeSet: AttributeSet?) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.layout_card, this, true) as CardView
-        card_view.addView(onCreateContentView(inflater, rootView, context, attributeSet))
-        card_view.setOnClickListener{ performAction(card, CardViewAction.CARD_CLICKED) }
+        card_front_card.addView(onCreateContentView(inflater, rootView, context, attributeSet))
+        card_front_card.setOnClickListener{ performAction(card, CardViewAction.CARD_CLICKED) }
         afterContentViewInflated()
     }
 

@@ -40,4 +40,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_description_back">Back</string>
+    <string name="image_description_title_bg">Title Background</string>
+    <string name="image_description_pattern_image">Pattern Image</string>
 </resources>

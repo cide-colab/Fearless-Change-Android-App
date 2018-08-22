@@ -59,4 +59,7 @@ interface CardDao {
             " WHERE favorite")
     fun getFavoritesWithNoteCount(): LiveData<List<CardWithNoteCount>>
 
+    @Query("UPDATE card SET favorite = NOT favorite  WHERE id = :id")
+    fun switchFavorite(id: Long)
+
 }

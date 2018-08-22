@@ -6,7 +6,6 @@ import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.card_back_view.view.*
 
 
 /**
@@ -31,25 +30,25 @@ class CardViewBack : CardView {
 //        }
     }
     override fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View
-            = inflater.inflate(R.layout.card_back_view, rootView, false)
+            = inflater.inflate(R.layout.card_back, rootView, false)
 
     override fun afterContentViewInflated() {
-        card_fav_btn.setOnClickListener{
-            performAction( card, CardViewAction.FAVORITE_CLICKED)
-            onCardChanged(card)
-        }
+//        card_front_favorite_btn.setOnClickListener{
+//            performAction( card, CardViewAction.FAVORITE_CLICKED)
+//            onCardChanged(card)
+//        }
     }
 
     override fun onCardChanged(card: Card?) {
-        card?.let {
-            card_fav_btn.setImageResource(
-                    if(it.favorite) R.drawable.ic_favorite_full_white
-                    else R.drawable.ic_favorite_white
-            )
-            card_title.text = it.title
-            card_problem.text = it.solution
-            card_solution.text = it.summary
-        }
+//        card?.let {
+//            card_front_favorite_btn.setImageResource(
+//                    if(it.favorite) R.drawable.ic_favorite_full_white
+//                    else R.drawable.ic_favorite_white
+//            )
+//            card_front_title.text = it.title
+//            card_front_abstract.text = it.solution
+//            card_solution.text = it.summary
+//        }
     }
 
 }

@@ -21,8 +21,8 @@ class DefaultCardPreviewBehavior(val activity: AppCompatActivity?, private val p
                     }
                     ft.addToBackStack(null)
                     val cardPopup = CardDetailDialogFragment.newInstance(cardId = it.id)
-                    cardPopup.addCardActionListener(DefaultCardFavoriteBehavior(activity))
-                    cardPopup.addCardActionListener(DefaultCardNotesBehavior(activity))
+//                    cardPopup.addCardActionListener(DefaultCardFavoriteBehavior(activity))
+//                    cardPopup.addCardActionListener(DefaultCardNotesBehavior(activity))
                     cardPopup.show(ft, popupName)
                 }
             }

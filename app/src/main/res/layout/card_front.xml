@@ -6,7 +6,7 @@
 
     <android.support.v7.widget.CardView
         style="@style/Card"
-        android:id="@+id/card_view"
+        android:id="@+id/card_front_card"
         android:clickable="true"
         android:focusable="true"
         android:layout_width="0dp"
@@ -17,26 +17,28 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout android:paddingBottom="32dp"
+        <android.support.constraint.ConstraintLayout
+            android:paddingBottom="32dp"
+            android:id="@+id/card_front_wrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/card_bg"
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <ImageView
                 android:layout_width="1000dp"
                 android:layout_height="0dp"
-                android:src="@drawable/title_bg"
+                android:src="@drawable/card_title_bg"
                 android:scaleType="fitXY"
                 android:rotation="-2"
-                app:layout_constraintTop_toTopOf="@id/card_title"
-                app:layout_constraintBottom_toBottomOf="@id/card_title"
-                app:layout_constraintStart_toStartOf="@id/card_title"
-                app:layout_constraintEnd_toEndOf="@id/card_title"/>
+                app:layout_constraintTop_toTopOf="@id/card_front_title"
+                app:layout_constraintBottom_toBottomOf="@id/card_front_title"
+                app:layout_constraintStart_toStartOf="@id/card_front_title"
+                app:layout_constraintEnd_toEndOf="@id/card_front_title"
+                android:contentDescription="@string/image_description_title_bg" />
             <TextView
                 style="@style/CardTitle"
-                android:id="@+id/card_title"
+                android:id="@+id/card_front_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -49,7 +51,7 @@
             <android.support.constraint.ConstraintLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/CardContentWrapper"
-                android:id="@+id/card_content_container"
+                android:id="@+id/card_front_content"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:paddingStart="16dp"
@@ -60,27 +62,26 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_title"
-                app:layout_constraintVertical_bias="0"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+                app:layout_constraintTop_toBottomOf="@id/card_front_title"
+                app:layout_constraintVertical_bias="0">
 
                 <ImageView
-                    android:id="@+id/card_image"
+                    android:id="@+id/card_front_image"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/img_placeholder"
                     app:layout_constraintDimensionRatio="16:9"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/image_description_pattern_image" />
 
                 <TextView
-                    android:id="@+id/card_problem"
+                    android:id="@+id/card_front_summary"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-                    app:layout_constraintTop_toBottomOf="@id/card_image"
+                    app:layout_constraintTop_toBottomOf="@id/card_front_image"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -91,12 +92,12 @@
 
             <android.support.design.widget.FloatingActionButton
                 style="@style/CardButton"
-                android:id="@+id/card_fav_btn"
+                android:id="@+id/card_front_favorite_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_favorite_white"
-                app:layout_constraintBottom_toBottomOf="@id/card_content_container"
+                app:layout_constraintBottom_toBottomOf="@id/card_front_content"
                 app:layout_constraintRight_toRightOf="parent" />
 
         </android.support.constraint.ConstraintLayout>

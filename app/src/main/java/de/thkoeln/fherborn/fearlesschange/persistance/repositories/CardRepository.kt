@@ -27,4 +27,5 @@ class CardRepository(context: Context?) {
     fun getFavorites() = dao.getFavorites()
     fun getFavoritesWithNoteCount() = dao.getFavoritesWithNoteCount()
     fun update(vararg cards: Card) = doAsync { dao.update(*cards) }
+    fun switchFavorite(id: Long) = doAsync { dao.switchFavorite(id) }
 }

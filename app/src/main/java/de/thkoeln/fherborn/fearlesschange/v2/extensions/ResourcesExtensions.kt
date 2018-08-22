@@ -1,11 +1,10 @@
-package de.thkoeln.fherborn.fearlesschange
+package de.thkoeln.fherborn.fearlesschange.v2.extensions
 
 import android.content.Context
 import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.View
-import android.widget.TextView
+import android.widget.ImageView
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
@@ -24,15 +23,4 @@ fun getResourceId(context: Context, resName: String, resIdentifier: String): Int
         null
     }
 
-}
-
-fun GlideRequest<Drawable>.toBackgroundOf(view: View) = into(object : SimpleTarget<Drawable>() {
-    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-        view.background = resource
-    }
-})
-
-@BindingAdapter("optimizedBackground")
-fun View.setOptimizedBackground(drawable: Drawable) {
-    GlideApp.with(context).load(drawable).fitCenter().toBackgroundOf(this)
 }

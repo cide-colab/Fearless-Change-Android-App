@@ -5,8 +5,6 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
-import kotlinx.android.synthetic.main.card_front_view.view.*
 
 
 /**
@@ -20,28 +18,28 @@ class CardViewFront: ConstraintLayout {
 
     private fun init(context: Context, attrs: AttributeSet?) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        inflater.inflate(R.layout.card_front_view, this, true)
-
-        context.theme.obtainStyledAttributes(attrs, R.styleable.CardViewFront, 0, 0).apply {
-            try {
-                card_title.text = getString(R.styleable.CardViewFront_cardTitle)
-                card_problem.text = getString(R.styleable.CardViewFront_cardSummary)
-                val isFavorite = getBoolean(R.styleable.CardViewFront_isFavorite, false)
-                card_fav_btn.setImageResource(
-                        if(isFavorite) R.drawable.ic_favorite_full_white
-                        else R.drawable.ic_favorite_white
-                )
-                GlideApp.with(context)
-                        .load(getDrawable(R.styleable.CardViewFront_cardImage))
-                        .fitCenter()
-                        .into(card_image)
-            } finally {
-                recycle()
-            }
-        }
+        inflater.inflate(R.layout.card_front, this, true)
+//
+//        context.theme.obtainStyledAttributes(attrs, R.styleable.CardViewFront, 0, 0).apply {
+//            try {
+//                card_front_title.text = getString(R.styleable.CardViewFront_cardTitle)
+//                card_front_abstract.text = getString(R.styleable.CardViewFront_cardSummary)
+//                val isFavorite = getBoolean(R.styleable.CardViewFront_isFavorite, false)
+//                card_front_favorite_btn.setImageResource(
+//                        if(isFavorite) R.drawable.ic_favorite_full_white
+//                        else R.drawable.ic_favorite_white
+//                )
+//                GlideApp.with(context)
+//                        .load(getDrawable(R.styleable.CardViewFront_cardImage))
+//                        .fitCenter()
+//                        .into(card_front_image)
+//            } finally {
+//                recycle()
+//            }
+//        }
     }
 
     fun setOnFavoriteClickedListener(listener: OnClickListener) {
-        card_fav_btn.setOnClickListener(listener)
+//        card_front_favorite_btn.setOnClickListener(listener)
     }
 }

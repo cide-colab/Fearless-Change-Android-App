@@ -1,122 +1,120 @@
 package de.thkoeln.fherborn.fearlesschange.v2.carddetail
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.DialogFragment
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.DecelerateInterpolator
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.databinding.CardDetailDialogFragmentBinding
+import de.thkoeln.fherborn.fearlesschange.adapters.NoteRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardActionListener
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewAction
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehaviorProcessor
-import kotlinx.android.synthetic.main.card_detail_dialog_fragment.*
+import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
+import de.thkoeln.fherborn.fearlesschange.v2.animation.FlipAnimationHelper
+import de.thkoeln.fherborn.fearlesschange.v2.extensions.setOptimizedBackground
+import de.thkoeln.fherborn.fearlesschange.v2.extensions.setOptimizedImage
+import kotlinx.android.synthetic.main.card_back.*
+import kotlinx.android.synthetic.main.card_detail_dialog.*
+import kotlinx.android.synthetic.main.card_front.*
+
 
 /**
  * A DialogFragment to show a flippable card detail with its notes
  */
-class CardDetailDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
+class CardDetailDialogFragment : DialogFragment() {
 
+    private lateinit var viewModel: CardDetailViewModel
+    private val noteAdapter = NoteRecyclerGridAdapter()
 
-    override val cardBehaviors = mutableListOf<CardActionListener>()
-
-    private lateinit var cardRepository: CardRepository
-    private var frontShown = true
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val cardId = arguments?.getLong(CARD_ID_KEY)
-                ?: throw IllegalArgumentException("Missing CardId in arguments")
-
-        val factory = CardDetailViewModelFactory(context, cardId)
-        val cardDetailViewModel = ViewModelProviders.of(this, factory).get(CardDetailViewModel::class.java)
-
-        val binding = DataBindingUtil.inflate<CardDetailDialogFragmentBinding>(
-                inflater,
-                R.layout.card_detail_dialog_fragment,
-                container,
-                false
-        ).apply {
-            viewModel = cardDetailViewModel
-            setLifecycleOwner(this@CardDetailDialogFragment)
-            popup_card_front.setOnClickListener{flip()}
-            popup_card_back.setOnClickListener{flip()}
-
-            //TODO via event ins viewmodel
-            //popup_card_front.addCardActionListener(cardActionListener)
-            //popup_card_back.addCardActionListener(cardActionListener)
-        }
-
-        return binding.root
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProviders.of(this, CardDetailViewModelFactory(context, getCardId())).get(CardDetailViewModel::class.java)
     }
 
-//TODO
-//    /**
-//     * Inflates the notes fragment to show the notes of the given card
-//     * @param card Card to show the notes of
-//     */
-//    private fun inflateNotesFragment(card: Card?) {
-//        card?.let {
-//            //Bugfix return if fragment isn't attached
-//            if (!isAdded) return@let
-//            val notesFragment = CardNotesFragment.newInstance(cardId = it.id)
-//            childFragmentManager.beginTransaction()
-//                    .replace(R.id.bottom_sheet_content, notesFragment).commit()
-//        }
-//    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.card_detail_dialog, container)
 
-
-    /**
-     * Flips the card
-     */
-    @Synchronized
-    private fun flip() {
-        frontShown = if (frontShown) {
-            switch(popup_card_front, popup_card_back)
-            false
-        } else {
-            switch(popup_card_back, popup_card_front)
-            true
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setBackgrounds()
+        initCards()
+        initNotes()
     }
 
-    /**
-     * Switches and animates from [from] to [to]
-     * [from] will be hided and [to] will be visible
-     * @param from view to be hided
-     * @param to view to be shown
-     */
-    @Synchronized
-    private fun switch(from: View, to: View) {
-        val oaOut = ObjectAnimator.ofFloat(from, "scaleX", 1f, 0f).apply {
-            interpolator = DecelerateInterpolator()
-            addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    from.visibility = GONE
-                    to.visibility = VISIBLE
+    private fun getCardId() = (arguments?.getLong(CARD_ID_KEY)
+            ?: throw IllegalArgumentException("Missing CardId in arguments"))
+
+    private fun initNotes() {
+        card_detail_dialog_add_note_btn.setOnClickListener { openCreateNoteDialog() }
+        card_detail_dialog_notes_recycler_view.adapter = noteAdapter
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
+                viewHolder?.adapterPosition?.let {
+                    deleteNote(noteAdapter.notes[it])
                 }
-            })
-        }
-        val oaIn = ObjectAnimator.ofFloat(to, "scaleX", 0f, 1f).apply {
-            interpolator = AccelerateDecelerateInterpolator()
+            }
+        }).attachToRecyclerView(card_detail_dialog_notes_recycler_view)
+        viewModel.getNotes().observe(this, Observer { onNotesUpdate(it) })
+    }
+
+    private fun deleteNote(note: Note) {
+        viewModel.deleteNote(note)
+        Snackbar.make(card_detail_dialog_bottom_sheet, getString(R.string.noteDeleted, note.title), 2000).show()
+    }
+
+    private fun initCards() {
+        val flipAnimationHelper = FlipAnimationHelper(card_front, card_back)
+        card_front_card.setOnClickListener { flipAnimationHelper.flipToBack() }
+        card_front_favorite_btn.setOnClickListener { viewModel.switchFavorite() }
+
+        card_back_card.setOnClickListener { flipAnimationHelper.flipToFront() }
+        card_back_favorite_btn.setOnClickListener { viewModel.switchFavorite() }
+
+        viewModel.card.observe(this, Observer { onCardUpdate(it) })
+    }
+
+    private fun onNotesUpdate(it: List<Note>?) {
+        noteAdapter.notes = it ?: listOf()
+        noteAdapter.notifyDataSetChanged()
+    }
+
+    private fun onCardUpdate(card: Card?) {
+        val favoriteDrawable = when (card?.favorite) {
+            true -> R.drawable.ic_favorite_full_white
+            else -> R.drawable.ic_favorite_white
         }
 
-        AnimatorSet().apply {
-            playSequentially(oaOut, oaIn)
-            duration = 100
-            start()
+        card_front_title.text = card?.title
+        card_front_summary.text = card?.summary
+        card_front_image.setOptimizedImage(card?.pictureName, R.drawable.pattern_image_placeholder)
+        card_front_favorite_btn.setImageResource(favoriteDrawable)
+
+        card_back_title.text = card?.title
+        card_back_problem.text = card?.problem
+        card_back_solution.text = card?.solution
+        card_back_favorite_btn.setImageResource(favoriteDrawable)
+    }
+
+    private fun openCreateNoteDialog() {
+        val dialog = CreateNoteDialog(context)
+        dialog.onConfirmListener = { title, description ->
+            viewModel.createNote(title, description)
         }
+        dialog.show()
+    }
+
+    private fun setBackgrounds() {
+        card_front_wrapper.setOptimizedBackground(R.drawable.card_bg)
+        card_front_content.setOptimizedBackground(R.drawable.card_content_bg)
+        card_back_wrapper.setOptimizedBackground(R.drawable.card_bg)
+        card_back_content.setOptimizedBackground(R.drawable.card_content_bg)
+        card_detail_dialog_bottom_sheet.setOptimizedBackground(R.drawable.notes_bg)
+        card_detail_dialog_notes_header.setOptimizedBackground(R.drawable.notes_header_bg)
     }
 
     companion object {
