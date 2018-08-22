@@ -29,11 +29,11 @@ class CardViewPreview : CardView {
 
     private fun onNotesCountChanged(count: Int) {
         if (count > 0) {
-            notes_count.text = count.toString()
-            notes_count.visibility = VISIBLE
+            card_preview_notes_count.text = count.toString()
+            card_preview_notes_count.visibility = VISIBLE
             card_preview_notes_icon.visibility = VISIBLE
         } else {
-            notes_count.visibility = GONE
+            card_preview_notes_count.visibility = GONE
             card_preview_notes_icon.visibility = GONE
         }
     }
