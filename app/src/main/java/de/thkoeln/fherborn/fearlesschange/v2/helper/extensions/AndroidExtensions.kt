@@ -2,6 +2,7 @@ package de.thkoeln.fherborn.fearlesschange.v2.helper.extensions
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.AsyncTask
 
@@ -20,7 +21,7 @@ fun Context.getResourceId(resName: String?, resIdentifier: String) =
             }
         }
 fun <T> LiveData<T>.nonNullObserve(owner: LifecycleOwner, observer: (t: T) -> Unit) {
-    this.observe(owner, android.arch.lifecycle.Observer {
+    this.observe(owner, Observer {
         it?.let(observer)
     })
 }

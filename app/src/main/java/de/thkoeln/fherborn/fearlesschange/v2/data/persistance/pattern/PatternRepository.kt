@@ -11,10 +11,9 @@ class PatternRepository(context: Context) {
 
     private val database = AppDatabase.getInstance(context)
     private val dao = database.patternDao()
-    private val noteDao = database.noteDao()
 
     fun getAll() = dao.getAll()
-    fun getAllInfos() = dao.getAllInfos()
+    fun getAllInfo() = dao.getAllInfo()
     fun get(id: Long) = dao.get(id)
     fun get(ids: List<Long>) = dao.get(ids)
     fun getInfo(id: Long) = dao.getInfo(id)
@@ -24,4 +23,5 @@ class PatternRepository(context: Context) {
     fun getFavoritesInfo() = dao.getFavoritesInfo()
     fun switchFavorite(id: Long) = doAsync { dao.switchFavorite(id) }
     fun getAllIds() = dao.getAllIds()
+    fun getRandom(count: Int) = dao.getRandom(count)
 }

@@ -20,7 +20,7 @@ interface PatternDao {
 
     @Query("SELECT * FROM pattern p " +
             " LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId")
-    fun getAllInfos(): LiveData<List<PatternInfo>>
+    fun getAllInfo(): LiveData<List<PatternInfo>>
 
     @Query("SELECT * FROM pattern p" +
             " LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId" +
@@ -48,5 +48,10 @@ interface PatternDao {
 
     @Query("SELECT id FROM pattern")
     fun getAllIds(): LiveData<List<Long>>
+
+    @Query("SELECT * FROM pattern p" +
+            " LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId" +
+            " ORDER BY RANDOM() LIMIT :count")
+    fun getRandom(count: Int): LiveData<List<PatternInfo>>
 
 }

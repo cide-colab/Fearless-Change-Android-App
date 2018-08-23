@@ -26,7 +26,7 @@ class OverviewActivity : AppActivity() {
         }
 
 
-        cardRepository.getAllInfos().observe(this, Observer { cards ->
+        cardRepository.getAllInfo().observe(this, Observer { cards ->
             adapter.cards = cards ?: listOf()
             adapter.notifyDataSetChanged()
         })
