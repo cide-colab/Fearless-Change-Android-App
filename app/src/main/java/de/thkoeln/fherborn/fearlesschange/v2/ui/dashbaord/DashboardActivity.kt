@@ -12,7 +12,7 @@ import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.carddetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashbaordFeatureRegistry.dashboardFeatures
+import de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardFeatureRegistry.dashboardFeatures
 import kotlinx.android.synthetic.main.app_bar.*
 
 

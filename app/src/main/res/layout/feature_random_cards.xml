@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/DashboardFeature"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/component_bg"
-    android:padding="4dp"
     android:id="@+id/feature_card_of_the_day_container"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -49,7 +49,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
+        <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
             android:id="@+id/random_cards_1"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
+        <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
             android:id="@+id/random_cards_2"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
+        <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
             android:id="@+id/random_cards_3"
             android:layout_width="140dp"
             android:layout_height="wrap_content"

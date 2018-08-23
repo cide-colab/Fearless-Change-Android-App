@@ -4,11 +4,9 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
-import android.util.Log
 import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.NoteRepository
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.Statistic
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticAction
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticRepository
@@ -22,7 +20,8 @@ class PatternViewModel(context: Application) : AndroidViewModel(context) {
     private val statisticRepository by lazy { StatisticRepository(context) }
 
     val patternPreviewClickedEvent = Event<Long>()
-
+    private var randomIds: List<Long>? = null
+    private var generated = false
 
     fun getPattern(id: Long?) = patternRepository.get(getCheckedPatternId(id))
     fun getPatterns() = patternRepository.getAll()
@@ -37,10 +36,30 @@ class PatternViewModel(context: Application) : AndroidViewModel(context) {
                 calculatePatternOfTheDay(ids)?.let { id -> patternRepository.getInfo(id) }
             }
 
-    fun getRandomPatterns(count: Int): LiveData<List<PatternInfo>> =
+    fun getRandomPatterns(): LiveData<List<PatternInfo>> =
             Transformations.switchMap(patternRepository.getAllIds()) { ids ->
-                patternRepository.getInfos(calculateRandomPatterns(ids, count))
+                getRandomIds(ids)?.let {
+                    patternRepository.getInfos(it)
+                }
             }
+
+    private fun getRandomIds(ids: List<Long>?): List<Long>? =
+            ids?.let {
+                when {
+                    randomIds == null || !generated -> {
+                        generated = true
+                        randomIds = calculateRandomPatterns(ids, 3)
+                        randomIds
+                    }
+                    else -> randomIds
+
+                }
+            }
+
+
+    fun calculateNewRandomPatterns() {
+        generated = false
+    }
 
     fun getMostClickedPattern(): LiveData<PatternInfo> =
             Transformations.switchMap(statisticRepository.getMostCommonByAction(StatisticAction.CLICK)) {

@@ -25,13 +25,13 @@ class CardOfTheDayFeature : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
-        viewModel.getPatternOfTheDay().observe(this, Observer { onCardInfoUpdate(it) })
+        viewModel.getPatternOfTheDay().observe(this, Observer { onPatternInfoUpdate(it) })
 
         cardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
         card_preview.setAdapter(cardPreviewAdapter)
     }
 
-    private fun onCardInfoUpdate(patternInfo: PatternInfo?) {
+    private fun onPatternInfoUpdate(patternInfo: PatternInfo?) {
         cardPreviewAdapter.change(patternInfo)
     }
 
