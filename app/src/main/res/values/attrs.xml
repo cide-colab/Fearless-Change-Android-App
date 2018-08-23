@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="PatternCardPreviewView">
+    <declare-styleable name="PatternCardPreview">
         <attr name="PatternCardFavorite" format="boolean"/>
         <attr name="PatternCardTitle" format="string"/>
         <attr name="PatternCardSummary" format="string"/>
