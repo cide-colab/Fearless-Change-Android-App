@@ -6,5 +6,23 @@
         <attr name="PatternCardSummary" format="string"/>
         <attr name="PatternCardImage" format="reference"/>
         <attr name="PatternCardNoteCount" format="integer"/>
+        <attr name="PatternCardBackground" format="reference"/>
+        <attr name="PatternCardContentBackground" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="PatternCardFront">
+        <attr name="PatternCardFavorite"/>
+        <attr name="PatternCardTitle"/>
+        <attr name="PatternCardSummary"/>
+        <attr name="PatternCardImage"/>
+        <attr name="PatternCardBackground"/>
+        <attr name="PatternCardContentBackground"/>
+    </declare-styleable>
+    <declare-styleable name="PatternCardBack">
+        <attr name="PatternCardFavorite"/>
+        <attr name="PatternCardTitle"/>
+        <attr name="PatternCardProblem" format="string"/>
+        <attr name="PatternCardSolution" format="string"/>
+        <attr name="PatternCardBackground"/>
+        <attr name="PatternCardContentBackground"/>
     </declare-styleable>
 </resources>

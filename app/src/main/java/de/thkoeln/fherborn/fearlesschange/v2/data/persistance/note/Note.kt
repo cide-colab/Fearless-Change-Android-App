@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.card.Card
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
 
 /**
  * Created by florianherborn on 13.08.18.
@@ -12,9 +12,9 @@ import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.card.Card
 @Entity(tableName = "note",
         indices = [Index("id")],
         foreignKeys = [(ForeignKey(
-                entity = Card::class,
+                entity = Pattern::class,
                 parentColumns = arrayOf("id"),
-                childColumns = arrayOf("cardId"),
+                childColumns = arrayOf("patternId"),
                 onDelete = ForeignKey.CASCADE,
                 onUpdate = ForeignKey.CASCADE
         ))]
@@ -24,5 +24,5 @@ data class Note(
         val id: Long = 0,
         var title: String,
         var text: String,
-        val cardId: Long
+        val patternId: Long
 )

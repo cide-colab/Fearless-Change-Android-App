@@ -23,8 +23,7 @@
             android:id="@+id/card_preview_wrapper"
             android:paddingBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/card_bg">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="1000dp"

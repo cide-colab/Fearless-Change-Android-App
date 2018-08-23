@@ -13,9 +13,7 @@ class StatisticRepository(context: Context) {
     private val database = AppDatabase.getInstance(context)
     private val dao = database.statisticDao()
 
-
-
-    fun insert(vararg cardStatisticAction: Statistic) = doAsync { dao.insert(*cardStatisticAction) }
+    fun insert(vararg actions: Statistic) = doAsync { dao.insert(*actions) }
 
     fun getAll() = dao.getAll()
 

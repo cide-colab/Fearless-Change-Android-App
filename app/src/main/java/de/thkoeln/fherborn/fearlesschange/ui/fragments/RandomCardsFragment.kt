@@ -1,29 +1,27 @@
 package de.thkoeln.fherborn.fearlesschange.ui.fragments
 
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
-import kotlinx.android.synthetic.main.fragment_random_cards.*
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
-import android.animation.ObjectAnimator
-import android.animation.AnimatorSet
-import android.support.v7.app.AppCompatActivity
-import android.view.View
+import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.behaviors.DefaultCardPreviewBehavior
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
+import kotlinx.android.synthetic.main.fragment_random_cards.*
 
 
 class RandomCardsFragment : Fragment() {
 
-    private lateinit var cardRepository: CardRepository
+    private lateinit var cardRepository: PatternRepository
     private var generated = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -32,7 +30,7 @@ class RandomCardsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        cardRepository = CardRepository(activity?.application)
+        cardRepository = PatternRepository(activity!!.application)
 
         reloadAll()
         setListeners()
@@ -74,21 +72,22 @@ class RandomCardsFragment : Fragment() {
 
     private fun reload(vararg cardViews: CardViewPreview) {
         generated = false
-        cardRepository.getRandomWithNotesCount(cardViews.size).observe(this, Observer { random_cards ->
+        cardRepository.get(1).observe(this, Observer { random_cards ->
             random_cards?.let {
+                /*
                 if (random_cards.size < cardViews.size || generated) return@Observer
                 generated = true
                 animateCardsAndRun(*cardViews) { cardView, index ->
                     cardView.card = random_cards[index].card
                     cardView.notesCount = random_cards[index].noteCount
                 }
+                */
             }
         })
     }
 
     private fun setCardListener(vararg cardViews: CardViewPreview) {
         cardViews.forEach {
-            it.addCardActionListener(DefaultCardPreviewBehavior(activity as AppCompatActivity))
         }
     }
 }

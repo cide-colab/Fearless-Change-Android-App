@@ -13,25 +13,26 @@ import android.arch.persistence.room.Query
 interface StatisticDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg cardStatisticAction: Statistic)
+    fun insert(vararg actions: Statistic)
 
-    @Query("SELECT * FROM card_statistic")
+    @Query("SELECT * FROM statistic")
     fun getAll(): LiveData<List<Statistic>>
 
-    @Query("SELECT * FROM card_statistic WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM statistic WHERE id = :id LIMIT 1")
     fun get(id: Long): LiveData<Statistic>
 
-    @Query("SELECT COUNT(*) FROM card_statistic")
+    @Query("SELECT COUNT(*) FROM statistic")
     fun getCount(): LiveData<Long>
 
-    @Query("SELECT COUNT(*) FROM card_statistic WHERE `action` = :action")
+    @Query("SELECT COUNT(*) FROM statistic WHERE `action` = :action")
     fun getActionCount(action: StatisticAction): LiveData<Long>
 
-    @Query("SELECT c.* FROM card_statistic c, (" +
+    @Query("SELECT c.* FROM statistic c, " +
+            "(" +
             "  SELECT *, Count(action) actions " +
-            "  FROM card_statistic " +
+            "  FROM statistic " +
             "  WHERE action =:action " +
-            "  GROUP BY cardId " +
+            "  GROUP BY patternId " +
             "  ORDER BY actions DESC " +
             "  LIMIT 1" +
             " ) AS r" +

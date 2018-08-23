@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
 import kotlinx.android.synthetic.main.activity_settings.*
 
 
@@ -25,12 +25,12 @@ import kotlinx.android.synthetic.main.activity_settings.*
 class SettingsActivity : AppActivity(), View.OnClickListener {
 
 
-    private lateinit var cardRepository: CardRepository
+    private lateinit var cardRepository: PatternRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        cardRepository = CardRepository(application)
+        cardRepository = PatternRepository(application)
 
         setlisteners()
     }

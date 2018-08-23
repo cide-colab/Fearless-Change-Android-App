@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
 import kotlinx.android.synthetic.main.layout_card.view.*
 
 /**
@@ -16,7 +16,7 @@ abstract class CardView: ConstraintLayout, CardViewBehaviorProcessor {
 
     override val cardBehaviors = mutableListOf<CardActionListener>()
 
-    var card: Card? = null
+    var card: Pattern? = null
         set(value) {
             //onCardChanged(value)
             field = value
@@ -37,6 +37,6 @@ abstract class CardView: ConstraintLayout, CardViewBehaviorProcessor {
 
     protected open fun afterContentViewInflated() {}
     protected abstract fun onCreateContentView(inflater: LayoutInflater, rootView: CardView, context: Context, attributeSet: AttributeSet?): View
-    protected abstract fun onCardChanged(card: Card?)
+    protected abstract fun onCardChanged(card: Pattern?)
 
 }

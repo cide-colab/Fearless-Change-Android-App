@@ -4,8 +4,8 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import de.thkoeln.fherborn.fearlesschange.events.ObservableEvent
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.NoteRepository
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.NoteRepository
 
 
 class CardNoteViewModel(application: Application) : AndroidViewModel(application) {
@@ -24,7 +24,7 @@ class CardNoteViewModel(application: Application) : AndroidViewModel(application
 
     private fun getCardId(): Long = cardId ?: throw IllegalArgumentException("CardId is null")
 
-    fun getRawNote() = Note(title = "", description = "", cardId = getCardId())
+    fun getRawNote() = Note(title = "", text = "", patternId = getCardId())
 
     fun createNote(note: Note) {
         noteRepository.insert(note)
@@ -35,6 +35,6 @@ class CardNoteViewModel(application: Application) : AndroidViewModel(application
         noteRemovedEvent.invoke(note)
     }
 
-    private fun getAllNotes() = noteRepository.getNotesForCard(getCardId())
+    private fun getAllNotes() = noteRepository.getNotesForPattern(getCardId())
 }
 

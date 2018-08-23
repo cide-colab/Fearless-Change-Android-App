@@ -5,19 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.*
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardActionListener
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewBehaviorProcessor
+import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
 
 /**
- * Adapter to adapt a card to a recycler view
+ * Adapter to adapt a pattern to a recycler view
  *
  * @author Florian Herborn on 10.08.2018.
  * @since 0.0.1
- * @property cards cards to show and notesCount of each card
+ * @property cards cards to show and notesCount of each pattern
  * @see RecyclerView.Adapter
  * @see CardActionListener
  */
-class CardRecyclerGridAdapter(var cards: List<CardWithNoteCount> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewBehaviorProcessor {
+class CardRecyclerGridAdapter(var cards: List<PatternInfo> = listOf()) : RecyclerView.Adapter<CardRecyclerGridAdapter.CardViewHolder>(), CardViewBehaviorProcessor {
 
     override val cardBehaviors = mutableListOf<CardActionListener>()
 
@@ -51,8 +53,8 @@ class CardRecyclerGridAdapter(var cards: List<CardWithNoteCount> = listOf()) : R
 
         private var cardView = itemView.findViewById<CardViewPreview>(R.id.overview_grid_card)
 
-        fun bindCard(cardWithNoteCount: CardWithNoteCount) {
-            cardView.card = cardWithNoteCount.card
+        fun bindCard(cardWithNoteCount: PatternInfo) {
+            cardView.card = cardWithNoteCount.pattern
             cardView.notesCount = cardWithNoteCount.noteCount
             cardView.addDistinctCardActionListener(cardBehaviors)
         }

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
 
 /**
  *
@@ -56,7 +56,7 @@ class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.A
 
         fun bindCard(note: Note) {
             noteTitleView.text = note.title
-            noteDescriptionView.text = note.description
+            noteDescriptionView.text = note.text
         }
     }
 }

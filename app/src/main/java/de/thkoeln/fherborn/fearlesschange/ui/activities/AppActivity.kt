@@ -6,8 +6,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.toBackgroundOf
-import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
+import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
 import kotlinx.android.synthetic.main.activity_app.*
 import kotlinx.android.synthetic.main.app_bar.*
 
@@ -23,9 +22,7 @@ abstract class AppActivity : AppCompatActivity() {
     }
 
     private fun onSetBackground() {
-        GlideApp.with(this)
-                .load(R.drawable.app_bg).fitCenter()
-                .toBackgroundOf(activity_wrapper)
+        activity_wrapper.setOptimizedBackground(R.drawable.app_bg)
     }
 
     private fun setupActionBar() {

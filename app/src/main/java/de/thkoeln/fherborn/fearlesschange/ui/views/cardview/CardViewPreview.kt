@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
 import kotlinx.android.synthetic.main.card_preview.view.*
+import java.util.regex.Pattern
 
 
 /**
@@ -35,26 +35,8 @@ class CardViewPreview : CardView {
             card_preview_notes_icon.visibility = GONE
         }
     }
-
-    override fun onCardChanged(card: Card?) {
-        /*
-        card?.let {
-            card_front_title?.text = it.title
-            card_front_summary?.text = it.problem
-            fav_icon.setImageResource(
-                    when {
-                        card.favorite -> R.drawable.ic_favorite_full_white
-                        else -> R.drawable.ic_favorite_white
-                    }
-            )
-
-            GlideApp.with(context)
-                    .load(getResourceId(context, card.pictureName, "drawable"))
-                    .placeholder(R.drawable.default_pattern_image)
-                    .fitCenter()
-                    .into(card_front_image)
-        }
-        */
+    override fun onCardChanged(card: de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern?) {
+        
     }
 
 }

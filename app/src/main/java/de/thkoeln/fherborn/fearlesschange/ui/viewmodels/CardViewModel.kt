@@ -4,23 +4,23 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
 import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
-import de.thkoeln.fherborn.fearlesschange.persistance.models.CardWithNoteCount
-import de.thkoeln.fherborn.fearlesschange.persistance.repositories.CardRepository
 
 class CardViewModel(application: Application) : AndroidViewModel(application) {
 
     val createNewNoteEvent = Event<Void>()
 
     private val cardRepository by lazy {
-        CardRepository(application)
+        PatternRepository(application)
     }
 
 
-    fun getCardOfTheDay(): LiveData<CardWithNoteCount> =
+    fun getCardOfTheDay(): LiveData<PatternInfo> =
             Transformations.switchMap(cardRepository.getCount()) {
                 calculateCardOfTheDayIndex(it)?.let { cardIndex ->
-                    cardRepository.getElementWithIndexWithNoteCount(cardIndex)
+                    cardRepository.getInfo(1)
                 }
             }
 

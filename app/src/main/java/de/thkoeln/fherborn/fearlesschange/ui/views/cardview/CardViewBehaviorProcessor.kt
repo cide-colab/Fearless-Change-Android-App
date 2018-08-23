@@ -1,6 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.ui.views.cardview
 
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Card
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
 
 
 /**
@@ -55,7 +55,7 @@ interface CardViewBehaviorProcessor {
      * Add behaviors to the cardView if it doesn't exist
      * @param cardBehaviors that should be added
      */
-    fun addDistinctCardActionListener(listener: (card: Card?, action: CardViewAction) -> Unit) =
+    fun addDistinctCardActionListener(listener: (card: Pattern?, action: CardViewAction) -> Unit) =
             this.addCardActionListener(cardBehaviors.filter { !this.cardBehaviors.contains(it) })
 
     /**
@@ -74,7 +74,7 @@ interface CardViewBehaviorProcessor {
     /**
      * Invokes the behaviors that are added on the cardView
      */
-    fun performAction(card: Card?, action: CardViewAction) =
+    fun performAction(card: Pattern?, action: CardViewAction) =
             cardBehaviors.forEach { it.onCardAction(card, action) }
 
 }
@@ -91,5 +91,5 @@ enum class CardViewAction {
  * Behavior that can be implemented to add it to the cardView
  */
 interface CardActionListener {
-    fun onCardAction(card: Card?, action: CardViewAction)
+    fun onCardAction(card: Pattern?, action: CardViewAction)
 }

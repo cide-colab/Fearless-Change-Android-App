@@ -1,8 +1,8 @@
 package de.thkoeln.fherborn.fearlesschange.ui.handler
 
 import android.app.AlertDialog
-import de.thkoeln.fherborn.fearlesschange.persistance.models.Note
 import de.thkoeln.fherborn.fearlesschange.ui.viewmodels.CardNoteViewModel
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
 
 /**
  * Created by Florian on 21.08.2018.

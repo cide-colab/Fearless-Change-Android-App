@@ -5,8 +5,8 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideApp
-import de.thkoeln.fherborn.fearlesschange.ui.glide.GlideRequest
+import de.thkoeln.fherborn.fearlesschange.v2.helper.glide.GlideApp
+import de.thkoeln.fherborn.fearlesschange.v2.helper.glide.GlideRequest
 
 
 fun GlideRequest<Drawable>.toBackgroundOf(view: View) = into(object : SimpleTarget<Drawable>() {

@@ -27,7 +27,6 @@
 
     <style name="CardContentWrapper">
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:background">@drawable/card_content_bg</item>
     </style>
 
     <style name="CardButton" parent="Widget.Design.FloatingActionButton">

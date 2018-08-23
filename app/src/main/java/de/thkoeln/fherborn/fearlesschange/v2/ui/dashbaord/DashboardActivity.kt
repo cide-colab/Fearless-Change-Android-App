@@ -4,21 +4,21 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.ui.activities.SearchActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
-import de.thkoeln.fherborn.fearlesschange.v2.ui.carddetail.CardDetailDialogFragment
+import de.thkoeln.fherborn.fearlesschange.v2.ui.carddetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.CardViewModel
+import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
+import de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashbaordFeatureRegistry.dashboardFeatures
 import kotlinx.android.synthetic.main.app_bar.*
 
 
 class DashboardActivity : AppActivity() {
 
-    lateinit var viewModel: CardViewModel
+    lateinit var viewModel: PatternViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +27,8 @@ class DashboardActivity : AppActivity() {
         inflateFeatureFragments()
 
 
-        viewModel = ViewModelProviders.of(this).get(CardViewModel::class.java)
-        viewModel.cardPreviewClickedEvent.nonNullObserve(this) { openCardDetailPopup(it) }
+        viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
+        viewModel.patternPreviewClickedEvent.nonNullObserve(this) { openCardDetailPopup(it) }
     }
 
     private fun inflateFeatureFragments() {
@@ -56,7 +56,7 @@ class DashboardActivity : AppActivity() {
 
     private fun openCardDetailPopup(cardId: Long) {
         supportFragmentManager?.let { fm ->
-            val cardPopup = CardDetailDialogFragment.newInstance(cardId = cardId)
+            val cardPopup = PatternDetailDialogFragment.newInstance(cardId = cardId)
             cardPopup.show(fm, null)
         }
 

@@ -4,7 +4,6 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.content.Context
 import android.os.AsyncTask
-import de.thkoeln.fherborn.fearlesschange.persistance.DatabaseTask
 
 
 /**

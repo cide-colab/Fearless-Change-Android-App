@@ -8,10 +8,12 @@ import de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.features.NavigationFea
 /**
  * Created by florianherborn on 22.08.18.
  */
-val dashboardFeatures: List<Fragment> by lazy {
-    listOf(
-            NavigationFeature(),
-            CardOfTheDayFeature(),
-            MostClickedCardFeature()
-    )
+object DashbaordFeatureRegistry {
+    val dashboardFeatures: List<Fragment> by lazy {
+        listOf(
+                NavigationFeature(),
+                CardOfTheDayFeature(),
+                MostClickedCardFeature()
+        )
+    }
 }

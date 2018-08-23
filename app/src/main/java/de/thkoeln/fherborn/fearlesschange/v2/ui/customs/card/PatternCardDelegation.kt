@@ -6,6 +6,7 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedImage
 import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.ViewDelegation
 
@@ -18,6 +19,8 @@ class PatternCardDelegation(
         val solutionDefault: String = "",
         val favoriteDefault: Boolean = false,
         val noteCountDefault: Int = 0,
+        val backgroundDefault: Int = R.drawable.card_bg,
+        val contentBackgroundDefault: Int = R.drawable.card_content_bg,
         val defaultClickListener: () -> Unit = {}
 ) {
 
@@ -35,6 +38,12 @@ class PatternCardDelegation(
 
     fun updateCardImage(vararg cardImageViewIds: Int) =
             ViewDelegation(imageDefault) { setImage(cardImageViewIds, it, imageDefault) }
+
+    fun updateCardBackground(vararg cardImageViewIds: Int) =
+            ViewDelegation(backgroundDefault) { setBackground(cardImageViewIds, it) }
+
+    fun updateCardContentBackground(vararg cardImageViewIds: Int) =
+            ViewDelegation(contentBackgroundDefault) { setBackground(cardImageViewIds, it) }
 
     fun updateFavoriteIcon(vararg favoriteIconViewIds: Int) =
             ViewDelegation(favoriteDefault) {
@@ -80,6 +89,12 @@ class PatternCardDelegation(
     private fun setImage(viewIds: IntArray, imageId: Int, defaultImageId: Int? = null) {
         viewIds.forEach { id ->
             view.findViewById<ImageView>(id).setOptimizedImage(imageId, defaultImageId)
+        }
+    }
+
+    private fun setBackground(viewIds: IntArray, imageId: Int) {
+        viewIds.forEach { id ->
+            view.findViewById<View>(id).setOptimizedBackground(imageId)
         }
     }
 
