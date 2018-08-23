@@ -29,7 +29,7 @@ fun ImageView.setOptimizedImage(resourceId: Int?, defaultImageResource: Int? = n
 
 fun ImageView.setOptimizedImage(name: String?, defaultImageResource: Int? = null) {
     name?.let {
-        setOptimizedImage(getResourceId(context, it, "drawable"), defaultImageResource)
+        setOptimizedImage(context.getResourceId(it, "drawable"), defaultImageResource)
     }
 }
 

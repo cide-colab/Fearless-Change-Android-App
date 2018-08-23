@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.feature_card_of_the_day.*
 
 class CardOfTheDayFeature : Fragment() {
 
-    private lateinit var cardPreviewAdapter: CardPreviewAdapter
+    private val cardPreviewAdapter = CardPreviewAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.feature_card_of_the_day, container, false)
@@ -26,12 +26,13 @@ class CardOfTheDayFeature : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = ViewModelProviders.of(activity!!).get(CardViewModel::class.java)
         viewModel.getCardOfTheDay().observe(this, Observer { onCardInfoUpdate(it) })
-        cardPreviewAdapter = CardPreviewAdapter(card_preview)
+
         cardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
+        card_preview.setAdapter(cardPreviewAdapter)
     }
 
     private fun onCardInfoUpdate(cardInfo: CardInfo?) {
-        cardPreviewAdapter.setData(cardInfo)
+        cardPreviewAdapter.change(cardInfo)
     }
 
 }
