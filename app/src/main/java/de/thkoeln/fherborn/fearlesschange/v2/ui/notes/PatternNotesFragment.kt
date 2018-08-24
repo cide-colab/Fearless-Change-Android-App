@@ -1,6 +1,7 @@
 package de.thkoeln.fherborn.fearlesschange.v2.ui.notes
 
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -17,24 +18,27 @@ import de.thkoeln.fherborn.fearlesschange.v2.helper.SwipeCallback
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.NoteRecyclerGridAdapter
-import kotlinx.android.synthetic.main.pattern_detail_dialog.*
 import kotlinx.android.synthetic.main.fragment_pattern_notes.*
 
 
 class PatternNotesFragment : Fragment() {
 
-    private var cardId: Long = -1L
+    private var patternId: Long = -1L
     private lateinit var viewModel: NoteViewModel
     private val adapter = NoteRecyclerGridAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        cardId = arguments?.getLong(CARD_ID_KEY) ?: throw IllegalArgumentException("Missing patternId")
+        patternId = arguments?.getLong(CARD_ID_KEY) ?: throw IllegalArgumentException("Missing patternId")
         viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
-        viewModel.noteDeletedEvent.nonNullObserve(this) {
-            notifyUserForDeletion(it)
+        viewModel.sendSnackBarMessageEvent.nonNullObserve(this) {
+            Snackbar.make(pattern_notes_container, it.message, it.duration).show()
         }
+
+        viewModel.openCreateNoteDialogEvent.observe(this, Observer {
+            openCreateNoteDialog()
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -42,17 +46,17 @@ class PatternNotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setBackgrounds()
+        pattern_notes_container.setOptimizedBackground(R.drawable.notes_bg)
         initNotes()
         pattern_notes_add_note_btn.setOnClickListener {
-            openCreateNoteDialog()
+            viewModel.addNoteButtonClicked(patternId)
         }
     }
 
 
     private fun initNotes() {
         pattern_notes_recycler_view.adapter = adapter
-        viewModel.getNotesForPattern(cardId).nonNullObserve(this) {
+        viewModel.getNotesForPattern(patternId).nonNullObserve(this) {
             updateNotes(it)
         }
         val touchCallback = SwipeCallback(ItemTouchHelper.LEFT) { viewHolder, _ ->
@@ -68,20 +72,12 @@ class PatternNotesFragment : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
-    private fun notifyUserForDeletion(note: Note) {
-        Snackbar.make(pattern_detail_dialog_bottom_sheet, getString(R.string.noteDeleted, note.title), 2000).show()
-    }
-
     private fun openCreateNoteDialog() {
         val dialog = CreateNoteDialog(context)
         dialog.onConfirmListener = { title, description ->
-            viewModel.createNoteConfirmed(cardId, title, description)
+            viewModel.createNoteConfirmed(patternId, title, description)
         }
         dialog.show()
-    }
-
-    private fun setBackgrounds() {
-        pattern_notes_container.setOptimizedBackground(R.drawable.notes_bg)
     }
 
     companion object {

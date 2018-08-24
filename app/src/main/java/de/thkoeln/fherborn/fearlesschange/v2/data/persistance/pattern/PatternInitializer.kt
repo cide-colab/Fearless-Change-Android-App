@@ -308,7 +308,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     36,
                     "Involve Everyone",
                     "",
-                    "Even when you ask for help, there’s a tendency to take on too much. Others---especially those who don’t see the value in the new idea---may think of it as “your show.” ",
+                    "Even when you ask for help, there’s a tendency to take on too much. Others---especially those who don’t see the message in the new idea---may think of it as “your show.” ",
                     "For a new idea to be successful across an organization, everyone should have an opportunity to make his or her own unique contribution.",
                     "Make it known that everyone is welcome to be part of the change effort. Involve people from as many different groups as possible: management, administrative and technical support, marketing, and training. "
             ),
@@ -373,7 +373,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     "Personal Touch",
                     "",
                     "Presentations and training will arouse curiosity and some interest in the new idea, but you must do more the old habits of most individuals will not die without effort.",
-                    "To convince people of the value in a new idea, show how it can be personally useful and valuable to them.",
+                    "To convince people of the message in a new idea, show how it can be personally useful and valuable to them.",
                     "Talk with individuals about the ways in which the new idea can be personally useful and valuable to them."
             ),
             Pattern(

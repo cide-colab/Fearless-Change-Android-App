@@ -18,7 +18,7 @@ abstract class CardView: ConstraintLayout, CardViewBehaviorProcessor {
 
     var card: Pattern? = null
         set(value) {
-            //onCardChanged(value)
+            //onCardChanged(message)
             field = value
         }
 
