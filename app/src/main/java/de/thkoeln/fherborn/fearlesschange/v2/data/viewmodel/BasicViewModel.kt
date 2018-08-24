@@ -72,4 +72,9 @@ abstract class BasicViewModel(application: Application): AndroidViewModel(applic
             else -> id
         }
     }
+
+    protected fun <T> getAndSendMessageIfNullOrEmpty(values: List<T>?, messageId: Int): List<T>? {
+        if (values == null || values.isEmpty()) sendMessage(R.string.message_no_pattern_found)
+        return values
+    }
 }

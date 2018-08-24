@@ -29,7 +29,7 @@
                 android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.FavoritesActivity"
+            android:name=".v2.ui.favorites.FavoritesActivity"
             android:label="@string/title_activity_favorites"
             android:parentActivityName=".ui.activities.DashboardActivity"
             android:screenOrientation="portrait">

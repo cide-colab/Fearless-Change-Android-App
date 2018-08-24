@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
+import de.thkoeln.fherborn.fearlesschange.adapters.PatternRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
 import de.thkoeln.fherborn.fearlesschange.v2.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_overview.*
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_overview.*
 class OverviewActivity : AppActivity() {
 
     private lateinit var cardRepository: PatternRepository
-    private val adapter = CardRecyclerGridAdapter()
+    private val adapter = PatternRecyclerGridAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class OverviewActivity : AppActivity() {
 
 
         cardRepository.getAllInfo().observe(this, Observer { cards ->
-            adapter.cards = cards ?: listOf()
+            adapter.patterns = cards ?: listOf()
             adapter.notifyDataSetChanged()
         })
 
@@ -36,7 +36,7 @@ class OverviewActivity : AppActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.dashboard_activity_actions, menu)
+        menuInflater.inflate(R.menu.action_bar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
