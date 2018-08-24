@@ -54,6 +54,8 @@
     <string name="settings_item_reset_to_factory_settings_label">Reset to factory settings</string>
     <string name="alert_dialog_positive_button_label">Confirm</string>
     <string name="alert_dialog_negative_button_label">Cancel</string>
-    <string name="message_notes_resetted">All notes have been deleted</string>
+    <string name="message_notes_resetted">Your notes have been deleted</string>
     <string name="request_confirmation_reset_note_message">Do you really want to delete all notes? This action can not be undone!</string>
+    <string name="request_confirmation_reset_favorites">Do you really want to reset your favorites? This action can not be undone!</string>
+    <string name="message_favorites_resetted">Your favorites have been reset</string>
 </resources>

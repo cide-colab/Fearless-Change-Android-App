@@ -18,11 +18,15 @@ class SettingsViewModel(context: Application) : BasicViewModel(context) {
     }
 
     fun resetFavoritesClicked() {
-
+        requestConfirmation(R.string.request_confirmation_reset_favorites) {
+            patternRepository.setAllFavorites(false)
+            sendMessage(R.string.message_favorites_resetted)
+        }
     }
 
     fun resetToFactorySettingsClicked() {
-
+        resetFavoritesClicked()
+        resetMostClickedPatternClicked()
     }
 
 }

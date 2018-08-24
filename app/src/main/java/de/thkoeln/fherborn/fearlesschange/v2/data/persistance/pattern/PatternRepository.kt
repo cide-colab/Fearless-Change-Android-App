@@ -24,4 +24,5 @@ class PatternRepository(context: Context) {
     fun switchFavorite(id: Long) = doAsync { dao.switchFavorite(id) }
     fun getAllIds() = dao.getAllIds()
     fun getRandom(count: Int) = dao.getRandom(count)
+    fun setAllFavorites(flag: Boolean) = doAsync { dao.setAllFavorites(flag) }
 }

@@ -54,4 +54,7 @@ interface PatternDao {
             " ORDER BY RANDOM() LIMIT :count")
     fun getRandom(count: Int): LiveData<List<PatternInfo>>
 
+    @Query("UPDATE pattern SET favorite = :flag")
+    fun setAllFavorites(flag: Boolean)
+
 }
