@@ -20,6 +20,10 @@ import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
 class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.Adapter<NoteRecyclerGridAdapter.NoteViewHolder>() {
 
 
+    fun updateNotes(notes: List<Note>) {
+        this.notes = notes
+        notifyDataSetChanged()
+    }
     /**
      * Inflates ItemView and creates a ViewHolder with this view
      * @see RecyclerView.Adapter
@@ -36,6 +40,7 @@ class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.A
     override fun onBindViewHolder(holder: NoteRecyclerGridAdapter.NoteViewHolder, position: Int) {
         holder.bindCard(notes[position])
     }
+
     /**
      * returns the size of the noteList
      * @see RecyclerView.Adapter

@@ -1,24 +1,31 @@
 package de.thkoeln.fherborn.fearlesschange.v2.ui
 
 import android.content.Intent
+import android.support.design.widget.Snackbar
+import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.view.*
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.ui.activities.SearchActivity
+import de.thkoeln.fherborn.fearlesschange.v2.helper.SnackBarMessage
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
 
 
 abstract class AppActivity : AppCompatActivity() {
+
+    private var contentView: View? = null
 
     override fun setContentView(layoutResID: Int) {
         setContentView(LayoutInflater.from(this).inflate(layoutResID, null))
     }
 
     override fun setContentView(view: View?) {
+        contentView = view
         super.setContentView(prepareContentView(view))
     }
 
     override fun setContentView(view: View?, params: ViewGroup.LayoutParams?) {
+        contentView = view
         super.setContentView(prepareContentView(view), params)
     }
 
@@ -38,6 +45,16 @@ abstract class AppActivity : AppCompatActivity() {
             true
         }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    protected fun showSnackBar(message: SnackBarMessage) {
+        contentView?.let { Snackbar.make(it, message.message, message.duration).show() }
+    }
+
+    protected fun openPopup(popup: DialogFragment) {
+        supportFragmentManager?.let { fm ->
+            popup.show(fm, null)
+        }
     }
 
 }

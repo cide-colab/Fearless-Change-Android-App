@@ -1,13 +1,11 @@
-package de.thkoeln.fherborn.fearlesschange.adapters
+package de.thkoeln.fherborn.fearlesschange.v2.ui.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardActionListener
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardPreviewAdapter
 import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
 
 /**
@@ -22,6 +20,11 @@ import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
 class PatternRecyclerGridAdapter(var patterns: List<PatternInfo> = listOf()) : RecyclerView.Adapter<PatternRecyclerGridAdapter.PatternViewHolder>() {
 
     var patternClickedListener: ((PatternInfo?) -> Unit)? = null
+
+    fun updatePatterns(patterns: List<PatternInfo>) {
+        this.patterns = patterns
+        notifyDataSetChanged()
+    }
 
     /**
      * Inflates ItemView and creates a ViewHolder with this view

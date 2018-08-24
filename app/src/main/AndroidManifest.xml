@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.OverviewActivity"
+            android:name=".v2.ui.overview.OverviewActivity"
             android:label="@string/title_activity_overview"
             android:parentActivityName=".ui.activities.DashboardActivity"
             android:screenOrientation="portrait">

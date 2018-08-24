@@ -1,7 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.v2.ui.notes
 
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -10,9 +9,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.NoteViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.helper.SwipeCallback
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
@@ -56,20 +53,13 @@ class PatternNotesFragment : Fragment() {
 
     private fun initNotes() {
         pattern_notes_recycler_view.adapter = adapter
-        viewModel.getNotesForPattern(patternId).nonNullObserve(this) {
-            updateNotes(it)
-        }
+        viewModel.getNotesForPattern(patternId).nonNullObserve(this) { adapter.updateNotes(it) }
         val touchCallback = SwipeCallback(ItemTouchHelper.LEFT) { viewHolder, _ ->
             viewHolder?.adapterPosition?.let {
                 viewModel.deleteNoteConfirmed(adapter.notes[it])
             }
         }
         ItemTouchHelper(touchCallback).attachToRecyclerView(pattern_notes_recycler_view)
-    }
-
-    private fun updateNotes(it: List<Note>) {
-        adapter.notes = it
-        adapter.notifyDataSetChanged()
     }
 
     private fun openCreateNoteDialog(it: Long) {

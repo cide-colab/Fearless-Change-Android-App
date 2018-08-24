@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.favorites
+package de.thkoeln.fherborn.fearlesschange.v2.ui.overview
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,25 +9,25 @@ import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.carddetail.PatternDetailDialogFragment
-import kotlinx.android.synthetic.main.activity_favorites.*
+import kotlinx.android.synthetic.main.activity_overview.*
 import kotlinx.android.synthetic.main.app_bar.*
 
-class FavoritesActivity : AppActivity() {
 
+class OverviewActivity : AppActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorites)
+        setContentView(R.layout.activity_overview)
         setSupportActionBar(action_bar as Toolbar)
 
         val adapter = PatternRecyclerGridAdapter()
-        favorites_recycler_view.adapter = adapter
+        overview_recycler_view.adapter = adapter
 
         val viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
 
         viewModel.openPatternDetailDialogEvent.nonNullObserve(this) { openPopup(PatternDetailDialogFragment.newInstance(it)) }
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) { showSnackBar(it) }
-        viewModel.getFavorites().nonNullObserve(this) { adapter.updatePatterns(it)}
+        viewModel.getPatterns().nonNullObserve(this) { adapter.updatePatterns(it)}
 
         adapter.patternClickedListener = { viewModel.cardPreviewClicked(it) }
     }
