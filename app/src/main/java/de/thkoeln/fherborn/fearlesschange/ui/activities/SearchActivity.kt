@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.v2.ui.settings.SettingsActivity
 
 class SearchActivity : AppActivity() {
 

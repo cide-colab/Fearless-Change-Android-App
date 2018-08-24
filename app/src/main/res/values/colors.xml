@@ -12,4 +12,6 @@
     <color name="negative_button_color">#F44336</color>
     <color name="note_color">#FFEB3B</color>
     <color name="pin_color">#D32F2F</color>
+    <color name="settings_icon_system_background">#000000</color>
+    <color name="settings_icon_user_background">#8e0000</color>
 </resources>

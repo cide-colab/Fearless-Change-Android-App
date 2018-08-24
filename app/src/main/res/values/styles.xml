@@ -35,11 +35,6 @@
     </style>
 
 
-
-
-
-
-
     <style name="Card" parent="CardView">
         <item name="android:clipChildren">true</item>
         <item name="cardCornerRadius">16dp</item>
@@ -50,7 +45,8 @@
 
     <style name="AppDialog">
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent</item>
+        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent
+        </item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -62,10 +58,47 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="DashboardFeature">
+    <style name="ActivitySection">
         <item name="android:background">@color/feature_background</item>
-        <item name="android:layout_marginBottom">@dimen/feature_margin</item>
+        <item name="android:layout_marginTop">@dimen/feature_margin</item>
+        <item name="android:layout_marginLeft">@dimen/feature_margin</item>
+        <item name="android:layout_marginRight">@dimen/feature_margin</item>
         <item name="android:padding">@dimen/feature_padding</item>
+    </style>
+
+    <style name="DashboardFeature" parent="ActivitySection" />
+
+    <style name="ActivityContent">
+        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+    <style name="SettingsHeader">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="SettingsItem">
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="SettingsItemIcon">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="SettingsItemIcon.UserSection">
+        <item name="android:background">@drawable/settings_icon_user_bg</item>
+    </style>
+
+    <style name="SettingsItemIcon.SystemSection">
+        <item name="android:background">@drawable/settings_icon_system_bg</item>
+    </style>
+
+    <style name="SettingsItemLabel">
+        <item name="android:layout_marginStart">32dp</item>
     </style>
 
 </resources>

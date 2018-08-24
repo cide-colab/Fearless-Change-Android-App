@@ -11,6 +11,7 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.ui.activities.FavoritesActivity
 import de.thkoeln.fherborn.fearlesschange.ui.activities.MoreActivity
 import de.thkoeln.fherborn.fearlesschange.ui.activities.OverviewActivity
+import de.thkoeln.fherborn.fearlesschange.v2.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.feature_navigation.*
 
 
@@ -26,7 +27,7 @@ class NavigationFeature : Fragment() {
 
     private fun setListeners() {
         fab_favorites.setOnClickListener{ startActivity(Intent(activity, FavoritesActivity::class.java))}
-        fab_more.setOnClickListener{ startActivity(Intent(activity, MoreActivity::class.java))}
         fab_overview.setOnClickListener{ startActivity(Intent(activity, OverviewActivity::class.java))}
+        fab_settings.setOnClickListener{ startActivity(Intent(activity, SettingsActivity::class.java))}
     }
 }

@@ -414,7 +414,7 @@ class KeywordInitializer : DataInitializer<Keyword>("keyword") {
             Keyword(402, "Reminder"),
             Keyword(403, "Memorandum"),
             Keyword(404, "short experiment"),
-            Keyword(405, "Dummy test"),
+            Keyword(405, "Dummy text"),
             Keyword(406, "Tryout"),
             Keyword(407, "meet privately"),
             Keyword(408, "One-on-one meetings"),

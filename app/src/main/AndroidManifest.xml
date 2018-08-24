@@ -55,7 +55,7 @@
                 android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.SettingsActivity"
+            android:name=".v2.ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait">
             <meta-data

@@ -18,6 +18,9 @@ interface NoteDao {
     @Delete
     fun delete(vararg notes: Note)
 
+    @Query("DELETE FROM note")
+    fun deleteAll()
+
     @Query("SELECT * FROM note WHERE id = :id LIMIT 1")
     fun get(id: Long): LiveData<Note>
 
@@ -30,5 +33,6 @@ interface NoteDao {
 
     @Query("SELECT COUNT(*) FROM note")
     fun getCount(): LiveData<Long>
+
 
 }

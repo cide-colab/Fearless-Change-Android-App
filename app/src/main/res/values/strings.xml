@@ -4,7 +4,7 @@
     <!-- Navigation -->
     <string name="label_nav_overview">Overview</string>
     <string name="label_nav_favorites">Favorites</string>
-    <string name="label_nav_more">More</string>
+    <string name="label_nav_settings">Settings</string>
 
     <!-- Actions -->
     <string name="action_details">Details</string>
@@ -47,4 +47,13 @@
     <string name="image_description_notes">Notes icon</string>
     <string name="image_description_feature_icon">Feature Icon</string>
     <string name="could_not_find_pattern">Couldn\'t find Pattern</string>
+    <string name="settings_header_user">User</string>
+    <string name="settings_item_reset_most_clicked_cards_label">Reset most clicked cards</string>
+    <string name="settings_item_reset_favorites_label">Reset Favorites</string>
+    <string name="settings_header_system">System</string>
+    <string name="settings_item_reset_to_factory_settings_label">Reset to factory settings</string>
+    <string name="alert_dialog_positive_button_label">Confirm</string>
+    <string name="alert_dialog_negative_button_label">Cancel</string>
+    <string name="message_notes_resetted">All notes have been deleted</string>
+    <string name="request_confirmation_reset_note_message">Do you really want to delete all notes? This action can not be undone!</string>
 </resources>

@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/fab_overview"
-        app:layout_constraintEnd_toStartOf="@id/fab_more"
+        app:layout_constraintEnd_toStartOf="@id/fab_settings"
         app:fabSize="normal"
         android:backgroundTint="@color/dashboard_nav_favorites_bg"
         app:elevation="0dp"
@@ -47,7 +47,7 @@
         android:text="@string/label_nav_favorites"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_more"
+        android:id="@+id/fab_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,14 +56,14 @@
         android:backgroundTint="@color/dashboard_nav_more_bg"
         app:elevation="0dp"
         app:borderWidth="0dp"
-        android:src="@drawable/ic_menu_white"/>
+        android:src="@drawable/ic_build_white"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/fab_more"
-        app:layout_constraintEnd_toEndOf="@id/fab_more"
-        app:layout_constraintTop_toBottomOf="@id/fab_more"
-        android:text="@string/label_nav_more"/>
+        app:layout_constraintStart_toStartOf="@id/fab_settings"
+        app:layout_constraintEnd_toEndOf="@id/fab_settings"
+        app:layout_constraintTop_toBottomOf="@id/fab_settings"
+        android:text="@string/label_nav_settings"/>
 
 </android.support.constraint.ConstraintLayout>

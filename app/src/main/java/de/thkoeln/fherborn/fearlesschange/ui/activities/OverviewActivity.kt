@@ -8,6 +8,7 @@ import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.adapters.CardRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
+import de.thkoeln.fherborn.fearlesschange.v2.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_overview.*
 
 
