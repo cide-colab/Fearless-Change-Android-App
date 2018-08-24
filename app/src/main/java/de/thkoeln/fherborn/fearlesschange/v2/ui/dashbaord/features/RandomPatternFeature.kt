@@ -15,18 +15,14 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.ui.views.cardview.CardViewPreview
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.helper.animation.FlipAnimationManager
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardPreviewAdapter
 import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
-import kotlinx.android.synthetic.main.feature_card_of_the_day.*
-import kotlinx.android.synthetic.main.feature_random_cards.*
+import kotlinx.android.synthetic.main.feature_random_pattern.*
 
 
-class RandomCardsFeature : Fragment() {
+class RandomPatternFeature : Fragment() {
 
     private val patternCardAdapters = listOf(
             PatternCardPreviewAdapter(),
@@ -43,7 +39,7 @@ class RandomCardsFeature : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-            = inflater.inflate(R.layout.feature_random_cards, container, false)
+            = inflater.inflate(R.layout.feature_random_pattern, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
