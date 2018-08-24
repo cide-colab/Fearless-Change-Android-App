@@ -47,10 +47,7 @@ class PatternCardDelegation(
 
     fun updateFavoriteIcon(vararg favoriteIconViewIds: Int) =
             ViewDelegation(favoriteDefault) {
-                setImage(favoriteIconViewIds, when {
-                    it -> R.drawable.ic_favorite_full_white
-                    else -> R.drawable.ic_favorite_white
-                })
+                setVisibility(favoriteIconViewIds, it)
             }
 
     fun updateFavoriteFab(vararg favoriteFabIds: Int) =
