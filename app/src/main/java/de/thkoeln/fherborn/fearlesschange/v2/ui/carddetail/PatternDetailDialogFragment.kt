@@ -30,8 +30,8 @@ class PatternDetailDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        cardId = arguments?.getLong(CARD_ID_KEY)?:throw IllegalArgumentException("Missing pattern id")
         viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
+        cardId = viewModel.extractRequiredId(arguments, CARD_ID_KEY)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -53,8 +53,8 @@ class PatternDetailDialogFragment : DialogFragment() {
 
     private fun initCards() {
 
-        cardBackAdapter.onFavoriteClickedListener = { viewModel.switchFavorite(it?.id) }
-        cardFrontAdapter.onFavoriteClickedListener = { viewModel.switchFavorite(it?.id) }
+        cardBackAdapter.onFavoriteClickedListener = { viewModel.favoriteButtonClicked(it?.id) }
+        cardFrontAdapter.onFavoriteClickedListener = { viewModel.favoriteButtonClicked(it?.id) }
 
         pattern_detail_flippable_card.setCardBackAdapter(cardBackAdapter)
         pattern_detail_flippable_card.setCardFrontAdapter(cardFrontAdapter)

@@ -36,9 +36,9 @@ class PatternNotesFragment : Fragment() {
             Snackbar.make(pattern_notes_container, it.message, it.duration).show()
         }
 
-        viewModel.openCreateNoteDialogEvent.observe(this, Observer {
-            openCreateNoteDialog()
-        })
+        viewModel.openCreateNoteDialogEvent.nonNullObserve(this) {
+            openCreateNoteDialog(it)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -72,10 +72,10 @@ class PatternNotesFragment : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
-    private fun openCreateNoteDialog() {
+    private fun openCreateNoteDialog(it: Long) {
         val dialog = CreateNoteDialog(context)
         dialog.onConfirmListener = { title, description ->
-            viewModel.createNoteConfirmed(patternId, title, description)
+            viewModel.createNoteConfirmed(it, title, description)
         }
         dialog.show()
     }

@@ -1,9 +1,9 @@
 package de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
+import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
@@ -14,21 +14,21 @@ import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.Statisti
 /**
  * Created by florianherborn on 22.08.18.
  */
-class PatternViewModel(context: Application) : AndroidViewModel(context) {
+class PatternViewModel(context: Application) : BasicViewModel(context) {
 
     private val patternRepository by lazy { PatternRepository(context) }
     private val statisticRepository by lazy { StatisticRepository(context) }
 
-    val patternPreviewClickedEvent = Event<Long>()
+    val openPatternDetailDialogEvent = Event<Long>()
     private var randomIds: List<Long>? = null
     private var generated = false
 
-    fun getPattern(id: Long?) = patternRepository.get(getCheckedPatternId(id))
+    fun getPattern(id: Long?) = patternRepository.get(forceGetNonNullId(id))
     fun getPatterns() = patternRepository.getAll()
     fun getFavorites() = patternRepository.getFavorites()
 
-    fun switchFavorite(cardId: Long?) {
-        patternRepository.switchFavorite(getCheckedPatternId(cardId))
+    fun favoriteButtonClicked(cardId: Long?) {
+        patternRepository.switchFavorite(forceGetNonNullId(cardId))
     }
 
     fun getPatternOfTheDay(): LiveData<PatternInfo> =
@@ -67,14 +67,11 @@ class PatternViewModel(context: Application) : AndroidViewModel(context) {
             }
 
     fun cardPreviewClicked(patternInfo: PatternInfo?) {
-        getCheckedPatternId(patternInfo?.pattern?.id).let {
+       patternInfo?.pattern?.id?.let {
             statisticRepository.insert(Statistic(patternId = it, action = StatisticAction.CLICK))
-            patternPreviewClickedEvent.invoke(it)
-        }
+            openPatternDetailDialogEvent.invoke(it)
+        }?:sendMessage(R.string.could_not_find_pattern)
     }
-
-    private fun getCheckedPatternId(id: Long?) = id
-            ?: throw IllegalArgumentException("Missing pattern id")
 
     private fun calculateRandomPatterns(ids: List<Long>, count: Int) =
             ids.shuffled().subList(0, Math.min(count, ids.size))
