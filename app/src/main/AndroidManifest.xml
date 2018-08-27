@@ -47,7 +47,7 @@
                 android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.SearchActivity"
+            android:name=".v2.ui.search.SearchActivity"
             android:label="@string/title_activity_search"
             android:screenOrientation="portrait">
             <meta-data

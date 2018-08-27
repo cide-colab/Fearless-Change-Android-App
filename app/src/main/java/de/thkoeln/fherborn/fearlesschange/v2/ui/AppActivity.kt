@@ -6,7 +6,7 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.view.*
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.ui.activities.SearchActivity
+import de.thkoeln.fherborn.fearlesschange.v2.ui.search.SearchActivity
 import de.thkoeln.fherborn.fearlesschange.v2.helper.SnackBarMessage
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
 

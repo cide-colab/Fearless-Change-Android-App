@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.ui.activities.SearchActivity
+import de.thkoeln.fherborn.fearlesschange.v2.ui.search.SearchActivity
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.SettingsViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
