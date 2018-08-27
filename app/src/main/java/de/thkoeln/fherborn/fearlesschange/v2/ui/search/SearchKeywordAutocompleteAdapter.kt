@@ -34,6 +34,7 @@ class SearchKeywordAutocompleteAdapter(context: Context, keywords: List<Keyword>
 
     fun updateKeywords(keywords: List<Keyword>) {
         this.allKeywords = keywords
+        notifyDataSetChanged()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -67,6 +68,7 @@ class SearchKeywordAutocompleteAdapter(context: Context, keywords: List<Keyword>
             override fun publishResults(constraint: CharSequence?, results: Filter.FilterResults?) {
                 filteredKeywords.clear()
                 (results?.values as? List<*>)?.filter { it is Keyword}?.forEach{ filteredKeywords.add(it as Keyword) }
+                notifyDataSetChanged()
             }
         }
     }

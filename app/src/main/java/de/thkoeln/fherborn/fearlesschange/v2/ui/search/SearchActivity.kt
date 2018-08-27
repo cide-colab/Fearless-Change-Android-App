@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import de.thkoeln.fherborn.fearlesschange.R
@@ -48,6 +49,7 @@ class SearchActivity : AppActivity() {
         }
 
         viewModel.getSearchResult().nonNullObserve(this) { patterns ->
+            Log.e("Patterns: ", patterns.toString())
             resultsAdapter.updatePatterns(patterns)
         }
 
