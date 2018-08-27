@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.carddetail
+package de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
