@@ -41,6 +41,7 @@ class SearchActivity : AppActivity() {
         })
         viewModel.selectedKeywords.nonNullObserve(this) {
             selectedKeywordsAdapter.updateKeywords(it)
+            selected_keywords.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
         }
         selected_keywords.adapter = selectedKeywordsAdapter
         search_results.adapter = resultsAdapter
@@ -50,8 +51,8 @@ class SearchActivity : AppActivity() {
         }
 
         viewModel.getSearchResult().nonNullObserve(this) { patterns ->
-            Log.e("Patterns: ", patterns.toString())
             resultsAdapter.updatePatterns(patterns)
+            search_results.visibility = if (patterns.isEmpty()) View.GONE else View.VISIBLE
         }
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
