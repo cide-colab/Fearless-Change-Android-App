@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord
+package de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,9 +9,7 @@ import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail.PatternDetailDialogFragment
-import de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardFeatureRegistry.dashboardFeatures
-import kotlinx.android.synthetic.main.activity_dashbaord.*
-import kotlinx.android.synthetic.main.action_bar.*
+import de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
 
 
 class DashboardActivity : AppActivity() {

@@ -10,57 +10,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait">
-            <intent-filter>
+            <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".v2.ui.overview.OverviewActivity"
             android:label="@string/title_activity_overview"
-            android:parentActivityName=".ui.activities.DashboardActivity"
+            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
             android:name=".v2.ui.favorites.FavoritesActivity"
             android:label="@string/title_activity_favorites"
-            android:parentActivityName=".ui.activities.DashboardActivity"
+            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
-        </activity>
-        <activity
-            android:name=".ui.activities.MoreActivity"
-            android:label="@string/title_activity_more"
-            android:parentActivityName=".ui.activities.DashboardActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
             android:name=".v2.ui.search.SearchActivity"
             android:label="@string/title_activity_search"
+            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
             android:name=".v2.ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashbaord.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
         </activity>
 
     </application>
