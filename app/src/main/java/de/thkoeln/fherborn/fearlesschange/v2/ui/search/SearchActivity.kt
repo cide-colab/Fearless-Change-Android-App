@@ -13,6 +13,7 @@ import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.SearchViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternRecyclerGridAdapter
+import de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail.PatternDetailDialogFragment
 import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -29,6 +30,8 @@ class SearchActivity : AppActivity() {
 
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
 
+        viewModel.openPatternDetailDialogEvent.nonNullObserve(this) {openPopup(PatternDetailDialogFragment.newInstance(it))}
+
         searchKeywordsAdapter = SearchKeywordAutocompleteAdapter(this)
         search_keyword.setAdapter(searchKeywordsAdapter)
         search_keyword.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
@@ -44,14 +47,16 @@ class SearchActivity : AppActivity() {
         selected_keywords.adapter = selectedKeywordsAdapter
         search_results.adapter = resultsAdapter
 
+        resultsAdapter.patternClickedListener = { viewModel.cardPreviewClicked(it)}
+
         search_button.setOnClickListener {
             viewModel.onSearchClicked()
         }
 
         viewModel.getSearchResult().nonNullObserve(this) { patterns ->
-            Log.e("Patterns: ", patterns.toString())
             resultsAdapter.updatePatterns(patterns)
         }
+
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
