@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Window
 import de.thkoeln.fherborn.fearlesschange.R
-import kotlinx.android.synthetic.main.create_note_dialog.*
+import kotlinx.android.synthetic.main.dialog_create_note.*
 
 class CreateNoteDialog(context: Context?) : Dialog(context) {
     var onConfirmListener: ((String, String) -> Unit)? = null
@@ -14,7 +14,7 @@ class CreateNoteDialog(context: Context?) : Dialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.create_note_dialog)
+        setContentView(R.layout.dialog_create_note)
         create_note_confirm.setOnClickListener {
             if (dismissOnConfirm) dismiss()
             onConfirmListener?.invoke(

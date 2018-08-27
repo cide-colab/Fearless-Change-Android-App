@@ -31,7 +31,7 @@ class PatternRecyclerGridAdapter(var patterns: List<PatternInfo> = listOf()) : R
      * @see RecyclerView.Adapter
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            PatternViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_card_grid_item, parent, false))
+            PatternViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.pattern_card_grid_item, parent, false))
 
     /**
      * Binds a viewholder to

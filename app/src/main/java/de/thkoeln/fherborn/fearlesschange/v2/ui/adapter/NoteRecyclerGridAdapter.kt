@@ -29,7 +29,7 @@ class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.A
      * @see RecyclerView.Adapter
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteRecyclerGridAdapter.NoteViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_note_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.note_grid_item, parent, false)
         return NoteViewHolder(view)
     }
 

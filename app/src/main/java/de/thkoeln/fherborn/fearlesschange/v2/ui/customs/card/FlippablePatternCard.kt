@@ -7,7 +7,7 @@ import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.helper.animation.FlipAnimationManager
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.SingleViewAdapter
-import kotlinx.android.synthetic.main.flippable_card.view.*
+import kotlinx.android.synthetic.main.pattern_card_flippable.view.*
 
 /**
  * Created by florianherborn on 23.08.18.
@@ -18,7 +18,7 @@ class FlippablePatternCard @JvmOverloads constructor(context: Context?, attrs: A
     private val flipAnimationHelper: FlipAnimationManager
 
     init {
-        View.inflate(context, R.layout.flippable_card, this)
+        View.inflate(context, R.layout.pattern_card_flippable, this)
 
         flipAnimationHelper = FlipAnimationManager(card_front, card_back)
 

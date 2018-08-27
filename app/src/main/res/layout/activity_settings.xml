@@ -7,7 +7,7 @@
     android:background="@drawable/app_bg"
     android:layout_height="match_parent">
 
-    <include layout="@layout/app_bar" />
+    <include layout="@layout/action_bar" />
 
     <android.support.v4.widget.NestedScrollView
         style="@style/ActivityContent"

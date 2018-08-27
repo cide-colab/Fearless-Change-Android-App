@@ -25,7 +25,7 @@ class PatternCardPreview @JvmOverloads constructor(context: Context?, attrs: Att
     var onCardClickedListener by delegation.updateClickListener(R.id.card_preview_card)
 
     init {
-        View.inflate(context, R.layout.card_preview, this)
+        View.inflate(context, R.layout.pattern_card_preview, this)
         context?.obtainStyledAttributes(attrs, R.styleable.PatternCardPreview, defStyleAttr, 0)?.apply {
             try {
                 favorite = getBoolean(R.styleable.PatternCardPreview_PatternCardFavorite, delegation.favoriteDefault)

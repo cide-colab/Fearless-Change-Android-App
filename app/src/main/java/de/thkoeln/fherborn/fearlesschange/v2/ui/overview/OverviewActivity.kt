@@ -10,7 +10,7 @@ import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail.PatternDetailDialogFragment
 import kotlinx.android.synthetic.main.activity_overview.*
-import kotlinx.android.synthetic.main.app_bar.*
+import kotlinx.android.synthetic.main.action_bar.*
 
 
 class OverviewActivity : AppActivity() {

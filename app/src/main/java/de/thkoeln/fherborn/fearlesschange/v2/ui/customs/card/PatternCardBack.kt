@@ -22,7 +22,7 @@ class PatternCardBack @JvmOverloads constructor(context: Context?, attrs: Attrib
     var onCardClickedListener by delegation.updateClickListener(R.id.card_back_card)
 
     init {
-        View.inflate(context, R.layout.card_back, this)
+        View.inflate(context, R.layout.pattern_card_back, this)
         context?.obtainStyledAttributes(attrs, R.styleable.PatternCardBack, defStyleAttr, 0)?.apply {
             try {
                 favorite = getBoolean(R.styleable.PatternCardBack_PatternCardFavorite, delegation.favoriteDefault)
