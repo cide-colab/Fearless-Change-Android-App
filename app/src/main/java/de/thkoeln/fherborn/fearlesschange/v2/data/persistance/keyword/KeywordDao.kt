@@ -14,4 +14,7 @@ interface KeywordDao {
 
     @Query("SELECT * FROM keyword")
     fun getKeywords(): LiveData<List<Keyword>>
+
+    @Query("SELECT * FROM keyword WHERE keyword.keyword = :keyword LIMIT 1")
+    fun getKeywordByKeyword(keyword: String): LiveData<Keyword>
 }

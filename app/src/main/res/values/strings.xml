@@ -60,4 +60,8 @@
     <string name="message_favorites_resetted">Your favorites have been reset</string>
     <string name="message_no_favorites_found">No Favorites found</string>
     <string name="message_no_pattern_found">No Pattern found</string>
+    <!-- Search -->
+    <string name="search_error_keyword_not_found">Selected Keyword not found in database</string>
+    <string name="search_error_already_in_list">Keyword already in list.</string>
+    <string name="search_error_no_cards_found">No cards found matching search criteria.</string>
 </resources>

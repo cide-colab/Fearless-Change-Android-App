@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "pattern",
         indices = [(Index("id"))])
 data class Pattern (
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey(autoGenerate = false)
         val id: Long,
         val title: String,
         val pictureName: String,
