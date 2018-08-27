@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#616161</color>
     <color name="colorAccent">#FF5722</color>
 
+    <!-- Launcher -->
+    <color name="ic_launcher_background">#FFFFFF</color>
+
     <!-- Backgrounds -->
     <color name="component_background">#77ffffff</color>
     <color name="feature_background">@color/component_background</color>
