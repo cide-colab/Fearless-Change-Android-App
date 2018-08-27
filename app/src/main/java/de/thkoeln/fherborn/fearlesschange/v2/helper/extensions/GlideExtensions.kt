@@ -15,24 +15,12 @@ fun GlideRequest<Drawable>.toBackgroundOf(view: View) = into(object : SimpleTarg
     }
 })
 
-fun ImageView.setOptimizedImage(drawable: Drawable?, defaultImageResource: Int? = null) {
-    var glideRequest = GlideApp.with(context).load(drawable)
-    defaultImageResource?.let { glideRequest = glideRequest.placeholder(it) }
-    glideRequest.fitCenter().into(this)
-}
-
 fun ImageView.setOptimizedImage(resourceId: Int?, defaultImageResource: Int? = null) {
-    var glideRequest = GlideApp.with(context).load(resourceId)
+    var glideRequest = GlideApp.with(context.applicationContext).load(resourceId)
     defaultImageResource?.let { glideRequest = glideRequest.placeholder(it) }
     glideRequest.fitCenter().into(this)
-}
-
-fun ImageView.setOptimizedImage(name: String?, defaultImageResource: Int? = null) {
-    name?.let {
-        setOptimizedImage(context.getResourceId(it, "drawable"), defaultImageResource)
-    }
 }
 
 fun View.setOptimizedBackground(resourceId: Int) {
-    GlideApp.with(context).load(resourceId).fitCenter().toBackgroundOf(this)
+    GlideApp.with(context.applicationContext).load(resourceId).fitCenter().toBackgroundOf(this)
 }
