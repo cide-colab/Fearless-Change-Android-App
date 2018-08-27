@@ -32,7 +32,7 @@ class SearchActivity : AppActivity() {
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
 
         viewModel.openPatternDetailDialogEvent.nonNullObserve(this) {openPopup(PatternDetailDialogFragment.newInstance(it))}
-
+        viewModel.sendSnackBarMessageEvent.nonNullObserve(this) { showSnackBar(it) }
         searchKeywordsAdapter = SearchKeywordAutocompleteAdapter(this)
         search_keyword.setAdapter(searchKeywordsAdapter)
         search_keyword.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->

@@ -41,8 +41,11 @@ class SearchViewModel(context: Application) : BasicViewModel(context) {
         searchClickedEvent.invoke(selectedKeywords.value)
     }
 
-    fun getSearchResult() = Transformations.switchMap(searchClickedEvent) { keywords ->
-        patternRepository.getByKeywordIds(keywords?.map { k -> k.id } ?: emptyList())
+    fun getSearchResult(): LiveData<List<PatternInfo>> = Transformations.switchMap(searchClickedEvent) { keywords ->
+        Transformations.map(patternRepository.getByKeywordIds(keywords?.map { k -> k.id } ?: emptyList())) {
+            if (it.isEmpty()) sendMessage(R.string.search_error_no_cards_found)
+            it
+        }
     }
 
     fun removeKeyword(keyword: Keyword) {
