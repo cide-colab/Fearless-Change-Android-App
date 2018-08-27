@@ -16,10 +16,6 @@ class SearchViewModel(context: Application) : BasicViewModel(context) {
     val selectedKeywords = MutableLiveData<List<Keyword>>()
     val openCreateNoteDialogEvent = Event<Long>()
 
-    init {
-        selectedKeywords.value = emptyList()
-    }
-
     fun getNotSelectedKeywords(): LiveData<List<Keyword>> = Transformations.switchMap(selectedKeywords) { selectedKeywords ->
         Transformations.map(keywordRepository.getAllKeywords()) {
             it.filterNot { keyword -> selectedKeywords.contains(keyword) }

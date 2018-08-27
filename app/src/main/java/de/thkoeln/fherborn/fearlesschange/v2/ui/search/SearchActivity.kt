@@ -1,5 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.v2.ui.search
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -35,9 +36,9 @@ class SearchActivity : AppActivity() {
             searchKeywordsAdapter.getItem(position)?.let { viewModel.addKeywordClicked(it) }
             search_keyword.setText("")
         }
-        viewModel.getNotSelectedKeywords().nonNullObserve(this) {
-            searchKeywordsAdapter.updateKeywords(it)
-        }
+        viewModel.getNotSelectedKeywords().observe(this, Observer {
+            searchKeywordsAdapter.updateKeywords(it?: emptyList())
+        })
         viewModel.selectedKeywords.nonNullObserve(this) {
             selectedKeywordsAdapter.updateKeywords(it)
         }
