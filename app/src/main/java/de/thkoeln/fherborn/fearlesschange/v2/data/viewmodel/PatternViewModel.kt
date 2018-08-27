@@ -19,9 +19,10 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
     private val patternRepository by lazy { PatternRepository(context) }
     private val statisticRepository by lazy { StatisticRepository(context) }
 
+    private var cardCount = 50
+    private val generateNewRandomPattern = Event<List<Int>>()
+
     val openPatternDetailDialogEvent = Event<Long>()
-    private var randomIds: List<Long>? = null
-    private var generated = false
 
     fun getPattern(id: Long?) = patternRepository.get(forceGetNonNullId(id))
     fun getPatterns(): LiveData<List<PatternInfo>> = Transformations.map(patternRepository.getAllInfo()) { getAndSendMessageIfNullOrEmpty(it, R.string.message_no_pattern_found) }
@@ -37,28 +38,24 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
             }
 
     fun getRandomPatterns(): LiveData<List<PatternInfo>> =
-            Transformations.switchMap(patternRepository.getAllIds()) { ids ->
-                getRandomIds(ids)?.let {
-                    patternRepository.getInfos(it)
-                }
-            }
-
-    private fun getRandomIds(ids: List<Long>?): List<Long>? =
-            ids?.let {
-                when {
-                    randomIds == null || !generated -> {
-                        generated = true
-                        randomIds = calculateRandomPatterns(ids, 3)
-                        randomIds
+            Transformations.switchMap(generateNewRandomPattern) { randomInts ->
+                Transformations.switchMap(patternRepository.getAllIds()) { ids ->
+                    cardCount = ids.size
+                    mapToIds(ids, randomInts)?.let {
+                        patternRepository.getInfos(it)
                     }
-                    else -> randomIds
-
                 }
             }
 
 
-    fun calculateNewRandomPatterns() {
-        generated = false
+    private fun mapToIds(ids: List<Long>?, randomInts: List<Int>): List<Long>? =
+            ids?.let {
+                randomInts.map { ids[it % ids.size] }
+            }
+
+
+    fun generateNewRandomPatterns() {
+        generateNewRandomPattern.invoke((0..cardCount).shuffled().subList(0, 3))
     }
 
     fun getMostClickedPattern(): LiveData<PatternInfo> =
@@ -67,14 +64,11 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
             }
 
     fun cardPreviewClicked(patternInfo: PatternInfo?) {
-       patternInfo?.pattern?.id?.let {
+        patternInfo?.pattern?.id?.let {
             statisticRepository.insert(Statistic(patternId = it, action = StatisticAction.CLICK))
             openPatternDetailDialogEvent.invoke(it)
-        }?:sendMessage(R.string.could_not_find_pattern)
+        } ?: sendMessage(R.string.could_not_find_pattern)
     }
-
-    private fun calculateRandomPatterns(ids: List<Long>, count: Int) =
-            ids.shuffled().subList(0, Math.min(count, ids.size))
 
     private fun calculatePatternOfTheDay(cardIds: List<Long>): Long? {
         val currentDay = (System.currentTimeMillis() / 1000 / 60 / 60 / 24)
@@ -85,3 +79,4 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
     }
 
 }
+

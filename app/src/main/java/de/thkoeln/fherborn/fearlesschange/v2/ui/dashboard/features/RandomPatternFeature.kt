@@ -24,6 +24,8 @@ import kotlinx.android.synthetic.main.feature_random_pattern.*
 
 class RandomPatternFeature : Fragment() {
 
+    private var animated = true
+
     private val patternCardAdapters = listOf(
             PatternCardPreviewAdapter(),
             PatternCardPreviewAdapter(),
@@ -38,8 +40,7 @@ class RandomPatternFeature : Fragment() {
         )
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-            = inflater.inflate(R.layout.feature_random_pattern, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.feature_random_pattern, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,19 +48,31 @@ class RandomPatternFeature : Fragment() {
 
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
         viewModel.getRandomPatterns().observe(this, Observer { onPatternChanged(it) })
-
+        viewModel.generateNewRandomPatterns()
         patternCardAdapters.forEachIndexed { index, patternCardPreviewAdapter ->
             patternCardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
             patternCards[index].setAdapter(patternCardPreviewAdapter)
         }
 
-        random_cards_reload.setOnClickListener { viewModel.calculateNewRandomPatterns() }
+        random_cards_reload.setOnClickListener {
+            animated = false
+            viewModel.generateNewRandomPatterns()
+        }
     }
 
     private fun onPatternChanged(patterns: List<PatternInfo>?) {
-        animateCardsAndRun(random_cards_1, random_cards_2, random_cards_3) {
-            patternCardAdapters[it].change(patterns?.get(it))
+        when {
+            animated -> patterns?.forEachIndexed { index, patternInfo ->
+                patternCardAdapters[index].change(patternInfo)
+            }
+            else -> {
+                animateCardsAndRun(random_cards_1, random_cards_2, random_cards_3) {
+                    patternCardAdapters[it].change(patterns?.get(it))
+                }
+                animated = true
+            }
         }
+
     }
 
     private fun animateCardsAndRun(vararg cards: PatternCardPreview, delayBetweenAnimations: Long = 100, durationPerAnimation: Long = 100, run: (Int) -> Unit) {
