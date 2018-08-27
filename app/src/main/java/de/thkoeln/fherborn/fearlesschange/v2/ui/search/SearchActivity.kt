@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.widget.ArrayAdapter
+import android.view.View
+import android.widget.AdapterView
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.SearchViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
@@ -16,27 +17,26 @@ import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppActivity() {
     private val selectedKeywordsAdapter = SearchKeywordRecyclerAdapter()
-//    private lateinit var searchKeywordsAdapter: ArrayAdapter<String>
     private val resultsAdapter = PatternRecyclerGridAdapter()
+    private lateinit var searchKeywordsAdapter: SearchKeywordAutocompleteAdapter
     private lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         setupActionBar()
-//        searchKeywordsAdapter = SearchKeywordAutocompleteAdapter(this)
-//        searchKeywordsAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, emptyList())
-//        search_keyword.setAdapter(searchKeywordsAdapter)
+
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
-        viewModel.getNotSelectedKeywords().nonNullObserve(this){
-//            searchKeywordsAdapter.updateKeywords(it)
-            val searchKeywordsAdapter = SearchKeywordAutocompleteAdapter(this, it) // , android.R.layout.simple_dropdown_item_1line
-            search_keyword.setAdapter(searchKeywordsAdapter)
+
+        searchKeywordsAdapter = SearchKeywordAutocompleteAdapter(this)
+        search_keyword.setAdapter(searchKeywordsAdapter)
+        search_keyword.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            searchKeywordsAdapter.getItem(position)?.let { viewModel.addKeywordClicked(it) }
+            search_keyword.setText("")
         }
-//        searchKeywordsAdapter.keywordClickedListener = {
-//            viewModel.addKeyword(it)
-//        }
-//        search_keyword.setAdapter(searchKeywordsAdapter)
+        viewModel.getNotSelectedKeywords().nonNullObserve(this) {
+            searchKeywordsAdapter.updateKeywords(it)
+        }
         viewModel.selectedKeywords.nonNullObserve(this) {
             selectedKeywordsAdapter.updateKeywords(it)
         }
@@ -47,7 +47,7 @@ class SearchActivity : AppActivity() {
             viewModel.onSearchClicked()
         }
 
-        viewModel.getSearchResult().nonNullObserve(this) {patterns ->
+        viewModel.getSearchResult().nonNullObserve(this) { patterns ->
             resultsAdapter.updatePatterns(patterns)
         }
 

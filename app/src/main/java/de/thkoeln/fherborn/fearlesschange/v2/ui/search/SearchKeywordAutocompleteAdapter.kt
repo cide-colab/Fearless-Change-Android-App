@@ -1,51 +1,73 @@
 package de.thkoeln.fherborn.fearlesschange.v2.ui.search
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Filter
 import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
-import android.view.LayoutInflater
 
 
-class SearchKeywordAutocompleteAdapter(context: Context, var keywords: List<Keyword> = emptyList())
-    : ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, keywords.map{ k -> k.keyword}) {
+class SearchKeywordAutocompleteAdapter(context: Context, keywords: List<Keyword> = listOf()) : ArrayAdapter<Keyword>(context, 0, keywords) {
+    private val filteredKeywords: MutableList<Keyword>
+    private var allKeywords: List<Keyword>
 
-    var keywordClickedListener: ((Keyword) -> Unit)? = null
+    init {
+        this.filteredKeywords = ArrayList(keywords)
+        this.allKeywords = ArrayList(keywords)
+    }
+
+    override fun getCount(): Int {
+        return filteredKeywords.size
+    }
+
+    override fun getItem(position: Int): Keyword? {
+        return filteredKeywords[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    fun updateKeywords(keywords: List<Keyword>) {
+        this.allKeywords = keywords
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = super.getView(position, convertView, parent) as TextView
-        view.setOnClickListener {  }
-//        view.text = keywords[position].keyword
+        val view = (convertView ?: let {
+            val inflater = LayoutInflater.from(context)
+            inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false)
+        }) as TextView
 
-//        val vi = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        val v = vi.inflate(android.R.layout.simple_dropdown_item_1line, parent, false) as TextView
-//        val holder = convertView
-//                ?.let { it.tag as KeywordAutocompleteViewHolder }
-//                ?: let {
-//                    val h = KeywordAutocompleteViewHolder(v)
-//                    v.tag = h
-//                    h
-//                }
 
-//        holder.bind(keywords[position])
-        Log.e("asd", "getView called")
+        getItem(position)?.let {keyword ->
+            view.text = keyword.keyword
+        }
+
         return view
     }
-    fun updateKeywords(keywords: List<Keyword>) {
-        this.keywords = keywords
-        notifyDataSetChanged()
-    }
-    inner class KeywordAutocompleteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textView = itemView.findViewById<TextView>(R.id.keyword_auto_complete_item_textview)
-        fun bind(keyword: Keyword) {
-            textView.text = keyword.keyword
-            textView.setOnClickListener { keywordClickedListener?.invoke(keyword) }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun convertResultToString(resultValue: Any): String {
+                return (resultValue as Keyword).keyword
+            }
+
+            override fun performFiltering(constraint: CharSequence?): Filter.FilterResults = Filter.FilterResults().apply {
+                constraint?.let {filter ->
+                    val filtered = allKeywords.filter { it.keyword.toLowerCase().startsWith(filter.toString().toLowerCase()) }
+                    values = filtered
+                    count = filtered.size
+                }
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: Filter.FilterResults?) {
+                filteredKeywords.clear()
+                (results?.values as? List<*>)?.filter { it is Keyword}?.forEach{ filteredKeywords.add(it as Keyword) }
+            }
         }
     }
-
 }

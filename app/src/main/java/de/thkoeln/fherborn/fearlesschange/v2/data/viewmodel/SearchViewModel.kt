@@ -3,6 +3,7 @@ package de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
+import android.util.Log
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.KeywordRepository
@@ -16,16 +17,18 @@ import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
 class SearchViewModel(context: Application) : BasicViewModel(context) {
     private val keywordRepository by lazy { KeywordRepository(context) }
     private val patternRepository by lazy { PatternRepository(context) }
-    private val searchClickedEvent = Event<MutableList<Keyword>?>()
-    val selectedKeywords = MutableLiveData<MutableList<Keyword>>()
+    private val searchClickedEvent = Event<List<Keyword>?>()
+    val selectedKeywords = MutableLiveData<List<Keyword>>()
     val openCreateNoteDialogEvent = Event<Long>()
 
     fun getNotSelectedKeywords() = Transformations.map(keywordRepository.getAllKeywords()) {
         it.filterNot { keyword -> selectedKeywords.value?.contains(keyword)?: false }
     }
 
-    fun addKeyword(keyword: Keyword) {
-        selectedKeywords.value?.add(keyword)
+    fun addKeywordClicked(keyword: Keyword) {
+        Log.e("Test", "keyword added")
+        val keywords = selectedKeywords.value?: emptyList()
+        selectedKeywords.postValue(keywords + keyword)
     }
 
     fun onSearchClicked() {
@@ -36,7 +39,8 @@ class SearchViewModel(context: Application) : BasicViewModel(context) {
         patternRepository.getByKeywordIds(keywords?.map { k -> k.id }?: emptyList() )}
 
     fun removeKeyword(keyword: Keyword) {
-        selectedKeywords.value?.remove(keyword)
+        val keywords = selectedKeywords.value?: emptyList()
+        selectedKeywords.postValue(keywords - keyword)
     }
 //    fun addKeywordClicked(keywordString: String) = Transformations
 //            .switchMap(keywordRepository.getKeywordByKeyword(keywordString)) {keyword ->
