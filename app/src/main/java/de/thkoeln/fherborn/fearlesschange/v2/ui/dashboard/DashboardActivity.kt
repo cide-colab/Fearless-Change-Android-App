@@ -10,6 +10,8 @@ import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
+import kotlinx.android.synthetic.main.activity_dashbaord.*
+import kotlinx.android.synthetic.main.action_bar.*
 
 
 class DashboardActivity : AppActivity() {

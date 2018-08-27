@@ -12,6 +12,7 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardPreviewAdapter
+import kotlinx.android.synthetic.main.feature_most_clicked_card.*
 
 
 class MostClickedCardFeature : Fragment() {

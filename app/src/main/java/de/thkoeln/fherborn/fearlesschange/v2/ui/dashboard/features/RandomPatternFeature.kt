@@ -19,6 +19,7 @@ import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInf
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardPreviewAdapter
 import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
+import kotlinx.android.synthetic.main.feature_random_pattern.*
 
 
 class RandomPatternFeature : Fragment() {

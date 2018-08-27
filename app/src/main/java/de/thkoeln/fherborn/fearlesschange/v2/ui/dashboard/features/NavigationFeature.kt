@@ -11,6 +11,7 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.ui.favorites.FavoritesActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.overview.OverviewActivity
 import de.thkoeln.fherborn.fearlesschange.v2.ui.settings.SettingsActivity
+import kotlinx.android.synthetic.main.feature_navigation.*
 
 
 class NavigationFeature : Fragment() {
