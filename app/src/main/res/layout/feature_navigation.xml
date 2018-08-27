@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
         app:fabSize="normal"
-        android:backgroundTint="@color/dashboard_nav_overview_bg"
+        android:backgroundTint="@color/nav_overview_bg"
         app:elevation="0dp"
         app:borderWidth="0dp"
         android:src="@drawable/ic_apps_white"/>
@@ -33,7 +33,7 @@
         app:layout_constraintStart_toEndOf="@id/fab_overview"
         app:layout_constraintEnd_toStartOf="@id/fab_settings"
         app:fabSize="normal"
-        android:backgroundTint="@color/dashboard_nav_favorites_bg"
+        android:backgroundTint="@color/nav_favorites_bg"
         app:elevation="0dp"
         app:borderWidth="0dp"
         android:src="@drawable/ic_favorite_white"/>
@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="16dp"
         app:fabSize="normal"
-        android:backgroundTint="@color/dashboard_nav_more_bg"
+        android:backgroundTint="@color/nav_more_bg"
         app:elevation="0dp"
         app:borderWidth="0dp"
         android:src="@drawable/ic_build_white"/>

@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/component_bg">
+                android:background="@color/component_background">
 
                 <android.support.v7.widget.AppCompatTextView
                     style="@style/SettingsHeader"
@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@color/component_bg"
+                android:background="@color/component_background"
                 app:layout_constraintTop_toBottomOf="@+id/category_user">
 
                 <android.support.v7.widget.AppCompatTextView
