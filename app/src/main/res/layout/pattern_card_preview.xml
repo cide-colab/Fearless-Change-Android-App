@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
+            style="@style/CardWrapper"
             android:id="@+id/card_preview_wrapper"
             android:paddingBottom="16dp"
             android:layout_width="match_parent"

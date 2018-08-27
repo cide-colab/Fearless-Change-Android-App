@@ -6,8 +6,6 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedImage
 import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.ViewDelegation
 
 class PatternCardDelegation(
@@ -37,7 +35,7 @@ class PatternCardDelegation(
             ViewDelegation(solutionDefault) { setText(solutionViewIds, it) }
 
     fun updateCardImage(vararg cardImageViewIds: Int) =
-            ViewDelegation(imageDefault) { setImage(cardImageViewIds, it, imageDefault) }
+            ViewDelegation(imageDefault) { setImage(cardImageViewIds, it) }
 
     fun updateCardBackground(vararg cardImageViewIds: Int) =
             ViewDelegation(backgroundDefault) { setBackground(cardImageViewIds, it) }
@@ -83,15 +81,15 @@ class PatternCardDelegation(
 
     }
 
-    private fun setImage(viewIds: IntArray, imageId: Int, defaultImageId: Int? = null) {
+    private fun setImage(viewIds: IntArray, imageId: Int) {
         viewIds.forEach { id ->
-            view.findViewById<ImageView>(id).setOptimizedImage(imageId, defaultImageId)
+            view.findViewById<ImageView>(id).setImageResource(imageId)
         }
     }
 
     private fun setBackground(viewIds: IntArray, imageId: Int) {
         viewIds.forEach { id ->
-            view.findViewById<View>(id).setOptimizedBackground(imageId)
+            view.findViewById<View>(id).setBackgroundResource(imageId)
         }
     }
 

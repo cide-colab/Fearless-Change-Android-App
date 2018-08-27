@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardBackAdapter
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardFrontAdapter
@@ -39,7 +38,6 @@ class PatternDetailDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setBackgrounds()
         initCards()
         initNotes()
     }
@@ -66,10 +64,6 @@ class PatternDetailDialogFragment : DialogFragment() {
 
         cardFrontAdapter.change(card)
         cardBackAdapter.change(card)
-    }
-
-    private fun setBackgrounds() {
-        pattern_detail_dialog_notes_header.setOptimizedBackground(R.drawable.notes_header_bg)
     }
 
     companion object {

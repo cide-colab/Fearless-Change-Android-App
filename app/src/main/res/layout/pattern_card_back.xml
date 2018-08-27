@@ -22,7 +22,8 @@
             android:id="@+id/card_back_wrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="32dp">
+            android:paddingBottom="32dp"
+            style="@style/CardWrapper">
 
             <ImageView
                 android:layout_width="1000dp"

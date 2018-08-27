@@ -1,5 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.v2.ui.adapter
 
+import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.getResourceId
 import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardFront
@@ -14,7 +15,7 @@ class PatternCardFrontAdapter: SingleViewAdapter<Pattern, PatternCardFront>() {
     override fun onDataChange(view: PatternCardFront, data: Pattern?) {
         view.title = data?.title
         view.summary = data?.summary
-        view.imageId = view.context.getResourceId(data?.pictureName, "drawable")
+        view.imageId = view.context.getResourceId(data?.pictureName, "drawable")?: R.drawable.default_pattern_image
         view.favorite = data?.favorite
         view.onFavoriteClickedListener = { onFavoriteClickedListener?.invoke(data) }
     }

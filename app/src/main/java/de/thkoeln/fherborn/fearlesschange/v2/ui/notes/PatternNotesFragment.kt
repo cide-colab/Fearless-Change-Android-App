@@ -13,7 +13,6 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.NoteViewModel
 import de.thkoeln.fherborn.fearlesschange.v2.helper.SwipeCallback
 import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.setOptimizedBackground
 import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.NoteRecyclerGridAdapter
 import kotlinx.android.synthetic.main.fragment_pattern_notes.*
 
@@ -43,7 +42,6 @@ class PatternNotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pattern_notes_container.setOptimizedBackground(R.drawable.notes_bg)
         initNotes()
         pattern_notes_add_note_btn.setOnClickListener {
             viewModel.addNoteButtonClicked(patternId)

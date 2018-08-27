@@ -27,6 +27,7 @@
 
     <style name="CardContentWrapper">
         <item name="android:adjustViewBounds">true</item>
+        <item name="android:background">@drawable/card_content_bg</item>
     </style>
 
     <style name="CardButton" parent="Widget.Design.FloatingActionButton">
@@ -104,6 +105,14 @@
 
     <style name="SettingsItemLabel">
         <item name="android:layout_marginStart">32dp</item>
+    </style>
+
+    <style name="AppActivity">
+        <item name="android:background">@drawable/app_bg</item>
+    </style>
+
+    <style name="CardWrapper">
+        <item name="android:background">@drawable/card_bg</item>
     </style>
 
 </resources>

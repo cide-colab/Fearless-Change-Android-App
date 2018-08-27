@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     app:behavior_peekHeight="?attr/actionBarSize"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-    android:background="@android:color/white">
+    android:background="@drawable/notes_bg">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pattern_notes_recycler_view"
