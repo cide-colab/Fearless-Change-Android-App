@@ -42,12 +42,6 @@ class CardDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_TITLE, R.style.AppDialog)
-        val viewTarget = ViewTarget(R.layout.fragment_card_notes, activity)
-        ShowcaseView.Builder(activity)
-                .setTarget(viewTarget)
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setContentTitle("Here you can put your personal Notes!")
-                .build()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -64,6 +58,17 @@ class CardDialogFragment : DialogFragment(), CardViewBehaviorProcessor {
         setListeners()
     }
 
+    //TODO: Currently not working
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        val viewTarget = ViewTarget(R.id.bottom_sheet_content, activity)
+//        ShowcaseView.Builder(activity)
+//                .setTarget(viewTarget)
+//                .setStyle(R.style.MyShowCaseView)
+//                .setContentTitle("Here you can put your personal Notes!")
+//                .singleShot(2)
+//                .build()
+//    }
     /**
      * Sets the content of the card to the cardviews and inflates the notes fragment
      */

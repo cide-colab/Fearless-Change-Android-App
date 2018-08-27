@@ -40,12 +40,6 @@ class CardNotesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         cardId = arguments?.getLong(CARD_ID_KEY)
-//        val viewTarget = ViewTarget(R, activity)
-//        ShowcaseView.Builder(activity)
-//                .setTarget(viewTarget)
-//                .setStyle(R.style.CustomShowcaseTheme2)
-//                .setContentTitle("Here you can put your personal Notes!")
-//                .build()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
