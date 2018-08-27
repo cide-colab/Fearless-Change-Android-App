@@ -57,4 +57,6 @@ interface PatternDao {
     @Query("UPDATE pattern SET favorite = :flag")
     fun setAllFavorites(flag: Boolean)
 
+    @Query("SELECT * FROM (SELECT c.* FROM pattern c, pattern_keyword ck WHERE c.id = ck.patternId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length) cards LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON cards.id = n.patternId")
+    fun getByKeywordIds(keywordIds: List<Long>, length: Int = keywordIds.size): LiveData<List<PatternInfo>>
 }

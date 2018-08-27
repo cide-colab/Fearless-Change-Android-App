@@ -1,33 +1,55 @@
 package de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel
 
 import android.app.Application
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.KeywordRepository
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.NoteRepository
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
+import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
 import de.thkoeln.fherborn.fearlesschange.v2.helper.SnackBarMessage
 import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
 
-class NoteViewModel(context: Application) : BasicViewModel(context) {
-
-    private val noteRepository by lazy { NoteRepository(context) }
-
+class SearchViewModel(context: Application) : BasicViewModel(context) {
+    private val keywordRepository by lazy { KeywordRepository(context) }
+    private val patternRepository by lazy { PatternRepository(context) }
+    private val searchClickedEvent = Event<MutableList<Keyword>?>()
+    val selectedKeywords = MutableLiveData<MutableList<Keyword>>()
     val openCreateNoteDialogEvent = Event<Long>()
 
-    fun createNoteConfirmed(patternId: Long?, title: String, text: String) {
-        val note = Note(title = title, text = text, patternId = forceGetNonNullId(patternId))
-        noteRepository.insert(note)
+    fun getNotSelectedKeywords() = Transformations.map(keywordRepository.getAllKeywords()) {
+        it.filterNot { keyword -> selectedKeywords.value?.contains(keyword)?: false }
     }
 
-    fun deleteNoteConfirmed(note: Note) {
-        noteRepository.delete(note)
-        val message = getApplication<Application>().getString(R.string.noteDeleted, note.title)
-        sendSnackBarMessageEvent.invoke(SnackBarMessage(message))
+    fun addKeyword(keyword: Keyword) {
+        selectedKeywords.value?.add(keyword)
     }
 
-    fun getNotesForPattern(patternId: Long?) = noteRepository.getNotesForPattern(forceGetNonNullId(patternId))
-
-    fun addNoteButtonClicked(patternId: Long?) {
-        openCreateNoteDialogEvent.invoke(forceGetNonNullId(patternId))
+    fun onSearchClicked() {
+        searchClickedEvent.invoke(selectedKeywords.value)
     }
 
+    fun getSearchResult() = Transformations.switchMap(searchClickedEvent) {keywords ->
+        patternRepository.getByKeywordIds(keywords?.map { k -> k.id }?: emptyList() )}
+
+    fun removeKeyword(keyword: Keyword) {
+        selectedKeywords.value?.remove(keyword)
+    }
+//    fun addKeywordClicked(keywordString: String) = Transformations
+//            .switchMap(keywordRepository.getKeywordByKeyword(keywordString)) {keyword ->
+//                keyword?.let {
+//                    val elementExists = selectedKeywords.value?.contains(keyword) ?: false
+//                    if(!elementExists) {
+//                        selectedKeywords.value?.add(keyword)
+//                        // TODO View aktualiseren
+//                    } else {
+//                        // TODO Snackbar R.string.search_error_already_in_list
+//                    }
+//                } ?: run {
+//                    // TODO Snackbar R.string.search_error_keyword_not_found
+//                }
+//            }
 }

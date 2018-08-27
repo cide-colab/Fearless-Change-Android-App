@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.adapters
+package de.thkoeln.fherborn.fearlesschange.v2.ui.search
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,8 +8,10 @@ import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
 
-class SearchKeywordRecyclerAdapter(var keywords: MutableList<Keyword> = mutableListOf()) :
+class SearchKeywordRecyclerAdapter(var keywords: List<Keyword> = mutableListOf()) :
         RecyclerView.Adapter<SearchKeywordRecyclerAdapter.KeywordListViewHolder>() {
+    var keywordClickedListener: ((Keyword) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_keyword_list_item, parent, false)
         return KeywordListViewHolder(view)
@@ -20,13 +22,19 @@ class SearchKeywordRecyclerAdapter(var keywords: MutableList<Keyword> = mutableL
     }
 
     override fun onBindViewHolder(holder: KeywordListViewHolder, position: Int) {
-        holder.bind(keywords[position].keyword)
+        holder.bind(keywords[position])
+    }
+
+    fun updateKeywords(keywords: List<Keyword>) {
+        this.keywords = keywords
+        notifyDataSetChanged()
     }
 
     inner class KeywordListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textView = itemView.findViewById<TextView>(R.id.keyword_list_item_textview)
-        fun bind (keyword: String) {
-            textView.text = keyword
+        fun bind (keyword: Keyword) {
+            textView.text = keyword.keyword
+            textView.setOnClickListener { keywordClickedListener?.invoke(keyword) }
         }
     }
 }

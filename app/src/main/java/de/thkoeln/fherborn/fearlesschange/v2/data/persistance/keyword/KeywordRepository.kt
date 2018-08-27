@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.persistance.repositories
+package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword
 
 import android.content.Context
 import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.AppDatabase

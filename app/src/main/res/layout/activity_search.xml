@@ -28,35 +28,16 @@
                 android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="@dimen/default_padding">
-                <AutoCompleteTextView
-                    android:id="@+id/search_keyword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:maxLines="1"
-                    android:textAppearance="@style/Base.Widget.AppCompat.SearchView"
-                    android:textSize="20sp" />
 
-                <ImageButton
-                    android:id="@+id/add_keyword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_add_black_24dp"
-                    app:layout_constraintEnd_toEndOf="@id/search_keyword" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/search_error"
-                android:layout_width="0dp"
+            <AutoCompleteTextView
+                android:id="@+id/search_keyword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/search_line"
-                app:layout_constraintBottom_toTopOf="@id/selected_keywords"
-                android:layout_marginTop="@dimen/default_margin"
-                style="@style/CardContentWrapper"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textAppearance="@style/TextAppearance.Design.Error"
-                android:padding="@dimen/default_padding"/>
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:textAppearance="@style/Base.Widget.AppCompat.SearchView"
+                android:textSize="20sp" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/selected_keywords"
                 android:layout_width="0dp"
@@ -66,7 +47,9 @@
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_error" />
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/search_keyword" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/search_results"
                 android:layout_width="0dp"
