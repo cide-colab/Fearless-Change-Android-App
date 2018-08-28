@@ -23,6 +23,8 @@ class SettingsActivity : AppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(action_bar as Toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
 
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) {
@@ -40,6 +42,7 @@ class SettingsActivity : AppActivity() {
 
         reset_most_clicked_item.setOnClickListener{viewModel.resetMostClickedPatternClicked()}
         reset_favorites_item.setOnClickListener{viewModel.resetFavoritesClicked()}
+        reset_notes_item.setOnClickListener {viewModel.resetNotesClicked()}
         reset_to_factory_item.setOnClickListener{viewModel.resetToFactorySettingsClicked()}
 
     }

@@ -24,7 +24,7 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
 
     val openPatternDetailDialogEvent = Event<Long>()
 
-    fun getPattern(id: Long?) = patternRepository.get(forceGetNonNullId(id))
+    fun getPattern(id: Long?) = patternRepository.getInfo(forceGetNonNullId(id))
     fun getPatterns(): LiveData<List<PatternInfo>> = Transformations.map(patternRepository.getAllInfo()) { getAndSendMessageIfNullOrEmpty(it, R.string.message_no_pattern_found) }
     fun getFavorites(): LiveData<List<PatternInfo>> = Transformations.map(patternRepository.getFavoritesInfo()) { getAndSendMessageIfNullOrEmpty(it, R.string.message_no_favorites_found) }
 

@@ -59,4 +59,7 @@
     <string name="message_no_favorites_found">No Favorites found</string>
     <string name="message_no_pattern_found">No Pattern found</string>
     <string name="message_no_search_results">No cards found matching search criteria.</string>
+    <string name="settings_item_reset_notes_label">Reset all of your notes.</string>
+    <string name="message_most_clicked_pattern_reset">The most clicked card has been reset!</string>
+    <string name="message_request_confirmation_reset_most_clicked_pattern">Do you really want to reset your most clicked card? This action can not be undone!</string>
 </resources>

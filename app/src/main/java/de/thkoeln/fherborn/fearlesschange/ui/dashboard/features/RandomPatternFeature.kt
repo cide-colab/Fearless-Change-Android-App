@@ -42,13 +42,11 @@ class RandomPatternFeature : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.feature_random_pattern, container, false)
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
 
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
         viewModel.getRandomPatterns().observe(this, Observer { onPatternChanged(it) })
-        viewModel.generateNewRandomPatterns()
         patternCardAdapters.forEachIndexed { index, patternCardPreviewAdapter ->
             patternCardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
             patternCards[index].setAdapter(patternCardPreviewAdapter)
@@ -58,6 +56,7 @@ class RandomPatternFeature : Fragment() {
             animated = false
             viewModel.generateNewRandomPatterns()
         }
+        viewModel.generateNewRandomPatterns()
     }
 
     private fun onPatternChanged(patterns: List<PatternInfo>?) {
