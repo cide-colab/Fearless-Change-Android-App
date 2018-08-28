@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.view.Menu
 import android.view.View
 import android.widget.AdapterView
 import de.thkoeln.fherborn.fearlesschange.R

@@ -38,6 +38,7 @@ class PatternDetailDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        back_btn.setOnClickListener { dismiss() }
         initCards()
         initNotes()
     }

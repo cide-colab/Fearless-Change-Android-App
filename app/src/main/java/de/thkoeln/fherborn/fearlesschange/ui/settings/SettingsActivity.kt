@@ -23,6 +23,8 @@ class SettingsActivity : AppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(action_bar as Toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
 
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) {

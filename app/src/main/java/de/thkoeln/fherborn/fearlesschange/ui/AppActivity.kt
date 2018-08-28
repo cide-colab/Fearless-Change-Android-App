@@ -28,19 +28,6 @@ abstract class AppActivity : AppCompatActivity() {
         super.setContentView(view, params)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.action_bar_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_search -> {
-            startActivity(Intent(this, SearchActivity::class.java))
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
-    }
-
     protected fun showSnackBar(message: SnackBarMessage) {
         contentView?.let { Snackbar.make(it, message.message, message.duration).show() }
     }

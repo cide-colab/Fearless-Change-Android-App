@@ -1,15 +1,19 @@
 package de.thkoeln.fherborn.fearlesschange.ui.dashboard
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
+import de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_dashbaord.*
 import kotlinx.android.synthetic.main.action_bar.*
 
@@ -48,6 +52,19 @@ class DashboardActivity : AppActivity() {
             val cardPopup = PatternDetailDialogFragment.newInstance(cardId = cardId)
             cardPopup.show(fm, null)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_search -> {
+            startActivity(Intent(this, SearchActivity::class.java))
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
 }
