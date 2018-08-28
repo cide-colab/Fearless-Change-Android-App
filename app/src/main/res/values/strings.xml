@@ -40,11 +40,19 @@
     <string name="header_notes">Notes</string>
 
     <!-- ShowcaseViews -->
-    <string name="overview_title">Here you can see an overview of all cards!</string>
-    <string name="favorites_title">Here you can see your favorite cards!</string>
-    <string name="settings_title">Here you can reset all your changes!</string>
+    <string name="overview_showcase_text">Shows all available patterns.</string>
+    <string name="favorites_showcase_text">Here you can see your favorite patterns!</string>
+    <string name="overview_showcase_title">Overview</string>
+    <string name="favorites_showcase_title">Favorites</string>
+    <string name="settings_showcase_title">Settings</string>
+    <string name="settings_showcase_text">Here you can reset your data.</string>
     <string name="card_of_the_day_title">This is the card of the day!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="card_of_the_day_showcase_title">Card of the day</string>
+    <string name="card_of_the_day_showcase_text">Shows the current card of the day.</string>
+    <string name="random_card_showcase_title">Random Card</string>
+    <string name="random_card_showcase_text">Three random cards are shown, you can refresh them if you want.</string>
+
 </resources>
