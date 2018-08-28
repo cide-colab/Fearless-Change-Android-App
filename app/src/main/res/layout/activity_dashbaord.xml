@@ -9,6 +9,7 @@
     <include layout="@layout/action_bar" />
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/dashboard_scrollview"
         style="@style/ActivityContent"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

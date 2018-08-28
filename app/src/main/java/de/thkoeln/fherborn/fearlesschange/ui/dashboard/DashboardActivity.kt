@@ -1,15 +1,19 @@
 package de.thkoeln.fherborn.fearlesschange.ui.dashboard
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.Toolbar
+import android.util.AttributeSet
+import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
+import de.thkoeln.fherborn.fearlesschange.utils.DashboardShowcaseViews
 import kotlinx.android.synthetic.main.activity_dashbaord.*
 import kotlinx.android.synthetic.main.action_bar.*
 
@@ -30,7 +34,11 @@ class DashboardActivity : AppActivity() {
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) {
             Snackbar.make(activity_wrapper, it.message, it.duration).show()
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        DashboardShowcaseViews(this).startNavigationShowcase()
     }
 
     private fun inflateFeatureFragments() {
