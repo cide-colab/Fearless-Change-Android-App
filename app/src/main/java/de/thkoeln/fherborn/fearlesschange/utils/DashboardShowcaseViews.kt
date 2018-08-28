@@ -6,62 +6,66 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity
 
-class DashboardShowcaseViews {
-    companion object {
-        fun overviewShowcase(activity: DashboardActivity) {
-            val viewTarget = ViewTarget(R.id.fab_overview, activity)
-            ShowcaseView.Builder(activity)
-                    .setTarget(viewTarget)
-                    .setContentTitle("Here you can see an overview of all cards!")
-                    .setStyle(R.style.MyShowCaseView)
-                    .hideOnTouchOutside()
-                    .setShowcaseEventListener(object : SimpleShowcaseEventListener() {
-                        override fun onShowcaseViewDidHide(showcaseView: ShowcaseView?) {
-                            DashboardShowcaseViews.favoriteShowcase(activity)
-                        }
-                    })
-                    .singleShot(1)
-                    .build()
-        }
+class DashboardShowcaseViews(private val activity: DashboardActivity) {
 
-        fun favoriteShowcase(activity: DashboardActivity) {
-            val viewTarget = ViewTarget(R.id.fab_favorites, activity)
-            ShowcaseView.Builder(activity)
-                    .setTarget(viewTarget)
-                    .setContentTitle("Here you can see your favorite cards!")
-                    .setStyle(R.style.MyShowCaseView)
-                    .hideOnTouchOutside()
-                    .setShowcaseEventListener(object : SimpleShowcaseEventListener() {
-                        override fun onShowcaseViewDidHide(showcaseView: ShowcaseView?) {
-                            DashboardShowcaseViews.moreShowcase(activity)
-                        }
-                    })
-                    .build()
-        }
+    fun startShowcase() {
+        overviewShowcase()
+    }
 
-        fun moreShowcase(activity: DashboardActivity) {
-            val viewTarget = ViewTarget(R.id.fab_more, activity)
-            ShowcaseView.Builder(activity)
-                    .setTarget(viewTarget)
-                    .setContentTitle("Here you can see more cool things!")
-                    .setStyle(R.style.MyShowCaseView)
-                    .hideOnTouchOutside()
-                    .setShowcaseEventListener(object : SimpleShowcaseEventListener() {
-                        override fun onShowcaseViewDidHide(showcaseView: ShowcaseView?) {
-                            DashboardShowcaseViews.cardOfTheDayShowcase(activity)
-                        }
-                    })
-                    .build()
-        }
+    private fun getPreparedShowcaseBuilder(viewTargetId: Int, titleId: Int, next: SimpleShowcaseEventListener) = ShowcaseView.Builder(activity)
+            .setTarget(ViewTarget(viewTargetId, activity))
+            .setContentTitle(titleId)
+            .setStyle(R.style.MyShowCaseView)
+            .hideOnTouchOutside()
+            .setShowcaseEventListener(next)
 
-        fun cardOfTheDayShowcase(activity: DashboardActivity) {
-            val viewTarget = ViewTarget(R.id.card_of_the_day, activity)
-            ShowcaseView.Builder(activity)
-                    .setTarget(viewTarget)
-                    .setContentTitle("This is the card of the day!")
-                    .hideOnTouchOutside()
-                    .setStyle(R.style.MyShowCaseView)
-                    .build()
-        }
+    private fun overviewShowcase() {
+        getPreparedShowcaseBuilder(R.id.fab_overview, R.string.overview_title, object : SimpleShowcaseEventListener() {
+                    override fun onShowcaseViewDidHide(showcaseView: ShowcaseView?) {
+                        favoriteShowcase()
+                    }
+                })
+                .singleShot(1)
+                .build()
+    }
+
+    private fun favoriteShowcase() {
+        val viewTarget = ViewTarget(R.id.fab_favorites, activity)
+        ShowcaseView.Builder(activity)
+                .setTarget(viewTarget)
+                .setContentTitle("Here you can see your favorite cards!")
+                .setStyle(R.style.MyShowCaseView)
+                .hideOnTouchOutside()
+                .setShowcaseEventListener(object : SimpleShowcaseEventListener() {
+                    override fun onShowcaseViewDidHide(showcaseView: ShowcaseView?) {
+                        moreShowcase()
+                    }
+                })
+                .build()
+    }
+
+    private fun moreShowcase() {
+        val viewTarget = ViewTarget(R.id.fab_more, activity)
+        ShowcaseView.Builder(activity)
+                .setTarget(viewTarget)
+                .setContentTitle("Here you can see more cool things!")
+                .setStyle(R.style.MyShowCaseView)
+                .hideOnTouchOutside()
+                .setShowcaseEventListener(object : SimpleShowcaseEventListener() {
+                    override fun onShowcaseViewDidHide(showcaseView: ShowcaseView?) {
+                        cardOfTheDayShowcase()
+                    }
+                })
+                .build()
+    }
+
+    private fun cardOfTheDayShowcase() {
+        val viewTarget = ViewTarget(R.id.card_of_the_day, activity)
+        ShowcaseView.Builder(activity)
+                .setTarget(viewTarget)
+                .setContentTitle("This is the card of the day!")
+                .hideOnTouchOutside()
+                .setStyle(R.style.MyShowCaseView)
+                .build()
     }
 }

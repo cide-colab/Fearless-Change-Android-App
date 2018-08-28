@@ -39,6 +39,12 @@
     <string name="noteDeleted">Note %1$s deleted</string>
     <string name="header_notes">Notes</string>
 
+    <!-- ShowcaseViews -->
+    <string name="overview_title">Here you can see an overview of all cards!</string>
+    <string name="favorites_title">Here you can see your favorite cards!</string>
+    <string name="settings_title">Here you can reset all your changes!</string>
+    <string name="card_of_the_day_title">This is the card of the day!</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

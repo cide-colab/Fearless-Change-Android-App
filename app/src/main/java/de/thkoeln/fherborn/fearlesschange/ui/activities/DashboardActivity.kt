@@ -15,7 +15,7 @@ class DashboardActivity : AppActivity() {
 
         setContentView(R.layout.activity_dashbaord)
 
-        DashboardShowcaseViews.overviewShowcase(this)
+        DashboardShowcaseViews(this).startShowcase()
     }
 
 
