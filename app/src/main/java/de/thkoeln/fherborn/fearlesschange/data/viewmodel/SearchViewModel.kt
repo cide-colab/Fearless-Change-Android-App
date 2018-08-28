@@ -1,19 +1,18 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel
+package de.thkoeln.fherborn.fearlesschange.data.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
-import android.util.Log
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.KeywordRepository
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.Statistic
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticAction
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticRepository
-import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.Keyword
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.KeywordRepository
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternRepository
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.Statistic
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.StatisticAction
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.StatisticRepository
+import de.thkoeln.fherborn.fearlesschange.helper.events.Event
 
 class SearchViewModel(context: Application) : BasicViewModel(context) {
     private val keywordRepository by lazy { KeywordRepository(context) }
@@ -43,7 +42,7 @@ class SearchViewModel(context: Application) : BasicViewModel(context) {
 
     fun getSearchResult(): LiveData<List<PatternInfo>> = Transformations.switchMap(searchClickedEvent) { keywords ->
         Transformations.map(patternRepository.getByKeywordIds(keywords?.map { k -> k.id } ?: emptyList())) {
-            if (it.isEmpty()) sendMessage(R.string.search_error_no_cards_found)
+            if (it.isEmpty()) sendMessage(R.string.message_no_search_results)
             it
         }
     }
@@ -56,7 +55,7 @@ class SearchViewModel(context: Application) : BasicViewModel(context) {
         patternInfo?.pattern?.id?.let {
             statisticRepository.insert(Statistic(patternId = it, action = StatisticAction.CLICK))
             openPatternDetailDialogEvent.invoke(it)
-        }?:sendMessage(R.string.could_not_find_pattern)
+        }?:sendMessage(R.string.message_could_not_find_pattern)
     }
 
 

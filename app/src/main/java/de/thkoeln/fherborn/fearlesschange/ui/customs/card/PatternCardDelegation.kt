@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card
+package de.thkoeln.fherborn.fearlesschange.ui.customs.card
 
 import android.view.View
 import android.view.View.INVISIBLE
@@ -6,7 +6,7 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.ViewDelegation
+import de.thkoeln.fherborn.fearlesschange.ui.customs.ViewDelegation
 
 class PatternCardDelegation(
         private val view: View,

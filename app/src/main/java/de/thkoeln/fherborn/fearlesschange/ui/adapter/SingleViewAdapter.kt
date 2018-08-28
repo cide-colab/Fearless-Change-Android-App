@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.adapter
+package de.thkoeln.fherborn.fearlesschange.ui.adapter
 
 /**
  * Created by florianherborn on 22.08.18.

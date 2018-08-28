@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round">
         <activity
-            android:name="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,40 +18,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".v2.ui.overview.OverviewActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.overview.OverviewActivity"
             android:label="@string/title_activity_overview"
-            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name=".v2.ui.favorites.FavoritesActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.favorites.FavoritesActivity"
             android:label="@string/title_activity_favorites"
-            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name=".v2.ui.search.SearchActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name=".v2.ui.settings.SettingsActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".v2.ui.dashboard.DashboardActivity"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
 
     </application>

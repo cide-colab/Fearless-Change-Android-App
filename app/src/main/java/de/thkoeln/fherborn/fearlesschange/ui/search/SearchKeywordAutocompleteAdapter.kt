@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.search
+package de.thkoeln.fherborn.fearlesschange.ui.search
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.TextView
-import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.Keyword
 
 
 class SearchKeywordAutocompleteAdapter(context: Context, keywords: List<Keyword> = listOf()) : ArrayAdapter<Keyword>(context, 0, keywords) {

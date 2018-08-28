@@ -27,7 +27,7 @@
             android:contentDescription="@string/image_description_back" />
 
 
-        <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.FlippablePatternCard
+        <de.thkoeln.fherborn.fearlesschange.ui.customs.card.FlippablePatternCard
             android:id="@+id/pattern_detail_flippable_card"
             android:layout_width="0dp"
             android:layout_height="0dp"

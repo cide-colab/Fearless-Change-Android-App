@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.notes
+package de.thkoeln.fherborn.fearlesschange.ui.notes
 
 import android.app.Dialog
 import android.content.Context

@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.helper.extensions
+package de.thkoeln.fherborn.fearlesschange.helper.extensions
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData

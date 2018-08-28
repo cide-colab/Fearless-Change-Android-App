@@ -1,10 +1,10 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic
+package de.thkoeln.fherborn.fearlesschange.data.persistance.statistic
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
 import java.util.*
 
 /**

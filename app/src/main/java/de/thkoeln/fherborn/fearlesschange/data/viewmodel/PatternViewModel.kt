@@ -1,15 +1,15 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel
+package de.thkoeln.fherborn.fearlesschange.data.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternRepository
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.Statistic
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticAction
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticRepository
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternRepository
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.Statistic
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.StatisticAction
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.StatisticRepository
+import de.thkoeln.fherborn.fearlesschange.helper.events.Event
 
 /**
  * Created by florianherborn on 22.08.18.
@@ -50,7 +50,7 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
 
     private fun mapToIds(ids: List<Long>?, randomInts: List<Int>): List<Long>? =
             ids?.let {
-                randomInts.map { ids[it % ids.size] }
+                randomInts.map {value ->  ids[value % ids.size] }
             }
 
 
@@ -59,15 +59,15 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
     }
 
     fun getMostClickedPattern(): LiveData<PatternInfo> =
-            Transformations.switchMap(statisticRepository.getMostCommonByAction(StatisticAction.CLICK)) {
-                it?.patternId?.let { patternRepository.getInfo(it) }
+            Transformations.switchMap(statisticRepository.getMostCommonByAction(StatisticAction.CLICK)) { statistic ->
+                statistic?.patternId?.let { patternRepository.getInfo(it) }
             }
 
     fun cardPreviewClicked(patternInfo: PatternInfo?) {
         patternInfo?.pattern?.id?.let {
             statisticRepository.insert(Statistic(patternId = it, action = StatisticAction.CLICK))
             openPatternDetailDialogEvent.invoke(it)
-        } ?: sendMessage(R.string.could_not_find_pattern)
+        } ?: sendMessage(R.string.message_could_not_find_pattern)
     }
 
     private fun calculatePatternOfTheDay(cardIds: List<Long>): Long? {

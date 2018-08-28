@@ -25,14 +25,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:padding="8dp"
-        android:text="@string/title_fragment_card_of_the_day"
+        android:text="@string/title_feature_pattern_of_the_day"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/feature_card_of_the_day_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
+    <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
         android:id="@+id/card_preview"
         android:layout_width="200dp"
         android:layout_height="wrap_content"

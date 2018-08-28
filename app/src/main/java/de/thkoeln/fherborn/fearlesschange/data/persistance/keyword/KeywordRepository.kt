@@ -1,7 +1,7 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword
+package de.thkoeln.fherborn.fearlesschange.data.persistance.keyword
 
 import android.content.Context
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.AppDatabase
+import de.thkoeln.fherborn.fearlesschange.data.persistance.AppDatabase
 
 /**
  * Created by florianherborn on 06.08.18.

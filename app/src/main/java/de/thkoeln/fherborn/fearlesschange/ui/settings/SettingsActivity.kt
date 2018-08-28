@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.settings
+package de.thkoeln.fherborn.fearlesschange.ui.settings
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -9,10 +9,10 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.SettingsViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
-import de.thkoeln.fherborn.fearlesschange.v2.ui.search.SearchActivity
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.SettingsViewModel
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
+import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
+import de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.action_bar.*
 

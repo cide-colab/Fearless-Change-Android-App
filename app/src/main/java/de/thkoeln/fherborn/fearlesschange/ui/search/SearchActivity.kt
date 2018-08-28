@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.search
+package de.thkoeln.fherborn.fearlesschange.ui.search
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -6,15 +6,14 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.SearchViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternRecyclerGridAdapter
-import de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail.PatternDetailDialogFragment
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.SearchViewModel
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
+import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternRecyclerGridAdapter
+import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_search.*
 

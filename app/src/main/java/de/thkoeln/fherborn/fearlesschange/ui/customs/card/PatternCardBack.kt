@@ -1,12 +1,12 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card
+package de.thkoeln.fherborn.fearlesschange.ui.customs.card
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.AdaptableView
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.SingleViewAdapter
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.AdaptableView
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.SingleViewAdapter
 
 class PatternCardBack @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
         ConstraintLayout(context, attrs, defStyleAttr), AdaptableView<PatternCardBack> {

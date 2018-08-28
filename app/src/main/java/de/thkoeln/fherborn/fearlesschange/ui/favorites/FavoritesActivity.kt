@@ -1,14 +1,14 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.favorites
+package de.thkoeln.fherborn.fearlesschange.ui.favorites
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternRecyclerGridAdapter
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
-import de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail.PatternDetailDialogFragment
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternRecyclerGridAdapter
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
+import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
+import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import kotlinx.android.synthetic.main.activity_favorites.*
 import kotlinx.android.synthetic.main.action_bar.*
 

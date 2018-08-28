@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toStartOf="@id/random_cards_reload"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="8dp"
-        android:text="@string/title_fragment_random_cards"/>
+        android:text="@string/title_feature_random_pattern"/>
 
     <ImageView
         android:id="@+id/random_cards_reload"
@@ -49,7 +49,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
+        <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
             android:id="@+id/random_cards_1"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
+        <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
             android:id="@+id/random_cards_2"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
+        <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
             android:id="@+id/random_cards_3"
             android:layout_width="140dp"
             android:layout_height="wrap_content"

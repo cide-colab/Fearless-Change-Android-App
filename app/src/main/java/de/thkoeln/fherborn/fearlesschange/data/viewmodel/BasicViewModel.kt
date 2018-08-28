@@ -1,12 +1,12 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel
+package de.thkoeln.fherborn.fearlesschange.data.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.os.Bundle
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.helper.ConfirmationRequest
-import de.thkoeln.fherborn.fearlesschange.v2.helper.SnackBarMessage
-import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
+import de.thkoeln.fherborn.fearlesschange.helper.ConfirmationRequest
+import de.thkoeln.fherborn.fearlesschange.helper.SnackBarMessage
+import de.thkoeln.fherborn.fearlesschange.helper.events.Event
 import java.util.*
 
 /**
@@ -35,8 +35,8 @@ abstract class BasicViewModel(application: Application): AndroidViewModel(applic
             textId: Int,
             vararg textArgs: String = emptyArray(),
             titleId: Int? = null,
-            positiveButtonTextId: Int = R.string.alert_dialog_positive_button_label,
-            negativeButtonTextId: Int = R.string.alert_dialog_negative_button_label,
+            positiveButtonTextId: Int = R.string.action_confirm,
+            negativeButtonTextId: Int = R.string.action_cancel,
             onCancel: (() -> Unit) = {},
             onConfirm: () -> Unit
     ) {
@@ -66,7 +66,7 @@ abstract class BasicViewModel(application: Application): AndroidViewModel(applic
         val id = bundle?.getLong(key)
         return when (id) {
             null -> {
-                sendMessage(R.string.could_not_find_pattern)
+                sendMessage(R.string.message_could_not_find_pattern)
                 throw RuntimeException("Missing argument $key")
             }
             else -> id

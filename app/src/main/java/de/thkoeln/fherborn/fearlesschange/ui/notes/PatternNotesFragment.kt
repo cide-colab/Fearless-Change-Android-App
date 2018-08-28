@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.notes
+package de.thkoeln.fherborn.fearlesschange.ui.notes
 
 
 import android.arch.lifecycle.ViewModelProviders
@@ -10,10 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.NoteViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.helper.SwipeCallback
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.NoteRecyclerGridAdapter
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.NoteViewModel
+import de.thkoeln.fherborn.fearlesschange.helper.SwipeCallback
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.NoteRecyclerGridAdapter
 import kotlinx.android.synthetic.main.fragment_pattern_notes.*
 
 

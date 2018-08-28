@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note
+package de.thkoeln.fherborn.fearlesschange.data.persistance.note
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*

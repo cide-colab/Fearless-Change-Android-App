@@ -10,58 +10,53 @@
     <string name="action_details">Details</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
-    <string name="action_refresh">Refresh</string>
 
     <!-- Activities -->
     <string name="title_activity_settings">Settings</string>
-    <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_activity_favorites">Favorites</string>
-    <string name="title_activity_more">More</string>
     <string name="title_activity_overview">Overview</string>
     <string name="title_activity_search">Search</string>
-
-    <!-- Fragments -->
-    <string name="title_fragment_card_of_the_day">Card of the Day</string>
-    <string name="title_fragment_random_cards">Random Cards</string>
+    <string name="title_feature_pattern_of_the_day">Card of the Day</string>
+    <string name="title_feature_random_pattern">Random Cards</string>
+    <string name="title_feature_most_clicked_card">Most Clicked Card</string>
 
     <!-- Header -->
     <string name="header_problem">Problem</string>
     <string name="header_solution">Solution</string>
-
-
-    <string name="title_fragment_most_clicked_card">Most Clicked Card</string>
-    <string name="action_ok">OK</string>
-    <string name="action_cancel">Cancel</string>
-    <string name="label_new_note">New Note</string>
-    <string name="hint_title">Title</string>
-    <string name="hint_text">Text</string>
-    <string name="noteDeleted">Note %1$s deleted</string>
     <string name="header_notes">Notes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_confirm">Confirm</string>
+
+    <!-- Hints -->
+    <string name="hint_title">Title</string>
+    <string name="hint_text">Text</string>
+
+    <!-- Images -->
     <string name="image_description_back">Back</string>
     <string name="image_description_title_bg">Title Background</string>
     <string name="image_description_pattern_image">Pattern Image</string>
     <string name="image_description_favorite">Favorite icon</string>
     <string name="image_description_notes">Notes icon</string>
     <string name="image_description_feature_icon">Feature Icon</string>
-    <string name="could_not_find_pattern">Couldn\'t find Pattern</string>
+
+    <!-- Settings -->
     <string name="settings_header_user">User</string>
     <string name="settings_item_reset_most_clicked_cards_label">Reset most clicked cards</string>
     <string name="settings_item_reset_favorites_label">Reset Favorites</string>
     <string name="settings_header_system">System</string>
     <string name="settings_item_reset_to_factory_settings_label">Reset to factory settings</string>
-    <string name="alert_dialog_positive_button_label">Confirm</string>
-    <string name="alert_dialog_negative_button_label">Cancel</string>
-    <string name="message_notes_resetted">Your notes have been deleted</string>
-    <string name="request_confirmation_reset_note_message">Do you really want to delete all notes? This action can not be undone!</string>
-    <string name="request_confirmation_reset_favorites">Do you really want to reset your favorites? This action can not be undone!</string>
-    <string name="message_favorites_resetted">Your favorites have been reset</string>
+
+    <!-- Messages -->
+    <string name="message_could_not_find_pattern">Could not find Pattern</string>
+    <string name="message_note_deleted">Note %1$s deleted</string>
+    <string name="message_notes_reset">Your notes have been deleted</string>
+    <string name="message_request_confirmation_reset_note">Do you really want to delete all notes? This action can not be undone!</string>
+    <string name="message_request_confirmation_reset_favorites">Do you really want to reset your favorites? This action can not be undone!</string>
+    <string name="message_favorites_reset">Your favorites have been reset</string>
     <string name="message_no_favorites_found">No Favorites found</string>
     <string name="message_no_pattern_found">No Pattern found</string>
-    <!-- Search -->
-    <string name="search_error_keyword_not_found">Selected Keyword not found in database</string>
-    <string name="search_error_already_in_list">Keyword already in list.</string>
-    <string name="search_error_no_cards_found">No cards found matching search criteria.</string>
+    <string name="message_no_search_results">No cards found matching search criteria.</string>
 </resources>

@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.helper
+package de.thkoeln.fherborn.fearlesschange.helper
 
 /**
  * Created by Florian on 24.08.2018.

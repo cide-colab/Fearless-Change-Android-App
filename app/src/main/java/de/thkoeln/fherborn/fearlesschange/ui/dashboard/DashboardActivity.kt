@@ -1,15 +1,15 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard
+package de.thkoeln.fherborn.fearlesschange.ui.dashboard
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.Toolbar
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.v2.ui.AppActivity
-import de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail.PatternDetailDialogFragment
-import de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
+import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
+import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
+import de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
 import kotlinx.android.synthetic.main.activity_dashbaord.*
 import kotlinx.android.synthetic.main.action_bar.*
 

@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic
+package de.thkoeln.fherborn.fearlesschange.data.persistance.statistic
 
 enum class StatisticAction {
     CLICK,

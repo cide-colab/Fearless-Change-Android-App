@@ -30,9 +30,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="32dp"
         android:padding="8dp"
-        android:text="@string/title_fragment_most_clicked_card"/>
+        android:text="@string/title_feature_most_clicked_card"/>
 
-    <de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
+    <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
         android:id="@+id/card_preview"
         android:layout_width="200dp"
         android:layout_height="wrap_content"

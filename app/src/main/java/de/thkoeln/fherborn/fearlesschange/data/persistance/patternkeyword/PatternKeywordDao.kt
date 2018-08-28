@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.patternkeyword
+package de.thkoeln.fherborn.fearlesschange.data.persistance.patternkeyword
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao

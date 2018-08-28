@@ -1,10 +1,10 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.patternkeyword
+package de.thkoeln.fherborn.fearlesschange.data.persistance.patternkeyword
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.Index
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.Keyword
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
 
 @Entity(tableName = "pattern_keyword",
         primaryKeys = ["patternId", "keywordId"],

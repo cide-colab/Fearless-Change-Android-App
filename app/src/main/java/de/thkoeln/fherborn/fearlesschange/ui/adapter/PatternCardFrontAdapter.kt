@@ -1,9 +1,9 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.adapter
+package de.thkoeln.fherborn.fearlesschange.ui.adapter
 
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.getResourceId
-import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardFront
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.getResourceId
+import de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardFront
 
 /**
  * Created by florianherborn on 22.08.18.

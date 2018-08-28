@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.search
+package de.thkoeln.fherborn.fearlesschange.ui.search
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.Keyword
 
 class SearchKeywordRecyclerAdapter(var keywords: List<Keyword> = mutableListOf()) :
         RecyclerView.Adapter<SearchKeywordRecyclerAdapter.KeywordListViewHolder>() {

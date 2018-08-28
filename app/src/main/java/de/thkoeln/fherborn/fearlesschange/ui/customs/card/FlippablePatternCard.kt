@@ -1,12 +1,12 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card
+package de.thkoeln.fherborn.fearlesschange.ui.customs.card
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.helper.animation.FlipAnimationManager
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.SingleViewAdapter
+import de.thkoeln.fherborn.fearlesschange.helper.animation.FlipAnimationManager
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.SingleViewAdapter
 import kotlinx.android.synthetic.main.pattern_card_flippable.view.*
 
 /**

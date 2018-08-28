@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.customs
+package de.thkoeln.fherborn.fearlesschange.ui.customs
 
 import android.view.View
 import kotlin.reflect.KProperty

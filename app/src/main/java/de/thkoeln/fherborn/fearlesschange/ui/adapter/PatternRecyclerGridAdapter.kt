@@ -1,12 +1,12 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.adapter
+package de.thkoeln.fherborn.fearlesschange.ui.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
-import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardPreview
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
+import de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
 
 /**
  * Adapter to adapt a pattern to a recycler view

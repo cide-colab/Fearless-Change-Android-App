@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.helper.events
+package de.thkoeln.fherborn.fearlesschange.helper.events
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData

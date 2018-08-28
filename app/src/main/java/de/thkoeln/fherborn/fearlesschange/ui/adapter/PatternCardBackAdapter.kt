@@ -1,7 +1,7 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.adapter
+package de.thkoeln.fherborn.fearlesschange.ui.adapter
 
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
-import de.thkoeln.fherborn.fearlesschange.v2.ui.customs.card.PatternCardBack
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
+import de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardBack
 
 /**
  * Created by florianherborn on 22.08.18.

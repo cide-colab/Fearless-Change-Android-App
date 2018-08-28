@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.helper
+package de.thkoeln.fherborn.fearlesschange.helper
 
 import java.util.*
 

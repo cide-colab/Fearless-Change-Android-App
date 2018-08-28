@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.dashboard.features
+package de.thkoeln.fherborn.fearlesschange.ui.dashboard.features
 
 
 import android.arch.lifecycle.Observer
@@ -9,9 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInfo
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardPreviewAdapter
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternCardPreviewAdapter
 import kotlinx.android.synthetic.main.feature_pattern_of_the_day.*
 
 

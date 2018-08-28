@@ -1,11 +1,11 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel
+package de.thkoeln.fherborn.fearlesschange.data.viewmodel
 
 import android.app.Application
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.NoteRepository
-import de.thkoeln.fherborn.fearlesschange.v2.helper.SnackBarMessage
-import de.thkoeln.fherborn.fearlesschange.v2.helper.events.Event
+import de.thkoeln.fherborn.fearlesschange.data.persistance.note.Note
+import de.thkoeln.fherborn.fearlesschange.data.persistance.note.NoteRepository
+import de.thkoeln.fherborn.fearlesschange.helper.SnackBarMessage
+import de.thkoeln.fherborn.fearlesschange.helper.events.Event
 
 class NoteViewModel(context: Application) : BasicViewModel(context) {
 
@@ -20,7 +20,7 @@ class NoteViewModel(context: Application) : BasicViewModel(context) {
 
     fun deleteNoteConfirmed(note: Note) {
         noteRepository.delete(note)
-        val message = getApplication<Application>().getString(R.string.noteDeleted, note.title)
+        val message = getApplication<Application>().getString(R.string.message_note_deleted, note.title)
         sendSnackBarMessageEvent.invoke(SnackBarMessage(message))
     }
 

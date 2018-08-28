@@ -1,6 +1,6 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern
+package de.thkoeln.fherborn.fearlesschange.data.persistance.pattern
 
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.DataInitializer
+import de.thkoeln.fherborn.fearlesschange.data.persistance.DataInitializer
 
 class PatternInitializer : DataInitializer<Pattern>("pattern") {
     override fun getItemValues(item: Pattern?) = hashMapOf(

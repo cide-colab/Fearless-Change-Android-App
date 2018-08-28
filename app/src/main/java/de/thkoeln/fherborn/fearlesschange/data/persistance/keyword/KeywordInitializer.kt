@@ -1,6 +1,6 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword
+package de.thkoeln.fherborn.fearlesschange.data.persistance.keyword
 
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.DataInitializer
+import de.thkoeln.fherborn.fearlesschange.data.persistance.DataInitializer
 
 class KeywordInitializer : DataInitializer<Keyword>("keyword") {
 

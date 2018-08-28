@@ -1,24 +1,24 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance
+package de.thkoeln.fherborn.fearlesschange.data.persistance
 
-import android.content.Context
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.patternkeyword.PatternKeywordDao
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.KeywordDao
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternDao
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.PatternInitializer
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.patternkeyword.PatternKeyword
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.patternkeyword.PatternKeywordInitializer
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.Keyword
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword.KeywordInitializer
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.Note
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.note.NoteDao
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.Statistic
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticConverters
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic.StatisticDao
+import android.content.Context
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.Keyword
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.KeywordDao
+import de.thkoeln.fherborn.fearlesschange.data.persistance.keyword.KeywordInitializer
+import de.thkoeln.fherborn.fearlesschange.data.persistance.note.Note
+import de.thkoeln.fherborn.fearlesschange.data.persistance.note.NoteDao
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternDao
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInitializer
+import de.thkoeln.fherborn.fearlesschange.data.persistance.patternkeyword.PatternKeyword
+import de.thkoeln.fherborn.fearlesschange.data.persistance.patternkeyword.PatternKeywordDao
+import de.thkoeln.fherborn.fearlesschange.data.persistance.patternkeyword.PatternKeywordInitializer
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.Statistic
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.StatisticConverters
+import de.thkoeln.fherborn.fearlesschange.data.persistance.statistic.StatisticDao
 
 /**
  * Created by florianherborn on 30.07.18.

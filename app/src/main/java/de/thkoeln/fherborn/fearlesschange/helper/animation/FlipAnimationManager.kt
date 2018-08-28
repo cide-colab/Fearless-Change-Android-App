@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.helper.animation
+package de.thkoeln.fherborn.fearlesschange.helper.animation
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

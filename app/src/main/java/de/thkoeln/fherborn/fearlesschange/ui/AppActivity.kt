@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui
+package de.thkoeln.fherborn.fearlesschange.ui
 
 import android.content.Intent
 import android.support.design.widget.Snackbar
@@ -6,8 +6,8 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.view.*
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.helper.SnackBarMessage
-import de.thkoeln.fherborn.fearlesschange.v2.ui.search.SearchActivity
+import de.thkoeln.fherborn.fearlesschange.helper.SnackBarMessage
+import de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity
 
 
 abstract class AppActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.keyword
+package de.thkoeln.fherborn.fearlesschange.data.persistance.keyword
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Index

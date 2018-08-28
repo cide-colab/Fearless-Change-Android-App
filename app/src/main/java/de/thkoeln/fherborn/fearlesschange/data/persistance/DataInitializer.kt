@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance
+package de.thkoeln.fherborn.fearlesschange.data.persistance
 
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.RoomDatabase

@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.helper
+package de.thkoeln.fherborn.fearlesschange.helper
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper

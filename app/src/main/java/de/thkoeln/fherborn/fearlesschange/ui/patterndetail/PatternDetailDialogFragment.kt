@@ -1,4 +1,4 @@
-package de.thkoeln.fherborn.fearlesschange.v2.ui.patterndetail
+package de.thkoeln.fherborn.fearlesschange.ui.patterndetail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -8,11 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.pattern.Pattern
-import de.thkoeln.fherborn.fearlesschange.v2.data.viewmodel.PatternViewModel
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardBackAdapter
-import de.thkoeln.fherborn.fearlesschange.v2.ui.adapter.PatternCardFrontAdapter
-import de.thkoeln.fherborn.fearlesschange.v2.ui.notes.PatternNotesFragment
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternCardBackAdapter
+import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternCardFrontAdapter
+import de.thkoeln.fherborn.fearlesschange.ui.notes.PatternNotesFragment
 import kotlinx.android.synthetic.main.pattern_detail_dialog.*
 
 

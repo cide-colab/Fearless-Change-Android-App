@@ -1,8 +1,8 @@
-package de.thkoeln.fherborn.fearlesschange.v2.data.persistance.statistic
+package de.thkoeln.fherborn.fearlesschange.data.persistance.statistic
 
 import android.content.Context
-import de.thkoeln.fherborn.fearlesschange.v2.helper.extensions.doAsync
-import de.thkoeln.fherborn.fearlesschange.v2.data.persistance.AppDatabase
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.doAsync
+import de.thkoeln.fherborn.fearlesschange.data.persistance.AppDatabase
 
 
 /**
