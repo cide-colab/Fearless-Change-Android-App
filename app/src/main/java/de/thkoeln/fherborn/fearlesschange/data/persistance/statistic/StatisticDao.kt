@@ -39,4 +39,7 @@ interface StatisticDao {
             " WHERE r.id = c.id")
     fun getMostCommonByAction(action: StatisticAction): LiveData<Statistic>
 
+    @Query("DELETE FROM statistic WHERE `action` = :action")
+    fun deleteByAction(action: StatisticAction)
+
 }

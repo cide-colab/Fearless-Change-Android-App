@@ -103,6 +103,37 @@
                         app:layout_constraintHorizontal_bias="0" />
                 </android.support.constraint.ConstraintLayout>
 
+                <android.support.constraint.ConstraintLayout
+                    style="@style/SettingsItem"
+                    android:id="@+id/reset_notes_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reset_favorites_item">
+
+                    <ImageView
+                        style="@style/SettingsItemIcon.UserSection"
+                        android:id="@+id/settings_item_reset_notes_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_assignment_white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        style="@style/SettingsItemLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_item_reset_notes_label"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/settings_item_reset_notes_icon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0" />
+                </android.support.constraint.ConstraintLayout>
+
             </android.support.constraint.ConstraintLayout>
 
 

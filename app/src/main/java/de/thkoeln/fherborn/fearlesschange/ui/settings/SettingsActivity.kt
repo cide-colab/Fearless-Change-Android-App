@@ -42,6 +42,7 @@ class SettingsActivity : AppActivity() {
 
         reset_most_clicked_item.setOnClickListener{viewModel.resetMostClickedPatternClicked()}
         reset_favorites_item.setOnClickListener{viewModel.resetFavoritesClicked()}
+        reset_notes_item.setOnClickListener {viewModel.resetNotesClicked()}
         reset_to_factory_item.setOnClickListener{viewModel.resetToFactorySettingsClicked()}
 
     }
