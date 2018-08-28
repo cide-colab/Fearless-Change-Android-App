@@ -97,7 +97,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     10,
                     "Low Hanging Fruit",
-                    "", //Empty if not exist
+                    "low_hanging_fruit", //Empty if not exist
                     "Given all the tasks you have to accomplish in your change initiative, how do you decide which one to tackle when you feel pressure to make progress?",
                     "To show progress in the change initiative, complete a quick and easy, low-risk task with wide impact and then publicize the results.",
                     "As you prepare to move forward, occasionally look for a quick and easy win that will have visible impact."
@@ -129,7 +129,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     14,
                     "Wake-up Call",
-                    "", //Empty if not exist
+                    "wake_up_call", //Empty if not exist
                     "People in your organization seem to be comfortable with the status quo. They don’t see the need to change the current state of things.",
                     "To encourage people to pay attention to your idea, point out the issue that you believe has created a pressing need for change.",
                     "Create a conscious need for the change by calling attention to a problem and its negative consequences in the organization."
@@ -419,7 +419,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     50,
                     "Sincere Appreciation",
-                    "",
+                    "thank_you",
                     "People feel unappreciated when they work hard and no one notices or cares.",
                     "To help people feel appreciated, express your gratitude in the most sincere way you can to everyone who makes a contribution.",
                     "Find everyone who has helped you and say “thanks” in the most sincere way you can."
@@ -427,7 +427,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     51,
                     "Small Successes",
-                    "",
+                    "small_success",
                     "Every organizational change effort has its ups and downs. It’s a difficult process.",
                     "To avoid becoming discouraged by obstacles and slow progress, celebrate even a small success.",
                     "As you carry on in baby steps, take the time to recognize and celebrate successes, especially the small ones."
@@ -435,7 +435,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     52,
                     "Smell of Success",
-                    "",
+                    "smell_of_success",
                     "When you start to have some success, newcomers will ask you about the innovation.",
                     "When your efforts produce a visibly positive result, treat this opportunity as a teaching moment.",
                     "When people comment on the success they see with the innovation, treat their inquiry as a teaching moment."
@@ -443,7 +443,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     53,
                     "Stay in Touch",
-                    "",
+                    "stay_in_touch",
                     "Your key supporters have too many things to think about and can forget about the new idea.",
                     "Once you’ve sparked some interest in people, don’t forget about them, and make sure they don’t forget about you.",
                     "Stay in touch with your key supporters."
@@ -459,7 +459,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     55,
                     "Sustained Momentum",
-                    "",
+                    "sustained_momentum",
                     "The many other things that need to be done will tempt you to put the task of introducing the new idea on the back burner for a while. Doing so can cause you and other people to lose interestin it.",
                     "Be proactive in keeping your change initiative going.",
                     "Take a proactive approach in the organization to the ongoingwork of sustaining the interest in the new idea. Take some smallaction each day, no matter how insignificant it may seem, tomove you closer to your goal."
@@ -475,7 +475,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
             Pattern(
                     57,
                     "Time for Reflection",
-                    "",
+                    "self_reflection",
                     "We make the same assumptions and the same mistakes based onthose assumptions over and over again.",
                     "To learn from the past, take time at regular intervals to evaluate what is working well and what should be done differently.",
                     "Pause in any activity to reflect on what is working well and whatshould be done differently."
