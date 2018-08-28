@@ -2,4 +2,8 @@
 <resources>
     <dimen name="default_margin">8dp</dimen>
     <dimen name="default_padding">8dp</dimen>
+
+    <!-- Features -->
+    <dimen name="feature_margin">8dp</dimen>
+    <dimen name="feature_padding">8dp</dimen>
 </resources>

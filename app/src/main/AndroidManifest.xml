@@ -4,63 +4,54 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round">
         <activity
-            android:name=".ui.activities.DashboardActivity"
-            android:label="@string/title_activity_dashboard"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.OverviewActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.overview.OverviewActivity"
             android:label="@string/title_activity_overview"
-            android:parentActivityName=".ui.activities.DashboardActivity"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.FavoritesActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.favorites.FavoritesActivity"
             android:label="@string/title_activity_favorites"
-            android:parentActivityName=".ui.activities.DashboardActivity"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.MoreActivity"
-            android:label="@string/title_activity_more"
-            android:parentActivityName=".ui.activities.DashboardActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
-        </activity>
-        <activity
-            android:name=".ui.activities.SearchActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity"
             android:label="@string/title_activity_search"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.SettingsActivity"
+            android:name="de.thkoeln.fherborn.fearlesschange.ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:parentActivityName="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.fherborn.fearlesschange.ui.activities.DashboardActivity" />
+                android:value="de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
 
     </application>

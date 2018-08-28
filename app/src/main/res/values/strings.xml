@@ -4,40 +4,43 @@
     <!-- Navigation -->
     <string name="label_nav_overview">Overview</string>
     <string name="label_nav_favorites">Favorites</string>
-    <string name="label_nav_more">More</string>
+    <string name="label_nav_settings">Settings</string>
 
     <!-- Actions -->
     <string name="action_details">Details</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
-    <string name="action_refresh">Refresh</string>
 
     <!-- Activities -->
     <string name="title_activity_settings">Settings</string>
-    <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_activity_favorites">Favorites</string>
-    <string name="title_activity_more">More</string>
     <string name="title_activity_overview">Overview</string>
     <string name="title_activity_search">Search</string>
-
-    <!-- Fragments -->
-    <string name="title_fragment_card_of_the_day">Card of the Day</string>
-    <string name="title_fragment_random_cards">Random Cards</string>
+    <string name="title_feature_pattern_of_the_day">Card of the Day</string>
+    <string name="title_feature_random_pattern">Random Cards</string>
+    <string name="title_feature_most_clicked_card">Most Clicked Card</string>
 
     <!-- Header -->
     <string name="header_problem">Problem</string>
     <string name="header_solution">Solution</string>
-    <string name="header_buts">Buts...</string>
+    <string name="header_notes">Notes</string>
 
-
-    <string name="title_fragment_most_clicked_card">Most Clicked Card</string>
+    <!-- Actions -->
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
-    <string name="label_new_note">New Note</string>
+    <string name="action_confirm">Confirm</string>
+
+    <!-- Hints -->
     <string name="hint_title">Title</string>
     <string name="hint_text">Text</string>
-    <string name="noteDeleted">Note %1$s deleted</string>
-    <string name="header_notes">Notes</string>
+
+    <!-- Images -->
+    <string name="image_description_back">Back</string>
+    <string name="image_description_title_bg">Title Background</string>
+    <string name="image_description_pattern_image">Pattern Image</string>
+    <string name="image_description_favorite">Favorite icon</string>
+    <string name="image_description_notes">Notes icon</string>
+    <string name="image_description_feature_icon">Feature Icon</string>
 
     <!-- ShowcaseViews -->
     <string name="overview_showcase_text">Shows all available patterns.</string>
@@ -55,4 +58,21 @@
     <string name="random_card_showcase_title">Random Card</string>
     <string name="random_card_showcase_text">Three random cards are shown, you can refresh them if you want.</string>
 
+    <!-- Settings -->
+    <string name="settings_header_user">User</string>
+    <string name="settings_item_reset_most_clicked_cards_label">Reset most clicked cards</string>
+    <string name="settings_item_reset_favorites_label">Reset Favorites</string>
+    <string name="settings_header_system">System</string>
+    <string name="settings_item_reset_to_factory_settings_label">Reset to factory settings</string>
+
+    <!-- Messages -->
+    <string name="message_could_not_find_pattern">Could not find Pattern</string>
+    <string name="message_note_deleted">Note %1$s deleted</string>
+    <string name="message_notes_reset">Your notes have been deleted</string>
+    <string name="message_request_confirmation_reset_note">Do you really want to delete all notes? This action can not be undone!</string>
+    <string name="message_request_confirmation_reset_favorites">Do you really want to reset your favorites? This action can not be undone!</string>
+    <string name="message_favorites_reset">Your favorites have been reset</string>
+    <string name="message_no_favorites_found">No Favorites found</string>
+    <string name="message_no_pattern_found">No Pattern found</string>
+    <string name="message_no_search_results">No cards found matching search criteria.</string>
 </resources>

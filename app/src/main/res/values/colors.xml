@@ -3,12 +3,28 @@
     <color name="colorPrimary">#9E9E9E</color>
     <color name="colorPrimaryDark">#616161</color>
     <color name="colorAccent">#FF5722</color>
-    <color name="component_bg">#77ffffff</color>
-    <color name="dashboard_nav_overview_bg">#cddc39</color>
-    <color name="dashboard_nav_more_bg">@android:color/holo_purple</color>
-    <color name="dashboard_nav_favorites_bg">@android:color/holo_blue_light</color>
+
+    <!-- Launcher -->
+    <color name="ic_launcher_background">#FFFFFF</color>
+
+    <!-- Backgrounds -->
+    <color name="component_background">#77ffffff</color>
+    <color name="feature_background">@color/component_background</color>
+
+    <!-- Nav -->
+    <color name="nav_overview_bg">#cddc39</color>
+    <color name="nav_more_bg">@android:color/holo_purple</color>
+    <color name="nav_favorites_bg">@android:color/holo_blue_light</color>
+
+    <!-- Buttons -->
     <color name="positive_button_color">#4CAF50</color>
     <color name="negative_button_color">#F44336</color>
+
+    <!-- Notes -->
     <color name="note_color">#FFEB3B</color>
     <color name="pin_color">#D32F2F</color>
+
+    <!-- Settings -->
+    <color name="settings_icon_system_background">#000000</color>
+    <color name="settings_icon_user_background">#8e0000</color>
 </resources>
