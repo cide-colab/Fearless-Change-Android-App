@@ -17,19 +17,19 @@ import kotlinx.android.synthetic.main.feature_most_clicked_card.*
 
 class MostClickedCardFeature : Fragment() {
 
-    private val cardPreviewAdapter = PatternCardPreviewAdapter()
+    private lateinit var cardPreviewAdapter: PatternCardPreviewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.feature_most_clicked_card, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
 
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
-        viewModel.getMostClickedPattern().observe(this, Observer { onCardUpdate(it) })
+        viewModel.mostClickedPattern.observe(this, Observer { onCardUpdate(it) })
+        cardPreviewAdapter = PatternCardPreviewAdapter()
         cardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
         card_preview.setAdapter(cardPreviewAdapter)
-
     }
 
     private fun onCardUpdate(patternInfo: PatternInfo?) {
