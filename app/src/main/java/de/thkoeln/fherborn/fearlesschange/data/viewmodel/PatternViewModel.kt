@@ -58,10 +58,7 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
         generateNewRandomPattern.invoke((0..cardCount).shuffled().subList(0, 3))
     }
 
-    fun getMostClickedPattern(): LiveData<PatternInfo> =
-            Transformations.switchMap(statisticRepository.getMostCommonByAction(StatisticAction.CLICK)) { statistic ->
-                statistic?.patternId?.let { patternRepository.getInfo(it) }
-            }
+    fun getMostClickedPattern(): LiveData<PatternInfo> = statisticRepository.getMostCommonByAction(StatisticAction.CLICK)
 
     fun cardPreviewClicked(patternInfo: PatternInfo?) {
         patternInfo?.pattern?.id?.let {

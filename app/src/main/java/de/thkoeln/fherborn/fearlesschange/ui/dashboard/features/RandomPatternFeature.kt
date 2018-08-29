@@ -25,38 +25,41 @@ import kotlinx.android.synthetic.main.feature_random_pattern.*
 class RandomPatternFeature : Fragment() {
 
     private var animated = true
+    private lateinit var viewModel: PatternViewModel
 
-    private val patternCardAdapters = listOf(
-            PatternCardPreviewAdapter(),
-            PatternCardPreviewAdapter(),
-            PatternCardPreviewAdapter()
-    )
-
-    private val patternCards by lazy {
-        listOf(
-                random_cards_1,
-                random_cards_2,
-                random_cards_3
-        )
-    }
+    private lateinit var patternCardAdapters: List<PatternCardPreviewAdapter>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.feature_random_pattern, container, false)
 
     override fun onResume() {
         super.onResume()
 
-        val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
         viewModel.getRandomPatterns().observe(this, Observer { onPatternChanged(it) })
-        patternCardAdapters.forEachIndexed { index, patternCardPreviewAdapter ->
-            patternCardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
-            patternCards[index].setAdapter(patternCardPreviewAdapter)
-        }
 
         random_cards_reload.setOnClickListener {
             animated = false
             viewModel.generateNewRandomPatterns()
         }
         viewModel.generateNewRandomPatterns()
+
+        val patternCards by lazy {
+            listOf(
+                    random_cards_1,
+                    random_cards_2,
+                    random_cards_3
+            )
+        }
+        patternCardAdapters = listOf(
+                PatternCardPreviewAdapter(),
+                PatternCardPreviewAdapter(),
+                PatternCardPreviewAdapter()
+        )
+
+        patternCardAdapters.forEachIndexed { index, patternCardPreviewAdapter ->
+            patternCardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
+            patternCards[index].setAdapter(patternCardPreviewAdapter)
+        }
     }
 
     private fun onPatternChanged(patterns: List<PatternInfo>?) {

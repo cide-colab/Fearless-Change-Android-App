@@ -24,6 +24,7 @@ class StatisticRepository(context: Context) {
     fun getActionCount(action: StatisticAction) = dao.getActionCount(action)
 
     fun getMostCommonByAction(action: StatisticAction) = dao.getMostCommonByAction(action)
+
     fun deleteAllByAction(action: StatisticAction) = doAsync { dao.deleteByAction(action) }
 
 }

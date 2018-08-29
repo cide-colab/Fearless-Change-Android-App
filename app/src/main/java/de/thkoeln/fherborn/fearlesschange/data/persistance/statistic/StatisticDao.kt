@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
 
 /**
  * Created by florianherborn on 30.07.18.
@@ -27,17 +28,8 @@ interface StatisticDao {
     @Query("SELECT COUNT(*) FROM statistic WHERE `action` = :action")
     fun getActionCount(action: StatisticAction): LiveData<Long>
 
-    @Query("SELECT c.* FROM statistic c, " +
-            "(" +
-            "  SELECT *, Count(action) actions " +
-            "  FROM statistic " +
-            "  WHERE action =:action " +
-            "  GROUP BY patternId " +
-            "  ORDER BY actions DESC " +
-            "  LIMIT 1" +
-            " ) AS r" +
-            " WHERE r.id = c.id")
-    fun getMostCommonByAction(action: StatisticAction): LiveData<Statistic>
+    @Query("SELECT * FROM (SELECT s.* FROM statistic s, (SELECT *, COUNT(`action`) actions FROM statistic WHERE `action` =:action GROUP BY patternId ORDER BY `action` DESC LIMIT 1) AS r WHERE r.id = s.id) as pa LEFT JOIN pattern p ON p.id = pa.patternId LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId")
+    fun getMostCommonByAction(action: StatisticAction): LiveData<PatternInfo>
 
     @Query("DELETE FROM statistic WHERE `action` = :action")
     fun deleteByAction(action: StatisticAction)
