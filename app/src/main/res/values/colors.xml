@@ -27,4 +27,5 @@
     <!-- Settings -->
     <color name="settings_icon_system_background">#000000</color>
     <color name="settings_icon_user_background">#8e0000</color>
+    <color name="tutorial_next_btn_color">#64DD17</color>
 </resources>

@@ -42,6 +42,42 @@
     <string name="image_description_notes">Notes icon</string>
     <string name="image_description_feature_icon">Feature Icon</string>
 
+    <!-- Showcase -->
+    <string name="showcase_btn_next_label">GOT IT</string>
+    <string name="showcase_btn_finish_label">LETS GO</string>
+
+    <!-- Showcase Dashboard -->
+    <string name="overview_showcase_text">If you want to get an overview of all existing patterns, use the overview page</string>
+    <string name="overview_showcase_title">Overview</string>
+    <string name="favorites_showcase_title">Favorites</string>
+    <string name="favorites_showcase_text">To view and edit your favorites, it is best to use the favorites page</string>
+    <string name="settings_showcase_title">Settings</string>
+    <string name="settings_showcase_text">If you want to reset your settings and statistics, go to the settings. Here you will find everything you need.</string>
+    <string name="card_showcase_title">Pattern Card</string>
+    <string name="card_showcase_text">Click on a pattern card to see the details. There you can rotate them with one click, add notes and add them to your favorites.</string>
+    <string name="card_showcase_btn">Le</string>
+
+    <!-- Showcase Search -->
+    <string name="search_input_showcase_title">Keywords</string>
+    <string name="search_input_showcase_text">Enter keywords to search for maps. To do this type in the beginning of the keyword and select the corresponding keyword in the dropdown. You can remove them by swiping.</string>
+    <string name="search_button_showcase_title">Search</string>
+    <string name="search_button_showcase_text">When you\'ve selected all the keywords you\'re looking for, press Search and review your results.</string>
+
+
+
+
+    <string name="card_of_the_day_showcase_title">Card of the day</string>
+    <string name="card_of_the_day_showcase_text">Every day you get a new "Card of the Day". So you always get new inspirations.</string>
+    <string name="random_card_showcase_title">Random Card</string>
+    <string name="random_card_showcase_text">If you do not know what to do next? Then generate random cards and let yourself be inspired.</string>
+    <string name="most_clicked_card_showcase_title">Random Card</string>
+    <string name="most_clicked_card_showcase_text">If you do not know what to do next? Then generate random cards and let yourself be inspired.</string>
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!-- Settings -->
     <string name="settings_header_user">User</string>
     <string name="settings_item_reset_most_clicked_cards_label">Reset most clicked cards</string>
@@ -62,4 +98,7 @@
     <string name="settings_item_reset_notes_label">Reset all of your notes.</string>
     <string name="message_most_clicked_pattern_reset">The most clicked card has been reset!</string>
     <string name="message_request_confirmation_reset_most_clicked_pattern">Do you really want to reset your most clicked card? This action can not be undone!</string>
+    <string name="tutorial_next_button_label">Got it</string>
+    <string name="search_keyword_hint">Keyword</string>
+    <string name="action_help">Help</string>
 </resources>

@@ -11,11 +11,13 @@ import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
-import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
+import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity
-import kotlinx.android.synthetic.main.activity_dashbaord.*
+import de.thkoeln.fherborn.fearlesschange.showcases.DashboardShowcase
 import kotlinx.android.synthetic.main.action_bar.*
+import kotlinx.android.synthetic.main.activity_dashbaord.*
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView
 
 
 class DashboardActivity : AppActivity() {
@@ -26,6 +28,7 @@ class DashboardActivity : AppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashbaord)
         setSupportActionBar(action_bar as Toolbar)
+        collapsing_toolbar.setExpandedTitleColor(resources.getColor(android.R.color.transparent))
         inflateFeatureFragments()
 
 
@@ -34,7 +37,11 @@ class DashboardActivity : AppActivity() {
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) {
             Snackbar.make(activity_wrapper, it.message, it.duration).show()
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        DashboardShowcase(this).start()
     }
 
     private fun inflateFeatureFragments() {
@@ -55,6 +62,7 @@ class DashboardActivity : AppActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar_menu_help, menu)
         menuInflater.inflate(R.menu.action_bar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -62,6 +70,11 @@ class DashboardActivity : AppActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_search -> {
             startActivity(Intent(this, SearchActivity::class.java))
+            true
+        }
+        R.id.action_help -> {
+            MaterialShowcaseView.resetSingleUse(this, DashboardShowcase.SHOWCASE_NAME)
+            DashboardShowcase(this).start()
             true
         }
         else -> super.onOptionsItemSelected(item)

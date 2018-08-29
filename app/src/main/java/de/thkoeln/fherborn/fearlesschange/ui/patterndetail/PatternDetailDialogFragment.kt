@@ -4,19 +4,14 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
-import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
 import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternCardBackAdapter
 import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternCardFrontAdapter
-import de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardDelegation
 import de.thkoeln.fherborn.fearlesschange.ui.notes.PatternNotesFragment
 import kotlinx.android.synthetic.main.pattern_detail_dialog.*
 

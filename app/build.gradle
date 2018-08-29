@@ -35,10 +35,13 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:preference-v7:27.1.1'
+    implementation 'com.google.android:flexbox:1.0.0'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'
 
     implementation "android.arch.persistence.room:runtime:$room_version"
     implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
     kapt "android.arch.persistence.room:compiler:$room_version"
+    //ShowCaseView
+    implementation 'com.github.deano2390:MaterialShowcaseView:1.2.0'
 
 }

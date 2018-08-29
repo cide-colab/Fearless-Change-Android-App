@@ -28,26 +28,24 @@
                 android:layout_marginTop="@dimen/default_margin"
                 style="@style/ActivitySection"
                 app:layout_constraintTop_toTopOf="parent">
-            <AutoCompleteTextView
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                style="@style/Base.Widget.AppCompat.SearchView"
                 android:id="@+id/search_keyword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:textAppearance="@style/Base.Widget.AppCompat.SearchView"
-                android:textSize="20sp" />
+                android:hint="@string/search_keyword_hint"
+                android:maxLines="1" />
             </FrameLayout>
             <android.support.v7.widget.RecyclerView
+                style="@style/ActivitySection"
                 android:id="@+id/selected_keywords"
                 android:layout_width="0dp"
-                android:visibility="gone"
-                style="@style/ActivitySection"
-                android:layout_marginTop="@dimen/default_margin"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:visibility="gone"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/search_line" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/search_results"
