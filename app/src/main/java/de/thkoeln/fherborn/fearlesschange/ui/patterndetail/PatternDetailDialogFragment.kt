@@ -67,15 +67,7 @@ class PatternDetailDialogFragment : DialogFragment() {
     }
 
     private fun onCardUpdate(card: PatternInfo?) {
-        card?.noteCount.let {
-            val visibility = when {
-                it != null && it > 0 -> VISIBLE
-                else -> INVISIBLE
-            }
-            card_detail_notes_count.visibility = visibility
-            card_detail_notes_icon.visibility = visibility
-            card_detail_notes_count.text = it?.toString()
-        }
+        card_detail_notes_count.text = card?.noteCount?.toString()?:0.toString()
         cardFrontAdapter.change(card?.pattern)
         cardBackAdapter.change(card?.pattern)
     }
