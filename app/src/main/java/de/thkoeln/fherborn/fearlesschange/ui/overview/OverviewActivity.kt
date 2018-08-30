@@ -1,5 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.ui.overview
 
+import android.app.FragmentManager
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternDetailViewModel
 import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
@@ -15,17 +17,18 @@ import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFr
 import de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_overview.*
 import kotlinx.android.synthetic.main.action_bar.*
-import kotlinx.android.synthetic.main.pattern_detail_dialog.*
 
 
 class OverviewActivity : AppActivity() {
+
+    private val adapter = PatternRecyclerGridAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_overview)
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val adapter = PatternRecyclerGridAdapter()
+
         overview_recycler_view.adapter = adapter
 
         val viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
@@ -39,11 +42,15 @@ class OverviewActivity : AppActivity() {
         adapter.patternClickedListener = {
             viewModel.cardPreviewClicked(adapter.patterns.map { p -> p.pattern.id }.toLongArray(), it?.pattern?.id)
         }
+
     }
 
     private fun openCardDetailPopup(ids: LongArray, selected: Long) {
         supportFragmentManager?.let { fm ->
             val cardPopup = PatternDetailDialogFragment.newInstance(ids, selected)
+            cardPopup.onDismissListener = {
+                overview_recycler_view.smoothScrollToPosition(adapter.patterns.indexOfFirst { item -> item.pattern.id == it })
+            }
             cardPopup.show(fm, null)
         }
     }

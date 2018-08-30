@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.action_bar.*
 
 class FavoritesActivity : AppActivity() {
 
+    private val adapter = PatternRecyclerGridAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,6 @@ class FavoritesActivity : AppActivity() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val adapter = PatternRecyclerGridAdapter()
         favorites_recycler_view.adapter = adapter
 
         val viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
@@ -46,10 +46,12 @@ class FavoritesActivity : AppActivity() {
     private fun openCardDetailPopup(ids: LongArray, selected: Long) {
         supportFragmentManager?.let { fm ->
             val cardPopup = PatternDetailDialogFragment.newInstance(ids, selected)
+            cardPopup.onDismissListener = {
+                favorites_recycler_view.smoothScrollToPosition(adapter.patterns.indexOfFirst { item -> item.pattern.id == it })
+            }
             cardPopup.show(fm, null)
         }
     }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar_menu, menu)
         return super.onCreateOptionsMenu(menu)

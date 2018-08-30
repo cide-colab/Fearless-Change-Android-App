@@ -1,9 +1,11 @@
 package de.thkoeln.fherborn.fearlesschange.ui.patterndetail
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +22,10 @@ import kotlinx.android.synthetic.main.pattern_detail_dialog.*
  */
 class PatternDetailDialogFragment : DialogFragment() {
 
+    var onDismissListener: ((Long) -> Unit)? = null
+
+    private lateinit var viewModel: PatternDetailViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.pattern_detail_dialog, container)
 
@@ -28,9 +34,35 @@ class PatternDetailDialogFragment : DialogFragment() {
 
         back_btn.setOnClickListener { dismiss() }
 
-        val viewModel = ViewModelProviders.of(activity!!).get(PatternDetailViewModel::class.java)
-        viewModel.setSelectedPatternIdFromBundle(arguments, SELECTED_PATTERN_ID_KEY)
-        viewModel.setPatternIdListFromBundle(arguments, PATTERN_IDS_KEY)
+        viewModel = ViewModelProviders.of(this).get(PatternDetailViewModel::class.java)
+        viewModel.extractSelectedPattern(arguments, SELECTED_PATTERN_ID_KEY)
+        viewModel.extractPatternIdList(arguments, PATTERN_IDS_KEY)
+
+
+        val pagerAdapter = PatternDetailViewPagerAdapter(fragmentManager = childFragmentManager)
+
+        pattern_detail_viewpager.adapter = pagerAdapter
+        viewModel.setupPagingAdapterEvent.nonNullObserve(this) {
+            pagerAdapter.patternIds = it
+            pagerAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.setViewPagerPositionEvent.nonNullObserve(this) {
+            pattern_detail_viewpager.currentItem = it
+        }
+
+
+        pattern_detail_viewpager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                viewModel.onSwipePager(pagerAdapter.patternIds[position])
+            }
+        })
+
+
+        viewModel.selectedPatternInfo.nonNullObserve(this) {
+            card_detail_notes_count.text = it.noteCount.toString()
+        }
+
 
         viewModel.selectedPatternId.nonNullObserve(this) {
             arguments?.putLong(SELECTED_PATTERN_ID_KEY, it)
@@ -40,27 +72,11 @@ class PatternDetailDialogFragment : DialogFragment() {
                     .commit()
 
         }
+    }
 
-        viewModel.selectedPattern.nonNullObserve(this) {
-            card_detail_notes_count.text = it.noteCount.toString()
-        }
-
-        val pagerAdapter = PatternDetailViewPagerAdapter(fragmentManager = childFragmentManager)
-
-        viewModel.patternIdList.nonNullObserve(this) {
-            pagerAdapter.patternIds = it
-            pagerAdapter.notifyDataSetChanged()
-        }
-
-
-        pattern_detail_viewpager.adapter = pagerAdapter
-        pattern_detail_viewpager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {}
-            override fun onPageSelected(position: Int) {}
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                viewModel.setSelectedPatternId(pagerAdapter.patternIds[position])
-            }
-        })
+    override fun onDismiss(dialog: DialogInterface?) {
+        onDismissListener?.invoke(viewModel.selectedPatternId.value?:0)
+        super.onDismiss(dialog)
     }
 
     companion object {
