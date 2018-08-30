@@ -28,7 +28,10 @@ class MostClickedCardFeature : Fragment() {
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
         viewModel.mostClickedPattern.observe(this, Observer { onCardUpdate(it) })
         cardPreviewAdapter = PatternCardPreviewAdapter()
-        cardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
+        cardPreviewAdapter.onCardClickedListener = {
+            val patternId = it?.pattern?.id
+            viewModel.cardPreviewClicked(listOfNotNull(patternId).toLongArray(), patternId)
+        }
         card_preview.setAdapter(cardPreviewAdapter)
     }
 

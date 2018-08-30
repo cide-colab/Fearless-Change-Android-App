@@ -26,16 +26,17 @@
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/image_description_back" />
 
-
-        <de.thkoeln.fherborn.fearlesschange.ui.customs.card.FlippablePatternCard
-            android:id="@+id/pattern_detail_flippable_card"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pattern_detail_viewpager"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="@dimen/default_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/back_btn"/>
+            app:layout_constraintTop_toBottomOf="@id/back_btn">
+
+        </android.support.v4.view.ViewPager>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

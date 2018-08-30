@@ -30,11 +30,24 @@ class FavoritesActivity : AppActivity() {
 
         val viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
 
-        viewModel.openPatternDetailDialogEvent.nonNullObserve(this) { openPopup(PatternDetailDialogFragment.newInstance(it)) }
+        viewModel.openPatternDetailDialogEvent.nonNullObserve(this) { data ->
+            openCardDetailPopup(data.first, data.second)
+        }
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) { showSnackBar(it) }
-        viewModel.getFavorites().nonNullObserve(this) { adapter.updatePatterns(it)}
+        viewModel.getFavorites().nonNullObserve(this) {
+            adapter.updatePatterns(it)
+        }
 
-        adapter.patternClickedListener = { viewModel.cardPreviewClicked(it) }
+        adapter.patternClickedListener = {
+            viewModel.cardPreviewClicked(adapter.patterns.map { p -> p.pattern.id }.toLongArray(), it?.pattern?.id)
+        }
+    }
+
+    private fun openCardDetailPopup(ids: LongArray, selected: Long) {
+        supportFragmentManager?.let { fm ->
+            val cardPopup = PatternDetailDialogFragment.newInstance(ids, selected)
+            cardPopup.show(fm, null)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

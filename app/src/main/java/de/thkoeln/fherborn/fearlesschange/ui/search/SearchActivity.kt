@@ -92,13 +92,12 @@ class SearchActivity : AppActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
 
-        viewModel.openPatternDetailDialogEvent.nonNullObserve(this) {openPopup(PatternDetailDialogFragment.newInstance(it))}
+        viewModel.openPatternDetailDialogEvent.nonNullObserve(this) {
+            openPopup(PatternDetailDialogFragment.newInstance(resultsAdapter.patterns.map { p -> p.pattern.id }.toLongArray(), it))
+        }
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) { showSnackBar(it) }
     }
 
-    /**
-     * Set up the [android.app.ActionBar], if the API is available.
-     */
     private fun setupActionBar() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

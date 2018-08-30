@@ -57,7 +57,11 @@ class RandomPatternFeature : Fragment() {
         )
 
         patternCardAdapters.forEachIndexed { index, patternCardPreviewAdapter ->
-            patternCardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
+            patternCardPreviewAdapter.onCardClickedListener = {
+                viewModel.cardPreviewClicked(patternCardAdapters.map { pca ->
+                    pca.pattern?.id
+                }.filterNotNull().toLongArray(), it?.pattern?.id)
+            }
             patternCards[index].setAdapter(patternCardPreviewAdapter)
         }
     }

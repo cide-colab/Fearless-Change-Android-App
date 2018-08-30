@@ -64,15 +64,12 @@
     <string name="search_button_showcase_text">When you\'ve selected all the keywords you\'re looking for, press Search and review your results.</string>
 
 
-
-
     <string name="card_of_the_day_showcase_title">Card of the day</string>
     <string name="card_of_the_day_showcase_text">Every day you get a new "Card of the Day". So you always get new inspirations.</string>
     <string name="random_card_showcase_title">Random Card</string>
     <string name="random_card_showcase_text">If you do not know what to do next? Then generate random cards and let yourself be inspired.</string>
     <string name="most_clicked_card_showcase_title">Random Card</string>
     <string name="most_clicked_card_showcase_text">If you do not know what to do next? Then generate random cards and let yourself be inspired.</string>
-
 
 
     <!-- TODO: Remove or change this placeholder text -->

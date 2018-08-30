@@ -31,7 +31,9 @@ class DashboardActivity : AppActivity() {
 
 
         viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
-        viewModel.openPatternDetailDialogEvent.nonNullObserve(this) { openCardDetailPopup(it) }
+        viewModel.openPatternDetailDialogEvent.nonNullObserve(this) { data ->
+            openCardDetailPopup(data.first, data.second)
+        }
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) {
             Snackbar.make(activity_wrapper, it.message, it.duration).show()
         }
@@ -47,9 +49,9 @@ class DashboardActivity : AppActivity() {
         ft.commit()
     }
 
-    private fun openCardDetailPopup(cardId: Long) {
+    private fun openCardDetailPopup(ids: LongArray, selected: Long) {
         supportFragmentManager?.let { fm ->
-            val cardPopup = PatternDetailDialogFragment.newInstance(cardId = cardId)
+            val cardPopup = PatternDetailDialogFragment.newInstance(ids, selected)
             cardPopup.show(fm, null)
         }
     }

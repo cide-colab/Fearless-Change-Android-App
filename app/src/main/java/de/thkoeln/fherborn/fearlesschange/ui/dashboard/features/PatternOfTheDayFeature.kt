@@ -27,7 +27,10 @@ class PatternOfTheDayFeature : Fragment() {
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
         viewModel.getPatternOfTheDay().observe(this, Observer { onPatternInfoUpdate(it) })
 
-        cardPreviewAdapter.onCardClickedListener = { viewModel.cardPreviewClicked(it) }
+        cardPreviewAdapter.onCardClickedListener = {
+            val patternId = it?.pattern?.id
+            viewModel.cardPreviewClicked(listOfNotNull(patternId).toLongArray(), patternId)
+        }
         card_preview.setAdapter(cardPreviewAdapter)
     }
 
