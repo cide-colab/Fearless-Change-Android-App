@@ -7,22 +7,21 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
-import com.google.android.flexbox.*
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.SearchViewModel
 import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
-import de.thkoeln.fherborn.fearlesschange.showcases.SearchShowcase
 import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternRecyclerGridAdapter
 import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_search.*
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView
 
 class SearchActivity : AppActivity() {
     private val selectedKeywordsAdapter = SearchKeywordRecyclerAdapter()
@@ -46,7 +45,6 @@ class SearchActivity : AppActivity() {
             imm.hideSoftInputFromWindow(search_button.windowToken, 0)
         }
 
-        SearchShowcase(this).start()
     }
 
     private fun initSearchResultView() {
@@ -104,18 +102,5 @@ class SearchActivity : AppActivity() {
     private fun setupActionBar() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.action_bar_menu_help, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_help -> {
-            MaterialShowcaseView.resetSingleUse(this, SearchShowcase.SHOWCASE_NAME)
-            SearchShowcase(this).start()
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
     }
 }

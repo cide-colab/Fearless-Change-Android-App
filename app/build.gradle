@@ -41,7 +41,5 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$room_version"
     implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
     kapt "android.arch.persistence.room:compiler:$room_version"
-    //ShowCaseView
-    implementation 'com.github.deano2390:MaterialShowcaseView:1.2.0'
 
 }

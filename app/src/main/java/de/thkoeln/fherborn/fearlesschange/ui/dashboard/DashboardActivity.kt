@@ -14,10 +14,8 @@ import de.thkoeln.fherborn.fearlesschange.ui.AppActivity
 import de.thkoeln.fherborn.fearlesschange.ui.dashboard.DashboardFeatureRegistry.dashboardFeatures
 import de.thkoeln.fherborn.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
 import de.thkoeln.fherborn.fearlesschange.ui.search.SearchActivity
-import de.thkoeln.fherborn.fearlesschange.showcases.DashboardShowcase
 import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_dashbaord.*
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView
 
 
 class DashboardActivity : AppActivity() {
@@ -37,11 +35,6 @@ class DashboardActivity : AppActivity() {
         viewModel.sendSnackBarMessageEvent.nonNullObserve(this) {
             Snackbar.make(activity_wrapper, it.message, it.duration).show()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        DashboardShowcase(this).start()
     }
 
     private fun inflateFeatureFragments() {
@@ -72,12 +65,6 @@ class DashboardActivity : AppActivity() {
             startActivity(Intent(this, SearchActivity::class.java))
             true
         }
-        R.id.action_help -> {
-            MaterialShowcaseView.resetSingleUse(this, DashboardShowcase.SHOWCASE_NAME)
-            DashboardShowcase(this).start()
-            true
-        }
         else -> super.onOptionsItemSelected(item)
     }
-
 }
