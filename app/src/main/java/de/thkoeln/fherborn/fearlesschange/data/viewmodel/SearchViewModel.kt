@@ -34,6 +34,7 @@ class SearchViewModel(context: Application) : BasicViewModel(context) {
 
     fun addKeywordClicked(keyword: Keyword) {
         selectedKeywords.value = selectedKeywords.value?.plus(keyword)
+        onSearchClicked()
     }
 
     fun onSearchClicked() {
@@ -49,6 +50,7 @@ class SearchViewModel(context: Application) : BasicViewModel(context) {
 
     fun removeKeyword(keyword: Keyword) {
         selectedKeywords.value = selectedKeywords.value?.minus(keyword)
+        onSearchClicked()
     }
 
     fun cardPreviewClicked(patternInfo: PatternInfo?) {

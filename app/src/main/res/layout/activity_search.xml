@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     style="@style/AppActivity">
     <include layout="@layout/action_bar" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-        android:src="@drawable/ic_search_black_24dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/default_margin"/>
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,6 +24,8 @@
                 style="@style/Base.Widget.AppCompat.SearchView"
                 android:id="@+id/search_keyword"
                 android:layout_width="match_parent"
+                android:inputType="text"
+                android:imeOptions="actionDone"
                 android:layout_height="wrap_content"
                 android:hint="@string/search_keyword_hint"
                 android:maxLines="1" />

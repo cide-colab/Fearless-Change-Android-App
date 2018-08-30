@@ -39,12 +39,6 @@ class SearchActivity : AppActivity() {
         initKeywordList()
         initSearchResultView()
 
-        search_button.setOnClickListener {
-            viewModel.onSearchClicked()
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(search_button.windowToken, 0)
-        }
-
     }
 
     private fun initSearchResultView() {
