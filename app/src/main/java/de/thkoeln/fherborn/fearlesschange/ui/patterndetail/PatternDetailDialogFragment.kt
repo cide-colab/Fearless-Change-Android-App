@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternDetailViewModel
 import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
+import de.thkoeln.fherborn.fearlesschange.helper.share.ShareManager
 import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternDetailViewPagerAdapter
 import de.thkoeln.fherborn.fearlesschange.ui.notes.PatternNotesFragment
 import kotlinx.android.synthetic.main.pattern_detail_dialog.*
@@ -33,6 +34,7 @@ class PatternDetailDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         back_btn.setOnClickListener { dismiss() }
+
 
         viewModel = ViewModelProviders.of(this).get(PatternDetailViewModel::class.java)
         viewModel.extractSelectedPattern(arguments, SELECTED_PATTERN_ID_KEY)
@@ -61,6 +63,7 @@ class PatternDetailDialogFragment : DialogFragment() {
 
         viewModel.selectedPatternInfo.nonNullObserve(this) {
             card_detail_notes_count.text = it.noteCount.toString()
+            ShareManager.sharePattern(activity!!, it.pattern)
         }
 
 
