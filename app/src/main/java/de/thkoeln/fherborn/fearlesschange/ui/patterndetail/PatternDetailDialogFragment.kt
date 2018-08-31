@@ -1,5 +1,6 @@
 package de.thkoeln.fherborn.fearlesschange.ui.patterndetail
 
+import android.Manifest
 import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.os.Bundle
@@ -15,6 +16,11 @@ import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.helper.share.ShareManager
 import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternDetailViewPagerAdapter
 import de.thkoeln.fherborn.fearlesschange.ui.notes.PatternNotesFragment
+import kotlinx.android.synthetic.main.fragment_flippable_card.*
+import kotlinx.android.synthetic.main.pattern_card_back.view.*
+import kotlinx.android.synthetic.main.pattern_card_flippable.*
+import kotlinx.android.synthetic.main.pattern_card_flippable.view.*
+import kotlinx.android.synthetic.main.pattern_card_front.view.*
 import kotlinx.android.synthetic.main.pattern_detail_dialog.*
 
 
@@ -63,7 +69,7 @@ class PatternDetailDialogFragment : DialogFragment() {
 
         viewModel.selectedPatternInfo.nonNullObserve(this) {
             card_detail_notes_count.text = it.noteCount.toString()
-            ShareManager.sharePattern(activity!!, it.pattern)
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         }
 
 
@@ -75,6 +81,12 @@ class PatternDetailDialogFragment : DialogFragment() {
                     .commit()
 
         }
+
+        viewModel.sharePatternEvent.nonNullObserve(this) {
+            ShareManager(activity!!).sharePattern(it)
+        }
+
+        share_btn.setOnClickListener { viewModel.onSharePressed() }
     }
 
     override fun onDismiss(dialog: DialogInterface?) {

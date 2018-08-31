@@ -99,4 +99,6 @@
     <string name="search_keyword_hint">Keyword</string>
     <string name="action_help">Help</string>
     <string name="action_share">Share</string>
+    <string name="massage_no_pattern_to_share">No Pattern found to share</string>
+    <string name="share_text">Look at what I\'ve just found. Maybe that\'s something for you.</string>
 </resources>

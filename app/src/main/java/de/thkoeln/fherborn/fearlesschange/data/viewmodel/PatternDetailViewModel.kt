@@ -5,6 +5,8 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import android.os.Bundle
+import de.thkoeln.fherborn.fearlesschange.R
+import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
 import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternRepository
 import de.thkoeln.fherborn.fearlesschange.helper.events.Event
@@ -17,6 +19,7 @@ class PatternDetailViewModel(context: Application) : BasicViewModel(context) {
     var selectedPatternId: MutableLiveData<Long> = MutableLiveData()
 
     val setViewPagerPositionEvent: Event<Int> = Event()
+    val sharePatternEvent: Event<Pattern> = Event()
     val setupPagingAdapterEvent: Event<LongArray> = Event()
 
     val selectedPatternInfo: LiveData<PatternInfo> = Transformations.switchMap(selectedPatternId) {
@@ -37,6 +40,12 @@ class PatternDetailViewModel(context: Application) : BasicViewModel(context) {
 
     fun onSwipePager(patternId: Long) {
         selectedPatternId.postValue(patternId)
+    }
+
+    fun onSharePressed() {
+        selectedPatternInfo.value?.pattern?.let {
+            sharePatternEvent.invoke(it)
+        }?:sendMessage(R.string.massage_no_pattern_to_share)
     }
 }
 

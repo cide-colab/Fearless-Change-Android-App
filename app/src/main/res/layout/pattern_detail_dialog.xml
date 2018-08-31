@@ -26,6 +26,17 @@
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/image_description_back" />
 
+        <ImageButton
+            android:id="@+id/share_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/default_padding"
+            android:src="@drawable/ic_share_white_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/image_description_back" />
+
         <android.support.v4.view.ViewPager
             android:id="@+id/pattern_detail_viewpager"
             android:layout_width="0dp"
