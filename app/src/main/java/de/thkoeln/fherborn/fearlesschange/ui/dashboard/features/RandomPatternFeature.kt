@@ -17,6 +17,7 @@ import android.view.animation.DecelerateInterpolator
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.fherborn.fearlesschange.data.viewmodel.PatternViewModel
+import de.thkoeln.fherborn.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.fherborn.fearlesschange.ui.adapter.PatternCardPreviewAdapter
 import de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
 import kotlinx.android.synthetic.main.feature_random_pattern.*
@@ -26,44 +27,50 @@ class RandomPatternFeature : Fragment() {
 
     private var animated = true
     private lateinit var viewModel: PatternViewModel
+    private val patternCards by lazy {
+        listOf(
+                random_cards_1,
+                random_cards_2,
+                random_cards_3
+        )
+    }
 
-    private lateinit var patternCardAdapters: List<PatternCardPreviewAdapter>
+    private val patternCardAdapters by lazy {
+        listOf(
+                PatternCardPreviewAdapter(),
+                PatternCardPreviewAdapter(),
+                PatternCardPreviewAdapter()
+        )
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.feature_random_pattern, container, false)
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
 
         viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
-        viewModel.getRandomPatterns().observe(this, Observer { onPatternChanged(it) })
+        viewModel.randomPattern.nonNullObserve(this) {
+            onPatternChanged(it)
+        }
 
         random_cards_reload.setOnClickListener {
             animated = false
             viewModel.generateNewRandomPatterns()
         }
-        viewModel.generateNewRandomPatterns()
 
-        val patternCards by lazy {
-            listOf(
-                    random_cards_1,
-                    random_cards_2,
-                    random_cards_3
-            )
-        }
-        patternCardAdapters = listOf(
-                PatternCardPreviewAdapter(),
-                PatternCardPreviewAdapter(),
-                PatternCardPreviewAdapter()
-        )
 
         patternCardAdapters.forEachIndexed { index, patternCardPreviewAdapter ->
             patternCardPreviewAdapter.onCardClickedListener = {
-                viewModel.cardPreviewClicked(patternCardAdapters.map { pca ->
+                viewModel.cardPreviewClicked(patternCardAdapters.mapNotNull { pca ->
+
                     pca.pattern?.id
-                }.filterNotNull().toLongArray(), it?.pattern?.id)
+                }.toLongArray(), it?.pattern?.id)
             }
             patternCards[index].setAdapter(patternCardPreviewAdapter)
         }
+
+
+        viewModel.generateNewRandomPatterns()
     }
 
     private fun onPatternChanged(patterns: List<PatternInfo>?) {
@@ -86,13 +93,15 @@ class RandomPatternFeature : Fragment() {
         val animators = cards.mapIndexed { index, cardView ->
             val oa1 = ObjectAnimator.ofFloat(cardView, "scaleX", 1f, 0f).apply {
                 interpolator = DecelerateInterpolator()
+            }
+            val oa2 = ObjectAnimator.ofFloat(cardView, "scaleX", 0f, 1f).apply {
+                interpolator = AccelerateDecelerateInterpolator()
                 addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
                         run(index)
                     }
                 })
             }
-            val oa2 = ObjectAnimator.ofFloat(cardView, "scaleX", 0f, 1f).apply { interpolator = AccelerateDecelerateInterpolator() }
             val oa3 = ObjectAnimator.ofFloat(cardView, "scaleX", 1f, 0f).apply { interpolator = DecelerateInterpolator() }
             val oa4 = ObjectAnimator.ofFloat(cardView, "scaleX", 0f, 1f).apply { interpolator = AccelerateDecelerateInterpolator() }
 

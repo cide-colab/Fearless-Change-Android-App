@@ -22,8 +22,8 @@ class MostClickedCardFeature : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.feature_most_clicked_card, container, false)
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
 
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
         viewModel.mostClickedPattern.observe(this, Observer { onCardUpdate(it) })

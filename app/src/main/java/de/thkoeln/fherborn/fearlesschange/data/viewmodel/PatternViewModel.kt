@@ -2,6 +2,8 @@ package de.thkoeln.fherborn.fearlesschange.data.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MediatorLiveData
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.Transformations
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
@@ -19,9 +21,33 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
     private val patternRepository by lazy { PatternRepository(context) }
     private val statisticRepository by lazy { StatisticRepository(context) }
 
-    private var cardCount = 50
-    private val generateNewRandomPattern = Event<List<Int>>()
 
+    class RandomCardMediator(private val source: LiveData<List<PatternInfo>>) : MediatorLiveData<List<PatternInfo>>() {
+
+        private var cardCount = 50
+        private val generateNewRandomPattern = Event<List<Int>>()
+
+        init {
+            addSource(source) { value ->
+                value?.let {
+                    cardCount = it.size
+                    setNewValue(pattern = it)
+                }
+            }
+            addSource(generateNewRandomPattern) { value -> setNewValue(indices = value) }
+        }
+
+        private fun setNewValue(indices: List<Int>? = generateNewRandomPattern.value, pattern: List<PatternInfo>? = source.value) {
+            value = indices?.mapNotNull { pattern?.get(it) }
+        }
+
+        fun generateNewRandomPatterns() {
+            generateNewRandomPattern.invoke((0 until cardCount).shuffled().subList(0, 3))
+        }
+    }
+
+
+    val randomPattern = RandomCardMediator(patternRepository.getAllInfo())
     val openPatternDetailDialogEvent = Event<Pair<LongArray, Long>>()
 
     fun getPattern(id: Long?) = patternRepository.getInfo(forceGetNonNullId(id))
@@ -32,31 +58,15 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
         patternRepository.switchFavorite(forceGetNonNullId(cardId))
     }
 
-    fun getPatternOfTheDay(): LiveData<PatternInfo> =
+    val patternOfTheDay: LiveData<PatternInfo> =
             Transformations.switchMap(patternRepository.getAllIds()) { ids ->
                 calculatePatternOfTheDay(ids)?.let { id -> patternRepository.getInfo(id) }
             }
 
-    fun getRandomPatterns(): LiveData<List<PatternInfo>> =
-            Transformations.switchMap(generateNewRandomPattern) { randomInts ->
-                Transformations.switchMap(patternRepository.getAllIds()) { ids ->
-                    cardCount = ids.size
-                    mapToIds(ids, randomInts)?.let {
-                        patternRepository.getInfos(it)
-                    }
-                }
-            }
-
-
-    private fun mapToIds(ids: List<Long>?, randomInts: List<Int>): List<Long>? =
-            ids?.let {
-                randomInts.map {value ->  ids[value % ids.size] }
-            }
-
-
     fun generateNewRandomPatterns() {
-        generateNewRandomPattern.invoke((0..cardCount).shuffled().subList(0, 3))
+        randomPattern.generateNewRandomPatterns()
     }
+
 
     val mostClickedPattern: LiveData<PatternInfo> by lazy {
         statisticRepository.getMostCommonByAction(StatisticAction.CLICK)
