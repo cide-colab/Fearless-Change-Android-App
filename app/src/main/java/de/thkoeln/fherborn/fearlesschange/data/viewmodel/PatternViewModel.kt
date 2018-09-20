@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.Transformations
+import android.util.Log
 import de.thkoeln.fherborn.fearlesschange.R
 import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.PatternRepository
@@ -22,10 +23,12 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
     private val statisticRepository by lazy { StatisticRepository(context) }
 
 
-    class RandomCardMediator(private val source: LiveData<List<PatternInfo>>) : MediatorLiveData<List<PatternInfo>>() {
+    class RandomCardMediator(private val source: LiveData<List<PatternInfo>>) : MediatorLiveData<Pair<List<PatternInfo>, Boolean>>() {
 
         private var cardCount = 50
+        private var count = 3
         private val generateNewRandomPattern = Event<List<Int>>()
+        private var newGenerated = false
 
         init {
             addSource(source) { value ->
@@ -35,14 +38,18 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
                 }
             }
             addSource(generateNewRandomPattern) { value -> setNewValue(indices = value) }
+            generateNewRandomPatterns()
         }
 
         private fun setNewValue(indices: List<Int>? = generateNewRandomPattern.value, pattern: List<PatternInfo>? = source.value) {
-            value = indices?.mapNotNull { pattern?.get(it) }
+            if (pattern == null) return
+            value = indices?.map { pattern[it] }?.let { Pair(it, newGenerated) }
+            newGenerated = false
         }
 
         fun generateNewRandomPatterns() {
-            generateNewRandomPattern.invoke((0 until cardCount).shuffled().subList(0, 3))
+            newGenerated = true
+            generateNewRandomPattern.invoke((0 until cardCount).shuffled().subList(0, count))
         }
     }
 
