@@ -11,7 +11,7 @@ import java.util.*
  * Created by florianherborn on 09.08.18.
  */
 @Entity(tableName = "statistic",
-        indices = [Index("id")],
+        indices = [Index("patternId")],
         foreignKeys = [(ForeignKey(
                 entity = Pattern::class,
                 parentColumns = arrayOf("id"),

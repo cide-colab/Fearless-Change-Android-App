@@ -10,7 +10,7 @@ import de.thkoeln.fherborn.fearlesschange.data.persistance.pattern.Pattern
  * Created by florianherborn on 13.08.18.
  */
 @Entity(tableName = "note",
-        indices = [Index("id")],
+        indices = [Index("patternId")],
         foreignKeys = [(ForeignKey(
                 entity = Pattern::class,
                 parentColumns = arrayOf("id"),

@@ -61,7 +61,7 @@ class SearchActivity : AppActivity() {
 
     private fun getRemoveKeywordTouchHelper(selectedKeywordsAdapter: SearchKeywordRecyclerAdapter): ItemTouchHelper {
         return ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder) = false
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
                 when (swipeDir) {
                     ItemTouchHelper.LEFT -> viewModel.removeKeyword(selectedKeywordsAdapter.keywords[viewHolder.adapterPosition])
