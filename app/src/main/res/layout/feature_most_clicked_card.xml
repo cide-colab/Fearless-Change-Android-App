@@ -32,7 +32,7 @@
         android:padding="8dp"
         android:text="@string/title_feature_most_clicked_card"/>
 
-    <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardPreview
+    <de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardPreview
         android:id="@+id/card_preview"
         android:layout_width="200dp"
         android:layout_height="wrap_content"

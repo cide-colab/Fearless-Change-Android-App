@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardFront
+    <de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardFront
         android:id="@+id/card_front"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <de.thkoeln.fherborn.fearlesschange.ui.customs.card.PatternCardBack
+    <de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardBack
         android:id="@+id/card_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
