@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_wrapper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/AppActivity">
     <include layout="@layout/action_bar" />
-    <android.support.v4.widget.NestedScrollView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/ActivityContent">
-        <android.support.constraint.ConstraintLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <FrameLayout
@@ -20,7 +22,8 @@
                 android:layout_marginTop="@dimen/default_margin"
                 style="@style/ActivitySection"
                 app:layout_constraintTop_toTopOf="parent">
-            <android.support.v7.widget.AppCompatAutoCompleteTextView
+
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 style="@style/Base.Widget.AppCompat.SearchView"
                 android:id="@+id/search_keyword"
                 android:layout_width="match_parent"
@@ -30,7 +33,8 @@
                 android:hint="@string/search_keyword_hint"
                 android:maxLines="1" />
             </FrameLayout>
-            <android.support.v7.widget.RecyclerView
+
+            <androidx.recyclerview.widget.RecyclerView
                 style="@style/ActivitySection"
                 android:id="@+id/selected_keywords"
                 android:layout_width="0dp"
@@ -41,7 +45,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_line" />
-            <android.support.v7.widget.RecyclerView
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_results"
                 android:visibility="gone"
                 android:layout_width="0dp"
@@ -49,11 +54,11 @@
                 style="@style/ActivitySection"
                 android:layout_marginTop="@dimen/default_margin"
                 android:nestedScrollingEnabled="false"
-                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/selected_keywords"
                 app:spanCount="2" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

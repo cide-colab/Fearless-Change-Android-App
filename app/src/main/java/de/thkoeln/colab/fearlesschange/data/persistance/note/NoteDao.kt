@@ -1,7 +1,7 @@
 package de.thkoeln.colab.fearlesschange.data.persistance.note
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
+import androidx.lifecycle.LiveData
+import androidx.room.*
 
 /**
  * Created by florianherborn on 30.07.18.

@@ -1,9 +1,9 @@
 package de.thkoeln.colab.fearlesschange.ui.customs.card
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.helper.animation.FlipAnimationManager
 import de.thkoeln.colab.fearlesschange.ui.adapter.SingleViewAdapter

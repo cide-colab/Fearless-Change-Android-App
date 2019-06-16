@@ -1,15 +1,15 @@
 package de.thkoeln.colab.fearlesschange.data.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Transformations
 import android.os.Bundle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.Pattern
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternRepository
-import de.thkoeln.colab.fearlesschange.helper.events.Event
+import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
 
 
 class PatternDetailViewModel(context: Application) : BasicViewModel(context) {
@@ -18,9 +18,9 @@ class PatternDetailViewModel(context: Application) : BasicViewModel(context) {
 
     var selectedPatternId: MutableLiveData<Long> = MutableLiveData()
 
-    val setViewPagerPositionEvent: Event<Int> = Event()
-    val sharePatternEvent: Event<Pattern> = Event()
-    val setupPagingAdapterEvent: Event<LongArray> = Event()
+    val setViewPagerPositionEvent: ActionLiveData<Int> = ActionLiveData()
+    val sharePatternEvent: ActionLiveData<Pattern> = ActionLiveData()
+    val setupPagingAdapterEvent: ActionLiveData<LongArray> = ActionLiveData()
 
     val selectedPatternInfo: LiveData<PatternInfo> = Transformations.switchMap(selectedPatternId) {
         it?.let { id -> patternRepository.getInfo(id) }

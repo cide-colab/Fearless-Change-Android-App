@@ -1,16 +1,16 @@
 package de.thkoeln.colab.fearlesschange.data.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.Transformations
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Transformations
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternRepository
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.Statistic
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticAction
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticRepository
-import de.thkoeln.colab.fearlesschange.helper.events.Event
+import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
 
 /**
  * Created by florianherborn on 22.08.18.
@@ -25,7 +25,7 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
 
         private var cardCount = 50
         private var count = 3
-        private val generateNewRandomPattern = Event<List<Int>>()
+        private val generateNewRandomPattern = ActionLiveData<List<Int>>()
         private var newGenerated = false
 
         init {
@@ -53,7 +53,7 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
 
 
     val randomPattern = RandomCardMediator(patternRepository.getAllInfo())
-    val openPatternDetailDialogEvent = Event<Pair<LongArray, Long>>()
+    val openPatternDetailDialogEvent = ActionLiveData<Pair<LongArray, Long>>()
 
     fun getPattern(id: Long?) = patternRepository.getInfo(forceGetNonNullId(id))
     fun getPatterns(): LiveData<List<PatternInfo>> = Transformations.map(patternRepository.getAllInfo()) { getAndSendMessageIfNullOrEmpty(it, R.string.message_no_pattern_found) }

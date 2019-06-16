@@ -8,8 +8,11 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.view.View
 import android.view.View.MeasureSpec.*
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.RelativeLayout
+import androidx.core.content.FileProvider
+import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.Pattern
 import de.thkoeln.colab.fearlesschange.ui.adapter.PatternCardBackAdapter
 import de.thkoeln.colab.fearlesschange.ui.adapter.PatternCardFrontAdapter
@@ -18,9 +21,6 @@ import de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardFront
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import android.support.v4.content.FileProvider
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import de.thkoeln.colab.fearlesschange.R
 
 
 class ShareManager(private val activity: Activity) {

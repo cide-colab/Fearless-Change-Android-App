@@ -1,14 +1,14 @@
 package de.thkoeln.colab.fearlesschange.ui.patterndetail
 
 import android.Manifest
-import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager.widget.ViewPager
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.viewmodel.PatternDetailViewModel
 import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
@@ -83,7 +83,7 @@ class PatternDetailDialogFragment : DialogFragment() {
         share_btn.setOnClickListener { viewModel.onSharePressed() }
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         onDismissListener?.invoke(viewModel.selectedPatternId.value?:0)
         super.onDismiss(dialog)
     }

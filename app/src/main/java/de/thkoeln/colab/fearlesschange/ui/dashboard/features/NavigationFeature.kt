@@ -3,10 +3,10 @@ package de.thkoeln.colab.fearlesschange.ui.dashboard.features
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.ui.favorites.FavoritesActivity
 import de.thkoeln.colab.fearlesschange.ui.overview.OverviewActivity

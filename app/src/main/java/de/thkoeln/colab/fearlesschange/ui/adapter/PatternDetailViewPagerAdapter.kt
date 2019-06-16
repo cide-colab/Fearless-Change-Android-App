@@ -1,7 +1,7 @@
 package de.thkoeln.colab.fearlesschange.ui.adapter
 
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import de.thkoeln.colab.fearlesschange.ui.patterndetail.FlippableCardFragment
 
 

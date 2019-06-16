@@ -1,9 +1,9 @@
 package de.thkoeln.colab.fearlesschange.data.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Transformations
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.keyword.Keyword
 import de.thkoeln.colab.fearlesschange.data.persistance.keyword.KeywordRepository
@@ -12,14 +12,14 @@ import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternRepositor
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.Statistic
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticAction
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticRepository
-import de.thkoeln.colab.fearlesschange.helper.events.Event
+import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
 
 class SearchViewModel(context: Application) : BasicViewModel(context) {
     private val keywordRepository by lazy { KeywordRepository(context) }
     private val patternRepository by lazy { PatternRepository(context) }
     private val statisticRepository by lazy { StatisticRepository(context) }
-    private val searchClickedEvent = Event<List<Keyword>?>()
-    val openPatternDetailDialogEvent = Event<Long>()
+    private val searchClickedEvent = ActionLiveData<List<Keyword>?>()
+    val openPatternDetailDialogEvent = ActionLiveData<Long>()
     val selectedKeywords = MutableLiveData<List<Keyword>>()
 
     init {

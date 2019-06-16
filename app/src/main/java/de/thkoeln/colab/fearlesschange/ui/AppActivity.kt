@@ -1,10 +1,11 @@
 package de.thkoeln.colab.fearlesschange.ui
 
-import android.support.design.widget.Snackbar
-import android.support.v4.app.DialogFragment
-import android.support.v7.app.AppCompatActivity
-import android.view.*
-import de.thkoeln.colab.fearlesschange.R
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.helper.SnackBarMessage
 
 
@@ -31,7 +32,7 @@ abstract class AppActivity : AppCompatActivity() {
     }
 
     protected fun openPopup(popup: DialogFragment) {
-        supportFragmentManager?.let { fm ->
+        supportFragmentManager.let { fm ->
             popup.show(fm, null)
         }
     }

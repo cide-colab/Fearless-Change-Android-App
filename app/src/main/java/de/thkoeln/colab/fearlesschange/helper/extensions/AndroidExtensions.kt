@@ -1,10 +1,10 @@
 package de.thkoeln.colab.fearlesschange.helper.extensions
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.AsyncTask
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 
 /**

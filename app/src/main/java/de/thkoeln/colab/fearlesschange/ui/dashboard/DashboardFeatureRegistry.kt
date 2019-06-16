@@ -1,9 +1,9 @@
 package de.thkoeln.colab.fearlesschange.ui.dashboard
 
-import android.support.v4.app.Fragment
-import de.thkoeln.colab.fearlesschange.ui.dashboard.features.PatternOfTheDayFeature
+import androidx.fragment.app.Fragment
 import de.thkoeln.colab.fearlesschange.ui.dashboard.features.MostClickedCardFeature
 import de.thkoeln.colab.fearlesschange.ui.dashboard.features.NavigationFeature
+import de.thkoeln.colab.fearlesschange.ui.dashboard.features.PatternOfTheDayFeature
 import de.thkoeln.colab.fearlesschange.ui.dashboard.features.RandomPatternFeature
 
 /**

@@ -9,19 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="de.thkoeln.fearlesschange.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
 
         <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
+            android:name=".ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,36 +37,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.overview.OverviewActivity"
+            android:name=".ui.overview.OverviewActivity"
             android:label="@string/title_activity_overview"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
+            android:parentActivityName=".ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.favorites.FavoritesActivity"
+            android:name=".ui.favorites.FavoritesActivity"
             android:label="@string/title_activity_favorites"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
+            android:parentActivityName=".ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.search.SearchActivity"
+            android:name=".ui.search.SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
+            android:parentActivityName=".ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity" />
         </activity>
         <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.settings.SettingsActivity"
+            android:name=".ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
+            android:parentActivityName=".ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

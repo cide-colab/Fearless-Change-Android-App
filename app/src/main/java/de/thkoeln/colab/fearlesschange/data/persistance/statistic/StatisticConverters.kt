@@ -1,8 +1,7 @@
 package de.thkoeln.colab.fearlesschange.data.persistance.statistic
 
-import android.arch.persistence.room.TypeConverter
-
-import java.util.Date
+import androidx.room.TypeConverter
+import java.util.*
 
 class StatisticConverters {
     @TypeConverter

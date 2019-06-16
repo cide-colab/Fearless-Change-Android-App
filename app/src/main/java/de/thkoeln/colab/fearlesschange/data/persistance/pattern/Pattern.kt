@@ -1,8 +1,8 @@
 package de.thkoeln.colab.fearlesschange.data.persistance.pattern
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Index
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
 /**
  * Created by florianherborn on 30.07.18.

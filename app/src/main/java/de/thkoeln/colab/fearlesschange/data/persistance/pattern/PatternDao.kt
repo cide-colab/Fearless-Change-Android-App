@@ -1,7 +1,8 @@
 package de.thkoeln.colab.fearlesschange.data.persistance.pattern
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Query
 
 /**
  * Created by florianherborn on 30.07.18.

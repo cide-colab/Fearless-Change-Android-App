@@ -1,20 +1,20 @@
 package de.thkoeln.colab.fearlesschange.ui.settings
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.viewmodel.SettingsViewModel
 import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.colab.fearlesschange.ui.AppActivity
 import de.thkoeln.colab.fearlesschange.ui.search.SearchActivity
-import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.action_bar.*
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AppActivity() {

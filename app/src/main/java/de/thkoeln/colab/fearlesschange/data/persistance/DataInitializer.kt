@@ -1,7 +1,7 @@
 package de.thkoeln.colab.fearlesschange.data.persistance
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 /**
  * Created by Florian on 02.08.2018.

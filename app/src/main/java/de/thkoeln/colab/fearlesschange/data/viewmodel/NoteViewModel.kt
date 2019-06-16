@@ -5,13 +5,13 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.note.Note
 import de.thkoeln.colab.fearlesschange.data.persistance.note.NoteRepository
 import de.thkoeln.colab.fearlesschange.helper.SnackBarMessage
-import de.thkoeln.colab.fearlesschange.helper.events.Event
+import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
 
 class NoteViewModel(context: Application) : BasicViewModel(context) {
 
     private val noteRepository by lazy { NoteRepository(context) }
 
-    val openCreateNoteDialogEvent = Event<Long>()
+    val openCreateNoteDialogEvent = ActionLiveData<Long>()
 
     fun createNoteConfirmed(patternId: Long?, title: String, text: String) {
         val note = Note(title = title, text = text, patternId = forceGetNonNullId(patternId))

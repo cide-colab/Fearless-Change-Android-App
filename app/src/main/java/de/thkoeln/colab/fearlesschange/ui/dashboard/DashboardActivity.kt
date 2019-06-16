@@ -1,12 +1,12 @@
 package de.thkoeln.colab.fearlesschange.ui.dashboard
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
@@ -50,7 +50,7 @@ class DashboardActivity : AppActivity() {
     }
 
     private fun openCardDetailPopup(ids: LongArray, selected: Long) {
-        supportFragmentManager?.let { fm ->
+        supportFragmentManager.let { fm ->
             val cardPopup = PatternDetailDialogFragment.newInstance(ids, selected)
             cardPopup.show(fm, null)
         }
