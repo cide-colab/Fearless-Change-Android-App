@@ -41,4 +41,6 @@
     <color name="secondaryDark">#700007</color>
     <color name="secondaryText">#ffffff</color>
 
+    <color name="backgroundTopColor">#94ABF2</color>
+
 </resources>

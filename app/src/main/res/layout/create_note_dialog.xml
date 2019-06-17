@@ -15,9 +15,9 @@
         android:layout_marginBottom="36dp"
         android:background="@color/note_color"
         android:paddingBottom="36dp"
-        android:paddingEnd="@dimen/default_padding"
-        android:paddingStart="@dimen/default_padding"
-        android:paddingTop="@dimen/default_padding">
+        android:paddingStart="@dimen/defaultPadding"
+        android:paddingTop="@dimen/defaultPadding"
+        android:paddingEnd="@dimen/defaultPadding">
 
         <ImageView
             android:id="@+id/create_note_dialog_pin_icon"
