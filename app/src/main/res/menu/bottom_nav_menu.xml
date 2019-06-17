@@ -13,7 +13,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/nav_favorites"
-        android:icon="@drawable/ic_favorite_full_red"
+        android:icon="@drawable/ic_favorite_full"
         android:title="@string/label_nav_favorites"
         app:showAsAction="always" />
     <item

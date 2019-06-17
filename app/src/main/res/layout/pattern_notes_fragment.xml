@@ -13,22 +13,21 @@
         app:spanCount="2"
         android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@id/pattern_notes_add_note_btn"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/pattern_notes_add_note_btn" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pattern_notes_add_note_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_note_add_white_24dp"
         app:fabSize="normal"
-        app:layout_constraintTop_toBottomOf="@id/pattern_notes_recycler_view"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

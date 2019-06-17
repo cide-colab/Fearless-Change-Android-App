@@ -43,4 +43,6 @@
 
     <color name="backgroundTopColor">#94ABF2</color>
 
+    <color name="heart">#ff423f</color>
+
 </resources>

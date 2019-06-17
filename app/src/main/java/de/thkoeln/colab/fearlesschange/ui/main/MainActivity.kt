@@ -7,11 +7,14 @@ import androidx.navigation.ui.NavigationUI
 import de.thkoeln.colab.fearlesschange.R
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(activity_toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         setupNav()
     }
 

@@ -9,10 +9,10 @@
         android:layout_height="wrap_content">
 
         <FrameLayout
+            style="@style/ContentContainer"
             android:id="@+id/pattern_detail_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
             app:layout_constraintBottom_toTopOf="@id/pattern_detail_notes_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +20,7 @@
 
 
         <FrameLayout
+            style="@style/ContentContainer"
             android:id="@+id/pattern_detail_notes_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

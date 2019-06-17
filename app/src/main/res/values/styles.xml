@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="cardViewStyle">@style/CardView</item>
-        <item name="android:dialogTheme">@style/AppDialog</item>
+        <item name="android:dialogTheme">@style/Dialog</item>
     </style>
 
     <style name="ActionBar">
@@ -41,20 +41,6 @@
         <item name="layout_constraintDimensionRatio">55:86</item>
     </style>
 
-    <style name="AppDialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowTitleStyle">@null</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:gravity">center</item>
-    </style>
-
     <style name="ActivitySection">
         <item name="android:layout_marginTop">@dimen/feature_margin</item>
         <item name="android:layout_marginLeft">@dimen/feature_margin</item>
@@ -74,33 +60,6 @@
         <item name="android:fillViewport">true</item>
     </style>
 
-    <style name="SettingsHeader">
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
-        <item name="android:padding">@dimen/defaultPadding</item>
-    </style>
-
-    <style name="SettingsItem">
-        <item name="android:padding">@dimen/defaultPadding</item>
-    </style>
-
-    <style name="SettingsItemIcon">
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:padding">8dp</item>
-    </style>
-
-    <style name="SettingsItemIcon.UserSection">
-        <item name="android:background">@drawable/settings_icon_user_bg</item>
-    </style>
-
-    <style name="SettingsItemIcon.SystemSection">
-        <item name="android:background">@drawable/settings_icon_system_bg</item>
-    </style>
-
-    <style name="SettingsItemLabel">
-        <item name="android:layout_marginStart">32dp</item>
-    </style>
 
     <style name="AppActivity">
         <item name="android:background">@drawable/app_bg</item>
@@ -159,6 +118,22 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/secondary</item>
+        <item name="android:dialogTheme">@style/Dialog</item>
+    </style>
+
+    <style name="Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent
+        </item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="Activity">
@@ -177,7 +152,7 @@
 
     <style name="AppToolBar">
         <item name="android:background">#44ffffff</item>
-        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_height">?actionBarSize</item>
     </style>
 
     <style name="BottomNavigationView">
@@ -218,20 +193,41 @@
         <item name="android:elevation">4dp</item>
     </style>
 
-    <style name="PatternCardViewContentWrapper">
-        <item name="android:padding">@dimen/defaultPadding</item>
-        <item name="android:background">@color/secondaryDark</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:paddingTop">20dp</item>
+    <style name="PatternCardViewTitle.Detail">
+        <item name="android:textSize">@dimen/cardDetailTitleTextSize</item>
     </style>
 
-    <style name="PatternCardViewSummary">
+    <style name="PatternCardViewTitle.Detail.Back">
+        <item name="android:rotation">3</item>
+    </style>
+
+    <style name="PatternCardViewContentWrapper">
+        <item name="android:background">@color/secondaryDark</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:paddingTop">32dp</item>
+        <item name="android:paddingLeft">@dimen/defaultPadding</item>
+        <item name="android:paddingRight">@dimen/defaultPadding</item>
+        <item name="android:paddingBottom">@dimen/defaultPadding</item>
+    </style>
+
+    <style name="PatternCardViewText">
         <item name="android:textColor">@color/secondaryText</item>
         <item name="android:padding">@dimen/defaultPadding</item>
-        <item name="android:maxLines">6</item>
+        <item name="android:maxLines">8</item>
         <item name="android:gravity">center</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textSize">@dimen/cardContentTextSize</item>
+    </style>
+
+
+    <style name="PatternCardViewText.Detail">
+        <item name="android:textSize">@dimen/cardDetailContentTextSize</item>
+    </style>
+
+
+    <style name="PatternCardViewText.Detail.Back">
+        <item name="android:maxLines">15</item>
+        <item name="android:gravity">left</item>
     </style>
 
     <style name="PatternCardFavoriteIcon">
@@ -239,8 +235,7 @@
         <item name="android:layout_height">32dp</item>
         <item name="android:elevation">3dp</item>
         <item name="android:rotation">-6</item>
-        <item name="android:tint">#ff423f</item>
-        <item name="android:src">@drawable/ic_favorite_full_red</item>
+        <item name="android:src">@drawable/ic_favorite_full</item>
     </style>
 
     <style name="PatternCardNotesIcon">
@@ -258,4 +253,60 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="PatternCardContentIcon">
+        <item name="android:tint">@color/secondaryText</item>
+        <item name="android:layout_width">54dp</item>
+        <item name="android:layout_height">54dp</item>
+    </style>
+
+    <style name="PatternCardContentIcon.Problem">
+        <item name="android:src">@drawable/ic_priority_high_black_24dp</item>
+    </style>
+
+    <style name="PatternCardContentIcon.Solution">
+        <item name="android:src">@drawable/ic_done_black_24dp</item>
+    </style>
+
+    <style name="PatternCardContentSection">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ContentContainer">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+    </style>
+
+    <style name="SettingsItem">
+        <item name="android:padding">@dimen/defaultPadding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">#55ffffff</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+
+    <style name="SettingsHeader">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+        <item name="android:padding">@dimen/defaultPadding</item>
+    </style>
+
+    <style name="SettingsIcon">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <style name="SettingsIcon.UserSection">
+        <item name="android:background">@drawable/settings_icon_user_bg</item>
+    </style>
+
+    <style name="SettingsIcon.SystemSection">
+        <item name="android:background">@drawable/settings_icon_system_bg</item>
+    </style>
+
+    <style name="SettingsItemLabel">
+        <item name="android:layout_marginStart">32dp</item>
+    </style>
 </resources>

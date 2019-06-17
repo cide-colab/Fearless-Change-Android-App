@@ -19,12 +19,11 @@
         android:id="@+id/reset_most_clicked_item"
         style="@style/SettingsItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/settings_item_reset_most_clicked_card_icon"
-            style="@style/SettingsItemIcon.UserSection"
+            style="@style/SettingsIcon.UserSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_today_white" />
@@ -46,10 +45,10 @@
 
         <ImageView
             android:id="@+id/settings_item_reset_favorites_icon"
-            style="@style/SettingsItemIcon.UserSection"
+            style="@style/SettingsIcon.UserSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_white" />
+            android:src="@drawable/ic_favorite_primary" />
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/SettingsItemLabel"
@@ -67,7 +66,7 @@
 
         <ImageView
             android:id="@+id/settings_item_reset_notes_icon"
-            style="@style/SettingsItemIcon.UserSection"
+            style="@style/SettingsIcon.UserSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_assignment_white" />
@@ -96,7 +95,7 @@
 
         <ImageView
             android:id="@+id/settings_item_reset_to_factory_settings"
-            style="@style/SettingsItemIcon.SystemSection"
+            style="@style/SettingsIcon.SystemSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_reset_white" />

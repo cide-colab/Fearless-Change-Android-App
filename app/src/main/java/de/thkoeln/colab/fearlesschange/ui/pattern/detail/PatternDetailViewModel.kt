@@ -13,7 +13,7 @@ class PatternDetailViewModel(application: Application, args: PatternDetailFragme
     val patternId = args.patternId
     val pattern = patternRepository.getInfo(patternId)
     val favButtonIcon: Int
-        get() = if (pattern.value?.pattern?.favorite == true) R.drawable.ic_favorite_full_red else R.drawable.ic_favorite_white
+        get() = if (pattern.value?.pattern?.favorite == true) R.drawable.ic_favorite_full else R.drawable.ic_favorite_primary
 
     val sharePatternEvent = SingleActionLiveData<Pattern>()
 

@@ -58,7 +58,7 @@
 
 
                 <TextView
-                    style="@style/PatternCardViewSummary"
+                    style="@style/PatternCardViewText"
                     android:id="@+id/pattern_preview_summary"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -78,7 +78,6 @@
         style="@style/PatternCardFavoriteIcon"
         android:id="@+id/pattern_preview_favorite_icon"
         android:contentDescription="@string/image_description_favorite"
-        android:src="@drawable/ic_favorite_full_red"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
