@@ -11,7 +11,8 @@ class CardsViewModel(application: Application) : BasicPatternViewModel(applicati
     val patternCardClicked: (PatternInfo?) -> Unit = { patternInfo ->
         patternInfo?.let { info ->
             notifyPatternClicked(info)
-            notifyAction(OverviewFragmentDirections.actionNavCardsToPatternDetailSwipeFragment(pattern.value?.map { it.pattern.id }?.toLongArray() ?: longArrayOf(), info.pattern.id))
+            notifyAction(CardsFragmentDirections.actionNavCardsToPatternDetailSwipeFragment(pattern.value?.map { it.pattern.id }?.toLongArray()
+                    ?: longArrayOf(), info.pattern.id))
         }
     }
 

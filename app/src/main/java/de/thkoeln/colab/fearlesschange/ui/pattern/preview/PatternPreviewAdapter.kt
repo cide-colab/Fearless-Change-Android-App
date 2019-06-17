@@ -5,9 +5,9 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.getResourceId
 import de.thkoeln.colab.fearlesschange.ui.LayoutAdapter
-import kotlinx.android.synthetic.main.pattern_preview_fragment.view.*
+import kotlinx.android.synthetic.main.pattern_preview.view.*
 
-class PatternPreviewAdapter(var patternClickedListener: (patternInfo: PatternInfo) -> Unit = {}) : LayoutAdapter<PatternInfo>(R.layout.pattern_preview_fragment) {
+class PatternPreviewAdapter(var patternClickedListener: (patternInfo: PatternInfo) -> Unit = {}) : LayoutAdapter<PatternInfo>(R.layout.pattern_preview) {
     override fun bind(view: View, value: PatternInfo) {
         with(value.pattern) {
             view.pattern_preview_title.text = title

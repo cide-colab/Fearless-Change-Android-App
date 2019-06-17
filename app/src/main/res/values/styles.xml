@@ -3,9 +3,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="cardViewStyle">@style/CardView</item>
         <item name="android:dialogTheme">@style/AppDialog</item>
     </style>
@@ -59,7 +56,6 @@
     </style>
 
     <style name="ActivitySection">
-        <item name="android:background">@color/feature_background</item>
         <item name="android:layout_marginTop">@dimen/feature_margin</item>
         <item name="android:layout_marginLeft">@dimen/feature_margin</item>
         <item name="android:layout_marginRight">@dimen/feature_margin</item>
@@ -154,6 +150,37 @@
         <item name="android:layout_margin">1dp</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:background">@drawable/chip_background</item>
+    </style>
+
+
+    <!-- CLEAN -->
+
+    <style name="MainTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/secondary</item>
+    </style>
+
+    <style name="Activity">
+        <item name="android:background">@drawable/bg_activity</item>
+    </style>
+
+    <style name="BottomNavigationView">
+        <item name="itemBackground">@color/primary</item>
+        <item name="itemIconTint">@color/primaryText</item>
+        <item name="itemTextColor">@color/primaryText</item>
+    </style>
+
+    <style name="PatternCardView">
+        <item name="android:clipChildren">true</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="layout_constraintDimensionRatio">55:86</item>
+    </style>
+
+    <style name="PatternCardViewMainWrapper">
+        <item name="android:background">@drawable/card_bg</item>
     </style>
 
 </resources>

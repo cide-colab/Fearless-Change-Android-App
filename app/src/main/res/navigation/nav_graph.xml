@@ -78,7 +78,7 @@
         android:id="@+id/patternPreviewFragment"
         android:name="de.thkoeln.colab.fearlesschange.ui.pattern.preview.PatternPreviewFragment"
         android:label="pattern_preview_fragment"
-        tools:layout="@layout/pattern_preview_fragment">
+        tools:layout="@layout/pattern_preview">
         <argument
             android:name="patternId"
             app:argType="long" />
