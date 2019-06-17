@@ -8,9 +8,9 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.Pattern
 import de.thkoeln.colab.fearlesschange.getResourceId
 import de.thkoeln.colab.fearlesschange.ui.LayoutAdapter
-import kotlinx.android.synthetic.main.print_pattern_layout.view.*
+import kotlinx.android.synthetic.main.pattern_print_layout.view.*
 
-class PrintPatternAdapter : LayoutAdapter<Pattern>(R.layout.print_pattern_layout) {
+class PrintPatternAdapter : LayoutAdapter<Pattern>(R.layout.pattern_print_layout) {
     override fun bind(view: View, value: Pattern) {
         with(view) {
             print_pattern_card_front_title.text = value.title

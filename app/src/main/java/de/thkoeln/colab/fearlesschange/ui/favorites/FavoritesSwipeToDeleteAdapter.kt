@@ -26,7 +26,7 @@ class FavoritesSwipeToDeleteAdapter(context: Context, private val deleteText: St
     class FavoritesViewHolder(view: View, patternClickedListener: (patternInfo: PatternInfo) -> Unit) : SwipeToDeleteRecyclerViewHolder<PatternInfo>(view) {
 
         private val adapter = PatternPreviewAdapter(patternClickedListener).apply {
-            itemView.swipe_to_delete_container.addView(inflate(view.swipe_to_delete_container))
+            inflate(view.swipe_to_delete_container, true)
         }
 
         override fun bind(item: PatternInfo) {

@@ -8,14 +8,14 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.keyword.Keyword
 import de.thkoeln.colab.fearlesschange.ui.SwipeToDeleteRecyclerViewAdapter
 import de.thkoeln.colab.fearlesschange.ui.SwipeToDeleteRecyclerViewHolder
-import kotlinx.android.synthetic.main.layout_keyword_list_item.view.*
+import kotlinx.android.synthetic.main.keyword_grid_item.view.*
 
-class SearchKeywordRecyclerAdapter(context: Context, var keywords: List<Keyword> = mutableListOf()) : SwipeToDeleteRecyclerViewAdapter<Keyword, SearchKeywordRecyclerAdapter.KeywordListViewHolder>(context) {
+class SearchKeywordRecyclerAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Keyword, SearchKeywordRecyclerAdapter.KeywordListViewHolder>(context) {
 
     var keywordClickedListener: (Keyword) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordListViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_keyword_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.keyword_grid_item, parent, false)
         return KeywordListViewHolder(view, keywordClickedListener)
     }
 

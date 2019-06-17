@@ -8,13 +8,13 @@ import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.observe
 import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
-import kotlinx.android.synthetic.main.activity_overview.*
+import kotlinx.android.synthetic.main.pattern_cards_fragment.*
 
 
-class OverviewFragment : BasicPatternFragment<OverviewViewModel>() {
+class CardsFragment : BasicPatternFragment<CardsViewModel>() {
 
     companion object {
-        fun newInstance() = OverviewFragment()
+        fun newInstance() = CardsFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,5 +33,5 @@ class OverviewFragment : BasicPatternFragment<OverviewViewModel>() {
 
     }
 
-    override fun createViewModel() = ViewModelProviders.of(this).get(OverviewViewModel::class.java)
+    override fun createViewModel() = ViewModelProviders.of(this).get(CardsViewModel::class.java)
 }

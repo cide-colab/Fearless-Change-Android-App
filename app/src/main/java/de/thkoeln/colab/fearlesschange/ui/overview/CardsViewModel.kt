@@ -4,7 +4,7 @@ import android.app.Application
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 
-class OverviewViewModel(application: Application) : BasicPatternViewModel(application) {
+class CardsViewModel(application: Application) : BasicPatternViewModel(application) {
 
     val pattern = patternRepository.getAllInfo()
 

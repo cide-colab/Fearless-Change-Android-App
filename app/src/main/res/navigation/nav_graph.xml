@@ -30,7 +30,7 @@
         tools:layout="@layout/settings_fragment" />
     <fragment
         android:id="@+id/nav_cards"
-        android:name="de.thkoeln.colab.fearlesschange.ui.overview.OverviewFragment"
+        android:name="de.thkoeln.colab.fearlesschange.ui.overview.CardsFragment"
         android:label="overview_fragment"
         tools:layout="@layout/pattern_cards_fragment">
         <action

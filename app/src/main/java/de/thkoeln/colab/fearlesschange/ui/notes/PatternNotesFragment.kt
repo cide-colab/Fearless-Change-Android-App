@@ -11,7 +11,7 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.observe
 import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
 import de.thkoeln.colab.fearlesschange.ui.adapter.NoteRecyclerGridAdapter
-import kotlinx.android.synthetic.main.fragment_pattern_notes.*
+import kotlinx.android.synthetic.main.pattern_notes_fragment.*
 
 
 class PatternNotesFragment : BasicPatternFragment<PatternNotesViewModel>() {
@@ -19,7 +19,7 @@ class PatternNotesFragment : BasicPatternFragment<PatternNotesViewModel>() {
     private val args: PatternNotesFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.fragment_pattern_notes, container, false)
+            inflater.inflate(R.layout.pattern_notes_fragment, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

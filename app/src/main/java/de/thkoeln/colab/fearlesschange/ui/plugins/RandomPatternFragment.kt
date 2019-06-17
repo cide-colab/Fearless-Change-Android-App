@@ -17,7 +17,7 @@ import de.thkoeln.colab.fearlesschange.onAnimationEnd
 import de.thkoeln.colab.fearlesschange.playSequentially
 import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
 import de.thkoeln.colab.fearlesschange.ui.pattern.preview.PatternPreviewAdapter
-import kotlinx.android.synthetic.main.feature_random_pattern.*
+import kotlinx.android.synthetic.main.random_pattern_fragment.*
 
 
 class RandomPatternFragment : BasicPatternFragment<RandomPatternViewModel>() {
