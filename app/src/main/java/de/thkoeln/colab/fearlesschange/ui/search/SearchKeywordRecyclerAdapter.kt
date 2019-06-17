@@ -1,40 +1,32 @@
 package de.thkoeln.colab.fearlesschange.ui.search
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.keyword.Keyword
+import de.thkoeln.colab.fearlesschange.ui.SwipeToDeleteRecyclerViewAdapter
+import de.thkoeln.colab.fearlesschange.ui.SwipeToDeleteRecyclerViewHolder
+import kotlinx.android.synthetic.main.layout_keyword_list_item.view.*
 
-class SearchKeywordRecyclerAdapter(var keywords: List<Keyword> = mutableListOf()) :
-        RecyclerView.Adapter<SearchKeywordRecyclerAdapter.KeywordListViewHolder>() {
-    var keywordClickedListener: ((Keyword) -> Unit)? = null
+class SearchKeywordRecyclerAdapter(context: Context, var keywords: List<Keyword> = mutableListOf()) : SwipeToDeleteRecyclerViewAdapter<Keyword, SearchKeywordRecyclerAdapter.KeywordListViewHolder>(context) {
+
+    var keywordClickedListener: (Keyword) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_keyword_list_item, parent, false)
-        return KeywordListViewHolder(view)
+        return KeywordListViewHolder(view, keywordClickedListener)
     }
 
-    override fun getItemCount(): Int {
-        return keywords.size
-    }
-
-    override fun onBindViewHolder(holder: KeywordListViewHolder, position: Int) {
-        holder.bind(keywords[position])
-    }
-
-    fun updateKeywords(keywords: List<Keyword>) {
-        this.keywords = keywords
-        notifyDataSetChanged()
-    }
-
-    inner class KeywordListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textView = itemView.findViewById<TextView>(R.id.keyword_list_item_textview)
-        fun bind (keyword: Keyword) {
-            textView.text = keyword.keyword
-            textView.setOnClickListener { keywordClickedListener?.invoke(keyword) }
+    class KeywordListViewHolder(itemView: View, private val keywordClickedListener: (Keyword) -> Unit) : SwipeToDeleteRecyclerViewHolder<Keyword>(itemView) {
+        override fun bind(item: Keyword) {
+            itemView.keyword_list_item_textview.text = item.keyword
+            itemView.keyword_list_item_textview.setOnClickListener { keywordClickedListener(item) }
         }
+
+        override fun getDisplayName(item: Keyword) = item.keyword
+
+        override fun getForeground(): View = itemView.keyword_list_item_textview
     }
 }

@@ -2,7 +2,6 @@ package de.thkoeln.colab.fearlesschange.ui.dashboard
 
 import androidx.fragment.app.Fragment
 import de.thkoeln.colab.fearlesschange.ui.dashboard.features.MostClickedCardFeature
-import de.thkoeln.colab.fearlesschange.ui.dashboard.features.NavigationFeature
 import de.thkoeln.colab.fearlesschange.ui.dashboard.features.PatternOfTheDayFeature
 import de.thkoeln.colab.fearlesschange.ui.dashboard.features.RandomPatternFeature
 
@@ -12,7 +11,7 @@ import de.thkoeln.colab.fearlesschange.ui.dashboard.features.RandomPatternFeatur
 object DashboardFeatureRegistry {
     val dashboardFeatures: List<Fragment> by lazy {
         listOf(
-                NavigationFeature(),
+                //NavigationFeature(),
                 PatternOfTheDayFeature(),
                 RandomPatternFeature(),
                 MostClickedCardFeature()

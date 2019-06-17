@@ -10,7 +10,7 @@ import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternRepositor
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.Statistic
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticAction
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticRepository
-import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
+import de.thkoeln.colab.fearlesschange.helper.events.SingleActionLiveData
 
 /**
  * Created by florianherborn on 22.08.18.
@@ -25,7 +25,7 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
 
         private var cardCount = 50
         private var count = 3
-        private val generateNewRandomPattern = ActionLiveData<List<Int>>()
+        private val generateNewRandomPattern = SingleActionLiveData<List<Int>>()
         private var newGenerated = false
 
         init {
@@ -53,7 +53,7 @@ class PatternViewModel(context: Application) : BasicViewModel(context) {
 
 
     val randomPattern = RandomCardMediator(patternRepository.getAllInfo())
-    val openPatternDetailDialogEvent = ActionLiveData<Pair<LongArray, Long>>()
+    val openPatternDetailDialogEvent = SingleActionLiveData<Pair<LongArray, Long>>()
 
     fun getPattern(id: Long?) = patternRepository.getInfo(forceGetNonNullId(id))
     fun getPatterns(): LiveData<List<PatternInfo>> = Transformations.map(patternRepository.getAllInfo()) { getAndSendMessageIfNullOrEmpty(it, R.string.message_no_pattern_found) }

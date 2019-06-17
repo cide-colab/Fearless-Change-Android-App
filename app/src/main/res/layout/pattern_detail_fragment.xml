@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?><!--TODO better way insted nestet scroll in parent scroll-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/pattern_detail_wrapper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            app:layout_constraintBottom_toTopOf="@id/pattern_detail_notes_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/pattern_detail_front"
+                    style="@style/Card"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/pattern_detail_front_wrapper"
+                        style="@style/CardWrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="32dp">
+
+                        <ImageView
+                            android:layout_width="1000dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@string/image_description_title_bg"
+                            android:rotation="-2"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/card_title_bg"
+                            app:layout_constraintBottom_toBottomOf="@id/pattern_detail_front_title"
+                            app:layout_constraintEnd_toEndOf="@id/pattern_detail_front_title"
+                            app:layout_constraintStart_toStartOf="@id/pattern_detail_front_title"
+                            app:layout_constraintTop_toTopOf="@id/pattern_detail_front_title" />
+
+                        <TextView
+                            android:id="@+id/pattern_detail_front_title"
+                            style="@style/CardTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:padding="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/pattern_detail_front_content_wrapper"
+                            style="@style/CardContentWrapper"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="8dp"
+                            android:paddingStart="16dp"
+                            android:paddingTop="24dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="64dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/pattern_detail_front_title"
+                            app:layout_constraintVertical_bias="0">
+
+                            <ImageView
+                                android:id="@+id/pattern_detail_front_image"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/image_description_pattern_image"
+                                app:layout_constraintDimensionRatio="16:9"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/pattern_detail_front_summary"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:gravity="top|center"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/pattern_detail_front_image"
+                                app:layout_constraintVertical_bias="0" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/pattern_detail_back"
+                    style="@style/Card"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/pattern_detail_back_wrapper"
+                        style="@style/CardWrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="32dp">
+
+                        <ImageView
+                            android:layout_width="1000dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@string/image_description_title_bg"
+                            android:rotation="-2"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/card_title_bg"
+                            app:layout_constraintBottom_toBottomOf="@id/pattern_detail_back_title"
+                            app:layout_constraintEnd_toEndOf="@id/pattern_detail_back_title"
+                            app:layout_constraintStart_toStartOf="@id/pattern_detail_back_title"
+                            app:layout_constraintTop_toTopOf="@id/pattern_detail_back_title" />
+
+                        <TextView
+                            android:id="@+id/pattern_detail_back_title"
+                            style="@style/CardTitle"
+                            android:layout_width="500dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:padding="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/pattern_detail_back_content"
+                            style="@style/CardContentWrapper"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="8dp"
+                            android:paddingStart="16dp"
+                            android:paddingTop="24dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="64dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_title"
+                            app:layout_constraintVertical_bias="0">
+
+                            <TextView
+                                android:id="@+id/pattern_detail_back_problem_header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_margin"
+                                android:gravity="center|top"
+                                android:text="@string/header_problem"
+                                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/pattern_detail_back_problem"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|top"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_problem_header" />
+
+                            <TextView
+                                android:id="@+id/pattern_detail_back_solution_header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_margin"
+                                android:gravity="center|top"
+                                android:text="@string/header_solution"
+                                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_problem" />
+
+                            <TextView
+                                android:id="@+id/pattern_detail_back_solution"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:gravity="top|center"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_solution_header"
+                                app:layout_constraintVertical_bias="0" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/pattern_detail_notes_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pattern_detail_wrapper" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.data.viewmodel.PatternViewModel
@@ -27,9 +28,16 @@ class PatternOfTheDayFeature : Fragment() {
         val viewModel = ViewModelProviders.of(activity!!).get(PatternViewModel::class.java)
         viewModel.patternOfTheDay.nonNullObserve(this) { onPatternInfoUpdate(it) }
 
-        cardPreviewAdapter.onCardClickedListener = {
-            val patternId = it?.pattern?.id
-            viewModel.cardPreviewClicked(listOfNotNull(patternId).toLongArray(), patternId)
+        cardPreviewAdapter.onCardClickedListener = { patternInfo ->
+            patternInfo?.pattern?.id?.let {
+                // TODO Better Solution
+                //DashboardFragmentDirections.actionNavDashboardToPatternDetailFragment(it)
+            }
+            //viewModel.cardPreviewClicked(listOfNotNull(patternId).toLongArray(), patternId)
+
+
+            view?.findNavController()?.navigate(R.id.action_nav_dashboard_to_patternDetailFragment)
+
         }
         card_preview.setAdapter(cardPreviewAdapter)
     }

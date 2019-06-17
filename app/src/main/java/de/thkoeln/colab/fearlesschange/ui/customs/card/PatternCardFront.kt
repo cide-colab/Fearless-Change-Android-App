@@ -12,14 +12,14 @@ class PatternCardFront @JvmOverloads constructor(context: Context?, attrs: Attri
         ConstraintLayout(context, attrs, defStyleAttr), AdaptableView<PatternCardFront> {
 
     private val delegation = PatternCardDelegation(this)
-    var title by delegation.updateTitle(R.id.card_front_title)
-    var summary by delegation.updateSummary(R.id.card_front_summary)
-    var imageId by delegation.updateCardImage(R.id.card_front_image)
-    var favorite by delegation.updateFavoriteFab(R.id.card_front_favorite_btn)
-    var background by delegation.updateCardBackground(R.id.card_front_wrapper)
-    var contentBackground by delegation.updateCardContentBackground(R.id.card_front_content)
-    var onFavoriteClickedListener by delegation.updateClickListener(R.id.card_front_favorite_btn)
-    var onCardClickedListener by delegation.updateClickListener(R.id.card_front_card)
+    var title by delegation.updateTitle(R.id.pattern_detail_front_title)
+    var summary by delegation.updateSummary(R.id.pattern_detail_front_summary)
+    var imageId by delegation.updateCardImage(R.id.pattern_detail_front_image)
+    var favorite by delegation.updateFavoriteFab(R.id.pattern_detail_front_favorite_btn)
+    var background by delegation.updateCardBackground(R.id.pattern_detail_front_wrapper)
+    var contentBackground by delegation.updateCardContentBackground(R.id.pattern_detail_front_content_wrapper)
+    var onFavoriteClickedListener by delegation.updateClickListener(R.id.pattern_detail_front_favorite_btn)
+    var onCardClickedListener by delegation.updateClickListener(R.id.pattern_detail_front)
 
     init {
         View.inflate(context, R.layout.pattern_card_front, this)

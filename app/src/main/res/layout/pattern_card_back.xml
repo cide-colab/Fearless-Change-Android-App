@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_back_card"
+        android:id="@+id/pattern_detail_back"
         style="@style/Card"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -19,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_back_wrapper"
+            android:id="@+id/pattern_detail_back_wrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="32dp"
@@ -31,14 +31,14 @@
                 android:rotation="-2"
                 android:scaleType="fitXY"
                 android:src="@drawable/card_title_bg"
-                app:layout_constraintBottom_toBottomOf="@id/card_back_title"
-                app:layout_constraintEnd_toEndOf="@id/card_back_title"
-                app:layout_constraintStart_toStartOf="@id/card_back_title"
-                app:layout_constraintTop_toTopOf="@id/card_back_title"
+                app:layout_constraintBottom_toBottomOf="@id/pattern_detail_back_title"
+                app:layout_constraintEnd_toEndOf="@id/pattern_detail_back_title"
+                app:layout_constraintStart_toStartOf="@id/pattern_detail_back_title"
+                app:layout_constraintTop_toTopOf="@id/pattern_detail_back_title"
                 android:contentDescription="@string/image_description_title_bg" />
 
             <TextView
-                android:id="@+id/card_back_title"
+                android:id="@+id/pattern_detail_back_title"
                 style="@style/CardTitle"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_back_content"
+                android:id="@+id/pattern_detail_back_content"
                 style="@style/CardContentWrapper"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -63,11 +63,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_back_title"
+                app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_title"
                 app:layout_constraintVertical_bias="0">
 
                 <TextView
-                    android:id="@+id/card_problem_header"
+                    android:id="@+id/pattern_detail_back_problem_header"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_margin"
@@ -79,17 +79,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/card_back_problem"
+                    android:id="@+id/pattern_detail_back_problem"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_problem_header" />
+                    app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_problem_header" />
 
                 <TextView
-                    android:id="@+id/card_back_solution_header"
+                    android:id="@+id/pattern_detail_back_solution_header"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_margin"
@@ -98,10 +98,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_back_problem" />
+                    app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_problem" />
 
                 <TextView
-                    android:id="@+id/card_back_solution"
+                    android:id="@+id/pattern_detail_back_solution"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
@@ -109,20 +109,20 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_back_solution_header"
+                    app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_solution_header"
                     app:layout_constraintVertical_bias="0" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/card_back_favorite_btn"
+                android:id="@+id/pattern_detail_back_favorite_btn"
                 style="@style/CardButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_favorite_white"
-                app:layout_constraintBottom_toBottomOf="@id/card_back_content"
+                app:layout_constraintBottom_toBottomOf="@id/pattern_detail_back_content"
                 app:layout_constraintRight_toRightOf="parent" />
 
 

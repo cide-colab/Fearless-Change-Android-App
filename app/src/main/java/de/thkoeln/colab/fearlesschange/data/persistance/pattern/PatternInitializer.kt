@@ -67,7 +67,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     "Future Commitment",
                     "future_commitment", //Empty if not exist
                     "You need help, but people are busy.",
-                    "To make it more likely that you will get help in the change initiative, ask others to do something you will need much later and wait for them to commit.",
+                    "To make it more likely that you will read help in the change initiative, ask others to do something you will need much later and wait for them to commit.",
                     "Approach individuals with an item that isn’t urgent so they can put it on their to-do list on a future date."
             ),
             Pattern(
@@ -108,7 +108,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     "myth_buster", //Empty if not exist
                     "If we hear someone express an incorrect assumption about the innovation, we usually address it head-on with the person who is expressing the concern. However, a false impression in one person’s mind is usually a sign that this viewpoint is shared by others.",
                     "Identify misconceptions surrounding the change initiative and address them in a timely and forthright manner.",
-                    "To get the word out about what the innovation isn’t as well as what won’t happen as a result of its introduction into the organization, create a simple list of the myths paired with the realities."
+                    "To read the word out about what the innovation isn’t as well as what won’t happen as a result of its introduction into the organization, create a simple list of the myths paired with the realities."
             ),
             Pattern(
                     12,
@@ -124,7 +124,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     "town_hall_meeting", //Empty if not exist
                     "It is difficult to stay in touch and involve everyone during the long period of time that is often necessary for a change initiative.",
                     "As early as possible and throughout the initiative, schedule an event to share updates about the new idea, solicit feedback, build support, uncover new ideas, and bring in newcomers.",
-                    "Hold a meeting to solicit feedback, build support, get new ideas, intrigue newcomers, and report progress."
+                    "Hold a meeting to solicit feedback, build support, read new ideas, intrigue newcomers, and report progress."
             ),
             Pattern(
                     14,
@@ -195,7 +195,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     "Corporate Angel",
                     "corporate_angel",
                     "Support from local management will provide some attention and resources for the new idea, but you need high-level support to have a more lasting impact.",
-                    "To help align the innovation with the goals of the organization, get support from a high-level executive.",
+                    "To help align the innovation with the goals of the organization, read support from a high-level executive.",
                     "Enlist the support of a high-level executive who has a special interest in the new idea and will provide direction and the resources to support it. "
             ),
             Pattern(
@@ -204,7 +204,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     "corridor_politics",
                     "It’s difficult to address the concerns of all decision makers when a new idea is raised in a large meeting.",
                     "Informally work on decision makers and key influencers before an important vote, to ensure they understand the consequences of the decision.",
-                    "Informally work on decision makers and key influencers one-onone before the vote. Try to get the approval of anyone who can kill the idea. "
+                    "Informally work on decision makers and key influencers one-onone before the vote. Try to read the approval of anyone who can kill the idea. "
             ),
 
             Pattern(
@@ -243,7 +243,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     28,
                     "Evangelist",
                     "evangelist",
-                    "You want to get a new idea going, but you don’t know where to start. ",
+                    "You want to read a new idea going, but you don’t know where to start. ",
                     "To begin to introduce the new idea into your organization, do everything you can to share your passion for it.",
                     "To introduce a new idea, let your passion for this new idea drive"
             ),
@@ -349,7 +349,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     "Mentor",
                     "mentor",
                     "People want to use the new idea on their project but don’t know how to begin.",
-                    "When a project team wants to get started with the new idea, have someone around who understands it and can help the team.",
+                    "When a project team wants to read started with the new idea, have someone around who understands it and can help the team.",
                     "Find an outside or internal consultant or trainer to provide mentoring and feedback while project members are getting started with the innovation."
             ),
             Pattern(
@@ -404,7 +404,7 @@ class PatternInitializer : DataInitializer<Pattern>("pattern") {
                     48,
                     "Royal Audience",
                     "royal_audience",
-                    "You want to get the most out of a visit from a famous person.",
+                    "You want to read the most out of a visit from a famous person.",
                     "Arrange for management and members of the organization to spend time with a special visitor.",
                     "Use spare hours or lunchtime during the day or evenings, before and/or after the featured presentation, to make the visitor available for teams, individuals, or managers."
             ),

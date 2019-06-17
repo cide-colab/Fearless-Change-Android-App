@@ -6,8 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/pattern_preview_card"
+        app:layout_constraintEnd_toEndOf="@id/pattern_preview_card"
+        app:layout_constraintStart_toStartOf="@id/pattern_preview_card"
+        app:layout_constraintTop_toTopOf="@id/pattern_preview_card">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_delete_sweep_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_preview_card"
+        android:id="@+id/pattern_preview_card"
         style="@style/Card"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -21,7 +41,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/CardWrapper"
-            android:id="@+id/card_preview_wrapper"
+            android:id="@+id/pattern_preview_content_wrapper"
             android:paddingBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -32,15 +52,15 @@
                 android:src="@drawable/card_title_bg"
                 android:scaleType="fitXY"
                 android:rotation="-2"
-                app:layout_constraintTop_toTopOf="@id/card_preview_card_title"
-                app:layout_constraintBottom_toBottomOf="@id/card_preview_card_title"
-                app:layout_constraintStart_toStartOf="@id/card_preview_card_title"
-                app:layout_constraintEnd_toEndOf="@id/card_preview_card_title"
+                app:layout_constraintBottom_toBottomOf="@id/pattern_preview_title"
+                app:layout_constraintEnd_toEndOf="@id/pattern_preview_title"
+                app:layout_constraintStart_toStartOf="@id/pattern_preview_title"
+                app:layout_constraintTop_toTopOf="@id/pattern_preview_title"
                 android:contentDescription="@string/image_description_title_bg" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/CardTitle"
-                android:id="@+id/card_preview_card_title"
+                android:id="@+id/pattern_preview_title"
                 android:layout_width="0dp"
                 android:textSize="10sp"
                 android:layout_height="wrap_content"
@@ -56,7 +76,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/CardContentWrapper"
-                android:id="@+id/card_preview_content"
+                android:id="@+id/pattern_preview_content"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:paddingStart="8dp"
@@ -69,12 +89,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_preview_card_title"
+                app:layout_constraintTop_toBottomOf="@id/pattern_preview_title"
                 app:layout_constraintVertical_bias="0"
                 xmlns:app="http://schemas.android.com/apk/res-auto">
 
                 <ImageView
-                    android:id="@+id/card_preview_card_image"
+                    android:id="@+id/pattern_preview_image"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -84,12 +104,12 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:contentDescription="@string/image_description_pattern_image" />
                 <TextView
-                    android:id="@+id/card_preview_card_summary"
+                    android:id="@+id/pattern_preview_summary"
                     android:textSize="10sp"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="top|center"
-                    app:layout_constraintTop_toBottomOf="@id/card_preview_card_image"
+                    app:layout_constraintTop_toBottomOf="@id/pattern_preview_image"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +125,7 @@
 
 
     <ImageView
-        android:id="@+id/card_preview_favorite_icon"
+        android:id="@+id/pattern_preview_favorite_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:rotation="-6"
@@ -117,7 +137,7 @@
         android:contentDescription="@string/image_description_favorite" />
 
     <ImageView
-        android:id="@+id/card_preview_notes_icon"
+        android:id="@+id/pattern_preview_notes_icon"
         android:rotation="6"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -129,7 +149,7 @@
         android:contentDescription="@string/image_description_notes" />
 
     <TextView
-        android:id="@+id/card_preview_notes_count"
+        android:id="@+id/pattern_preview_notes_count"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:rotation="6"
@@ -137,10 +157,10 @@
         android:fontFamily="@font/note_font"
         android:elevation="3dp"
         android:layout_marginTop="2dp"
-        app:layout_constraintEnd_toEndOf="@id/card_preview_notes_icon"
-        app:layout_constraintTop_toTopOf="@id/card_preview_notes_icon"
-        app:layout_constraintBottom_toBottomOf="@id/card_preview_notes_icon"
-        app:layout_constraintStart_toStartOf="@id/card_preview_notes_icon"
+        app:layout_constraintBottom_toBottomOf="@id/pattern_preview_notes_icon"
+        app:layout_constraintEnd_toEndOf="@id/pattern_preview_notes_icon"
+        app:layout_constraintStart_toStartOf="@id/pattern_preview_notes_icon"
+        app:layout_constraintTop_toTopOf="@id/pattern_preview_notes_icon"
         android:textAlignment="center"
         android:gravity="center" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
 
     <androidx.cardview.widget.CardView
         style="@style/Card"
-        android:id="@+id/card_front_card"
+        android:id="@+id/pattern_detail_front"
         android:clickable="true"
         android:focusable="true"
         android:layout_width="0dp"
@@ -20,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/CardWrapper"
             android:paddingBottom="32dp"
-            android:id="@+id/card_front_wrapper"
+            android:id="@+id/pattern_detail_front_wrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,14 +32,14 @@
                 android:src="@drawable/card_title_bg"
                 android:scaleType="fitXY"
                 android:rotation="-2"
-                app:layout_constraintTop_toTopOf="@id/card_front_title"
-                app:layout_constraintBottom_toBottomOf="@id/card_front_title"
-                app:layout_constraintStart_toStartOf="@id/card_front_title"
-                app:layout_constraintEnd_toEndOf="@id/card_front_title"
+                app:layout_constraintBottom_toBottomOf="@id/pattern_detail_front_title"
+                app:layout_constraintEnd_toEndOf="@id/pattern_detail_front_title"
+                app:layout_constraintStart_toStartOf="@id/pattern_detail_front_title"
+                app:layout_constraintTop_toTopOf="@id/pattern_detail_front_title"
                 android:contentDescription="@string/image_description_title_bg" />
             <TextView
                 style="@style/CardTitle"
-                android:id="@+id/card_front_title"
+                android:id="@+id/pattern_detail_front_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -52,7 +52,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/CardContentWrapper"
-                android:id="@+id/card_front_content"
+                android:id="@+id/pattern_detail_front_content_wrapper"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:paddingStart="16dp"
@@ -63,11 +63,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_front_title"
+                app:layout_constraintTop_toBottomOf="@id/pattern_detail_front_title"
                 app:layout_constraintVertical_bias="0">
 
                 <ImageView
-                    android:id="@+id/card_front_image"
+                    android:id="@+id/pattern_detail_front_image"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -78,12 +78,12 @@
                     android:contentDescription="@string/image_description_pattern_image" />
 
                 <TextView
-                    android:id="@+id/card_front_summary"
+                    android:id="@+id/pattern_detail_front_summary"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="top|center"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-                    app:layout_constraintTop_toBottomOf="@id/card_front_image"
+                    app:layout_constraintTop_toBottomOf="@id/pattern_detail_front_image"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -94,12 +94,12 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 style="@style/CardButton"
-                android:id="@+id/card_front_favorite_btn"
+                android:id="@+id/pattern_detail_front_favorite_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_favorite_white"
-                app:layout_constraintBottom_toBottomOf="@id/card_front_content"
+                app:layout_constraintBottom_toBottomOf="@id/pattern_detail_front_content_wrapper"
                 app:layout_constraintRight_toRightOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

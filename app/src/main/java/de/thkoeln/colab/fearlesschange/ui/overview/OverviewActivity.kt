@@ -11,7 +11,7 @@ import de.thkoeln.colab.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.colab.fearlesschange.ui.AppActivity
 import de.thkoeln.colab.fearlesschange.ui.adapter.PatternRecyclerGridAdapter
-import de.thkoeln.colab.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
+import de.thkoeln.colab.fearlesschange.ui.pattern.PatternDetailDialogFragment
 import de.thkoeln.colab.fearlesschange.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_overview.*
@@ -27,7 +27,7 @@ class OverviewActivity : AppActivity() {
         setSupportActionBar(action_bar as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        overview_recycler_view.adapter = adapter
+        pattern_cards_recycler_view.adapter = adapter
 
         val viewModel = ViewModelProviders.of(this).get(PatternViewModel::class.java)
 
@@ -47,7 +47,7 @@ class OverviewActivity : AppActivity() {
         supportFragmentManager.let { fm ->
             val cardPopup = PatternDetailDialogFragment.newInstance(ids, selected)
             cardPopup.onDismissListener = {
-                overview_recycler_view.smoothScrollToPosition(adapter.patterns.indexOfFirst { item -> item.pattern.id == it })
+                pattern_cards_recycler_view.smoothScrollToPosition(adapter.patterns.indexOfFirst { item -> item.pattern.id == it })
             }
             cardPopup.show(fm, null)
         }

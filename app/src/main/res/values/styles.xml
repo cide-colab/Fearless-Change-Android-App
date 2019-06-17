@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -46,8 +46,7 @@
 
     <style name="AppDialog">
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent
-        </item>
+        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -148,14 +147,13 @@
     </style>
 
     <style name="Chip">
-        <item name="android:paddingTop">2dp</item>
-        <item name="android:paddingBottom">2dp</item>
-        <item name="android:paddingStart">6dp</item>
-        <item name="android:paddingEnd">6dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
         <item name="android:layout_margin">1dp</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:background">@drawable/chip_background</item>
-        <item name="android:drawableEnd">@drawable/ic_delete_sweep_white_24dp</item>
     </style>
 
 </resources>

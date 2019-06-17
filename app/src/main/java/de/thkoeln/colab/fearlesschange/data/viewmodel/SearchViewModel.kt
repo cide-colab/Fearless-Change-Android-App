@@ -12,14 +12,14 @@ import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternRepositor
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.Statistic
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticAction
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticRepository
-import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
+import de.thkoeln.colab.fearlesschange.helper.events.SingleActionLiveData
 
 class SearchViewModel(context: Application) : BasicViewModel(context) {
     private val keywordRepository by lazy { KeywordRepository(context) }
     private val patternRepository by lazy { PatternRepository(context) }
     private val statisticRepository by lazy { StatisticRepository(context) }
-    private val searchClickedEvent = ActionLiveData<List<Keyword>?>()
-    val openPatternDetailDialogEvent = ActionLiveData<Long>()
+    private val searchClickedEvent = SingleActionLiveData<List<Keyword>?>()
+    val openPatternDetailDialogEvent = SingleActionLiveData<Long>()
     val selectedKeywords = MutableLiveData<List<Keyword>>()
 
     init {

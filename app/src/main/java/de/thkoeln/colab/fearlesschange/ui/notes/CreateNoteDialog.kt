@@ -7,9 +7,9 @@ import android.view.Window
 import de.thkoeln.colab.fearlesschange.R
 import kotlinx.android.synthetic.main.dialog_create_note.*
 
-class CreateNoteDialog(context: Context?) : Dialog(context) {
-    var onConfirmListener: ((String, String) -> Unit)? = null
-    var dismissOnConfirm = true
+class CreateNoteDialog(context: Context) : Dialog(context) {
+    var onConfirmListener: (String, String) -> Unit = { _, _ -> }
+    private var dismissOnConfirm = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,10 +17,7 @@ class CreateNoteDialog(context: Context?) : Dialog(context) {
         setContentView(R.layout.dialog_create_note)
         create_note_confirm.setOnClickListener {
             if (dismissOnConfirm) dismiss()
-            onConfirmListener?.invoke(
-                    create_note_note_title.text.toString(),
-                    create_note_note_text.text.toString()
-            )
+            onConfirmListener(create_note_note_title.text.toString(), create_note_note_text.text.toString())
         }
     }
 }

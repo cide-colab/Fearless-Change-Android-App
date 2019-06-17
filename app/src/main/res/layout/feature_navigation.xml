@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="@id/fab_overview"
         app:layout_constraintEnd_toEndOf="@id/fab_overview"
         app:layout_constraintTop_toBottomOf="@id/fab_overview"
-        android:text="@string/label_nav_overview"/>
+        android:text="@string/label_nav_cards" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_favorites"

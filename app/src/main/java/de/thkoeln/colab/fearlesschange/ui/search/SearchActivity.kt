@@ -17,7 +17,7 @@ import de.thkoeln.colab.fearlesschange.data.viewmodel.SearchViewModel
 import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.colab.fearlesschange.ui.AppActivity
 import de.thkoeln.colab.fearlesschange.ui.adapter.PatternRecyclerGridAdapter
-import de.thkoeln.colab.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
+import de.thkoeln.colab.fearlesschange.ui.pattern.PatternDetailDialogFragment
 import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -47,9 +47,9 @@ class SearchActivity : AppActivity() {
     }
 
     private fun initKeywordList() {
-        val selectedKeywordsAdapter = SearchKeywordRecyclerAdapter()
+        val selectedKeywordsAdapter = SearchKeywordRecyclerAdapter(this)
         viewModel.selectedKeywords.nonNullObserve(this) {
-            selectedKeywordsAdapter.updateKeywords(it)
+            selectedKeywordsAdapter.setItems(it)
             selected_keywords.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
         }
 

@@ -9,20 +9,90 @@
         android:id="@+id/nav_dashboard"
         android:name="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardFragment"
         android:label="@string/dashboard_title"
-        tools:layout="@layout/dashboard_fragment" />
+        tools:layout="@layout/dashboard_fragment">
+        <action
+            android:id="@+id/action_nav_dashboard_to_patternDetailFragment"
+            app:destination="@id/patternDetailSwipeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_favorites"
         android:name="de.thkoeln.colab.fearlesschange.ui.favorites.FavoritesFragment"
         android:label="@string/favorites_title"
-        tools:layout="@layout/favorites_fragment" />
+        tools:layout="@layout/favorites_fragment">
+        <action
+            android:id="@+id/action_nav_favorites_to_patternDetailSwipeFragment"
+            app:destination="@id/patternDetailSwipeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_settings"
         android:name="de.thkoeln.colab.fearlesschange.ui.settings.SettingsFragment"
         android:label="@string/settings_title"
         tools:layout="@layout/settings_fragment" />
     <fragment
-        android:id="@+id/nav_overview"
+        android:id="@+id/nav_cards"
         android:name="de.thkoeln.colab.fearlesschange.ui.overview.OverviewFragment"
         android:label="overview_fragment"
-        tools:layout="@layout/overview_fragment" />
+        tools:layout="@layout/pattern_cards_fragment">
+        <action
+            android:id="@+id/action_nav_cards_to_patternDetailSwipeFragment"
+            app:destination="@id/patternDetailSwipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/patternDetailSwipeFragment"
+        android:name="de.thkoeln.colab.fearlesschange.ui.pattern.swiper.PatternDetailSwiperFragment"
+        android:label="pattern_detail_fragment"
+        tools:layout="@layout/pattern_detail_swiper_fragment">
+        <argument
+            android:name="patternIds"
+            app:argType="long[]" />
+        <argument
+            android:name="currentPatternId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/randomPatternFragment"
+        android:name="de.thkoeln.colab.fearlesschange.ui.plugins.RandomPatternFragment"
+        android:label="RandomPatternFragment">
+        <argument
+            android:name="groupId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/patternDetailFragment"
+        android:name="de.thkoeln.colab.fearlesschange.ui.pattern.detail.PatternDetailFragment"
+        android:label="PatternDetailFragment">
+        <argument
+            android:name="patternId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/patternNotesFragment"
+        android:name="de.thkoeln.colab.fearlesschange.ui.notes.PatternNotesFragment"
+        android:label="PatternNotesFragment">
+        <argument
+            android:name="patternId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/patternPreviewFragment"
+        android:name="de.thkoeln.colab.fearlesschange.ui.pattern.preview.PatternPreviewFragment"
+        android:label="pattern_preview_fragment"
+        tools:layout="@layout/pattern_preview_fragment">
+        <argument
+            android:name="patternId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_patternPreviewFragment_to_patternDetailSwipeFragment"
+            app:destination="@id/patternDetailSwipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="de.thkoeln.colab.fearlesschange.ui.search.SearchFragment"
+        android:label="search_fragment"
+        tools:layout="@layout/search_fragment">
+        <action
+            android:id="@+id/action_nav_search_to_patternDetailSwipeFragment"
+            app:destination="@id/patternDetailSwipeFragment" />
+    </fragment>
 </navigation>

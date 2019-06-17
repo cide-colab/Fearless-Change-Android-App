@@ -19,7 +19,7 @@ import de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardPreview
  */
 class PatternRecyclerGridAdapter(var patterns: List<PatternInfo> = listOf()) : RecyclerView.Adapter<PatternRecyclerGridAdapter.PatternViewHolder>() {
 
-    var patternClickedListener: ((PatternInfo?) -> Unit)? = null
+    var patternClickedListener: (PatternInfo?) -> Unit = {}
 
     fun updatePatterns(patterns: List<PatternInfo>) {
         this.patterns = patterns
@@ -37,7 +37,7 @@ class PatternRecyclerGridAdapter(var patterns: List<PatternInfo> = listOf()) : R
      * Binds a viewholder to
      * @see RecyclerView.Adapter
      */
-    override fun onBindViewHolder(holder: PatternRecyclerGridAdapter.PatternViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PatternViewHolder, position: Int) {
         holder.bindCard(patterns[position])
     }
 
@@ -52,7 +52,7 @@ class PatternRecyclerGridAdapter(var patterns: List<PatternInfo> = listOf()) : R
     /**
      * @see RecyclerView.ViewHolder
      */
-    inner class PatternViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class PatternViewHolder(itemView: View, private val patternClickedListener: (PatternInfo?) -> Unit = {}) : RecyclerView.ViewHolder(itemView) {
 
         private var patternPreviewAdapter = PatternCardPreviewAdapter().apply {
             itemView.findViewById<PatternCardPreview>(R.id.pattern_preview_item).setAdapter(this)

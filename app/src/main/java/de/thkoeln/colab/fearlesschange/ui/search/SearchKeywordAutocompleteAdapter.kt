@@ -56,7 +56,7 @@ class SearchKeywordAutocompleteAdapter(context: Context, keywords: List<Keyword>
                 return (resultValue as Keyword).keyword
             }
 
-            override fun performFiltering(constraint: CharSequence?): Filter.FilterResults = Filter.FilterResults().apply {
+            override fun performFiltering(constraint: CharSequence?): FilterResults = FilterResults().apply {
                 constraint?.let {filter ->
                     val filtered = allKeywords.filter { it.keyword.toLowerCase().startsWith(filter.toString().toLowerCase()) }
                     values = filtered
@@ -64,7 +64,7 @@ class SearchKeywordAutocompleteAdapter(context: Context, keywords: List<Keyword>
                 }
             }
 
-            override fun publishResults(constraint: CharSequence?, results: Filter.FilterResults?) {
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 filteredKeywords.clear()
                 (results?.values as? List<*>)?.filter { it is Keyword}?.forEach{ filteredKeywords.add(it as Keyword) }
                 notifyDataSetChanged()

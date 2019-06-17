@@ -15,14 +15,14 @@ class PatternCardPreview @JvmOverloads constructor(context: Context?, attrs: Att
         ConstraintLayout(context, attrs, defStyleAttr), AdaptableView<PatternCardPreview> {
 
     private val delegation = PatternCardDelegation(this)
-    var title by delegation.updateTitle(R.id.card_preview_card_title)
-    var summary by delegation.updateSummary(R.id.card_preview_card_summary)
-    var imageId by delegation.updateCardImage(R.id.card_preview_card_image)
-    var favorite by delegation.updateFavoriteIcon(R.id.card_preview_favorite_icon)
-    var noteCount by delegation.updateNotesCount(R.id.card_preview_notes_count, R.id.card_preview_notes_icon)
-    var background by delegation.updateCardBackground(R.id.card_preview_wrapper)
-    var contentBackground by delegation.updateCardContentBackground(R.id.card_preview_content)
-    var onCardClickedListener by delegation.updateClickListener(R.id.card_preview_card)
+    var title by delegation.updateTitle(R.id.pattern_preview_title)
+    var summary by delegation.updateSummary(R.id.pattern_preview_summary)
+    var imageId by delegation.updateCardImage(R.id.pattern_preview_image)
+    var favorite by delegation.updateFavoriteIcon(R.id.pattern_preview_favorite_icon)
+    var noteCount by delegation.updateNotesCount(R.id.pattern_preview_notes_count, R.id.pattern_preview_notes_icon)
+    var background by delegation.updateCardBackground(R.id.pattern_preview_content_wrapper)
+    var contentBackground by delegation.updateCardContentBackground(R.id.pattern_preview_content)
+    var onCardClickedListener by delegation.updateClickListener(R.id.pattern_preview_card)
 
     init {
         View.inflate(context, R.layout.pattern_card_preview, this)
@@ -44,4 +44,5 @@ class PatternCardPreview @JvmOverloads constructor(context: Context?, attrs: Att
     override fun <T> setAdapter(adapter: SingleViewAdapter<T, PatternCardPreview>) {
         adapter.registerView(this)
     }
+
 }

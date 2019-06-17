@@ -10,14 +10,14 @@ import de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardFront
  */
 class PatternCardFrontAdapter: SingleViewAdapter<Pattern, PatternCardFront>() {
 
-    var onFavoriteClickedListener: ((Pattern?) -> Unit)? = null
+    var onFavoriteClickedListener: () -> Unit = {}
 
     override fun onDataChange(view: PatternCardFront, data: Pattern?) {
         view.title = data?.title
         view.summary = data?.summary
         view.imageId = view.context.getResourceId(data?.pictureName, "drawable")?: R.drawable.default_pattern_image
         view.favorite = data?.favorite
-        view.onFavoriteClickedListener = { onFavoriteClickedListener?.invoke(data) }
+        view.onFavoriteClickedListener = { onFavoriteClickedListener }
     }
 
 }

@@ -2,7 +2,7 @@
     <string name="app_name">Fearless Change</string>
 
     <!-- Navigation -->
-    <string name="label_nav_overview">Overview</string>
+    <string name="label_nav_cards">Cards</string>
     <string name="label_nav_favorites">Favorites</string>
     <string name="label_nav_settings">Settings</string>
 
@@ -105,4 +105,9 @@
     <string name="favorites_title">Favorites</string>
     <string name="settings_title">Settings</string>
     <string name="label_nav_dashboard">Dashboard</string>
+    <string name="removed">wurde gelöscht</string>
+    <string name="undo_action">Rückgängig</string>
+    <string name="action_fav">Favorisieren</string>
+    <string name="removed_from_fav">wurde aus den Favoriten entfernt</string>
+    <string name="label_nav_search">Suche</string>
 </resources>

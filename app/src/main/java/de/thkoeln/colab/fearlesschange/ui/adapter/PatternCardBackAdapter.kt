@@ -8,14 +8,14 @@ import de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardBack
  */
 class PatternCardBackAdapter: SingleViewAdapter<Pattern, PatternCardBack>() {
 
-    var onFavoriteClickedListener: ((Pattern?) -> Unit)? = null
+    var onFavoriteClickedListener: () -> Unit = {}
 
     override fun onDataChange(view: PatternCardBack, data: Pattern?) {
         view.title = data?.title
         view.problem = data?.problem
         view.solution = data?.solution
         view.favorite = data?.favorite
-        view.onFavoriteClickedListener = { onFavoriteClickedListener?.invoke(data) }
+        view.onFavoriteClickedListener = { onFavoriteClickedListener() }
     }
 
 }

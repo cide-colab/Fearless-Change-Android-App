@@ -11,7 +11,7 @@ import de.thkoeln.colab.fearlesschange.data.viewmodel.PatternViewModel
 import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
 import de.thkoeln.colab.fearlesschange.ui.AppActivity
 import de.thkoeln.colab.fearlesschange.ui.adapter.PatternRecyclerGridAdapter
-import de.thkoeln.colab.fearlesschange.ui.patterndetail.PatternDetailDialogFragment
+import de.thkoeln.colab.fearlesschange.ui.pattern.PatternDetailDialogFragment
 import de.thkoeln.colab.fearlesschange.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_favorites.*

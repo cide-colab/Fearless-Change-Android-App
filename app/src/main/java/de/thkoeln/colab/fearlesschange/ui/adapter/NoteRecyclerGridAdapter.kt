@@ -1,5 +1,6 @@
 package de.thkoeln.colab.fearlesschange.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.note.Note
+import de.thkoeln.colab.fearlesschange.ui.SwipeToDeleteRecyclerViewAdapter
+import de.thkoeln.colab.fearlesschange.ui.SwipeToDeleteRecyclerViewHolder
+import kotlinx.android.synthetic.main.note_grid_item.view.*
 
 /**
  *
@@ -17,51 +21,26 @@ import de.thkoeln.colab.fearlesschange.data.persistance.note.Note
  * @property notes notes to show
  * @see RecyclerView.Adapter
  */
-class NoteRecyclerGridAdapter(var notes: List<Note> = listOf()) : RecyclerView.Adapter<NoteRecyclerGridAdapter.NoteViewHolder>() {
+class NoteRecyclerGridAdapter(context: Context, var notes: List<Note> = listOf()) : SwipeToDeleteRecyclerViewAdapter<Note, NoteRecyclerGridAdapter.NoteViewHolder>(context) {
 
 
-    fun updateNotes(notes: List<Note>) {
-        this.notes = notes
-        notifyDataSetChanged()
-    }
-    /**
-     * Inflates ItemView and creates a ViewHolder with this view
-     * @see RecyclerView.Adapter
-     */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteRecyclerGridAdapter.NoteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.note_grid_item, parent, false)
         return NoteViewHolder(view)
     }
 
-    /**
-     * Binds a viewholder to
-     * @see RecyclerView.Adapter
-     */
-    override fun onBindViewHolder(holder: NoteRecyclerGridAdapter.NoteViewHolder, position: Int) {
-        holder.bindCard(notes[position])
-    }
 
-    /**
-     * returns the size of the noteList
-     * @see RecyclerView.Adapter
-     */
-    override fun getItemCount(): Int {
-        return notes.size
-    }
-
-    /**
-     * @see RecyclerView.ViewHolder
-     * @property noteDescriptionView textview to show note description
-     * @property noteTitleView textview to show note title
-     */
-    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class NoteViewHolder(itemView: View) : SwipeToDeleteRecyclerViewHolder<Note>(itemView) {
 
         private var noteTitleView = itemView.findViewById<TextView>(R.id.create_note_note_title)
         private var noteDescriptionView = itemView.findViewById<TextView>(R.id.create_note_note_text)
 
-        fun bindCard(note: Note) {
-            noteTitleView.text = note.title
-            noteDescriptionView.text = note.text
+        override fun bind(item: Note) {
+            noteTitleView.text = item.title
+            noteDescriptionView.text = item.text
         }
+
+        override fun getDisplayName(item: Note) = item.title
+        override fun getForeground() = itemView.note_item_foreground
     }
 }

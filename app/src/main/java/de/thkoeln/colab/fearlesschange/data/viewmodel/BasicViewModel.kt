@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.helper.ConfirmationRequest
 import de.thkoeln.colab.fearlesschange.helper.SnackBarMessage
-import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
+import de.thkoeln.colab.fearlesschange.helper.events.SingleActionLiveData
 import java.util.*
 
 /**
@@ -15,8 +15,8 @@ import java.util.*
 abstract class BasicViewModel(application: Application): AndroidViewModel(application) {
 
     private val pendingRequests = mutableMapOf<UUID, Pair<() -> Unit,(() -> Unit)?>>()
-    val requestConfirmationEvent = ActionLiveData<ConfirmationRequest>()
-    val sendSnackBarMessageEvent = ActionLiveData<SnackBarMessage>()
+    val requestConfirmationEvent = SingleActionLiveData<ConfirmationRequest>()
+    val sendSnackBarMessageEvent = SingleActionLiveData<SnackBarMessage>()
 
 
     fun onConfirmRequest(request: ConfirmationRequest) {

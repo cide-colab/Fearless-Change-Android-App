@@ -11,7 +11,7 @@ import de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardPreview
  */
 class PatternCardPreviewAdapter(var pattern: Pattern? = null): SingleViewAdapter<PatternInfo, PatternCardPreview>() {
 
-    var onCardClickedListener: ((PatternInfo?) -> Unit)? = null
+    var onCardClickedListener: (PatternInfo?) -> Unit = {}
 
     override fun onDataChange(view: PatternCardPreview, data: PatternInfo?) {
         pattern = data?.pattern
@@ -20,7 +20,7 @@ class PatternCardPreviewAdapter(var pattern: Pattern? = null): SingleViewAdapter
         view.imageId = view.context.getResourceId(data?.pattern?.pictureName, "drawable")?: R.drawable.default_pattern_image
         view.favorite = data?.pattern?.favorite
         view.noteCount = data?.noteCount
-        view.onCardClickedListener = { onCardClickedListener?.invoke(data) }
+        view.onCardClickedListener = { onCardClickedListener(data) }
     }
 
 }

@@ -9,7 +9,7 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.Pattern
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternRepository
-import de.thkoeln.colab.fearlesschange.helper.events.ActionLiveData
+import de.thkoeln.colab.fearlesschange.helper.events.SingleActionLiveData
 
 
 class PatternDetailViewModel(context: Application) : BasicViewModel(context) {
@@ -18,9 +18,9 @@ class PatternDetailViewModel(context: Application) : BasicViewModel(context) {
 
     var selectedPatternId: MutableLiveData<Long> = MutableLiveData()
 
-    val setViewPagerPositionEvent: ActionLiveData<Int> = ActionLiveData()
-    val sharePatternEvent: ActionLiveData<Pattern> = ActionLiveData()
-    val setupPagingAdapterEvent: ActionLiveData<LongArray> = ActionLiveData()
+    val setViewPagerPositionEvent: SingleActionLiveData<Int> = SingleActionLiveData()
+    val sharePatternEvent: SingleActionLiveData<Pattern> = SingleActionLiveData()
+    val setupPagingAdapterEvent: SingleActionLiveData<LongArray> = SingleActionLiveData()
 
     val selectedPatternInfo: LiveData<PatternInfo> = Transformations.switchMap(selectedPatternId) {
         it?.let { id -> patternRepository.getInfo(id) }
