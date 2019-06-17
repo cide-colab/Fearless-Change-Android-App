@@ -29,7 +29,7 @@ interface StatisticDao {
     fun getActionCount(action: StatisticAction): LiveData<Long>
 
     @Query("SELECT p.*, n.noteCount FROM (SELECT patternId, COUNT(`action`) as actions FROM statistic WHERE `action`=:action GROUP BY patternId ORDER BY actions DESC LIMIT 1) s LEFT JOIN pattern p ON s.patternId = p.id LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON s.patternId = n.patternId")
-    fun getMostCommonByAction(action: StatisticAction): LiveData<PatternInfo>
+    fun getMostCommonByAction(action: StatisticAction): LiveData<PatternInfo?>
 
     @Query("DELETE FROM statistic WHERE `action` = :action")
     fun deleteByAction(action: StatisticAction)

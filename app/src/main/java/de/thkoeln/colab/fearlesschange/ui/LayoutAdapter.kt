@@ -4,12 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import de.thkoeln.colab.fearlesschange.R
 
 abstract class LayoutAdapter<T>(val layout: Int) {
     private var view: View? = null
-    fun inflate(parent: ViewGroup) = inflate(parent, parent.context)
-    fun inflate(parent: ViewGroup?, context: Context) = LayoutInflater.from(context).inflate(R.layout.pattern_preview_fragment, parent, false).also { view = it }
+    fun inflate(parent: ViewGroup, attachToRoot: Boolean = false) = inflate(parent, parent.context, attachToRoot)
+    fun inflate(parent: ViewGroup?, context: Context, attachToRoot: Boolean = false) = LayoutInflater.from(context).inflate(layout, parent, attachToRoot).also { view = it }
     fun setView(view: View) {
         this.view = view
     }

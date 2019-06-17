@@ -9,7 +9,7 @@ import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.helper.events.DynamicLiveData
 import de.thkoeln.colab.fearlesschange.helper.events.SingleActionLiveData
 import de.thkoeln.colab.fearlesschange.map
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 
 class SearchViewModel(application: Application) : BasicPatternViewModel(application) {
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.observe
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternFragment
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
 import kotlinx.android.synthetic.main.favorites_fragment.*
 
 

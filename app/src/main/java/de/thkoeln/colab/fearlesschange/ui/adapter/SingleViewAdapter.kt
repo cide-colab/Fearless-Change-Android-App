@@ -3,7 +3,7 @@ package de.thkoeln.colab.fearlesschange.ui.adapter
 /**
  * Created by florianherborn on 22.08.18.
  */
-abstract class SingleViewAdapter<in T, in V> {
+abstract class SinglesViewAdapter<in T, in V> {
     private var currentData: T? = null
     private var registeredView: V? = null
     fun registerView(view: V) {

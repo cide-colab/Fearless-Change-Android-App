@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
 import de.thkoeln.colab.fearlesschange.ui.adapter.PatternDetailViewPagerAdapter
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternFragment
 import kotlinx.android.synthetic.main.pattern_detail_swiper_fragment.*
 
 

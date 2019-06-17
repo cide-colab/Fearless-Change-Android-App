@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternFragment
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
 import kotlinx.android.synthetic.main.settings_fragment.*
 
 class SettingsFragment : BasicPatternFragment<SettingsViewModel>() {

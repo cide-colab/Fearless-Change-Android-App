@@ -3,7 +3,7 @@ package de.thkoeln.colab.fearlesschange.ui.pattern.swiper
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 
 @Suppress("UNCHECKED_CAST")
 class PatternDetailSwiperViewModelFactory(private val application: Application, private val args: PatternDetailSwiperFragmentArgs) : ViewModelProvider.Factory {

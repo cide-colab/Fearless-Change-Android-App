@@ -4,7 +4,7 @@ import android.app.Application
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.note.NoteRepository
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticAction
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 
 class SettingsViewModel(application: Application) : BasicPatternViewModel(application) {
 

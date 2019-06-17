@@ -10,7 +10,7 @@ import android.widget.AdapterView
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.observe
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternFragment
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
 import kotlinx.android.synthetic.main.search_fragment.*
 
 
@@ -27,7 +27,7 @@ class SearchFragment : BasicPatternFragment<SearchViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val resultAdapter = SearchResultRecyclerViewAdapter()
+        val resultAdapter = SearchPatternRecyclerViewAdapter()
         resultAdapter.patternClickedListener = viewModel.patternCardClicked
         search_results.adapter = resultAdapter
         viewModel.pattern.observe(this) { resultAdapter.setItems(it) }

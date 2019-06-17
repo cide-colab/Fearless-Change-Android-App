@@ -1,8 +1,8 @@
 package de.thkoeln.colab.fearlesschange.data.persistance.statistic
 
 import android.content.Context
-import de.thkoeln.colab.fearlesschange.helper.extensions.doAsync
 import de.thkoeln.colab.fearlesschange.data.persistance.AppDatabase
+import de.thkoeln.colab.fearlesschange.doAsync
 
 
 /**

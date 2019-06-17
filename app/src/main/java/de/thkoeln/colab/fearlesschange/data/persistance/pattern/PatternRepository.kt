@@ -2,7 +2,7 @@ package de.thkoeln.colab.fearlesschange.data.persistance.pattern
 
 import android.content.Context
 import de.thkoeln.colab.fearlesschange.data.persistance.AppDatabase
-import de.thkoeln.colab.fearlesschange.helper.extensions.doAsync
+import de.thkoeln.colab.fearlesschange.doAsync
 
 /**
  * Created by florianherborn on 06.08.18.

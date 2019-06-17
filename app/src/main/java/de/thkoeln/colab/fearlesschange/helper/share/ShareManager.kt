@@ -2,7 +2,6 @@ package de.thkoeln.colab.fearlesschange.helper.share
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -10,14 +9,9 @@ import android.view.View
 import android.view.View.MeasureSpec.*
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.widget.RelativeLayout
 import androidx.core.content.FileProvider
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.Pattern
-import de.thkoeln.colab.fearlesschange.ui.adapter.PatternCardBackAdapter
-import de.thkoeln.colab.fearlesschange.ui.adapter.PatternCardFrontAdapter
-import de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardBack
-import de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardFront
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -26,32 +20,17 @@ import java.io.FileOutputStream
 class ShareManager(private val activity: Activity) {
 
     fun sharePattern(pattern: Pattern) {
-        val frontAdapter = PatternCardFrontAdapter()
-        val backAdapter = PatternCardBackAdapter()
-
-        val cardWidth = 350f
-        val cardLayoutParams = RelativeLayout.LayoutParams(convertDpToPixel(cardWidth).toInt(), WRAP_CONTENT)
-
-        val front = PatternCardFront(activity).apply {
-            layoutParams = cardLayoutParams
-            setAdapter(frontAdapter)
-        }
-        val back = PatternCardBack(activity).apply {
-            layoutParams = cardLayoutParams
-            setAdapter(backAdapter)
-        }
-
-        frontAdapter.change(pattern)
-        backAdapter.change(pattern)
-
-        shareFile(ShareType.JPEG, getImageFileFrom(pattern.title, front, back), R.string.share_text)
+        val adapter = PrintPatternAdapter()
+        val printView = adapter.inflate(null, activity)
+        adapter.bind(pattern)
+        shareFile(ShareType.JPEG, getImageFileFrom(pattern.title, printView), R.string.share_text)
 
     }
 
     private fun shareFile(type: ShareType, file: File, shareMessage: Int) {
         val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.type = when(type) {
-            ShareType.JPEG ->  "image/jpeg"
+        shareIntent.type = when (type) {
+            ShareType.JPEG -> "image/jpeg"
         }
 
         shareIntent.putExtra(Intent.EXTRA_STREAM, getFileUri(file))
@@ -60,10 +39,9 @@ class ShareManager(private val activity: Activity) {
 
     }
 
-    private fun getFileUri(file: File) =  FileProvider.getUriForFile(activity, PROVIDER, file)
+    private fun getFileUri(file: File) = FileProvider.getUriForFile(activity, PROVIDER, file)
 
-    private fun getImageFileFrom(title: String, vararg views: View)
-            = getImageFile(mergeBitmap(views.map { getBitmapFromView(it) }), title)
+    private fun getImageFileFrom(title: String, vararg views: View) = getImageFile(mergeBitmap(views.map { getBitmapFromView(it) }), title)
     private fun getImageFile(image: Bitmap, title: String): File {
         val fullName = "$title.jpeg"
         val cachePath = File(activity.cacheDir, IMAGE_CASH_PATH).apply { mkdirs() }
@@ -91,7 +69,7 @@ class ShareManager(private val activity: Activity) {
         return bitmap
     }
 
-    private fun getMeasureSpecFor(value: Int) = when(value) {
+    private fun getMeasureSpecFor(value: Int) = when (value) {
         WRAP_CONTENT, MATCH_PARENT -> makeMeasureSpec(0, UNSPECIFIED)
         else -> makeMeasureSpec(value, EXACTLY)
     }
@@ -118,11 +96,6 @@ class ShareManager(private val activity: Activity) {
         return bitmap
     }
 
-    private fun convertDpToPixel(dp: Float): Float {
-        val metrics = Resources.getSystem().displayMetrics
-        val px = dp * (metrics.densityDpi / 160f)
-        return Math.round(px).toFloat()
-    }
 
     companion object {
         private const val IMAGE_CASH_PATH = "images/"

@@ -8,6 +8,7 @@ import de.thkoeln.colab.fearlesschange.asLiveData
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.helper.events.DynamicLiveData
 import de.thkoeln.colab.fearlesschange.map
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardFragmentDirections
 
 

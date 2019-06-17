@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.switchMap
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardFragmentDirections
 
 class PatternOfTheDayViewModel(application: Application) : BasicPatternViewModel(application) {

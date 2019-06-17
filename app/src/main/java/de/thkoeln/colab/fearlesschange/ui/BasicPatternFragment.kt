@@ -1,12 +1,11 @@
-package de.thkoeln.colab.fearlesschange.ui.plugins
+package de.thkoeln.colab.fearlesschange.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
-import kotlinx.android.synthetic.main.activity_dashbaord.*
+import de.thkoeln.colab.fearlesschange.observe
 
 abstract class BasicPatternFragment<T : BasicPatternViewModel> : Fragment() {
     lateinit var viewModel: T
@@ -16,11 +15,11 @@ abstract class BasicPatternFragment<T : BasicPatternViewModel> : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = createViewModel()
         viewModel.actionEvent.switchObserve(this) { findNavController().navigate(it) }
-        viewModel.snackbarEvent.switchObserve(this) {
-            Snackbar.make(activity_wrapper, it.message, it.duration).show()
+        viewModel.snackbarEvent.switchObserve(this) { message ->
+            view?.let { Snackbar.make(it, message.message, message.duration).show() }
         }
 
-        viewModel.requestConfirmationEvent.nonNullObserve(this) {
+        viewModel.requestConfirmationEvent.observe(this) {
             AlertDialog.Builder(requireContext())
                     .setTitle(it.title)
                     .setMessage(it.text)

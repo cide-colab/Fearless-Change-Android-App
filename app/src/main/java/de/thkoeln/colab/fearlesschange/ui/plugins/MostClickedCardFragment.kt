@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.helper.extensions.nonNullObserve
-import de.thkoeln.colab.fearlesschange.ui.adapter.PatternCardPreviewAdapter
-import kotlinx.android.synthetic.main.pattern_of_the_day_fragment.*
+import de.thkoeln.colab.fearlesschange.nonNullObserve
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternFragment
+import de.thkoeln.colab.fearlesschange.ui.pattern.preview.PatternPreviewAdapter
+import kotlinx.android.synthetic.main.most_clicked_card_fragment.*
 
 class MostClickedCardFragment : BasicPatternFragment<MostClickedCardViewModel>() {
 
@@ -16,19 +17,18 @@ class MostClickedCardFragment : BasicPatternFragment<MostClickedCardViewModel>()
         fun newInstance() = MostClickedCardFragment()
     }
 
-    private val cardPreviewAdapter = PatternCardPreviewAdapter()
+    private val cardPreviewAdapter = PatternPreviewAdapter()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.most_clicked_card_fragment, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.most_clicked_card_fragment, container, false)
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        cardPreviewAdapter.onCardClickedListener = viewModel.patternCardClicked
-        card_preview.setAdapter(cardPreviewAdapter)
-
-        viewModel.mostClickedPattern.nonNullObserve(this) { cardPreviewAdapter.change(it) }
+        cardPreviewAdapter.patternClickedListener = viewModel.patternCardClicked
+        cardPreviewAdapter.inflate(most_clicked_pattern_card_container, true)
+        viewModel.mostClickedPattern.nonNullObserve(this) { cardPreviewAdapter.bind(it) }
     }
 
 

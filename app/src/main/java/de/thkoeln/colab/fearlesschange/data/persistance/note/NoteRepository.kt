@@ -1,8 +1,8 @@
 package de.thkoeln.colab.fearlesschange.data.persistance.note
 
 import android.content.Context
-import de.thkoeln.colab.fearlesschange.helper.extensions.doAsync
 import de.thkoeln.colab.fearlesschange.data.persistance.AppDatabase
+import de.thkoeln.colab.fearlesschange.doAsync
 
 /**
  * Created by Florian on 18.08.2018.

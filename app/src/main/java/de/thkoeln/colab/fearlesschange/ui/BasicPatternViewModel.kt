@@ -1,32 +1,36 @@
-package de.thkoeln.colab.fearlesschange.data.viewmodel
+package de.thkoeln.colab.fearlesschange.ui
 
 import android.app.Application
-import android.os.Bundle
 import androidx.lifecycle.AndroidViewModel
+import androidx.navigation.NavDirections
 import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternRepository
+import de.thkoeln.colab.fearlesschange.data.persistance.statistic.Statistic
+import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticAction
+import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticRepository
 import de.thkoeln.colab.fearlesschange.helper.ConfirmationRequest
 import de.thkoeln.colab.fearlesschange.helper.SnackBarMessage
 import de.thkoeln.colab.fearlesschange.helper.events.SingleActionLiveData
 import java.util.*
 
-/**
- * Created by Florian on 24.08.2018.
- */
-abstract class BasicViewModel(application: Application): AndroidViewModel(application) {
+abstract class BasicPatternViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val pendingRequests = mutableMapOf<UUID, Pair<() -> Unit,(() -> Unit)?>>()
+    protected val patternRepository by lazy { PatternRepository(application) }
+    protected val statisticRepository by lazy { StatisticRepository(application) }
+
+    private val pendingRequests = mutableMapOf<UUID, Pair<() -> Unit, (() -> Unit)?>>()
     val requestConfirmationEvent = SingleActionLiveData<ConfirmationRequest>()
-    val sendSnackBarMessageEvent = SingleActionLiveData<SnackBarMessage>()
 
 
     fun onConfirmRequest(request: ConfirmationRequest) {
-        val methods = pendingRequests.getOrElse(request.id){ return }
+        val methods = pendingRequests.getOrElse(request.id) { return }
         pendingRequests.remove(request.id)
         methods.first.invoke()
     }
 
     fun onCancelRequest(request: ConfirmationRequest) {
-        val methods = pendingRequests.getOrElse(request.id){ return }
+        val methods = pendingRequests.getOrElse(request.id) { return }
         pendingRequests.remove(request.id)
         methods.second?.invoke()
     }
@@ -50,31 +54,24 @@ abstract class BasicViewModel(application: Application): AndroidViewModel(applic
         requestConfirmationEvent.invoke(ConfirmationRequest(title, text, positiveButtonText, negativeButtonText, id))
     }
 
-    protected fun sendMessage(messageId: Int, vararg args: Any = emptyArray()) {
+    val actionEvent = SingleActionLiveData<NavDirections>()
+    val snackbarEvent = SingleActionLiveData<SnackBarMessage>()
+
+    protected fun notifyPatternClicked(patternInfo: PatternInfo) {
+        statisticRepository.insert(Statistic(patternId = patternInfo.pattern.id, action = StatisticAction.CLICK))
+    }
+
+    protected fun notifyAction(navDirections: NavDirections) {
+        actionEvent.invoke(navDirections)
+    }
+
+    protected fun notify(messageId: Int, vararg args: Any = emptyArray()) {
         val message = when {
             args.isNotEmpty() -> getApplication<Application>().getString(messageId, args)
             else -> getApplication<Application>().getString(messageId)
         }
-        sendSnackBarMessageEvent.invoke(SnackBarMessage(message))
+        snackbarEvent.invoke(SnackBarMessage(message))
     }
 
-    protected fun forceGetNonNullId(id: Long?) = id
-            ?: throw IllegalArgumentException("Missing pattern id")
 
-
-    fun extractRequiredId(bundle: Bundle?, key: String): Long {
-        val id = bundle?.getLong(key)
-        return when (id) {
-            null -> {
-                sendMessage(R.string.message_could_not_find_pattern)
-                throw RuntimeException("Missing argument $key")
-            }
-            else -> id
-        }
-    }
-
-    protected fun <T> getAndSendMessageIfNullOrEmpty(values: List<T>?, messageId: Int): List<T>? {
-        if (values == null || values.isEmpty()) sendMessage(messageId)
-        return values
-    }
 }

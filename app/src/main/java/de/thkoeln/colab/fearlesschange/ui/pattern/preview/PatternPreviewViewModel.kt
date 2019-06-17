@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 
 class PatternPreviewViewModel(application: Application, args: PatternPreviewFragmentArgs) : BasicPatternViewModel(application) {
 

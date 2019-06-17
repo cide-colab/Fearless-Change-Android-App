@@ -4,7 +4,9 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.SharedPreferences
+import android.os.AsyncTask
 import androidx.lifecycle.*
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -22,6 +24,29 @@ fun <T> LiveData<T?>.nonNullObserve(owner: LifecycleOwner, observer: (t: T) -> U
         it?.let(observer)
     })
 }
+
+fun Context.getResourceId(resName: String?, resIdentifier: String) =
+        resName?.let {
+            try {
+                val resId = resources.getIdentifier(resName, resIdentifier, packageName)
+                if (resId <= 0) null else resId
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }
+
+class DatabaseTask : AsyncTask<() -> Unit, Unit, Unit>() {
+    override fun doInBackground(vararg f: () -> Unit) {
+        f.forEach { it.invoke() }
+    }
+}
+
+fun doAsync(f: () -> Unit) {
+    DatabaseTask().execute(f)
+}
+
+
 
 fun ObjectAnimator.onAnimationEnd(listener: (animator: Animator) -> Unit) {
     addListener(object : AnimatorListenerAdapter() {

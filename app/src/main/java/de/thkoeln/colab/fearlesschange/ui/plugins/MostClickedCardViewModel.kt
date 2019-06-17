@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.data.persistance.statistic.StatisticAction
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardFragmentDirections
 
 class MostClickedCardViewModel(application: Application) : BasicPatternViewModel(application) {
@@ -15,6 +16,6 @@ class MostClickedCardViewModel(application: Application) : BasicPatternViewModel
         }
     }
 
-    val mostClickedPattern: LiveData<PatternInfo> = statisticRepository.getMostCommonByAction(StatisticAction.CLICK)
+    val mostClickedPattern: LiveData<PatternInfo?> = statisticRepository.getMostCommonByAction(StatisticAction.CLICK)
 
 }

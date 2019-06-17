@@ -49,8 +49,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardPreview
-            android:id="@+id/random_cards_1"
+        <FrameLayout
+            android:id="@+id/random_cards_container_1"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
@@ -61,8 +61,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardPreview
-            android:id="@+id/random_cards_2"
+        <FrameLayout
+            android:id="@+id/random_cards_container_2"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
@@ -71,8 +71,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardPreview
-            android:id="@+id/random_cards_3"
+        <FrameLayout
+            android:id="@+id/random_cards_container_3"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.Pattern
 import de.thkoeln.colab.fearlesschange.helper.events.SingleActionLiveData
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 
 class PatternDetailViewModel(application: Application, args: PatternDetailFragmentArgs) : BasicPatternViewModel(application) {
 

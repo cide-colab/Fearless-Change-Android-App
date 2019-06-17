@@ -2,7 +2,7 @@ package de.thkoeln.colab.fearlesschange.ui.favorites
 
 import android.app.Application
 import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
-import de.thkoeln.colab.fearlesschange.ui.plugins.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.ui.BasicPatternViewModel
 
 class FavoritesViewModel(application: Application) : BasicPatternViewModel(application) {
 
