@@ -7,17 +7,16 @@
     android:layout_height="wrap_content"
     android:padding="36dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/create_note_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
         android:background="@color/note_color"
         android:paddingBottom="36dp"
-        android:paddingStart="@dimen/defaultPadding"
-        android:paddingTop="@dimen/defaultPadding"
-        android:paddingEnd="@dimen/defaultPadding">
+        android:paddingStart="@dimen/default_padding"
+        android:paddingTop="@dimen/default_padding"
+        android:paddingEnd="@dimen/default_padding">
 
         <ImageView
             android:id="@+id/create_note_dialog_pin_icon"
@@ -25,6 +24,7 @@
             android:layout_height="24dp"
             android:layout_marginBottom="@dimen/default_margin"
             android:src="@drawable/pin"
+            android:contentDescription="@string/image_description_notes_pin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

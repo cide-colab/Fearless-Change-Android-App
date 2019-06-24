@@ -1,38 +1,19 @@
 <resources>
     <string name="app_name">Fearless Change</string>
 
-    <!-- Navigation -->
-    <string name="label_nav_cards">Cards</string>
-    <string name="label_nav_favorites">Favorites</string>
-    <string name="label_nav_settings">Settings</string>
-
-    <!-- Actions -->
-    <string name="action_details">Details</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_search">Search</string>
-
-    <!-- Activities -->
-    <string name="title_activity_settings">Settings</string>
-    <string name="title_activity_favorites">Favorites</string>
-    <string name="title_activity_overview">Overview</string>
-    <string name="title_activity_search">Search</string>
-    <string name="title_feature_pattern_of_the_day">Card of the Day</string>
-    <string name="title_feature_random_pattern">Random Cards</string>
-    <string name="title_feature_most_clicked_card">Most Clicked Card</string>
-
-    <!-- Header -->
-    <string name="header_problem">Problem</string>
-    <string name="header_solution">Solution</string>
-    <string name="header_notes">Notes</string>
 
     <!-- Actions -->
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_confirm">Confirm</string>
+    <string name="action_add_to_favorite">Add to favorites</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_share">Share</string>
 
     <!-- Hints -->
     <string name="hint_title">Title</string>
     <string name="hint_text">Text</string>
+    <string name="hint_search_keyword">Search for Keywords</string>
 
     <!-- Images -->
     <string name="image_description_back">Back</string>
@@ -41,73 +22,50 @@
     <string name="image_description_favorite">Favorite icon</string>
     <string name="image_description_notes">Notes icon</string>
     <string name="image_description_feature_icon">Feature Icon</string>
-
-    <!-- Showcase -->
-    <string name="showcase_btn_next_label">GOT IT</string>
-    <string name="showcase_btn_finish_label">LETS GO</string>
-
-    <!-- Showcase Dashboard -->
-    <string name="overview_showcase_text">If you want to get an overview of all existing patterns, use the overview page</string>
-    <string name="overview_showcase_title">Overview</string>
-    <string name="favorites_showcase_title">Favorites</string>
-    <string name="favorites_showcase_text">To view and edit your favorites, it is best to use the favorites page</string>
-    <string name="settings_showcase_title">Settings</string>
-    <string name="settings_showcase_text">If you want to reset your settings and statistics, go to the settings. Here you will find everything you need.</string>
-    <string name="card_showcase_title">Pattern Card</string>
-    <string name="card_showcase_text">Click on a pattern card to see the details. There you can rotate them with one click, add notes and add them to your favorites.</string>
-    <string name="card_showcase_btn">Le</string>
-
-    <!-- Showcase Search -->
-    <string name="search_input_showcase_title">Keywords</string>
-    <string name="search_input_showcase_text">Enter keywords to search for maps. To do this type in the beginning of the keyword and select the corresponding keyword in the dropdown. You can remove them by swiping.</string>
-    <string name="search_button_showcase_title">Search</string>
-    <string name="search_button_showcase_text">When you\'ve selected all the keywords you\'re looking for, press Search and review your results.</string>
-
-
-    <string name="card_of_the_day_showcase_title">Card of the day</string>
-    <string name="card_of_the_day_showcase_text">Every day you get a new "Card of the Day". So you always get new inspirations.</string>
-    <string name="random_card_showcase_title">Random Card</string>
-    <string name="random_card_showcase_text">If you do not know what to do next? Then generate random cards and let yourself be inspired.</string>
-    <string name="most_clicked_card_showcase_title">Random Card</string>
-    <string name="most_clicked_card_showcase_text">If you do not know what to do next? Then generate random cards and let yourself be inspired.</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_description_problem">Problem image</string>
+    <string name="image_description_solution">Solution</string>
+    <string name="image_description_app">App icon</string>
+    <string name="image_description_notes_pin">Pin</string>
+    <string name="image_description_label_icon">Label icon</string>
+    <string name="image_description_sweep_hint">Swipe to delete</string>
+    <string name="image_description_calendar">Calendar</string>
+    <string name="image_description_heart">Heart</string>
+    <string name="image_description_reset">Reset</string>
 
     <!-- Settings -->
-    <string name="settings_header_user">User</string>
-    <string name="settings_item_reset_most_clicked_cards_label">Reset most clicked cards</string>
+    <string name="settings_header_user">User Settings</string>
+    <string name="settings_item_reset_most_clicked_cards_label">Reset most clicked card</string>
     <string name="settings_item_reset_favorites_label">Reset Favorites</string>
-    <string name="settings_header_system">System</string>
-    <string name="settings_item_reset_to_factory_settings_label">Reset to factory settings</string>
+    <string name="settings_header_system">System Settings</string>
+    <string name="settings_item_reset_to_factory_settings_label">Reset all personal data</string>
+    <string name="settings_item_reset_notes_label">Reset all your notes</string>
 
     <!-- Messages -->
-    <string name="message_could_not_find_pattern">Could not find Pattern</string>
-    <string name="message_note_deleted">Note %1$s deleted</string>
     <string name="message_notes_reset">Your notes have been deleted</string>
     <string name="message_request_confirmation_reset_note">Do you really want to delete all notes? This action can not be undone!</string>
     <string name="message_request_confirmation_reset_favorites">Do you really want to reset your favorites? This action can not be undone!</string>
     <string name="message_favorites_reset">Your favorites have been reset</string>
-    <string name="message_no_favorites_found">No Favorites found</string>
-    <string name="message_no_pattern_found">No Pattern found</string>
-    <string name="message_no_search_results">No cards found matching search criteria.</string>
-    <string name="settings_item_reset_notes_label">Reset all of your notes.</string>
     <string name="message_most_clicked_pattern_reset">The most clicked card has been reset!</string>
     <string name="message_request_confirmation_reset_most_clicked_pattern">Do you really want to reset your most clicked card? This action can not be undone!</string>
-    <string name="tutorial_next_button_label">Got it</string>
-    <string name="search_keyword_hint">Keyword</string>
-    <string name="action_help">Help</string>
-    <string name="action_share">Share</string>
     <string name="massage_no_pattern_to_share">No Pattern found to share</string>
-    <string name="share_text">Look at what I\'ve just found. Maybe that\'s something for you.</string>
-    <string name="dashboard_title">Dashbaord</string>
-    <string name="favorites_title">Favorites</string>
-    <string name="settings_title">Settings</string>
+    <string name="message_pattern_removed_from_fav">The pattern %1$s was removed from favorites</string>
+    <string name="message_keyword_removed_from_filters">The keyword %1$s was removed from filters</string>
+    <string name="message_note_deleted">Note %1$s was deleted</string>
+
+    <!-- Share -->
+    <string name="share_text">%1$s! Maybe that will help you.</string>
+
+    <!-- Fragments -->
+    <string name="title_dashboard">Dashbaord</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- Navigation -->
+    <string name="label_nav_cards">Cards</string>
+    <string name="label_nav_favorites">Favorites</string>
+    <string name="label_nav_settings">Settings</string>
     <string name="label_nav_dashboard">Dashboard</string>
-    <string name="removed">wurde gelöscht</string>
-    <string name="undo_action">Rückgängig</string>
-    <string name="action_fav">Favorisieren</string>
-    <string name="removed_from_fav">wurde aus den Favoriten entfernt</string>
-    <string name="label_nav_search">Suche</string>
+    <string name="label_nav_search">Search</string>
+
+
 </resources>

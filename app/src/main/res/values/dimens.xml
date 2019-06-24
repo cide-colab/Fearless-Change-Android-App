@@ -7,7 +7,7 @@
 
     <!--CLEAN-->
     <dimen name="default_margin">8dp</dimen>
-    <dimen name="defaultPadding">8dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
     <dimen name="cardTitleTextSize">14sp</dimen>
     <dimen name="cardDetailTitleTextSize">18sp</dimen>
     <dimen name="cardContentTextSize">12sp</dimen>

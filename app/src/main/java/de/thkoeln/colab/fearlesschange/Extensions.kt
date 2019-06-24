@@ -6,6 +6,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.AsyncTask
 import androidx.lifecycle.*
 import androidx.viewpager.widget.ViewPager
@@ -108,3 +109,7 @@ fun Snackbar.onTimeout(listener: () -> Unit) {
         }
     })
 }
+
+
+fun Int.toDp() = (this / Resources.getSystem().displayMetrics.density).toInt()
+fun Int.toPx() = (this * Resources.getSystem().displayMetrics.density).toInt()

@@ -8,7 +8,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/nav_cards"
-        android:icon="@drawable/ic_view_module_black_24dp"
+        android:icon="@drawable/ic_cards_black_24dp"
         android:title="@string/label_nav_cards"
         app:showAsAction="always" />
     <item

@@ -2,42 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/feature_card_of_the_day_container"
-    style="@style/DashboardFeature"
+    style="@style/PluginContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/random_cards_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/ic_random_black"
-        app:layout_constraintBottom_toBottomOf="@id/random_cards_title"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/random_cards_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="@string/title_feature_random_pattern"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintEnd_toStartOf="@id/random_cards_reload"
-        app:layout_constraintStart_toEndOf="@id/random_cards_icon"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/random_cards_reload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_refresh_black"
-        app:layout_constraintBottom_toBottomOf="@id/random_cards_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/random_cards_container"
@@ -46,13 +13,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/random_cards_title">
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
+            style="@style/PluginPatternContainer"
             android:id="@+id/random_cards_container_1"
-            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
             android:rotation="-30"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,20 +27,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
+            style="@style/PluginPatternContainer"
             android:id="@+id/random_cards_container_2"
-            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
+            style="@style/PluginPatternContainer"
             android:id="@+id/random_cards_container_3"
-            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
             android:rotation="30"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,5 +46,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <de.thkoeln.colab.fearlesschange.ui.Label
+        style="@style/PluginLabel"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:labelIcon="@drawable/ic_random_black"
+        app:labelText="Random Patterns"
+        app:layout_constraintEnd_toEndOf="@id/random_cards_container"
+        app:layout_constraintTop_toTopOf="@id/random_cards_container" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/random_cards_reload"
+        style="@style/PluginAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_refresh_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,18 +23,18 @@ class ShareManager(private val activity: Activity) {
         val adapter = PrintPatternAdapter()
         val printView = adapter.inflate(null, activity)
         adapter.bind(pattern)
-        shareFile(ShareType.JPEG, getImageFileFrom(pattern.title, printView), R.string.share_text)
+        shareFile(ShareType.JPEG, getImageFileFrom(pattern.title, printView), activity.getString(R.string.share_text, pattern.title))
 
     }
 
-    private fun shareFile(type: ShareType, file: File, shareMessage: Int) {
+    private fun shareFile(type: ShareType, file: File, shareMessage: String) {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.type = when (type) {
             ShareType.JPEG -> "image/jpeg"
         }
 
         shareIntent.putExtra(Intent.EXTRA_STREAM, getFileUri(file))
-        shareIntent.putExtra(Intent.EXTRA_TEXT, activity.getString(shareMessage))
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
         activity.startActivity(shareIntent)
 
     }

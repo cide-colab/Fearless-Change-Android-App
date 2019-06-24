@@ -6,7 +6,7 @@ import de.thkoeln.colab.fearlesschange.data.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.ui.AdvancedRecyclerViewAdapter
 import de.thkoeln.colab.fearlesschange.ui.pattern.preview.PatternPreviewAdapter
 
-class OverviewRecyclerViewAdapter : AdvancedRecyclerViewAdapter<PatternInfo, OverviewRecyclerViewAdapter.OverviewViewHolder>() {
+class CardsRecyclerViewAdapter : AdvancedRecyclerViewAdapter<PatternInfo, CardsRecyclerViewAdapter.OverviewViewHolder>() {
 
     var patternClickedListener: (patternInfo: PatternInfo) -> Unit = {}
 

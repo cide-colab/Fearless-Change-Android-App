@@ -24,11 +24,10 @@ class CardsFragment : BasicPatternFragment<CardsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = OverviewRecyclerViewAdapter()
+        val adapter = CardsRecyclerViewAdapter()
         pattern_cards_recycler_view.adapter = adapter
 
         viewModel.pattern.observe(this) { adapter.setItems(it) }
-
         adapter.patternClickedListener = { viewModel.patternCardClicked(it) }
 
     }

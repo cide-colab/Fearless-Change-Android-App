@@ -2,51 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/feature_most_clicked_card_container"
-    style="@style/DashboardFeature"
+    style="@style/PluginContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/feature_most_clicked_card_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/image_description_feature_icon"
-        android:src="@drawable/ic_today_black"
-        app:layout_constraintBottom_toBottomOf="@id/feature_most_clicked_card_title"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/feature_most_clicked_card_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:padding="8dp"
-        android:text="@string/title_feature_most_clicked_card"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/feature_most_clicked_card_icon"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:id="@+id/most_clicked_pattern_card_container"
-        android:layout_width="200dp"
+        style="@style/PluginPatternContainer"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:clipChildren="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/feature_most_clicked_card_title" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<de.thkoeln.colab.fearlesschange.ui.customs.card.PatternCardPreview-->
-    <!--android:id="@+id/card_preview"-->
-    <!--android:layout_width="200dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@id/feature_most_clicked_card_title" />-->
+
+    <de.thkoeln.colab.fearlesschange.ui.Label
+        style="@style/PluginLabel"
+        android:layout_height="wrap_content"
+        app:labelIcon="@drawable/ic_touch_app_black_24dp"
+        app:labelText="Most Clicked Pattern"
+        app:layout_constraintEnd_toEndOf="@id/most_clicked_pattern_card_container"
+        app:layout_constraintTop_toTopOf="@id/most_clicked_pattern_card_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

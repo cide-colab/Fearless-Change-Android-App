@@ -20,7 +20,7 @@ class NoteGridItemAdapter : LayoutAdapter<Note>(R.layout.note_grid_item) {
     }
 }
 
-class NoteRecyclerGridAdapter(context: Context, var notes: List<Note> = listOf()) : SwipeToDeleteRecyclerViewAdapter<Note, NoteRecyclerGridAdapter.NoteViewHolder>(context) {
+class NoteRecyclerGridAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Note, NoteRecyclerGridAdapter.NoteViewHolder>(context) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -37,8 +37,6 @@ class NoteRecyclerGridAdapter(context: Context, var notes: List<Note> = listOf()
         override fun bind(item: Note) {
             adapter.bind(item)
         }
-
-        override fun getDisplayName(item: Note) = item.title
         override fun getForeground() = itemView.swipe_to_delete_container
     }
 }

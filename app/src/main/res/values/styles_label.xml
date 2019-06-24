@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LabelContainer">
+        <item name="layout_constraintDimensionRatio">170:360</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">@drawable/bg_label</item>
+    </style>
+
+
+    <style name="LabelIcon">
+        <item name="android:tint">@color/secondaryText</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="LabelText">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textColor">@color/secondaryText</item>
+    </style>
+</resources>

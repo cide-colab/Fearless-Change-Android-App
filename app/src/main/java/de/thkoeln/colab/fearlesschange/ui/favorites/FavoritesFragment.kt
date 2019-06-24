@@ -23,12 +23,14 @@ class FavoritesFragment : BasicPatternFragment<FavoritesViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = FavoritesSwipeToDeleteAdapter(requireContext(), requireContext().getString(R.string.removed_from_fav))
-        adapter.patternClickedListener = viewModel.patternCardClicked
-        adapter.onItemDeletedListener = viewModel.patternDeleted
+        val adapter = FavoritesSwipeToDeleteAdapter(requireContext())
+        adapter.onDeleteSnackBarText = { getString(R.string.message_pattern_removed_from_fav, it.pattern.title) }
+        adapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
+        adapter.onItemClickedListener = viewModel.patternCardClicked
+        adapter.onDeleteItemAcceptedListener = viewModel.patternDeleted
         favorites_recycler_view.adapter = adapter
 
-        viewModel.pattern.observe(this) { adapter.setItems(it) }
+        viewModel.pattern.observe(this) { adapter.setItemsNotEquals(it) }
     }
 
     override fun createViewModel() = ViewModelProviders.of(this).get(FavoritesViewModel::class.java)

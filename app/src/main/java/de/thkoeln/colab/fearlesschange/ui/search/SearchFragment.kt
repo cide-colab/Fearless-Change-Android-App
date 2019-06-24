@@ -30,9 +30,10 @@ class SearchFragment : BasicPatternFragment<SearchViewModel>() {
         val resultAdapter = SearchPatternRecyclerViewAdapter()
         resultAdapter.patternClickedListener = viewModel.patternCardClicked
         search_results.adapter = resultAdapter
-        viewModel.pattern.observe(this) { resultAdapter.setItems(it) }
+        viewModel.pattern.observe(this) { resultAdapter.setItemsNotEquals(it) }
 
         val searchKeywordAdapter = SearchKeywordAutocompleteAdapter(requireContext())
+        search_keyword.threshold = 1
         search_keyword.setAdapter(searchKeywordAdapter)
         search_keyword.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             searchKeywordAdapter.getItem(position)?.let { viewModel.keywordAddedListener(it) }
@@ -42,10 +43,13 @@ class SearchFragment : BasicPatternFragment<SearchViewModel>() {
 
         viewModel.unselectedKeywords.observe(this) { searchKeywordAdapter.updateKeywords(it) }
 
-        val selectedKeywordsAdapter = SearchKeywordRecyclerAdapter(requireContext())
-        selectedKeywordsAdapter.onItemDeletedListener = viewModel.onKeywordDeleted
+        val selectedKeywordsAdapter = SearchKeywordSwipeToDeleteRecyclerViewAdapter(requireContext())
+        selectedKeywordsAdapter.onDeleteSnackBarText = { getString(R.string.message_keyword_removed_from_filters, it.keyword) }
+        selectedKeywordsAdapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
+        selectedKeywordsAdapter.onDeleteItemListener = viewModel.onKeywordDeleted
+        selectedKeywordsAdapter.onRestoreItemListener = viewModel.onKeywordRestored
         selected_keywords.adapter = selectedKeywordsAdapter
-        viewModel.selectedKeywords.observe(this) { selectedKeywordsAdapter.setItems(it) }
+        viewModel.selectedKeywords.observe(this) { selectedKeywordsAdapter.setItemsNotEquals(it) }
 
     }
 

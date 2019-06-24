@@ -15,43 +15,39 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.onTimeout
+
 
 abstract class SwipeToDeleteRecyclerViewAdapter<T, VH : SwipeToDeleteRecyclerViewHolder<T>>(val context: Context) : AdvancedRecyclerViewAdapter<T, VH>(),
         RecyclerItemTouchHelper.RecyclerItemTouchHelperListener<VH> {
 
-    var onItemDeletedListener: (item: T) -> Unit = {}
-
-    private fun removeItem(position: Int) {
-        items.removeAt(position)
-        notifyItemRemoved(position)
-    }
+    var onDeleteItemAcceptedListener: (item: T) -> Unit = {}
+    var onDeleteItemListener: (item: T) -> Unit = {}
+    var onRestoreItemListener: (item: T) -> Unit = {}
+    var onDeleteSnackBarText: ((item: T) -> String)? = null
+    var onDeleteUndoActionText: (item: T) -> String = { "UNDO" }
 
     private fun restoreItem(item: T, position: Int) {
-        items.add(position, item)
-        notifyItemInserted(position)
+        addItem(item, position)
+        onRestoreItemListener(item)
     }
 
     override fun onSwiped(viewHolder: VH, direction: Int, position: Int) {
-        // get the removed item name to display it in snack bar
-        val name = viewHolder.getDisplayName(items[viewHolder.adapterPosition])
-
         // backup of removed item for undo purpose
         val deletedItem = items[viewHolder.adapterPosition]
         val deletedIndex = viewHolder.adapterPosition
 
         // remove the item from recycler view
         removeItem(viewHolder.adapterPosition)
-
-        Snackbar.make(viewHolder.itemView, getSnackbarText(name), Snackbar.LENGTH_LONG).apply {
-            setAction(context.getString(R.string.undo_action)) { restoreItem(deletedItem, deletedIndex) }
-            setActionTextColor(Color.YELLOW)
-            onTimeout { onItemDeletedListener(deletedItem) }
-        }.show()
+        onDeleteItemListener(deletedItem)
+        onDeleteSnackBarText?.invoke(deletedItem)?.let {
+            Snackbar.make(viewHolder.itemView, it, Snackbar.LENGTH_LONG).apply {
+                setAction(onDeleteUndoActionText(deletedItem)) { restoreItem(deletedItem, deletedIndex) }
+                setActionTextColor(Color.YELLOW)
+                onTimeout { onDeleteItemAcceptedListener(deletedItem) }
+            }.show()
+        }
     }
-
-    open fun getSnackbarText(name: String) = name + " " + context.getString(R.string.removed)
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         recyclerView.itemAnimator = DefaultItemAnimator()
@@ -104,6 +100,4 @@ interface ForegroundHolder {
     fun getForeground(): View
 }
 
-abstract class SwipeToDeleteRecyclerViewHolder<T>(itemView: View) : AdvancedRecyclerViewAdapter.ViewHolder<T>(itemView), ForegroundHolder {
-    abstract fun getDisplayName(item: T): String
-}
+abstract class SwipeToDeleteRecyclerViewHolder<T>(itemView: View) : AdvancedRecyclerViewAdapter.ViewHolder<T>(itemView), ForegroundHolder

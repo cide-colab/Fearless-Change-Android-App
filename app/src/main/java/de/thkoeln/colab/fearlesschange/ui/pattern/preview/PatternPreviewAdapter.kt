@@ -10,9 +10,10 @@ import kotlinx.android.synthetic.main.pattern_preview.view.*
 class PatternPreviewAdapter(var patternClickedListener: (patternInfo: PatternInfo) -> Unit = {}) : LayoutAdapter<PatternInfo>(R.layout.pattern_preview) {
     override fun bind(view: View, value: PatternInfo) {
         with(value.pattern) {
+            val picture = loadImage(view, pictureName)
+            view.pattern_preview_image.setImageResource(picture)
             view.pattern_preview_title.text = title
             view.pattern_preview_summary.text = summary
-            view.pattern_preview_image.setImageResource(view.context.getResourceId(pictureName, "drawable") ?: R.drawable.default_pattern_image)
             view.pattern_preview_favorite_icon.visibility = if (favorite) View.VISIBLE else View.GONE
             view.pattern_preview_notes_count.text = value.noteCount.toString()
             view.pattern_preview_notes_count.visibility = if (value.noteCount > 0) View.VISIBLE else View.GONE
@@ -20,4 +21,8 @@ class PatternPreviewAdapter(var patternClickedListener: (patternInfo: PatternInf
             view.pattern_preview_card.setOnClickListener { patternClickedListener(value) }
         }
     }
+
+    fun loadImage(view: View, pictureName: String): Int =
+            view.context?.getResourceId(pictureName, "drawable") ?: R.drawable.default_pattern_image
+
 }

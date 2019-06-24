@@ -69,6 +69,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
+                            android:contentDescription="@string/image_description_problem"
                             android:id="@+id/pattern_detail_back_problem_header"
                             style="@style/PatternCardContentIcon.Problem" />
 
@@ -92,6 +93,7 @@
                         app:layout_constraintTop_toBottomOf="@id/pattern_detail_back_problem_section">
 
                         <ImageView
+                            android:contentDescription="@string/image_description_solution"
                             android:id="@+id/pattern_detail_back_solution_header"
                             style="@style/PatternCardContentIcon.Solution" />
 
