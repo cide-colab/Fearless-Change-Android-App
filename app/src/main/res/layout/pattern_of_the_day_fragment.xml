@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <de.thkoeln.colab.fearlesschange.ui.Label
+    <de.thkoeln.colab.fearlesschange.view.label.Label
         style="@style/PluginLabel"
         android:layout_height="wrap_content"
         app:labelIcon="@drawable/ic_today_black"

@@ -48,7 +48,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <de.thkoeln.colab.fearlesschange.ui.Label
+    <de.thkoeln.colab.fearlesschange.view.label.Label
         style="@style/PluginLabel"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
