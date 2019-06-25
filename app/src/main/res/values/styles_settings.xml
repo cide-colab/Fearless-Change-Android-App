@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings -->
+    <style name="SettingsItem">
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">#55ffffff</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+
+    <style name="SettingsHeader">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="SettingsIcon">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <style name="SettingsIcon.UserSection">
+        <item name="android:background">@drawable/settings_icon_user_bg</item>
+    </style>
+
+    <style name="SettingsIcon.SystemSection">
+        <item name="android:background">@drawable/settings_icon_system_bg</item>
+    </style>
+
+    <style name="SettingsItemLabel">
+        <item name="android:layout_marginStart">32dp</item>
+    </style>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/feature_card_of_the_day_container"
+    style="@style/DashboardFeature"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        style="@style/PluginPatternContainer"
+        android:id="@+id/card_of_the_day_pattern_container"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <de.thkoeln.colab.fearlesschange.view.label.Label
+        style="@style/PluginLabel"
+        android:layout_height="wrap_content"
+        app:labelIcon="@drawable/ic_today_black"
+        app:labelText="Daily Pattern"
+        app:layout_constraintEnd_toEndOf="@id/card_of_the_day_pattern_container"
+        app:layout_constraintTop_toTopOf="@id/card_of_the_day_pattern_container" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

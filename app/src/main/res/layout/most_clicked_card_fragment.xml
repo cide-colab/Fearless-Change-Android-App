@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/feature_most_clicked_card_container"
+    style="@style/PluginContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/most_clicked_pattern_card_container"
+        style="@style/PluginPatternContainer"
+        android:layout_height="wrap_content"
+        android:clipChildren="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <de.thkoeln.colab.fearlesschange.view.label.Label
+        style="@style/PluginLabel"
+        android:layout_height="wrap_content"
+        app:labelIcon="@drawable/ic_touch_app_black_24dp"
+        app:labelText="Most Clicked Pattern"
+        app:layout_constraintEnd_toEndOf="@id/most_clicked_pattern_card_container"
+        app:layout_constraintTop_toTopOf="@id/most_clicked_pattern_card_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

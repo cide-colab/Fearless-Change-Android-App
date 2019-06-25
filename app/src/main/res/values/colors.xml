@@ -28,4 +28,21 @@
     <color name="settings_icon_system_background">#000000</color>
     <color name="settings_icon_user_background">#8e0000</color>
     <color name="tutorial_next_btn_color">#64DD17</color>
+
+    <!-- CLEAN -->
+
+    <color name="primary">#f2f2f2</color>
+    <color name="primaryLight">#ffffff</color>
+    <color name="primaryDark">#bfbfbf</color>
+    <color name="primaryText">#333333</color>
+
+    <color name="secondary">#a6242f</color>
+    <color name="secondaryLight">#dd5858</color>
+    <color name="secondaryDark">#700007</color>
+    <color name="secondaryText">#ffffff</color>
+
+    <color name="backgroundTopColor">#94ABF2</color>
+
+    <color name="heart">#ff423f</color>
+
 </resources>

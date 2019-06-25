@@ -4,67 +4,44 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MainTheme">
+        <activity
+            android:name=".view.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- TODO Indexing like below -->
+            <!--<intent-filter android:label="@string/filter_title_viewgizmos">-->
+            <!--<action android:name="android.intent.action.VIEW" />-->
+            <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--<category android:name="android.intent.category.BROWSABLE" />-->
+            <!--&lt;!&ndash; Accepts URIs that begin with "http://www.example.com/gizmos” &ndash;&gt;-->
+            <!--<data android:scheme="http"-->
+            <!--android:host="colab.cide.com"-->
+            <!--android:pathPrefix="/gizmos" />-->
+            <!--&lt;!&ndash; note that the leading "/" is required for pathPrefix&ndash;&gt;-->
+            <!--&lt;!&ndash; Accepts URIs that begin with "example://gizmos” &ndash;&gt;-->
+            <!--<data android:scheme="example"-->
+            <!--android:host="gizmos" />-->
+            <!--</intent-filter>-->
+        </activity>
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="de.thkoeln.fearlesschange.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
-        <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.overview.OverviewActivity"
-            android:label="@string/title_activity_overview"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity" />
-        </activity>
-        <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.favorites.FavoritesActivity"
-            android:label="@string/title_activity_favorites"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity" />
-        </activity>
-        <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.search.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity" />
-        </activity>
-        <activity
-            android:name="de.thkoeln.colab.fearlesschange.ui.settings.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.thkoeln.colab.fearlesschange.ui.dashboard.DashboardActivity" />
-        </activity>
     </application>
 
 </manifest>
