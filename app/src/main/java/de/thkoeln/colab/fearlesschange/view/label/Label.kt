@@ -51,7 +51,7 @@ class Label : ConstraintLayout {
             label_icon.setImageDrawable(a.getDrawable(R.styleable.Label_labelIcon))
         }
 //
-//        a.recycle()
+        a.recycle()
 //
 //        // Set up a default TextPaint object
 //        textPaint = TextPaint().apply {
