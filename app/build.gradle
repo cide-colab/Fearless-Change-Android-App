@@ -8,12 +8,11 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
-
 android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "de.thkoeln.colab.fearlesschange"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 4
         versionName "1.3"
