@@ -13,7 +13,7 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         val expected = "de.thkoeln.fherborn.fearlesschange"
-        val actual = InstrumentationRegistry.getInstrumentation().targetContext.packageName
+        val actual = InstrumentationRegistry.getInstrumentation().context.packageName
         assertEquals(expected, actual)
     }
 }
