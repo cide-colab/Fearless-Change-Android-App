@@ -33,7 +33,6 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
         viewModel.createDialogEvent.observe(this) { openCreateNoteDialog() }
         viewModel.notes.observe(this) { adapter.setItems(it) }
 
-        pattern_notes_add_note_btn.setOnClickListener { viewModel.addNoteButtonClicked() }
     }
 
 

@@ -41,6 +41,8 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
             Log.d("QUICK NOTE", "Hallooo")
         }
 
+        pattern_detail_notes_btn.setOnClickListener { viewModel.showNodesBtnClicked() }
+
     }
 
     private fun updateView(patternInfo: PatternInfo) {
