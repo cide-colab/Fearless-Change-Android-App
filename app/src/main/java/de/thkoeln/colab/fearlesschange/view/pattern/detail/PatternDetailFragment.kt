@@ -9,7 +9,6 @@ import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import de.thkoeln.colab.fearlesschange.core.shareing.ShareManager
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
-import de.thkoeln.colab.fearlesschange.view.notes.PatternNotesFragment
 import kotlinx.android.synthetic.main.pattern_detail_fragment.*
 
 class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>() {
@@ -36,10 +35,6 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
         viewModel.sharePatternEvent.observe(this) {
             ShareManager(requireActivity()).sharePattern(it)
         }
-
-
-        childFragmentManager.beginTransaction().add(pattern_detail_notes_container.id, PatternNotesFragment.newInstance(viewModel.patternId)).commit()
-
 
     }
 

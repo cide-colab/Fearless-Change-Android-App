@@ -51,6 +51,10 @@
         <item name="android:paddingBottom">@dimen/default_padding</item>
     </style>
 
+    <style name="PatternCardViewContentWrapper.Back">
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
     <style name="PatternCardViewText">
         <item name="android:textColor">@color/secondaryText</item>
         <item name="android:padding">@dimen/default_padding</item>
