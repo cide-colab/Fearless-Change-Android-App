@@ -8,11 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.navigation.fragment.navArgs
 
 import de.thkoeln.colab.fearlesschange.R
 import kotlinx.android.synthetic.main.create_note_fragment.*
 
 class CreateNoteFragment : Fragment() {
+
+    private val args: CreateNoteFragmentArgs by navArgs()
 
     companion object {
         fun newInstance() = CreateNoteFragment()
@@ -26,7 +29,7 @@ class CreateNoteFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CreateNoteViewModel::class.java)
+        viewModel = createViewModel()
 
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
@@ -34,5 +37,7 @@ class CreateNoteFragment : Fragment() {
         create_note_title.requestFocus()
 
     }
+
+    private fun createViewModel() = ViewModelProviders.of(this, CreateNoteViewModelFactory(requireActivity().application, args)).get(CreateNoteViewModel::class.java)
 
 }

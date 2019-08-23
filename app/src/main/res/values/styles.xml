@@ -4,13 +4,8 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="cardViewStyle">@style/CardView</item>
+        <item name="actionBarStyle">@style/AppToolBar</item>
         <item name="android:dialogTheme">@style/Dialog</item>
-    </style>
-
-    <style name="ActionBar">
-        <item name="android:elevation">4dp</item>
-        <item name="android:theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
-        <item name="popupTheme">@style/Theme.Design.NoActionBar</item>
     </style>
 
     <style name="CardTitle" parent="Base.TextAppearance.AppCompat.Title">
@@ -145,13 +140,11 @@
     </style>
 
 
-    <style name="AppTitle">
-        <item name="android:textColor">@color/primaryText</item>
-        <item name="android:textSize">20sp</item>
+    <style name="AppTitle" parent="android:TextAppearance.Material.Widget.ActionBar.Subtitle">
     </style>
 
-    <style name="AppToolBar">
-        <item name="android:background">#44ffffff</item>
+    <style name="AppToolBar" parent="android:Widget.Material.Toolbar">
+        <item name="android:background">#ffffffff</item>
         <item name="android:layout_height">?actionBarSize</item>
     </style>
 
