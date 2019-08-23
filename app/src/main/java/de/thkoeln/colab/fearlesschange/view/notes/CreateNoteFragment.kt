@@ -1,15 +1,12 @@
 package de.thkoeln.colab.fearlesschange.view.notes
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
-
 import de.thkoeln.colab.fearlesschange.R
 import kotlinx.android.synthetic.main.create_note_fragment.*
 
@@ -19,6 +16,11 @@ class CreateNoteFragment : Fragment() {
 
     companion object {
         fun newInstance() = CreateNoteFragment()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     private lateinit var viewModel: CreateNoteViewModel
@@ -39,5 +41,22 @@ class CreateNoteFragment : Fragment() {
     }
 
     private fun createViewModel() = ViewModelProviders.of(this, CreateNoteViewModelFactory(requireActivity().application, args)).get(CreateNoteViewModel::class.java)
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.create_note_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_create_note -> {
+                viewModel.onCreateNoteClicked(create_note_title.text.toString(), create_note_note.text.toString())
+                requireActivity().onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
 }

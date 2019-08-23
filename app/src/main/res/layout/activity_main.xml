@@ -51,7 +51,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/activity.app_bar_layout"
-        app:layout_behavior=".ShadowScrollBehavior"
+        app:liftOnScroll="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
