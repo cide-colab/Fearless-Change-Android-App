@@ -13,13 +13,13 @@
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:spanCount="2"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/pattern.detail.quick_note.container"
+        app:layout_constraintBottom_toTopOf="@id/pattern.notes.create_note.container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/pattern.detail.quick_note.container"
+        android:id="@+id/pattern.notes.create_note.container"
         style="@style/QuickNoteContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/pattern.detail.quick_note"
+            android:id="@+id/pattern.notes.create_note"
             style="@style/QuickNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

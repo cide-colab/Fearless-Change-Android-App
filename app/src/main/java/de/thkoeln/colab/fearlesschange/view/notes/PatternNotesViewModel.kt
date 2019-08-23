@@ -9,17 +9,25 @@ import de.thkoeln.colab.fearlesschange.persistance.note.Note
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
 
 class PatternNotesViewModel(application: Application, args: PatternNotesFragmentArgs) : BasicPatternViewModel(application) {
+
+    private val id = args.patternId
+
     val createNoteConfirmed: (title: String, description: String) -> Unit = { title, description ->
-        noteRepository.insert(Note(title = title, text = description, patternId = args.patternId))
+        noteRepository.insert(Note(title = title, text = description, patternId = id))
     }
 
     private val noteRepository = NoteRepository(application)
 
-    val addNoteButtonClicked: () -> Unit = { createDialogEvent.invoke(args.patternId) }
+    val addNoteButtonClicked: () -> Unit = { createDialogEvent.invoke(id) }
     val onItemDeleteListener: (item: Note) -> Unit = { noteRepository.delete(it) }
 
     val createDialogEvent = SingleActionLiveData<Long>()
-    val notes = noteRepository.getNotesForPattern(args.patternId)
+    val notes = noteRepository.getNotesForPattern(id)
+
+    fun createNoteButtonClicked() {
+        notifyAction(PatternNotesFragmentDirections.actionPatternNotesFragmentToCreateNoteFragment(id))
+    }
+
 
 }
 

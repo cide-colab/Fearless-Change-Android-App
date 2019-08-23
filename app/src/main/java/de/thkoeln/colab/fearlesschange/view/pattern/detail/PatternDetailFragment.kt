@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
@@ -38,10 +39,12 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
         }
 
         pattern_detail_quick_note.setOnClickListener {
-            Log.d("QUICK NOTE", "Hallooo")
+            viewModel.createNoteButtonClicked()
         }
 
-        pattern_detail_notes_btn.setOnClickListener { viewModel.showNodesBtnClicked() }
+        pattern_detail_notes_btn.setOnClickListener {
+            viewModel.showNodesBtnClicked()
+        }
 
     }
 

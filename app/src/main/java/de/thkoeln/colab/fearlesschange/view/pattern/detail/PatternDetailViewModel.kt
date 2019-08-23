@@ -7,6 +7,7 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.events.SingleActionLiveData
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
+import de.thkoeln.colab.fearlesschange.view.notes.PatternNotesFragmentDirections
 import de.thkoeln.colab.fearlesschange.view.pattern.swiper.PatternDetailSwiperFragmentDirections
 
 class PatternDetailViewModel(application: Application, args: PatternDetailFragmentArgs) : BasicPatternViewModel(application) {
@@ -30,6 +31,10 @@ class PatternDetailViewModel(application: Application, args: PatternDetailFragme
 
     fun showNodesBtnClicked() {
         notifyAction(PatternDetailSwiperFragmentDirections.actionPatternDetailSwipeFragmentToPatternNotesFragment(patternId))
+    }
+
+    fun createNoteButtonClicked() {
+        notifyAction(PatternDetailSwiperFragmentDirections.actionPatternDetailSwipeFragmentToCreateNoteFragment(patternId))
     }
 
 }
