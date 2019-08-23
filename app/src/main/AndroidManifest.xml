@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/MainTheme">
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".view.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

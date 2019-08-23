@@ -35,6 +35,7 @@ android {
 
 }
 
+
 afterEvaluate {
     android.sourceSets.all { sourceSet ->
         if (!sourceSet.name.startsWith('test') || !sourceSet.name.startsWith('androidTest')) {
@@ -93,6 +94,7 @@ dependencies {
     // dependency to appear on your APK's compile classpath or the test APK
     // classpath.
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+    api ('com.github.wordpress-mobile.WordPress-Aztec-Android:aztec:v1.3.30')
 
 
 }
