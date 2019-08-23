@@ -116,10 +116,22 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="QuickNote"></style>
+    <style name="QuickNote" parent="android:Widget.Material.EditText">
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="QuickNoteContainer">
+        <item name="android:background">@drawable/round_bg</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
 
     <style name="NotesBtn">
         <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="android:src">@drawable/ic_note_white_24dp</item>
+        <item name="backgroundTint">@color/note_color</item>
     </style>
 
     <style name="PatternDetailContainer">

@@ -17,16 +17,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
-    <TextView
-        android:id="@+id/pattern.detail.quick_note"
-        style="@style/QuickNote"
+    <FrameLayout
+        android:id="@+id/pattern.detail.quick_note.container"
+        style="@style/QuickNoteContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Take a note"
         app:layout_constraintBottom_toBottomOf="@id/pattern.detail.notes_btn"
         app:layout_constraintEnd_toStartOf="@id/pattern.detail.notes_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/pattern.detail.notes_btn" />
+        app:layout_constraintTop_toTopOf="@id/pattern.detail.notes_btn">
+        <Button
+            android:id="@+id/pattern.detail.quick_note"
+            style="@style/QuickNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:clickable="true"
+            android:text="@string/take_a_note_btn_text"/>
+
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pattern.detail.notes_btn"
@@ -35,6 +44,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/pattern.detail.quick_note" />
+        app:layout_constraintStart_toEndOf="@id/pattern.detail.quick_note.container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

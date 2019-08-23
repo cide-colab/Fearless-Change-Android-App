@@ -1,6 +1,7 @@
 package de.thkoeln.colab.fearlesschange.view.pattern.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
@@ -34,6 +35,10 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
         viewModel.pattern.observe(this) { updateView(it) }
         viewModel.sharePatternEvent.observe(this) {
             ShareManager(requireActivity()).sharePattern(it)
+        }
+
+        pattern_detail_quick_note.setOnClickListener {
+            Log.d("QUICK NOTE", "Hallooo")
         }
 
     }
