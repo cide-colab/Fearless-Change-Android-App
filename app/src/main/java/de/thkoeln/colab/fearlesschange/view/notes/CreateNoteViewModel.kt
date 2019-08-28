@@ -11,12 +11,11 @@ class CreateNoteViewModel(application: Application, private val args: CreateNote
 
     private val noteRepository = NoteRepository(application)
 
-    fun onCreateNoteClicked(title: String, note: String) {
-        noteRepository.insert(Note(title = title, text = note, patternId = args.patternId))
+    fun onCreateNoteClicked(note: String) {
+        noteRepository.insert(Note(text = note, patternId = args.patternId))
     }
 
 }
-
 
 
 @Suppress("UNCHECKED_CAST")

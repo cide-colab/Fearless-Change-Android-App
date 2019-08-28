@@ -8,12 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
-import kotlinx.android.synthetic.main.create_note_fragment.*
-import org.wordpress.aztec.Aztec
-import org.wordpress.aztec.ITextFormat
-import org.wordpress.aztec.toolbar.IAztecToolbarClickListener
+import kotlinx.android.synthetic.main.note_grid_item.*
 
-class CreateNoteFragment : Fragment(), IAztecToolbarClickListener {
+class CreateNoteFragment : Fragment() {
     private val args: CreateNoteFragmentArgs by navArgs()
 
     companion object {
@@ -39,11 +36,7 @@ class CreateNoteFragment : Fragment(), IAztecToolbarClickListener {
         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
 
 //        create_note_title.requestFocus()
-        create_note_note.requestFocus()
-
-        Aztec.with(create_note_note, create_note_toolbar, this)
-//                .setImageGetter(GlideImageLoader(context))
-//                .setVideoThumbnailGetter(GlideVideoThumbnailLoader(context))
+//        create_note_note.requestFocus()
 
 
     }
@@ -58,7 +51,7 @@ class CreateNoteFragment : Fragment(), IAztecToolbarClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_create_note -> {
-//                viewModel.onCreateNoteClicked(create_note_title.text.toString(), create_note_note.text.toString())
+                viewModel.onCreateNoteClicked(note_text.text.toString())
 
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)
@@ -69,28 +62,4 @@ class CreateNoteFragment : Fragment(), IAztecToolbarClickListener {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    override fun onToolbarExpandButtonClicked() {
-    }
-
-    override fun onToolbarFormatButtonClicked(format: ITextFormat, isKeyboardShortcut: Boolean) {
-    }
-
-    override fun onToolbarHeadingButtonClicked() {
-    }
-
-    override fun onToolbarHtmlButtonClicked() {
-    }
-
-    override fun onToolbarListButtonClicked() {
-    }
-
-    override fun onToolbarMediaButtonClicked(): Boolean {
-        return false
-    }
-
-    override fun onToolbarCollapseButtonClicked() {
-    }
-
-
 }

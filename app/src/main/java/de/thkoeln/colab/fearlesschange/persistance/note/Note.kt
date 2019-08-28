@@ -22,7 +22,6 @@ import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
 data class Note(
         @PrimaryKey(autoGenerate = true)
         val id: Long = 0,
-        var title: String,
         var text: String,
         val patternId: Long
 )

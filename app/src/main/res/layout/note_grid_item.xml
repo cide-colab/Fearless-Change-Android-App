@@ -9,45 +9,14 @@
     android:background="@color/note_color"
     android:padding="@dimen/default_padding">
 
-    <ImageView
-        android:id="@+id/create_note_dialog_pin_icon"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:src="@drawable/pin"
-        android:contentDescription="@string/image_description_notes_pin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_delete_sweep_black_24dp"
-        android:contentDescription="@string/image_description_sweep_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/create_note_note_title"
+        android:id="@+id/note_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/note_font"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/create_note_dialog_pin_icon" />
-
-    <TextView
-        android:id="@+id/create_note_note_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/note_font"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/create_note_note_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

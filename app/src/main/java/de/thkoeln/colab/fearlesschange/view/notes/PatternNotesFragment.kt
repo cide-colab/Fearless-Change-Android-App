@@ -26,7 +26,7 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
 
         val adapter = NoteRecyclerGridAdapter(requireContext())
         adapter.onDeleteItemAcceptedListener = viewModel.onItemDeleteListener
-        adapter.onDeleteSnackBarText = { getString(R.string.message_note_deleted, it.title) }
+        adapter.onDeleteSnackBarText = { getString(R.string.message_note_deleted, it.text) }
         adapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
         pattern_notes_recycler_view.adapter = adapter
 
@@ -40,7 +40,7 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
 
     private fun openCreateNoteDialog() {
         val dialog = CreateNoteDialog(requireContext())
-        dialog.onConfirmListener = viewModel.createNoteConfirmed
+//        dialog.onConfirmListener = viewModel.createNoteConfirmed
         dialog.show()
     }
 

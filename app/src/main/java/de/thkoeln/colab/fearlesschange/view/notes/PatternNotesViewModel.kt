@@ -12,8 +12,8 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
 
     private val id = args.patternId
 
-    val createNoteConfirmed: (title: String, description: String) -> Unit = { title, description ->
-        noteRepository.insert(Note(title = title, text = description, patternId = id))
+    val createNoteConfirmed: (note: String) -> Unit = { note ->
+        noteRepository.insert(Note(text = note, patternId = id))
     }
 
     private val noteRepository = NoteRepository(application)
