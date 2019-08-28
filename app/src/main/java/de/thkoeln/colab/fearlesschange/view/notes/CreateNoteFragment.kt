@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
+import kotlinx.android.synthetic.main.create_note_fragment.*
 import kotlinx.android.synthetic.main.note_grid_item.*
 
 class CreateNoteFragment : Fragment() {
@@ -35,6 +36,9 @@ class CreateNoteFragment : Fragment() {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
 
+        action_bold.setOnClickListener { editor.setBold() }
+        action_italic.setOnClickListener { editor.setItalic() }
+        action_underline.setOnClickListener { editor.setUnderline() }
 //        create_note_title.requestFocus()
 //        create_note_note.requestFocus()
 

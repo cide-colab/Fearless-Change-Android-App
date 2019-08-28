@@ -15,27 +15,6 @@ import kotlinx.android.synthetic.main.note_grid_item.view.*
 
 class NoteGridItemViewHolder : LayoutViewHolder<Note>(R.layout.note_grid_item) {
     override fun bind(view: View, value: Note) {
-
-
-        val spannable = SpannableStringBuilder("Text is spantastic!")
-        spannable.setSpan(
-
-                ForegroundColorSpan(Color.RED),
-                8, // start
-                12, // end
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        )
-
-        spannable.setSpan(
-                StyleSpan(BOLD),
-                13,
-                16,
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        )
-
-
-
-        view.note_text.text = spannable
-
+        view.note_text.text = value.text
     }
 }
