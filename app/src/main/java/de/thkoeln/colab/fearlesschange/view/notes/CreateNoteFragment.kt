@@ -1,7 +1,9 @@
 package de.thkoeln.colab.fearlesschange.view.notes
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
@@ -9,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
 import kotlinx.android.synthetic.main.create_note_fragment.*
-import kotlinx.android.synthetic.main.note_grid_item.*
 
 class CreateNoteFragment : Fragment() {
     private val args: CreateNoteFragmentArgs by navArgs()
@@ -55,7 +56,11 @@ class CreateNoteFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_create_note -> {
-                viewModel.onCreateNoteClicked(note_text.text.toString())
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    viewModel.onCreateNoteClicked(Html.toHtml(editor.text, Html.FROM_HTML_MODE_COMPACT))
+                } else {
+                    viewModel.onCreateNoteClicked(Html.toHtml(editor.text))
+                }
 
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)

@@ -2,6 +2,8 @@ package de.thkoeln.colab.fearlesschange.view
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.Editable
+import android.text.Html
 import android.text.Spannable
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
@@ -11,21 +13,28 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import org.xml.sax.XMLReader
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * TODO: document your custom view class.
  */
 
-class TestSpan: ClickableSpan() {
+class TestSpan : ClickableSpan() {
+
+    var test = "Test"
+
     override fun onClick(v: View) {
         Log.d("Custom Span", "Clicked ${v::class.simpleName}")
-        when(v) {
+        when (v) {
             is TextView -> Log.d("Custom Span", v.text.substring(v.selectionStart, v.selectionEnd))
             is EditText -> Log.d("Custom Span", v.text.substring(v.selectionStart, v.selectionEnd))
         }
 
     }
 }
+
 class RichTextEditor : EditText {
 
 //    private var _exampleString: String? = null // TODO: use a default from R.string...
@@ -153,14 +162,13 @@ class RichTextEditor : EditText {
                 // TODO nothing selected
             }
             else -> {
-                val spans = text.getSpans(selectionStart, selectionEnd, span::class.java).filter { it.equalsSpan(span) }
+                val selectStart = min(selectionStart, selectionEnd)
+                val selectEnd = max(selectionStart, selectionEnd)
+
+                val spans = text.getSpans(selectStart, selectEnd, span::class.java).filter { it.equalsSpan(span) }
                 if (spans.isNotEmpty()) {
-                    val firstStart = spans.map { text.getSpanStart(it) }.min() ?: selectionStart
-                    val lastEnd = spans.map { text.getSpanEnd(it) }.max() ?: selectionEnd
-
-                    Log.d("SELECTION", "$selectionStart -> $selectionEnd")
-                    Log.d("SPANS", "$firstStart -> $lastEnd")
-
+                    val firstStart = spans.map { text.getSpanStart(it) }.min() ?: selectStart
+                    val lastEnd = spans.map { text.getSpanEnd(it) }.max() ?: selectEnd
 
                     // TODO FIX
                     // If               ABCDEFGHIJKLMNOPQURSTUVWXYZ
@@ -170,15 +178,15 @@ class RichTextEditor : EditText {
 
                     spans.forEach { text.removeSpan(it) }
 
-                    if (firstStart < selectionStart) {
-                        setSpan(span, firstStart, selectionStart)
+                    if (firstStart < selectStart) {
+                        setSpan(span, firstStart, selectStart)
                     }
 
-                    if (lastEnd > selectionEnd) {
-                        setSpan(span, selectionEnd, lastEnd)
+                    if (lastEnd > selectEnd) {
+                        setSpan(span, selectEnd, lastEnd)
                     }
                 } else {
-                    text.setSpan(span, selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(span, selectStart, selectEnd)
                 }
             }
         }
@@ -193,4 +201,11 @@ class RichTextEditor : EditText {
 //            textHeight = it.fontMetrics.bottom
 //        }
 //    }
+}
+
+class CustomTagHandler : Html.TagHandler {
+    override fun handleTag(opening: Boolean, tag: String, output: Editable, xmlReader: XMLReader) {
+
+
+    }
 }
