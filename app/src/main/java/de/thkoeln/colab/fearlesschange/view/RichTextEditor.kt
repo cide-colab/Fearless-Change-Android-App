@@ -16,7 +16,6 @@ import android.view.MotionEvent
 import android.widget.EditText
 import android.widget.TextView
 import com.google.gson.*
-import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.NoArg
 import java.io.Serializable
 import java.lang.reflect.Type
@@ -32,7 +31,7 @@ interface Clickable {
     fun onClick(view: TextView, spannable: Spannable, event: MotionEvent)
 }
 
-class CheckBoxSpan(context: Context, val state: Boolean = false) : ImageSpan(context, if (state) R.drawable.ic_check_box_black_24dp else R.drawable.ic_check_box_outline_blank_black_24dp), Clickable {
+class CheckBoxSpan(context: Context, val state: Boolean = false) : ImageSpan(context, if (state) android.R.drawable.checkbox_on_background else android.R.drawable.checkbox_off_background), Clickable {
 
     override fun onClick(view: TextView, spannable: Spannable, event: MotionEvent) {
         Log.d("CLICK", "CLICK")
@@ -73,6 +72,8 @@ class AdvancedMovementMethod : LinkMovementMethod() {
 //}
 
 class RichTextEditor : EditText, RichTextViewCore {
+
+    private val currentSpans: MutableList<Any>? = mutableListOf<Any>()
 
 //    private var _exampleString: String? = null // TODO: use a default from R.string...
 //    private var _exampleColor: Int = Color.RED // TODO: use a default from R.color...
@@ -130,6 +131,10 @@ class RichTextEditor : EditText, RichTextViewCore {
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
+
+        // currentSpans = mutableListOf()
+
+
         // Load attributes
 //        val a = context.obtainStyledAttributes(
 //                attrs, R.styleable.RichTextEditor, defStyle, 0)
@@ -169,27 +174,50 @@ class RichTextEditor : EditText, RichTextViewCore {
     }
 
     fun setItalic() {
-        updateSpan(CheckBoxSpan(context)) { true }
         updateSpan(StyleSpan(Typeface.ITALIC))
     }
 
     fun setUnderline() {
-        updateSpan(UnderlineSpan())
+        updateSpan(UnderlineSpan()) { true }
+    }
+
+    fun setCheckbox() {
+        updateSpan(CheckBoxSpan(context)) { true }
     }
 
     fun updateSpan(span: StyleSpan) = updateSpan(span) { style == it.style }
     fun updateSpan(span: UnderlineSpan) = updateSpan(span) { true }
     fun updateSpan(span: ClickableSpan) = updateSpan(span) { true }
 
-    private fun <T : Any> updateSpan(span: T, equalsSpan: T.(other: T) -> Boolean): T? {
-        return when (selectionStart) {
+    override fun onTextChanged(t: CharSequence?, s: Int, lengthBefore: Int, lengthAfter: Int) {
+
+        currentSpans?.forEach { span ->
+            val start = text.getSpanStart(span)
+
+            if (start != -1) {
+                text.removeSpan(span)
+                setSpan(span, start, text.length)
+            } else {
+                currentSpans.remove(span)
+            }
+        }
+
+        super.onTextChanged(t, s, lengthBefore, lengthAfter)
+
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <T : Any> updateSpan(span: T, equalsSpan: T.(other: T) -> Boolean) {
+        when (selectionStart) {
             -1 -> {
                 // TODO no focus?
-                null
             }
-            selectionEnd -> {
-                // TODO nothing selected
-                null
+            selectionEnd -> when (span) {
+                is CheckBoxSpan -> setSpan(span, selectionStart, selectionEnd)
+                else -> currentSpans?.find { (it as? T)?.equalsSpan(span) ?: false }
+                        ?.let { currentSpans.remove(it) }
+                        ?: currentSpans?.add(selectionStart to span)
+
             }
             else -> {
                 val selectStart = min(selectionStart, selectionEnd)
@@ -215,10 +243,8 @@ class RichTextEditor : EditText, RichTextViewCore {
                     if (lastEnd > selectEnd) {
                         setSpan(span, selectEnd, lastEnd)
                     }
-                    null
                 } else {
                     setSpan(span, selectStart, selectEnd)
-                    span
                 }
             }
         }

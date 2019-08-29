@@ -38,6 +38,7 @@ class CreateNoteFragment : Fragment() {
         action_bold.setOnClickListener { editor.setBold() }
         action_italic.setOnClickListener { editor.setItalic() }
         action_underline.setOnClickListener { editor.setUnderline() }
+        action_checkbox.setOnClickListener { editor.setCheckbox() }
 //        create_note_title.requestFocus()
 //        create_note_note.requestFocus()
 
