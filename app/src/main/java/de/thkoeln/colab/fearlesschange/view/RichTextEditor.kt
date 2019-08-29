@@ -24,16 +24,16 @@ import kotlin.math.min
 
 /**
  * TODO: onTextChange to save checkboxes
- * TODO: Labels
  * TODO: Icon size
  * TODO: Box alignment
- * TODO: FIx
  * TODO: Note Style
  * TODO: Lines between notes
  * TODO: Split Toolbar
  * TODO: Bottombar is before toasts
  * TODO: dont show Bottom-Bar on Note-Detail etc.
  * TODO: move toolbar to keyboard
+ * TODO: Labels
+ * TODO: FIx
  */
 
 
