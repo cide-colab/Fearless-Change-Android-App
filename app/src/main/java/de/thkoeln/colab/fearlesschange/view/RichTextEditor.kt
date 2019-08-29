@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.text.style.ImageSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
@@ -24,23 +23,45 @@ import kotlin.math.min
 
 
 /**
- * TODO: document your custom view class.
+ * TODO: onTextChange to save checkboxes
+ * TODO: Labels
+ * TODO: Icon size
+ * TODO: Box alignment
+ * TODO: FIx
+ * TODO: Note Style
+ * TODO: Lines between notes
+ * TODO: Split Toolbar
+ * TODO: Bottombar is before toasts
+ * TODO: dont show Bottom-Bar on Note-Detail etc.
+ * TODO: move toolbar to keyboard
  */
 
-interface Clickable {
+
+interface Span
+
+interface WritableSpan
+
+interface ClickableSpan {
     fun onClick(view: TextView, spannable: Spannable, event: MotionEvent)
 }
 
-class CheckBoxSpan(context: Context, val state: Boolean = false) : ImageSpan(context, if (state) android.R.drawable.checkbox_on_background else android.R.drawable.checkbox_off_background), Clickable {
+class CheckBoxSpan(context: Context, val state: Boolean = false) : ImageSpan(context, if (state) android.R.drawable.checkbox_on_background else android.R.drawable.checkbox_off_background), ClickableSpan, Span {
 
     override fun onClick(view: TextView, spannable: Spannable, event: MotionEvent) {
-        Log.d("CLICK", "CLICK")
         val start = spannable.getSpanStart(this)
         val end = spannable.getSpanEnd(this)
         spannable.removeSpan(this)
         spannable.setSpan(CheckBoxSpan(view.context, !state), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
     }
+// TODO smaller icon
+//    override fun getDrawable(): Drawable {
+//        return super.getDrawable().apply { setBounds(0, 0, ) }
+//    }
 }
+
+class BoldSpan : StyleSpan(Typeface.BOLD), WritableSpan, Span
+class ItalicSpan : StyleSpan(Typeface.ITALIC), WritableSpan, Span
+class ULineSpan : UnderlineSpan(), WritableSpan, Span
 
 class AdvancedMovementMethod : LinkMovementMethod() {
     override fun onTouchEvent(widget: TextView, buffer: Spannable, event: MotionEvent): Boolean {
@@ -57,7 +78,7 @@ class AdvancedMovementMethod : LinkMovementMethod() {
             val layout = widget.layout
             val line = layout.getLineForVertical(y.toInt())
             val off = layout.getOffsetForHorizontal(line, x)
-            val link = buffer.getSpans(off, off, Clickable::class.java)
+            val link = buffer.getSpans(off, off, ClickableSpan::class.java)
 
             link.forEach { it.onClick(widget, buffer, event) }
         }
@@ -65,58 +86,7 @@ class AdvancedMovementMethod : LinkMovementMethod() {
     }
 }
 
-//class ClickExtensionSpan(private val clickable: Clickable) : ClickableSpan() {
-//    override fun onClick(v: View) {
-//        clickable.onClick(v)
-//    }
-//}
-
 class RichTextEditor : EditText, RichTextViewCore {
-
-    private val currentSpans: MutableList<Any>? = mutableListOf<Any>()
-
-//    private var _exampleString: String? = null // TODO: use a default from R.string...
-//    private var _exampleColor: Int = Color.RED // TODO: use a default from R.color...
-//    private var _exampleDimension: Float = 0f // TODO: use a default from R.dimen...
-//
-//    private var textPaint: TextPaint? = null
-//    private var textWidth: Float = 0f
-//    private var textHeight: Float = 0f
-//
-//    /**
-//     * The text to draw
-//     */
-//    var exampleString: String?
-//        get() = _exampleString
-//        set(value) {
-//            _exampleString = value
-//            invalidateTextPaintAndMeasurements()
-//        }
-//
-//    /**
-//     * The font color
-//     */
-//    var exampleColor: Int
-//        get() = _exampleColor
-//        set(value) {
-//            _exampleColor = value
-//            invalidateTextPaintAndMeasurements()
-//        }
-//
-//    /**
-//     * In the example view, this dimension is the font size.
-//     */
-//    var exampleDimension: Float
-//        get() = _exampleDimension
-//        set(value) {
-//            _exampleDimension = value
-//            invalidateTextPaintAndMeasurements()
-//        }
-//
-//    /**
-//     * In the example view, this drawable is drawn above the text.
-//     */
-//    var exampleDrawable: Drawable? = null
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -131,99 +101,103 @@ class RichTextEditor : EditText, RichTextViewCore {
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
-
-        // currentSpans = mutableListOf()
-
-
-        // Load attributes
-//        val a = context.obtainStyledAttributes(
-//                attrs, R.styleable.RichTextEditor, defStyle, 0)
-//
-//        _exampleString = a.getString(
-//                R.styleable.RichTextEditor_exampleString)
-//        _exampleColor = a.getColor(
-//                R.styleable.RichTextEditor_exampleColor,
-//                exampleColor)
-//        // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
-//        // values that should fall on pixel boundaries.
-//        _exampleDimension = a.getDimension(
-//                R.styleable.RichTextEditor_exampleDimension,
-//                exampleDimension)
-//
-//        if (a.hasValue(R.styleable.RichTextEditor_exampleDrawable)) {
-//            exampleDrawable = a.getDrawable(
-//                    R.styleable.RichTextEditor_exampleDrawable)
-//            exampleDrawable?.callback = this
-//        }
-//
-//        a.recycle()
-//
-//        // Set up a default TextPaint object
-//        textPaint = TextPaint().apply {
-//            flags = Paint.ANTI_ALIAS_FLAG
-//            textAlign = Paint.Align.LEFT
-//        }
-
-        // Update TextPaint and text measurements from attributes
-//        invalidateTextPaintAndMeasurements()
     }
 
 
     fun setBold() {
-        updateSpan(StyleSpan(Typeface.BOLD))
+        updateSpan(BoldSpan())
     }
 
     fun setItalic() {
-        updateSpan(StyleSpan(Typeface.ITALIC))
+        updateSpan(ItalicSpan())
     }
 
     fun setUnderline() {
-        updateSpan(UnderlineSpan()) { true }
+        updateSpan(ULineSpan())
     }
 
     fun setCheckbox() {
-        updateSpan(CheckBoxSpan(context)) { true }
+        updateSpan(CheckBoxSpan(context))
     }
 
-    fun updateSpan(span: StyleSpan) = updateSpan(span) { style == it.style }
-    fun updateSpan(span: UnderlineSpan) = updateSpan(span) { true }
-    fun updateSpan(span: ClickableSpan) = updateSpan(span) { true }
+    private val clickedSpans: MutableList<WritableSpan>? = mutableListOf()
 
-    override fun onTextChanged(t: CharSequence?, s: Int, lengthBefore: Int, lengthAfter: Int) {
+    private fun List<Any>?.containsType(obj: Any) = this != null && find { it::class == obj::class } != null
 
-        currentSpans?.forEach { span ->
-            val start = text.getSpanStart(span)
+    override fun onTextChanged(t: CharSequence?, changeStart: Int, before: Int, count: Int) {
+        super.onTextChanged(t, changeStart, before, count)
+        if (count > before) {
+            val tStart = changeStart + before
+            val tEnd = changeStart + count
+            val lastSpans = if (changeStart > 0) text.getSpans(tStart - 1, tStart, WritableSpan::class.java).toList() else listOf()
 
-            if (start != -1) {
-                text.removeSpan(span)
-                setSpan(span, start, text.length)
-            } else {
-                currentSpans.remove(span)
+            val allSpans = lastSpans + (clickedSpans
+                    ?: mutableListOf()).filter { !lastSpans.containsType(it) }
+
+            val spansToAdd = allSpans.filter {
+                when {
+                    lastSpans.containsType(it) && clickedSpans.containsType(it) -> false
+                    lastSpans.containsType(it) && !clickedSpans.containsType(it) -> true
+                    else -> true
+                }
             }
+
+            // last ja %% clicked ja -> löschen TODO Split and use new style
+            // last ja && clicked nein -> behalten
+            // last nein && clicked ja -> hinzufügen
+            // last nein && clicked nein -> nix
+
+
+//            val potentiallyAdd = lastSpans + (newSpans ?: mutableListOf()).filter { new -> lastSpans.none { it::class == new::class } }
+//            val finallyAdd = potentiallyAdd.filter { new -> removeSpans?.none { it::class == new::class }?:true }
+            //TODO filter ob span genommen werden soll
+            spansToAdd.forEach {
+                val lastStart = text.getSpanStart(it)
+                val lastEnd = text.getSpanEnd(it)
+                val start = if (lastStart == -1) tStart else lastStart
+                val end = if (lastEnd == -1) tEnd else max(tEnd, lastEnd)
+                setSpan(it, start, end)
+            }
+            clickedSpans?.clear()
         }
-
-        super.onTextChanged(t, s, lengthBefore, lengthAfter)
-
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> updateSpan(span: T, equalsSpan: T.(other: T) -> Boolean) {
+    private fun <T : Span> setCurrentSpan(span: T) {
+        if (span !is WritableSpan) return
+        if (clickedSpans?.find { it::class == span::class } != null) {
+            clickedSpans.remove(span)
+        } else {
+            clickedSpans?.add(span)
+        }
+
+//        newSpans?.find { span::class == it::class }
+//                ?.let {
+//                    newSpans.remove(it)
+//                    removeSpans?.add(it)
+//                }
+//                ?: let {
+//                    newSpans?.add(span)
+//                    removeSpans?.remove(span)
+//                }
+    }
+
+
+    private fun <T : Span> updateSpan(span: T) {
         when (selectionStart) {
             -1 -> {
                 // TODO no focus?
             }
             selectionEnd -> when (span) {
-                is CheckBoxSpan -> setSpan(span, selectionStart, selectionEnd)
-                else -> currentSpans?.find { (it as? T)?.equalsSpan(span) ?: false }
-                        ?.let { currentSpans.remove(it) }
-                        ?: currentSpans?.add(selectionStart to span)
+                is CheckBoxSpan -> setSpan(selectionStart, span)
+                else -> setCurrentSpan(span)
 
             }
             else -> {
                 val selectStart = min(selectionStart, selectionEnd)
                 val selectEnd = max(selectionStart, selectionEnd)
 
-                val spans = text.getSpans(selectStart, selectEnd, span::class.java).filter { it.equalsSpan(span) }
+                val spans = text.getSpans(selectStart, selectEnd, span::class.java)
                 if (spans.isNotEmpty()) {
                     val firstStart = spans.map { text.getSpanStart(it) }.min() ?: selectStart
                     val lastEnd = spans.map { text.getSpanEnd(it) }.max() ?: selectEnd
@@ -248,6 +222,14 @@ class RichTextEditor : EditText, RichTextViewCore {
                 }
             }
         }
+    }
+
+
+    private fun <T : Any> setSpan(index: Int, span: T) {
+        val placeholder = "[]"
+        text = text.insert(index, placeholder)
+        setSpan(span, index, index + placeholder.length)
+        setSelection(index + placeholder.length)
     }
 
 
