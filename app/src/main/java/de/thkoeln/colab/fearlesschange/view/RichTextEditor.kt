@@ -1,24 +1,23 @@
 package de.thkoeln.colab.fearlesschange.view
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.Typeface
-import android.text.*
+import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.ImageSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.util.AttributeSet
 import android.util.Log
-import android.view.View
+import android.view.MotionEvent
 import android.widget.EditText
 import android.widget.TextView
 import com.google.gson.*
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.NoArg
-import org.xml.sax.XMLReader
 import java.io.Serializable
 import java.lang.reflect.Type
 import kotlin.math.max
@@ -29,37 +28,49 @@ import kotlin.math.min
  * TODO: document your custom view class.
  */
 
-class TestSpan(val context: Context) : ClickableSpan() {
+interface Clickable {
+    fun onClick(view: TextView, spannable: Spannable, event: MotionEvent)
+}
 
-    var test = "Test"
+class CheckBoxSpan(context: Context, val state: Boolean = false) : ImageSpan(context, if (state) R.drawable.ic_check_box_black_24dp else R.drawable.ic_check_box_outline_blank_black_24dp), Clickable {
 
-    override fun onClick(v: View) {
-        Log.d("Custom Span", "Clicked ${v::class.simpleName}")
-        when (v) {
-            is TextView -> Log.d("Custom Span", v.text.substring(v.selectionStart, v.selectionEnd))
-            is EditText -> Log.d("Custom Span", v.text.substring(v.selectionStart, v.selectionEnd))
+    override fun onClick(view: TextView, spannable: Spannable, event: MotionEvent) {
+        Log.d("CLICK", "CLICK")
+        val start = spannable.getSpanStart(this)
+        val end = spannable.getSpanEnd(this)
+        spannable.removeSpan(this)
+        spannable.setSpan(CheckBoxSpan(view.context, !state), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+    }
+}
+
+class AdvancedMovementMethod : LinkMovementMethod() {
+    override fun onTouchEvent(widget: TextView, buffer: Spannable, event: MotionEvent): Boolean {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            var x = event.x
+            var y = event.y
+
+            x -= widget.totalPaddingLeft
+            y -= widget.totalPaddingTop
+
+            x += widget.scrollX
+            y += widget.scrollY
+
+            val layout = widget.layout
+            val line = layout.getLineForVertical(y.toInt())
+            val off = layout.getOffsetForHorizontal(line, x)
+            val link = buffer.getSpans(off, off, Clickable::class.java)
+
+            link.forEach { it.onClick(widget, buffer, event) }
         }
-    }
-
-    override fun updateDrawState(ds: TextPaint) {
-        val drawable = context.resources.getDrawable(R.drawable.ic_check_box_outline_blank_black_24dp)
-        drawable.setBounds(0, 0, 24, 24)
-        val canvas = Canvas()
-        drawable.draw(canvas)
-
-        val paint = Paint()
-        paint.color = Color.BLACK
-        paint.textSize = 10f
-        canvas.drawText("lololol", 24f, 7f, paint)
+        return super.onTouchEvent(widget, buffer, event)
     }
 }
 
-
-class CustomTagHandler : Html.TagHandler {
-    override fun handleTag(opening: Boolean, tag: String, output: Editable, xmlReader: XMLReader) {
-        Log.d(CustomTagHandler::class.java.simpleName, "Opending: $opening, tag: $tag")
-    }
-}
+//class ClickExtensionSpan(private val clickable: Clickable) : ClickableSpan() {
+//    override fun onClick(v: View) {
+//        clickable.onClick(v)
+//    }
+//}
 
 class RichTextEditor : EditText, RichTextViewCore {
 
@@ -158,7 +169,7 @@ class RichTextEditor : EditText, RichTextViewCore {
     }
 
     fun setItalic() {
-        updateSpan(TestSpan(context))
+        updateSpan(CheckBoxSpan(context)) { true }
         updateSpan(StyleSpan(Typeface.ITALIC))
     }
 
@@ -166,25 +177,19 @@ class RichTextEditor : EditText, RichTextViewCore {
         updateSpan(UnderlineSpan())
     }
 
-    fun updateSpan(span: StyleSpan) {
-        updateSpan(span) { style == it.style }
-    }
+    fun updateSpan(span: StyleSpan) = updateSpan(span) { style == it.style }
+    fun updateSpan(span: UnderlineSpan) = updateSpan(span) { true }
+    fun updateSpan(span: ClickableSpan) = updateSpan(span) { true }
 
-    fun updateSpan(span: UnderlineSpan) {
-        updateSpan(span) { true }
-    }
-
-    fun updateSpan(span: ClickableSpan) {
-        updateSpan(span) { true }
-    }
-
-    private fun <T : Any> updateSpan(span: T, equalsSpan: T.(other: T) -> Boolean) {
-        when (selectionStart) {
+    private fun <T : Any> updateSpan(span: T, equalsSpan: T.(other: T) -> Boolean): T? {
+        return when (selectionStart) {
             -1 -> {
                 // TODO no focus?
+                null
             }
             selectionEnd -> {
                 // TODO nothing selected
+                null
             }
             else -> {
                 val selectStart = min(selectionStart, selectionEnd)
@@ -210,8 +215,10 @@ class RichTextEditor : EditText, RichTextViewCore {
                     if (lastEnd > selectEnd) {
                         setSpan(span, selectEnd, lastEnd)
                     }
+                    null
                 } else {
                     setSpan(span, selectStart, selectEnd)
+                    span
                 }
             }
         }
@@ -245,7 +252,7 @@ class RichTextView : TextView, RichTextViewCore {
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
         isClickable = true
-        movementMethod = LinkMovementMethod.getInstance()
+        movementMethod = AdvancedMovementMethod()
     }
 
 
@@ -275,7 +282,7 @@ data class StyleSpanInfo(override val from: Int, override val to: Int, val forma
 data class UnderlineSpanInfo(override val from: Int, override val to: Int) : SpanInfo
 
 @NoArg
-data class CheckboxSpanInfo(override val from: Int, override val to: Int) : SpanInfo
+data class CheckboxSpanInfo(override val from: Int, override val to: Int, val state: Boolean) : SpanInfo
 
 interface RichTextViewCore {
 
@@ -291,7 +298,7 @@ interface RichTextViewCore {
             when (it) {
                 is StyleSpanInfo -> setSpan(StyleSpan(it.formatCode))
                 is UnderlineSpanInfo -> setSpan(UnderlineSpan())
-                is CheckboxSpanInfo -> setSpan(TestSpan(getContext()))
+                is CheckboxSpanInfo -> setSpan(CheckBoxSpan(getContext(), it.state))
             }
         }
 
@@ -307,7 +314,7 @@ interface RichTextViewCore {
             when (it) {
                 is StyleSpan -> StyleSpanInfo(start, end, it.style)
                 is UnderlineSpan -> UnderlineSpanInfo(start, end)
-                is TestSpan -> CheckboxSpanInfo(start, end)
+                is CheckBoxSpan -> CheckboxSpanInfo(start, end, it.state)
                 else -> null
             }
         }
