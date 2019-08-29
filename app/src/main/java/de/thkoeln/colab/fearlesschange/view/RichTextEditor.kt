@@ -1,11 +1,11 @@
 package de.thkoeln.colab.fearlesschange.view
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.Typeface
-import android.os.Build
-import android.text.Editable
-import android.text.Html
-import android.text.Spannable
+import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
@@ -15,16 +15,21 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.google.gson.*
+import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.core.NoArg
 import org.xml.sax.XMLReader
 import java.io.Serializable
+import java.lang.reflect.Type
 import kotlin.math.max
 import kotlin.math.min
+
 
 /**
  * TODO: document your custom view class.
  */
 
-class TestSpan : ClickableSpan() {
+class TestSpan(val context: Context) : ClickableSpan() {
 
     var test = "Test"
 
@@ -34,7 +39,18 @@ class TestSpan : ClickableSpan() {
             is TextView -> Log.d("Custom Span", v.text.substring(v.selectionStart, v.selectionEnd))
             is EditText -> Log.d("Custom Span", v.text.substring(v.selectionStart, v.selectionEnd))
         }
+    }
 
+    override fun updateDrawState(ds: TextPaint) {
+        val drawable = context.resources.getDrawable(R.drawable.ic_check_box_outline_blank_black_24dp)
+        drawable.setBounds(0, 0, 24, 24)
+        val canvas = Canvas()
+        drawable.draw(canvas)
+
+        val paint = Paint()
+        paint.color = Color.BLACK
+        paint.textSize = 10f
+        canvas.drawText("lololol", 24f, 7f, paint)
     }
 }
 
@@ -136,14 +152,13 @@ class RichTextEditor : EditText, RichTextViewCore {
 //        invalidateTextPaintAndMeasurements()
     }
 
-    private fun setSpan(span: Any, from: Int, to: Int) = text.setSpan(span, from, to, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
     fun setBold() {
         updateSpan(StyleSpan(Typeface.BOLD))
     }
 
     fun setItalic() {
-        updateSpan(TestSpan())
+        updateSpan(TestSpan(context))
         updateSpan(StyleSpan(Typeface.ITALIC))
     }
 
@@ -215,6 +230,7 @@ class RichTextEditor : EditText, RichTextViewCore {
 
 
 class RichTextView : TextView, RichTextViewCore {
+
     constructor(context: Context) : super(context) {
         init(null, 0)
     }
@@ -243,24 +259,43 @@ class RichTextView : TextView, RichTextViewCore {
 //    }
 }
 
-sealed class SpanInfo : Serializable {
-    abstract val from: Int
-    abstract val to: Int
+@NoArg
+data class StyledText(val text: String, val spanInfos: List<SpanInfo>) : Serializable
+
+@NoArg
+interface SpanInfo : Serializable {
+    val from: Int
+    val to: Int
 }
 
-data class StyleSpanInfo(override val from: Int, override val to: Int, val formatCode: Int) : SpanInfo()
-data class UnderlineSpanInfo(override val from: Int, override val to: Int) : SpanInfo()
+@NoArg
+data class StyleSpanInfo(override val from: Int, override val to: Int, val formatCode: Int) : SpanInfo
+
+@NoArg
+data class UnderlineSpanInfo(override val from: Int, override val to: Int) : SpanInfo
+
+@NoArg
+data class CheckboxSpanInfo(override val from: Int, override val to: Int) : SpanInfo
 
 interface RichTextViewCore {
 
     fun setHtml(value: String) {
         Log.d("HTML: ", value)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            setText(Html.fromHtml(value, Html.FROM_HTML_MODE_LEGACY, null, CustomTagHandler()))
-        } else {
-            setText(Html.fromHtml(value))
+
+        val styledText = getGson().fromJson(value, StyledText::class.java)
+
+        val spannable = SpannableString(styledText.text)
+
+        styledText.spanInfos.forEach {
+            fun setSpan(span: Any) = spannable.setSpan(span, it.from, it.to, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            when (it) {
+                is StyleSpanInfo -> setSpan(StyleSpan(it.formatCode))
+                is UnderlineSpanInfo -> setSpan(UnderlineSpan())
+                is CheckboxSpanInfo -> setSpan(TestSpan(getContext()))
+            }
         }
 
+        setText(spannable)
     }
 
     fun getHtml(): String {
@@ -272,27 +307,55 @@ interface RichTextViewCore {
             when (it) {
                 is StyleSpan -> StyleSpanInfo(start, end, it.style)
                 is UnderlineSpan -> UnderlineSpanInfo(start, end)
+                is TestSpan -> CheckboxSpanInfo(start, end)
                 else -> null
             }
         }
 
         Log.d("SPANS", infos.toString())
 
-        spannable.getSpans(0, spannable.length, TestSpan::class.java).forEach {
-            val start = spannable.getSpanStart(it)
-            val end = spannable.getSpanEnd(it)
-            val text = spannable.subSequence(start, end)
-            spannable.removeSpan(it)
-            spannable.replace(start, end, "<test>$text</test>")
-        }
+        return getGson().toJson(StyledText(spannable.toString(), infos))
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.toHtml(spannable, Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            Html.toHtml(spannable)
-        }
     }
 
+    private fun getGson() = GsonBuilder().registerTypeAdapter(SpanInfo::class.java, SpanInfoInterfaceAdapter()).create()
     fun setText(string: CharSequence)
     fun getEditableText(): Editable
+    fun setSpan(span: Any, from: Int, to: Int) = getEditableText().setSpan(span, from, to, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+    fun getContext(): Context
+}
+
+class SpanInfoInterfaceAdapter : JsonDeserializer<Any>, JsonSerializer<Any> {
+
+    companion object {
+        const val CLASSNAME = "CLASSNAME"
+        const val DATA = "DATA"
+    }
+
+    @Throws(JsonParseException::class)
+    override fun deserialize(jsonElement: JsonElement, type: Type,
+                             jsonDeserializationContext: JsonDeserializationContext): Any {
+
+        val jsonObject = jsonElement.asJsonObject
+        val prim = jsonObject.get(CLASSNAME) as JsonPrimitive
+        val className = prim.asString
+        val objectClass = getObjectClass(className)
+        return jsonDeserializationContext.deserialize(jsonObject.get(DATA), objectClass)
+    }
+
+    override fun serialize(jsonElement: Any, type: Type, jsonSerializationContext: JsonSerializationContext): JsonElement {
+        val jsonObject = JsonObject()
+        jsonObject.addProperty(CLASSNAME, jsonElement.javaClass.name)
+        jsonObject.add(DATA, jsonSerializationContext.serialize(jsonElement))
+        return jsonObject
+    }
+
+    private fun getObjectClass(className: String): Class<*> {
+        try {
+            return Class.forName(className)
+        } catch (e: ClassNotFoundException) {
+            throw JsonParseException(e.message)
+        }
+
+    }
 }
