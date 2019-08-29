@@ -2,9 +2,11 @@ package de.thkoeln.colab.fearlesschange.view
 
 import android.content.Context
 import android.graphics.Typeface
+import android.os.Build
 import android.text.Editable
 import android.text.Html
 import android.text.Spannable
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
@@ -14,6 +16,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import org.xml.sax.XMLReader
+import java.io.Serializable
 import kotlin.math.max
 import kotlin.math.min
 
@@ -35,7 +38,14 @@ class TestSpan : ClickableSpan() {
     }
 }
 
-class RichTextEditor : EditText {
+
+class CustomTagHandler : Html.TagHandler {
+    override fun handleTag(opening: Boolean, tag: String, output: Editable, xmlReader: XMLReader) {
+        Log.d(CustomTagHandler::class.java.simpleName, "Opending: $opening, tag: $tag")
+    }
+}
+
+class RichTextEditor : EditText, RichTextViewCore {
 
 //    private var _exampleString: String? = null // TODO: use a default from R.string...
 //    private var _exampleColor: Int = Color.RED // TODO: use a default from R.color...
@@ -203,9 +213,86 @@ class RichTextEditor : EditText {
 //    }
 }
 
-class CustomTagHandler : Html.TagHandler {
-    override fun handleTag(opening: Boolean, tag: String, output: Editable, xmlReader: XMLReader) {
 
+class RichTextView : TextView, RichTextViewCore {
+    constructor(context: Context) : super(context) {
+        init(null, 0)
+    }
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init(attrs, 0)
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
+        init(attrs, defStyle)
+    }
+
+    private fun init(attrs: AttributeSet?, defStyle: Int) {
+        isClickable = true
+        movementMethod = LinkMovementMethod.getInstance()
+    }
+
+
+//    private fun invalidateTextPaintAndMeasurements() {
+//        textPaint?.let {
+//            it.textSize = exampleDimension
+//            it.color = exampleColor
+//            textWidth = it.measureText(exampleString)
+//            textHeight = it.fontMetrics.bottom
+//        }
+//    }
+}
+
+sealed class SpanInfo : Serializable {
+    abstract val from: Int
+    abstract val to: Int
+}
+
+data class StyleSpanInfo(override val from: Int, override val to: Int, val formatCode: Int) : SpanInfo()
+data class UnderlineSpanInfo(override val from: Int, override val to: Int) : SpanInfo()
+
+interface RichTextViewCore {
+
+    fun setHtml(value: String) {
+        Log.d("HTML: ", value)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            setText(Html.fromHtml(value, Html.FROM_HTML_MODE_LEGACY, null, CustomTagHandler()))
+        } else {
+            setText(Html.fromHtml(value))
+        }
 
     }
+
+    fun getHtml(): String {
+
+        val spannable = getEditableText()
+        val infos = spannable.getSpans(0, spannable.length, Any::class.java).mapNotNull {
+            val start = spannable.getSpanStart(it)
+            val end = spannable.getSpanEnd(it)
+            when (it) {
+                is StyleSpan -> StyleSpanInfo(start, end, it.style)
+                is UnderlineSpan -> UnderlineSpanInfo(start, end)
+                else -> null
+            }
+        }
+
+        Log.d("SPANS", infos.toString())
+
+        spannable.getSpans(0, spannable.length, TestSpan::class.java).forEach {
+            val start = spannable.getSpanStart(it)
+            val end = spannable.getSpanEnd(it)
+            val text = spannable.subSequence(start, end)
+            spannable.removeSpan(it)
+            spannable.replace(start, end, "<test>$text</test>")
+        }
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.toHtml(spannable, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.toHtml(spannable)
+        }
+    }
+
+    fun setText(string: CharSequence)
+    fun getEditableText(): Editable
 }

@@ -9,11 +9,10 @@
     android:background="@color/note_color"
     android:padding="@dimen/default_padding">
 
-    <TextView
+    <de.thkoeln.colab.fearlesschange.view.RichTextView
         android:id="@+id/note_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:linksClickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
