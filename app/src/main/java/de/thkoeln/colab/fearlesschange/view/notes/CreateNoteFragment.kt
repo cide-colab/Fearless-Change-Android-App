@@ -55,7 +55,7 @@ class CreateNoteFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_create_note -> {
-                viewModel.onCreateNoteClicked(editor.getHtml())
+                viewModel.onCreateNoteClicked(editor.getJson())
 
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)

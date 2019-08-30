@@ -4,11 +4,12 @@ import android.view.View
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.layout.LayoutViewHolder
 import de.thkoeln.colab.fearlesschange.persistance.note.Note
+import de.thkoeln.colab.fearlesschange.view.editor.setJson
 import kotlinx.android.synthetic.main.note_grid_item.view.*
 
 
 class NoteGridItemViewHolder : LayoutViewHolder<Note>(R.layout.note_grid_item) {
     override fun bind(view: View, value: Note) {
-        view.note_text.setHtml(value.text)
+        view.note_text.setJson(value.text)
     }
 }

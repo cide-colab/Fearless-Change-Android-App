@@ -9,7 +9,7 @@
     android:background="@color/note_color"
     android:padding="@dimen/default_padding">
 
-    <de.thkoeln.colab.fearlesschange.view.RichTextView
+    <de.thkoeln.colab.fearlesschange.view.editor.RichTextView
         android:id="@+id/note_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

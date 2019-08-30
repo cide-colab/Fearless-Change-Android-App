@@ -54,7 +54,7 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <de.thkoeln.colab.fearlesschange.view.RichTextEditor
+    <de.thkoeln.colab.fearlesschange.view.editor.RichTextEditor
         android:id="@+id/editor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
