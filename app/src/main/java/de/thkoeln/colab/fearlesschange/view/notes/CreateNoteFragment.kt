@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.view.editor.getJson
 import kotlinx.android.synthetic.main.create_note_fragment.*
 
 class CreateNoteFragment : Fragment() {

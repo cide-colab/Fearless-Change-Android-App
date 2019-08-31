@@ -14,6 +14,14 @@ apply plugin: "kotlin-noarg"
 
 android {
     compileSdkVersion 28
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     defaultConfig {
         applicationId "de.thkoeln.colab.fearlesschange"
         minSdkVersion 21

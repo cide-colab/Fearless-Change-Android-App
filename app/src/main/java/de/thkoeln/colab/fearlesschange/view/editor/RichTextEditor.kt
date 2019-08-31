@@ -407,7 +407,7 @@ fun TextView.setJson(value: String) {
     val spannable = SpannableString(styledText.text)
 
     styledText.spanInfos.forEach {
-        fun setSpan(span: Any) = setSpan(span, it.from, it.to)
+        fun setSpan(span: Any) = spannable.setSpan(span, it.from, it.to, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         when (it) {
             is ItalicSpanInfo -> setSpan(ItalicSpan())
             is BoldSpanInfo -> setSpan(BoldSpan())
