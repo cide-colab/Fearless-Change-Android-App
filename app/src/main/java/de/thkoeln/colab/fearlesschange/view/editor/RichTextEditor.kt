@@ -4,10 +4,11 @@ import android.content.Context
 import android.text.Spannable
 import android.text.SpannableString
 import android.util.AttributeSet
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import com.google.gson.GsonBuilder
+import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.NoArg
+import de.thkoeln.colab.fearlesschange.core.toPx
 import java.io.Serializable
 
 
@@ -23,8 +24,48 @@ import java.io.Serializable
  */
 
 
+class RichTextEditorToolbar : HorizontalScrollView {
 
+    var editor: RichTextEditor? = null
+    private lateinit var container: LinearLayout
 
+    constructor(context: Context) : super(context) {
+        init(null, 0)
+    }
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init(attrs, 0)
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
+        init(attrs, defStyle)
+    }
+
+    private fun init(attrs: AttributeSet?, defStyle: Int) {
+        container = LinearLayout(context)
+        container.orientation = LinearLayout.HORIZONTAL
+        addView(container)
+
+        addAction(R.drawable.ic_format_bold_black_24dp) { setBold() }
+        addAction(R.drawable.ic_format_italic_black_24dp) { setItalic() }
+        addAction(R.drawable.ic_format_underlined_black_24dp) { setUnderline() }
+        addAction(android.R.drawable.checkbox_on_background) { setCheckbox() }
+    }
+
+    private fun addAction(icon: Int, onClick: RichTextEditor.() -> Unit) {
+        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
+        params.leftMargin = 4.toPx()
+        params.rightMargin = 4.toPx()
+
+        val button = ImageButton(context)
+        button.setImageResource(icon)
+        button.setOnClickListener { editor?.onClick() }
+        button.layoutParams = params
+        button.setBackgroundResource(android.R.color.transparent)
+        container.addView(button)
+    }
+
+}
 
 class RichTextEditor : EditText {
 
