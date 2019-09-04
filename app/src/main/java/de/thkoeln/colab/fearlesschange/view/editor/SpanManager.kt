@@ -183,10 +183,6 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
 
     private fun addedCharacters(count: Int, before: Int) = count - before
 
-    fun clearClicked() {
-        clicked.clear()
-    }
-
     companion object {
         private const val PLACEHOLDER = "O"
         //        private const val PLACEHOLDER = "\u2610"
@@ -200,8 +196,6 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
 private fun List<Any>?.containsType(obj: Any) = this != null && find { it::class == obj::class } != null
 
 private data class SpanHolder(var start: Int, var end: Int, val span: Span)
-
-private fun List<SpanHolder>.getSpans() = map { it.span }
 
 private fun List<SpanHolder>.filterInRange(start: Int, end: Int) = filter {
     it.start in start..end
