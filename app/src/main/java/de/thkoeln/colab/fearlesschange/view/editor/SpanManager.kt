@@ -28,6 +28,8 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
     private val spans = mutableListOf<SpanHolder>()
     private val clicked = mutableListOf<Span>()
 
+    private var currentState = listOf<Span>()
+    private val currentSpans = mutableListOf<Triple<Int, Int, Span>>()
 
     fun <T : Span> setSpan(span: T) {
         when {
@@ -124,12 +126,129 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
     override fun beforeTextChanged(t: CharSequence?, changeStart: Int, before: Int, count: Int) {
     }
 
-    override fun onTextChanged(t: CharSequence?, start: Int, before: Int, count: Int) {
+    override fun onTextChanged(t: CharSequence?, s: Int, before: Int, count: Int) {
         val added = addedCharacters(count, before)
-        val changeStart = start + before
+        val changeStart = s + before
         val changeEnd = changeStart + added
-        updateExisting(changeStart, added)
-        addNewStyles(changeStart, changeEnd)
+
+        val currentSpans = getSpans(changeStart, changeEnd).map { it.third }
+        val toRemove = currentSpans.filter { !currentState.containsType(it) }
+        val toAdd = currentState.filter { !currentSpans.containsType(it) }
+        val toUpdate = currentState.filter { currentSpans.containsType(it) }
+
+        removeAllSpans(toRemove)
+        addAllTextSpans(toAdd, changeStart, changeEnd)
+
+        toUpdate.forEach { span ->
+            var (start, end) = getSpanBounds(span)
+
+            if (span is InPlaceSpan && start >= changeStart) {
+                createOrUpdateSpan(span, start + added, end + added)
+            } else {
+                if (start >= changeStart) {
+                    start += added
+                }
+
+                if (end >= changeStart) {
+                    end += added
+                }
+                createOrUpdateSpan(span, start, end)
+            }
+        }
+
+//        updateExisting(changeStart, added)
+//        addNewStyles(changeStart, changeEnd)
+    }
+
+    private fun getSpanBounds(span: Span): Pair<Int, Int> {
+        return currentSpans.find { it.third == span }?.let { it.first to it.second }
+                ?: let { -1 to -1 }
+    }
+
+    private fun getSpans(searchStart: Int, searchEnd: Int): List<Triple<Int, Int, Span>> {
+        return currentSpans.filter { (start, end, _) ->
+            start in searchStart..searchEnd
+                    || end in searchStart..searchEnd
+                    || searchStart in start..end
+                    || searchEnd in start..end
+        }
+    }
+
+    private fun addAllTextSpans(spans: List<Span>, start: Int, end: Int) {
+        spans.forEach { createOrUpdateSpan(it, start, end) }
+    }
+
+    private fun createOrUpdateSpan(span: Span, start: Int, end: Int) {
+        currentSpans.removeAll { it.third == span }
+        currentSpans.add(Triple(start, end, span))
+        text.setSpan(span, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+    }
+
+    private fun removeTextSpan(it: Span) {
+        currentSpans.removeAll { (_, _, span) -> span == it }
+        text.removeSpan(it)
+    }
+
+    fun removeAllSpans(spans: List<Span>) {
+        spans.forEach { removeTextSpan(it) }
+    }
+
+    fun addState(span: Span) {
+        if (!currentState.containsType(span)) {
+            setStates(currentState + span)
+        }
+    }
+
+    fun removeState(span: Span) {
+        if (currentState.containsType(span)) {
+            setStates(currentState.filter { it::class.java != span::class.java })
+        }
+    }
+
+    fun setStates(spans: List<Span>) {
+
+        if (selectionStart != selectionEnd) {
+            updateStates(selectionStart, selectionEnd, spans)
+        }
+        currentState = spans
+    }
+
+    private fun updateStates(start: Int, end: Int, newSpans: List<Span>) {
+        newSpans.forEach { updateState(start, end, it) }
+    }
+
+    private fun updateState(newStart: Int, newEnd: Int, new: Span) {
+
+        val existing = getSpans(newStart, newEnd)
+        val (firstStart, firstEnd, first) = existing.minBy { it.first }
+                ?: Triple(newStart, newEnd, new)
+        val (lastStart, lastEnd, last) = existing.minBy { it.first }
+                ?: Triple(newStart, newEnd, new)
+
+        if (firstStart == newEnd) {
+            createOrUpdateSpan(first, newStart, firstEnd)
+            return
+        }
+
+        if (lastEnd == newStart) {
+            createOrUpdateSpan(last, lastStart, newEnd)
+            return
+        }
+
+        removeAllSpans(existing.map { it.third })
+
+        if (firstEnd == newStart && lastStart == newEnd && last != first) {
+            createOrUpdateSpan(new.copy(), firstStart, lastEnd)
+            return
+        }
+
+        if (firstStart < newStart) {
+            createOrUpdateSpan(new.copy(), firstStart, newStart)
+        }
+
+        if (lastEnd > newEnd) {
+            createOrUpdateSpan(new.copy(), newEnd, lastEnd)
+        }
     }
 
     private fun addNewStyles(changeStart: Int, changeEnd: Int) {
