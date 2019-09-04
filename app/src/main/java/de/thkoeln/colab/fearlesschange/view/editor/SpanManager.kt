@@ -28,6 +28,7 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
     private val spans = mutableListOf<SpanHolder>()
     private val clicked = mutableListOf<Span>()
 
+
     fun <T : Span> setSpan(span: T) {
         when {
             hasNoFocus -> { /* no focus */
@@ -39,8 +40,20 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
         }
     }
 
+    fun getCurrentState(): List<Span> {
+        val start = max(selectionStart - 1, 0)
+        val end = max(selectionEnd, start + 1)
+        val currentSpans = text.getSpans(start, end, Span::class.java).toList()
+        val toAdd = clicked.filter { !currentSpans.containsType(it) }
+        val toRemove = currentSpans.filter { clicked.containsType(it) }
+        return (currentSpans - toRemove) + toAdd
+        // current  && clicked -> remove
+        // clicked && !current -> add
+    }
+
+
     private fun addInlineSpan(span: InlineSpan) {
-        if (!clicked.containsType(spans)) {
+        if (!clicked.containsType(span)) {
             clicked.add(span)
         } else {
             clicked.remove(span)
@@ -61,9 +74,9 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
     }
 
     private fun updateSpan(existing: List<SpanHolder>, newSpan: SpanHolder) {
+
         val first = existing.minBy { it.start } ?: newSpan
         val last = existing.maxBy { it.end } ?: newSpan
-
 
         if (first.start == newSpan.end) {
             first.start = newSpan.start
@@ -78,7 +91,6 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
         }
 
         removeSpans(existing)
-
 
         if (first.end == newSpan.start && last.start == newSpan.end && last.span != first.span) {
             attachSpan(newSpan.copy(start = first.start, end = last.end, span = newSpan.span.copy()))
@@ -132,12 +144,12 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
 
 
             if (it.span is InPlaceSpan) {
+                if (added < 0 && start + added < it.end && start >= it.end) {
+                    return@mapNotNull it
+                }
                 if (it.start >= start) {
                     it.start += added
                     it.end += added
-                }
-                if (added < 0 && start + added < it.end && start >= it.end) {
-                    return@mapNotNull it
                 }
                 return@mapNotNull null
             }
@@ -171,9 +183,13 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
 
     private fun addedCharacters(count: Int, before: Int) = count - before
 
+    fun clearClicked() {
+        clicked.clear()
+    }
 
     companion object {
-        private const val PLACEHOLDER = "\u2610"
+        private const val PLACEHOLDER = "O"
+        //        private const val PLACEHOLDER = "\u2610"
         fun forEditor(editor: EditText) = SpanManager(editor).also {
             editor.addTextChangedListener(it)
         }

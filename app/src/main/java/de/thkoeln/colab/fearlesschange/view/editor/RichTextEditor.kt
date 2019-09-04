@@ -24,10 +24,25 @@ import java.io.Serializable
  */
 
 
-class RichTextEditorToolbar : HorizontalScrollView {
+enum class EditorState {
+    BOLD,
+    ITALIC,
+    UNDERLINE,
+    CHECKBOX
+}
+
+typealias OnStateChangeListener = (states: List<EditorState>) -> Unit
+
+class RichTextEditorToolbar : HorizontalScrollView, OnStateChangeListener {
 
     var editor: RichTextEditor? = null
+        set(value) {
+            field = value
+            field?.onStateChangeListener = this
+        }
+
     private lateinit var container: LinearLayout
+    private val actions = mutableMapOf<EditorState, ImageButton>()
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -46,30 +61,46 @@ class RichTextEditorToolbar : HorizontalScrollView {
         container.orientation = LinearLayout.HORIZONTAL
         addView(container)
 
-        addAction(R.drawable.ic_format_bold_black_24dp) { setBold() }
-        addAction(R.drawable.ic_format_italic_black_24dp) { setItalic() }
-        addAction(R.drawable.ic_format_underlined_black_24dp) { setUnderline() }
-        addAction(android.R.drawable.checkbox_on_background) { setCheckbox() }
+        addAction(R.drawable.ic_format_bold_black_24dp, EditorState.BOLD)
+        addAction(R.drawable.ic_format_italic_black_24dp, EditorState.ITALIC)
+        addAction(R.drawable.ic_format_underlined_black_24dp, EditorState.UNDERLINE)
+        addAction(android.R.drawable.checkbox_on_background, EditorState.CHECKBOX)
     }
 
-    private fun addAction(icon: Int, onClick: RichTextEditor.() -> Unit) {
-        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
-        params.leftMargin = 4.toPx()
-        params.rightMargin = 4.toPx()
+    private fun addAction(icon: Int, state: EditorState) {
+        val params = LayoutParams(24.toPx(), 24.toPx())
+        params.leftMargin = 2.toPx()
+        params.rightMargin = 2.toPx()
 
         val button = ImageButton(context)
         button.setImageResource(icon)
-        button.setOnClickListener { editor?.onClick() }
         button.layoutParams = params
         button.setBackgroundResource(android.R.color.transparent)
+        button.setOnClickListener { editor?.setState(state) }
+        actions[state] = button
         container.addView(button)
     }
 
+    override fun invoke(states: List<EditorState>) {
+        actions.filterKeys { it != EditorState.CHECKBOX }.forEach { (state, btn) ->
+            if (states.contains(state)) {
+                btn.setBackgroundColor(resources.getColor(R.color.secondaryDark))
+                btn.setColorFilter(resources.getColor(R.color.secondaryText))
+            } else {
+                btn.setBackgroundColor(resources.getColor(android.R.color.transparent))
+                btn.clearColorFilter()
+            }
+        }
+    }
 }
 
 class RichTextEditor : EditText {
 
+    private var initialized = false
+
     private lateinit var spanManager: SpanManager
+
+    var onStateChangeListener: OnStateChangeListener = {}
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -85,22 +116,57 @@ class RichTextEditor : EditText {
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
         spanManager = SpanManager.forEditor(this)
+        initialized = true
+    }
+
+    fun setState(state: EditorState) {
+        val span: Span = when (state) {
+            EditorState.BOLD -> BoldSpan()
+            EditorState.ITALIC -> ItalicSpan()
+            EditorState.UNDERLINE -> ULineSpan()
+            EditorState.CHECKBOX -> CheckBoxSpan(context)
+        }
+        setSpan(span)
     }
 
     fun setBold() {
-        spanManager.setSpan(BoldSpan())
+        setSpan(BoldSpan())
     }
 
     fun setItalic() {
-        spanManager.setSpan(ItalicSpan())
+        setSpan(ItalicSpan())
     }
 
     fun setUnderline() {
-        spanManager.setSpan(ULineSpan())
+        setSpan(ULineSpan())
     }
 
     fun setCheckbox() {
-        spanManager.setSpan(CheckBoxSpan(context))
+        setSpan(CheckBoxSpan(context))
+    }
+
+    fun setSpan(span: Span) {
+        spanManager.setSpan(span)
+        updateState()
+    }
+
+    fun updateState() {
+        val states = spanManager.getCurrentState().mapNotNull {
+            when (it) {
+                is BoldSpan -> EditorState.BOLD
+                is ItalicSpan -> EditorState.ITALIC
+                is ULineSpan -> EditorState.UNDERLINE
+                is CheckBoxSpan -> EditorState.CHECKBOX
+                else -> null
+            }
+        }
+        onStateChangeListener(states)
+    }
+
+    override fun onSelectionChanged(selStart: Int, selEnd: Int) {
+        super.onSelectionChanged(selStart, selEnd)
+        if (!initialized) return
+        updateState()
     }
 
 }
@@ -149,9 +215,6 @@ data class ULineSpanInfo(override val from: Int, override val to: Int) : SpanInf
 data class CheckboxSpanInfo(override val from: Int, override val to: Int, val state: Boolean) : SpanInfo
 
 private fun getSpanGson() = GsonBuilder().registerTypeAdapter(SpanInfo::class.java, SpanInfoInterfaceAdapter()).create()
-//private fun Spannable.setSpan(span: Any, from: Int, to: Int) = setSpan(span, from, to, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-private fun TextView.setSpan(span: Any, from: Int, to: Int) = editableText.setSpan(span, from, to, if (span is WritableSpan) Spannable.SPAN_EXCLUSIVE_EXCLUSIVE else Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
 
 fun TextView.setJson(value: String) {
 
