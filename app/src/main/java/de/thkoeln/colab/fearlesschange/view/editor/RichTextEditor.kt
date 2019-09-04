@@ -146,12 +146,12 @@ class RichTextEditor : EditText {
     }
 
     fun setSpan(span: Span) {
-        spanManager.setSpan(span)
+        spanManager.addState(span)
         updateState()
     }
 
     fun updateState() {
-        val states = spanManager.getCurrentState().mapNotNull {
+        val states = spanManager.currentState.mapNotNull {
             when (it) {
                 is BoldSpan -> EditorState.BOLD
                 is ItalicSpan -> EditorState.ITALIC
@@ -166,6 +166,7 @@ class RichTextEditor : EditText {
     override fun onSelectionChanged(selStart: Int, selEnd: Int) {
         super.onSelectionChanged(selStart, selEnd)
         if (!initialized) return
+        spanManager.notifySelectionChanged()
         updateState()
     }
 
