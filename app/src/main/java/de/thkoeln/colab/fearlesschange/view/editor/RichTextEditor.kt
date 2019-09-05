@@ -95,7 +95,6 @@ class RichTextEditorToolbar : HorizontalScrollView, OnStateChangeListener {
 }
 
 class RichTextEditor : EditText {
-
     private var initialized = false
 
     private lateinit var spanManager: SpanManager
@@ -116,6 +115,18 @@ class RichTextEditor : EditText {
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
         spanManager = SpanManager.forEditor(this)
+        spanManager.spansChangedListener = { spans ->
+            val states = spans.mapNotNull {
+                when (it) {
+                    is BoldSpan -> EditorState.BOLD
+                    is ItalicSpan -> EditorState.ITALIC
+                    is ULineSpan -> EditorState.UNDERLINE
+                    is CheckBoxSpan -> EditorState.CHECKBOX
+                    else -> null
+                }
+            }
+            onStateChangeListener(states)
+        }
         initialized = true
     }
 
@@ -126,47 +137,30 @@ class RichTextEditor : EditText {
             EditorState.UNDERLINE -> ULineSpan()
             EditorState.CHECKBOX -> CheckBoxSpan(context)
         }
-        setSpan(span)
+        spanManager.setSpan(span)
     }
 
     fun setBold() {
-        setSpan(BoldSpan())
+        spanManager.setSpan(BoldSpan())
     }
 
     fun setItalic() {
-        setSpan(ItalicSpan())
+        spanManager.setSpan(ItalicSpan())
     }
 
     fun setUnderline() {
-        setSpan(ULineSpan())
+        spanManager.setSpan(ULineSpan())
     }
 
     fun setCheckbox() {
-        setSpan(CheckBoxSpan(context))
+        spanManager.setSpan(CheckBoxSpan(context))
     }
 
-    fun setSpan(span: Span) {
-        spanManager.setSpan(span)
-        updateState()
-    }
-
-    fun updateState() {
-        val states = spanManager.getCurrentState().mapNotNull {
-            when (it) {
-                is BoldSpan -> EditorState.BOLD
-                is ItalicSpan -> EditorState.ITALIC
-                is ULineSpan -> EditorState.UNDERLINE
-                is CheckBoxSpan -> EditorState.CHECKBOX
-                else -> null
-            }
-        }
-        onStateChangeListener(states)
-    }
 
     override fun onSelectionChanged(selStart: Int, selEnd: Int) {
         super.onSelectionChanged(selStart, selEnd)
         if (!initialized) return
-        updateState()
+        spanManager.notifySelectionChanged()
     }
 
 }

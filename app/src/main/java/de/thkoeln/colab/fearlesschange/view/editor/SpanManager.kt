@@ -8,6 +8,8 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.reflect.KClass
 
+typealias SpansChangedListener = (state: List<Span>) -> Unit
+
 class SpanManager private constructor(private val editor: EditText) : TextWatcher {
 
     private val selectionStart
@@ -27,7 +29,7 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
 
     private val spans = mutableListOf<SpanHolder>()
     private val clicked = mutableListOf<Span>()
-
+    var spansChangedListener: SpansChangedListener = {}
 
     fun <T : Span> setSpan(span: T) {
         when {
@@ -38,6 +40,7 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
             span is InlineSpan -> setSpan(selectionStart, selectionEnd, span)
             span is InPlaceSpan -> setSpan(selectionStart, selectionEnd, span) // Todo delete text before set span
         }
+        notifySpansChanged()
     }
 
     fun getCurrentState(): List<Span> {
@@ -118,6 +121,14 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
         updateText()
     }
 
+    fun notifySelectionChanged() {
+        notifySpansChanged()
+    }
+
+    private fun notifySpansChanged() {
+        spansChangedListener(getCurrentState())
+    }
+
     override fun afterTextChanged(spannable: Editable) {
     }
 
@@ -129,7 +140,13 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
         val changeStart = start + before
         val changeEnd = changeStart + added
         updateExisting(changeStart, added)
-        addNewStyles(changeStart, changeEnd)
+
+        if (added > 0) {
+            addNewStyles(changeStart, changeEnd)
+        } else {
+            clicked.clear()
+            notifySelectionChanged()
+        }
     }
 
     private fun addNewStyles(changeStart: Int, changeEnd: Int) {
@@ -168,7 +185,6 @@ class SpanManager private constructor(private val editor: EditText) : TextWatche
             null
         }
         spans.removeAll(toRemove)
-
         updateText()
     }
 
