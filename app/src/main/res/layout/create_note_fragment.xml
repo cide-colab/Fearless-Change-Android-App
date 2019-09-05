@@ -1,18 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
     android:layout_height="match_parent">
 
-    <de.thkoeln.colab.fearlesschange.view.editor.RichTextEditorToolbar
+    <de.thkoeln.colab.fearlesschange.view.notes.RichTextEditorToolbar
         android:id="@+id/editor_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
-    </de.thkoeln.colab.fearlesschange.view.editor.RichTextEditorToolbar>
-
-    <de.thkoeln.colab.fearlesschange.view.editor.RichTextEditor
+    <jp.wasabeef.richeditor.RichEditor
         android:id="@+id/editor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </LinearLayout>

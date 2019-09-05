@@ -11,12 +11,10 @@ class CreateNoteViewModel(application: Application, private val args: CreateNote
 
     private val noteRepository = NoteRepository(application)
 
-    fun onCreateNoteClicked(note: String) {
+    fun onSaveClicked(note: String) {
         noteRepository.insert(Note(text = note, patternId = args.patternId))
     }
-
 }
-
 
 @Suppress("UNCHECKED_CAST")
 class CreateNoteViewModelFactory(private val application: Application, private val args: CreateNoteFragmentArgs) : ViewModelProvider.Factory {

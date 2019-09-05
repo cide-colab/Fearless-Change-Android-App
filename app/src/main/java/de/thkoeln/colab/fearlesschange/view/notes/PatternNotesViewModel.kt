@@ -12,16 +12,10 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
 
     private val id = args.patternId
 
-    val createNoteConfirmed: (note: String) -> Unit = { note ->
-        noteRepository.insert(Note(text = note, patternId = id))
-    }
-
     private val noteRepository = NoteRepository(application)
 
-    val addNoteButtonClicked: () -> Unit = { createDialogEvent.invoke(id) }
     val onItemDeleteListener: (item: Note) -> Unit = { noteRepository.delete(it) }
 
-    val createDialogEvent = SingleActionLiveData<Long>()
     val notes = noteRepository.getNotesForPattern(id)
 
     fun createNoteButtonClicked() {

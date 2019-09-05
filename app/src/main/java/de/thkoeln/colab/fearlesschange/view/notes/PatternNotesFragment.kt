@@ -2,6 +2,7 @@ package de.thkoeln.colab.fearlesschange.view.notes
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,20 +29,13 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
         adapter.onDeleteItemAcceptedListener = viewModel.onItemDeleteListener
         adapter.onDeleteSnackBarText = { getString(R.string.message_note_deleted, it.text) }
         adapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
+//        adapter.onSpansChangedListener = { note, text -> Log.d("SPANS CHANGED", text) }
         pattern_notes_recycler_view.adapter = adapter
 
-        viewModel.createDialogEvent.observe(this) { openCreateNoteDialog() }
         viewModel.notes.observe(this) { adapter.setItems(it) }
 
         pattern_notes_create_note.setOnClickListener { viewModel.createNoteButtonClicked() }
 
-    }
-
-
-    private fun openCreateNoteDialog() {
-        val dialog = CreateNoteDialog(requireContext())
-//        dialog.onConfirmListener = viewModel.createNoteConfirmed
-        dialog.show()
     }
 
     override fun createViewModel() = ViewModelProviders.of(this, PatternNotesViewModelFactory(requireActivity().application, args)).get(PatternNotesViewModel::class.java)

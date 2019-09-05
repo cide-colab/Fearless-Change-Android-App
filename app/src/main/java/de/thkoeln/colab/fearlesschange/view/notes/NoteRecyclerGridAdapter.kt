@@ -12,15 +12,16 @@ import kotlinx.android.synthetic.main.swipe_to_delete_wrapper.view.*
 
 class NoteRecyclerGridAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Note, NoteRecyclerGridAdapter.NoteViewHolder>(context) {
 
+//    var onSpansChangedListener: (note: Note, text: String) -> Unit = {_,_ ->}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.swipe_to_delete_wrapper, parent, false)
-        return NoteViewHolder(view)
+        return NoteViewHolder(view/*, onSpansChangedListener*/)
     }
 
 
-    class NoteViewHolder(itemView: View) : SwipeToDeleteRecyclerViewHolder<Note>(itemView) {
-        private val adapter = NoteGridItemViewHolder().apply {
+    class NoteViewHolder(itemView: View/*, onSpanChangedListener: (note: Note, text: String) -> Unit*/) : SwipeToDeleteRecyclerViewHolder<Note>(itemView) {
+        private val adapter = NoteGridItemViewHolder(/*onSpansChangedListener*/).apply {
             inflate(itemView.swipe_to_delete_container, true)
         }
 

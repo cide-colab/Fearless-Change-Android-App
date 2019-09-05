@@ -84,6 +84,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.12.0" // JVM dependency
 
+    implementation 'jp.wasabeef:richeditor-android:1.2.2'
+
     // Core library
 //    androidTestImplementation 'androidx.test:core:1.2.0'
 
