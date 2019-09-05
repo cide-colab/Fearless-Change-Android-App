@@ -29,7 +29,7 @@ android {
         defaultConfig
         versionCode 4
         versionName "1.3"
-        testInstrumentationRunner "android.support.text.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.name.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {

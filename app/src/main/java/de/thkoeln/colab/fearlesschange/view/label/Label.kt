@@ -59,7 +59,7 @@ class Label : ConstraintLayout {
 //            textAlign = Paint.Align.LEFT
 //        }
 //
-//        // Update TextPaint and text measurements from attributes
+//        // Update TextPaint and name measurements from attributes
 //        invalidateTextPaintAndMeasurements()
     }
 
@@ -67,7 +67,7 @@ class Label : ConstraintLayout {
 //        with(textPaint) {
 //            //textSize = exampleDimension
 //            color = contentColor
-//            textWidth = measureText(text)
+//            textWidth = measureText(name)
 //            textHeight = fontMetrics.bottom
 //        }
     }

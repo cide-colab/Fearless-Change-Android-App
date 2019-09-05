@@ -9,6 +9,6 @@ import kotlinx.android.synthetic.main.note_grid_item.view.*
 
 class NoteGridItemViewHolder : LayoutViewHolder<Note>(R.layout.note_grid_item) {
     override fun bind(view: View, value: Note) {
-//        view.note_text.fromHtml(value.text)
+        view.note_text.loadData(value.text, "name/html", "UTF8")
     }
 }

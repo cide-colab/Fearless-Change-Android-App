@@ -12,4 +12,6 @@
     <dimen name="cardDetailTitleTextSize">18sp</dimen>
     <dimen name="cardContentTextSize">12sp</dimen>
     <dimen name="cardDetailContentTextSize">16sp</dimen>
+
+    <dimen name="labelHeight">20dp</dimen>
 </resources>

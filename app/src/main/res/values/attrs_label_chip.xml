@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="LabelChip">
+        <attr name="label_name" format="string|reference" />
+        <attr name="label_color" format="color|reference" />
+    </declare-styleable>
+</resources>

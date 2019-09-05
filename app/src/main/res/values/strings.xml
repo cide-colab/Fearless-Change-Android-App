@@ -67,6 +67,8 @@
     <string name="label_nav_dashboard">Dashboard</string>
     <string name="label_nav_search">Search</string>
     <string name="take_a_note_btn_text">Take a note...</string>
+    <string name="note_hint">Note...</string>
+    <string name="title_create_lable">Create Lable</string>
 
 
 </resources>

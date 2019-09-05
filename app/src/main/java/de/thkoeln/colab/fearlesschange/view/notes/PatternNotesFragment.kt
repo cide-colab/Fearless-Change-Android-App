@@ -2,7 +2,6 @@ package de.thkoeln.colab.fearlesschange.view.notes
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +28,7 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
         adapter.onDeleteItemAcceptedListener = viewModel.onItemDeleteListener
         adapter.onDeleteSnackBarText = { getString(R.string.message_note_deleted, it.text) }
         adapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
-//        adapter.onSpansChangedListener = { note, text -> Log.d("SPANS CHANGED", text) }
+//        adapter.onSpansChangedListener = { note, name -> Log.d("SPANS CHANGED", name) }
         pattern_notes_recycler_view.adapter = adapter
 
         viewModel.notes.observe(this) { adapter.setItems(it) }
