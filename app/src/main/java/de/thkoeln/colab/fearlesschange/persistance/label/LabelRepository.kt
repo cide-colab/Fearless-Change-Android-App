@@ -10,10 +10,26 @@ class LabelRepository(context: Context?) {
 
     suspend fun insert(label: Label) = dao.insert(label)
 
+    suspend fun update(label: Label) = dao.update(label)
+
+    suspend fun createOrUpdate(labels: List<Label>): List<Long> {
+        return labels.map {
+            val existing = getByName(it.name)
+            if (existing == null) {
+                insert(it)
+            } else {
+                update(it.copy(id = existing.id, color = existing.color))
+                existing.id
+            }
+        }
+    }
+
     suspend fun insert(labels: List<Label>) = dao.insert(labels)
 
     fun get(id: Long) = dao.get(id)
 
-    fun getAll() = dao.getAll()
+    suspend fun getByName(name: String) = dao.getByName(name)
+
+    suspend fun getAll() = dao.getAll()
 
 }

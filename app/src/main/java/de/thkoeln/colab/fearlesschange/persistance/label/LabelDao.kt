@@ -25,8 +25,11 @@ interface LabelDao {
     fun get(id: Long): LiveData<Label>
 
     @Query("SELECT * FROM labels")
-    fun getAll(): LiveData<List<Label>>
+    suspend fun getAll(): List<Label>
 
     @Query("SELECT COUNT(*) FROM labels")
     fun getCount(): LiveData<Long>
+
+    @Query("SELECT * FROM labels WHERE TRIM(LOWER(name)) = TRIM(LOWER(:name)) LIMIT 1")
+    suspend fun getByName(name: String): Label?
 }

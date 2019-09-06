@@ -5,7 +5,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "labels", indices = [Index("id")])
+@Entity(tableName = "labels", indices = [Index("id"), Index("name", unique = true)])
 data class Label(
         val name: String,
         val color: Int,

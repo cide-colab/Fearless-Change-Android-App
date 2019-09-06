@@ -25,9 +25,14 @@ class CreateNoteViewModel(application: Application, private val args: CreateNote
             val noteId = noteRepository.insert(Note(patternId = args.patternId, text = note))
             val todos = todosRaw.map { it.copy(noteId = noteId) }
             todoRepository.insert(todos)
-            //TODO insert only if not exists!
-            val labelIds = labelRepository.insert(labels)
+            val labelIds = labelRepository.createOrUpdate(labels)
             patternLabelTodoRepository.join(noteId, labelIds)
+        }
+    }
+
+    fun getLabels(callback: (List<Label>) -> Unit) {
+        runBlocking {
+            callback(labelRepository.getAll())
         }
     }
 }

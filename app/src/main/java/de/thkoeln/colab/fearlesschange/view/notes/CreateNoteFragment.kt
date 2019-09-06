@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.HorizontalScrollView
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
@@ -21,7 +20,6 @@ import de.thkoeln.colab.fearlesschange.core.toPx
 import de.thkoeln.colab.fearlesschange.persistance.label.Label
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import jp.wasabeef.richeditor.RichEditor
-import kotlinx.android.synthetic.main.create_label_dialog.view.*
 import kotlinx.android.synthetic.main.create_note_fragment.*
 
 
@@ -115,6 +113,8 @@ class CreateNoteFragment : Fragment() {
         return inflater.inflate(R.layout.create_note_fragment, container, false)
     }
 
+    private var labels: List<Label> = listOf()
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = createViewModel()
@@ -135,7 +135,7 @@ class CreateNoteFragment : Fragment() {
 //        repeat(label_container.itemDecorationCount) {
 //            label_container.removeItemDecorationAt(0)
 //        }
-
+        viewModel.getLabels { labels = it }
         createCheckboxAdapter = CreateCheckboxRecyclerAdapter(requireContext())
         todo_container.adapter = createCheckboxAdapter
         todo_container.layoutManager = GridLayoutManager(context, 2)
@@ -150,27 +150,12 @@ class CreateNoteFragment : Fragment() {
     }
 
     private fun createLabel(callback: (label: Label) -> Unit) {
-        val view = requireActivity().layoutInflater.inflate(R.layout.create_label_dialog, null)
-        val dialog = AlertDialog.Builder(requireContext()).setView(view)
-                .setTitle(getString(R.string.title_create_lable))
-                .setPositiveButton(R.string.action_confirm, null)
-                .setNegativeButton(R.string.action_cancel) { dialog, id -> dialog.cancel() }
-                .create()
-
-        dialog.setOnShowListener {
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                if (view.create_label_dialog_name.text.toString().isNotBlank()) {
-                    val text = view.create_label_dialog_name.text.toString()
-                    val color = view.create_label_dialog_color_group.getSelectedColor()
-                    callback(Label(text, color))
-                    dialog.dismiss()
-                } else {
-                    view.create_label_dialog_name.error = "Label name cannot be empty"
-                }
-            }
+        val createLabelTag = "create_label"
+        if (childFragmentManager.findFragmentByTag(createLabelTag) == null) {
+            CreateLabelDialog(labels.filter { old -> labelAdapter.items.none { it.name.trim().equals(old.name.trim(), true) } })
+                    .onConfirm(callback)
+                    .show(childFragmentManager, createLabelTag)
         }
-
-        dialog.show()
     }
 
     private fun createViewModel() = ViewModelProviders.of(this, CreateNoteViewModelFactory(requireActivity().application, args)).get(CreateNoteViewModel::class.java)

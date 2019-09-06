@@ -5,14 +5,28 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/default_padding">
 
+    <ImageView
+        android:id="@+id/create_label_dialog.icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_add_box_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/create_label_dialog.name"
+        app:layout_constraintEnd_toStartOf="@id/create_label_dialog.name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/create_label_dialog.name" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/create_label_dialog.name"
+        style="@style/Base.Widget.AppCompat.SearchView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/hint_create_label"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@id/create_label_dialog.color_group"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/create_label_dialog.icon"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    app:dividerDrawable="@drawable/divider"-->

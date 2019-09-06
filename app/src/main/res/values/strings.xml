@@ -68,7 +68,8 @@
     <string name="label_nav_search">Search</string>
     <string name="take_a_note_btn_text">Take a note...</string>
     <string name="note_hint">Note...</string>
-    <string name="title_create_lable">Create Lable</string>
+    <string name="title_create_lable">Label</string>
+    <string name="hint_create_label">Choose or create label</string>
 
 
 </resources>
