@@ -142,6 +142,7 @@ class CreateNoteFragment : Fragment() {
 
         editor.setPlaceholder(getString(R.string.note_hint))
         editor_toolbar.editor = editor
+        context?.resources?.getColor(R.color.primaryText)?.let { editor.setEditorFontColor(it) }
         editor_toolbar.addAction(R.drawable.ic_check_box_black_24dp, 0) { createCheckboxAdapter.addItem(Todo(false, "", 0)) }
         editor_toolbar.addAction(R.drawable.ic_label_black_24dp, 1) { createLabel { labelAdapter.addItem(it) } }
 

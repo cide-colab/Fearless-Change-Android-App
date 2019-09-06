@@ -64,12 +64,14 @@ class NoteRecyclerGridAdapter(context: Context, private val updateTodo: UpdateTo
 
             itemView.note_grid_item_todo_container.layoutManager = LinearLayoutManager(itemView.context)
             itemView.note_grid_item_todo_container.adapter = todoAdapter
+
+            itemView.note_grid_item_note_text.setEditorFontColor(itemView.resources.getColor(R.color.primaryText))
         }
 
         override fun bind(item: PatternNoteData) {
             labelAdapter.setItems(item.labels)
             todoAdapter.setItems(item.todos)
-            itemView.note_grid_item_note_text.loadData(item.note.text, "text/html", "UTF8")
+            itemView.note_grid_item_note_text.html = item.note.text
         }
     }
 }

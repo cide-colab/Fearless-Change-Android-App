@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.core.toPx
 
 
 class LabelChip @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : TextView(context, attrs, defStyleAttr) {
@@ -28,6 +29,7 @@ class LabelChip @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
+        strokeWidth = 1.toPx().toFloat()
     }
 
     init {

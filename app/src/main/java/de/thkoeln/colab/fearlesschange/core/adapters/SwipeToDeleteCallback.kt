@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.core.toPx
 
 interface SwipeToDeleteAdapter {
     fun onDelete(position: Int)
@@ -16,9 +17,10 @@ interface SwipeToDeleteAdapter {
 
 class SwipeToDeleteCallback(private val adapter: SwipeToDeleteAdapter, context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT/* or ItemTouchHelper.RIGHT*/) {
 
-    private val background: Drawable = ColorDrawable(Color.RED)
+    private val red = Color.argb(50, 206, 14, 45)
+    private val background: Drawable = ColorDrawable(red)
     private val icon: Drawable = context.getDrawable(R.drawable.ic_delete_sweep_black_24dp)
-            ?: ColorDrawable(Color.RED)
+            ?: ColorDrawable(red)
     private val backgroundCornerOffset = 20
 
     override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -39,7 +41,7 @@ class SwipeToDeleteCallback(private val adapter: SwipeToDeleteAdapter, context: 
 
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         val itemView = viewHolder.itemView
-        val iconMargin = (itemView.height - icon.intrinsicHeight) / 2
+        val iconMargin = 2.toPx()//(itemView.height - icon.intrinsicHeight) / 2
         val iconTop = itemView.top + (itemView.height - icon.intrinsicHeight) / 2
         val iconBottom = iconTop + icon.intrinsicHeight
 
