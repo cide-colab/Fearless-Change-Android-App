@@ -18,7 +18,8 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.toPx
-import de.thkoeln.colab.fearlesschange.persistance.CheckboxData
+import de.thkoeln.colab.fearlesschange.persistance.label.Label
+import de.thkoeln.colab.fearlesschange.persistance.todos.CheckboxData
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.android.synthetic.main.create_label_dialog.view.*
 import kotlinx.android.synthetic.main.create_note_fragment.*
@@ -96,6 +97,9 @@ class CreateNoteFragment : Fragment() {
 
     private val args: CreateNoteFragmentArgs by navArgs()
 
+    private lateinit var labelAdapter: LabelRecyclerAdapter
+    private lateinit var createCheckboxAdapter: CreateCheckboxRecyclerAdapter
+
     companion object {
         fun newInstance() = CreateNoteFragment()
     }
@@ -122,7 +126,7 @@ class CreateNoteFragment : Fragment() {
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
-        val labelAdapter = LabelRecyclerAdapter(requireContext())
+        labelAdapter = LabelRecyclerAdapter(requireContext())
         label_container.adapter = labelAdapter
 //        label_container.layoutManager = GridLayoutManager(context, 2)
         label_container.layoutManager = layoutManager
@@ -131,7 +135,7 @@ class CreateNoteFragment : Fragment() {
 //            label_container.removeItemDecorationAt(0)
 //        }
 
-        val createCheckboxAdapter = CreateCheckboxRecyclerAdapter(requireContext())
+        createCheckboxAdapter = CreateCheckboxRecyclerAdapter(requireContext())
         todo_container.adapter = createCheckboxAdapter
         todo_container.layoutManager = GridLayoutManager(context, 2)
 
@@ -144,27 +148,27 @@ class CreateNoteFragment : Fragment() {
     }
 
     private fun createLabel(callback: (label: Label) -> Unit) {
-        //TODO TEXT abfragen + farbe auswählen
-
         val view = requireActivity().layoutInflater.inflate(R.layout.create_label_dialog, null)
-        AlertDialog.Builder(requireContext()).setView(view)
+        val dialog = AlertDialog.Builder(requireContext()).setView(view)
                 .setTitle(getString(R.string.title_create_lable))
-                .setPositiveButton(R.string.action_confirm) { dialog, id ->
-                    //TODO REQUIRE TEXT NOT NULL
+                .setPositiveButton(R.string.action_confirm, null)
+                .setNegativeButton(R.string.action_cancel) { dialog, id -> dialog.cancel() }
+                .create()
+
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                if (view.create_label_dialog_name.text.toString().isNotBlank()) {
                     val text = view.create_label_dialog_name.text.toString()
                     val color = view.create_label_dialog_color_group.getSelectedColor()
                     callback(Label(text, color))
-                    dialog.cancel()
+                    dialog.dismiss()
+                } else {
+                    view.create_label_dialog_name.error = "Label name cannot be empty"
                 }
-                .setNegativeButton(R.string.action_cancel) { dialog, id -> dialog.cancel() }
-                .create()
-                .show()
+            }
+        }
 
-//        view.create_label_dialog_color_group.setOnCheckedChangeListener { group, checkedId ->
-//            Log.d("SELECTEDsss COLOR", "CHANGE")
-//            Log.d("SELECTED sssCOLOR", view.findViewById<ColorChip>(checkedId).color.toString())
-//        }
-
+        dialog.show()
     }
 
     private fun createViewModel() = ViewModelProviders.of(this, CreateNoteViewModelFactory(requireActivity().application, args)).get(CreateNoteViewModel::class.java)
@@ -177,7 +181,9 @@ class CreateNoteFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_create_note -> {
-                viewModel.onSaveClicked(editor.html ?: "")
+
+                viewModel.onSaveClicked(labelAdapter.items, editor.html
+                        ?: "", createCheckboxAdapter.items)
 
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)
