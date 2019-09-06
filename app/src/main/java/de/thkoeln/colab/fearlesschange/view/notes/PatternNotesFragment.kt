@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
+import de.thkoeln.colab.fearlesschange.core.onTimeout
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import kotlinx.android.synthetic.main.pattern_notes_fragment.*
 
@@ -25,9 +27,15 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
 
 
         val adapter = NoteRecyclerGridAdapter(requireContext())
-        adapter.onDeleteItemAcceptedListener = viewModel.onItemDeleteListener
-        adapter.onDeleteSnackBarText = { getString(R.string.message_note_deleted, it.text) }
-        adapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
+        adapter.afterDeleteItemListener = { item, index ->
+            Snackbar.make(pattern_notes_container, R.string.message_note_deleted, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.action_undo) { adapter.restoreItem(item, index) }
+                    .onTimeout { viewModel.onItemDeleteListener(item) }
+                    .show()
+        }
+//        adapter.onDeleteItemAcceptedListener = viewModel.onItemDeleteListener
+//        adapter.onDeleteSnackBarText = { getString(R.string.message_note_deleted, it.text) }
+//        adapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
 //        adapter.onSpansChangedListener = { note, name -> Log.d("SPANS CHANGED", name) }
         pattern_notes_recycler_view.adapter = adapter
 

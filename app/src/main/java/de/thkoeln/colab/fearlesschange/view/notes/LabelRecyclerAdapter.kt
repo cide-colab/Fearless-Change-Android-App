@@ -13,17 +13,13 @@ data class Label(val name: String, val color: Int)
 class LabelRecyclerAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Label, LabelRecyclerAdapter.LabelViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.label_item, parent, false)
-        return LabelViewHolder(view)
+        return LabelViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.label_item, parent, false))
     }
 
-    class LabelViewHolder(itemView: View) : SwipeToDeleteRecyclerViewHolder<Label>(itemView) {
-
+    class LabelViewHolder(itemView: View) : ViewHolder<Label>(itemView) {
         override fun bind(item: Label) {
             itemView.label_item.color = item.color
             itemView.label_item.name = item.name
         }
-
-        override fun getForeground(): LabelChip = itemView.label_item
     }
 }

@@ -28,7 +28,7 @@ class CardsFragment : PatternViewModelFragment<CardsViewModel>() {
         pattern_cards_recycler_view.adapter = adapter
 
         viewModel.pattern.observe(this) { adapter.setItems(it) }
-        adapter.patternClickedListener = { viewModel.patternCardClicked(it) }
+        adapter.onItemClickedListener = viewModel.patternCardClicked
 
     }
 

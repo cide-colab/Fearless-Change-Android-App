@@ -3,10 +3,10 @@ package de.thkoeln.colab.fearlesschange.core.adapters
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class AdvancedRecyclerViewAdapter<T, VH : AdvancedRecyclerViewAdapter.ViewHolder<T>> : RecyclerView.Adapter<VH>() {
+abstract class RecyclerViewAdapter<T, VH : RecyclerViewAdapter.ViewHolder<T>> : RecyclerView.Adapter<VH>() {
 
     protected val items = mutableListOf<T>()
-    var onItemClickedListener: ((item: T) -> Unit)? = null
+    var onItemClickedListener: (item: T) -> Unit = {}
 
     fun setItems(items: List<T>) {
         val prevCount = itemCount
@@ -49,13 +49,15 @@ abstract class AdvancedRecyclerViewAdapter<T, VH : AdvancedRecyclerViewAdapter.V
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = items[position]
         holder.bind(item)
-        onItemClickedListener?.let { holder.getClickableView().setOnClickListener { it(item) } }
+        holder.notifyItemClicked = onItemClickedListener
+//        onItemClickedListener?.let { holder.getClickableView().setOnClickListener { it(item) } }
 
     }
 
     abstract class ViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
+        internal var notifyItemClicked: (item: T) -> Unit = {}
         abstract fun bind(item: T)
-        open fun getClickableView() = itemView
+//        open fun getClickableView() = itemView
     }
 
 }

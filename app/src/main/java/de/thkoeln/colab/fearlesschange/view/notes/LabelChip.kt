@@ -47,6 +47,7 @@ class LabelChip @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         path.reset()
         path.addRoundRect(0f, 0f, w.toFloat(), h.toFloat(), (0 until 8).map { halfHeight }.toFloatArray(), Path.Direction.CW)
         path.close()
+        setPadding(halfHeight.toInt(), 0, halfHeight.toInt(), 0)
     }
 
     override fun dispatchDraw(canvas: Canvas) {

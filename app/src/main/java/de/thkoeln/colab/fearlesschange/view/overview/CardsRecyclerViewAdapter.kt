@@ -1,23 +1,42 @@
 package de.thkoeln.colab.fearlesschange.view.overview
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import de.thkoeln.colab.fearlesschange.core.adapters.AdvancedRecyclerViewAdapter
+import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.core.adapters.RecyclerViewAdapter
+import de.thkoeln.colab.fearlesschange.core.getResourceId
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
-import de.thkoeln.colab.fearlesschange.view.pattern.preview.PatternPreviewViewHolder
+import kotlinx.android.synthetic.main.pattern_preview.view.*
 
-class CardsRecyclerViewAdapter : AdvancedRecyclerViewAdapter<PatternInfo, CardsRecyclerViewAdapter.OverviewViewHolder>() {
+class CardsRecyclerViewAdapter : RecyclerViewAdapter<PatternInfo, CardsRecyclerViewAdapter.OverviewViewHolder>() {
 
-    var patternClickedListener: (patternInfo: PatternInfo) -> Unit = {}
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            OverviewViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.pattern_preview, parent, false))
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OverviewViewHolder {
-        val adapter = PatternPreviewViewHolder(patternClickedListener)
-        return OverviewViewHolder(adapter.inflate(parent), adapter)
-    }
 
-    class OverviewViewHolder(view: View, private val adapter: PatternPreviewViewHolder) : AdvancedRecyclerViewAdapter.ViewHolder<PatternInfo>(view) {
+    class OverviewViewHolder(view: View) : RecyclerViewAdapter.ViewHolder<PatternInfo>(view) {
+
         override fun bind(item: PatternInfo) {
-            adapter.bind(item)
+            with(item.pattern) {
+                val picture = loadImage(pictureName)
+                itemView.pattern_preview_image.setImageResource(picture)
+                itemView.pattern_preview_title.text = title
+                itemView.pattern_preview_summary.text = summary
+                itemView.pattern_preview_favorite_icon.visibility = if (favorite) VISIBLE else GONE
+                itemView.pattern_preview_notes_count.text = item.noteCount.toString()
+                itemView.pattern_preview_notes_count.visibility = if (item.noteCount > 0) VISIBLE else GONE
+                itemView.pattern_preview_notes_icon.visibility = if (item.noteCount > 0) VISIBLE else GONE
+                itemView.pattern_preview_card.setOnClickListener { notifyItemClicked(item) }
+            }
         }
+
+        private fun loadImage(pictureName: String): Int =
+                itemView.context?.getResourceId(pictureName, "drawable")
+                        ?: R.drawable.default_pattern_image
+
+
     }
 }

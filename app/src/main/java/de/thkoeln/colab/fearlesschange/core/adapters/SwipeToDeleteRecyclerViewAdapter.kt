@@ -7,61 +7,53 @@
 package de.thkoeln.colab.fearlesschange.core.adapters
 
 import android.content.Context
-import android.graphics.Color
-import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
-import de.thkoeln.colab.fearlesschange.core.onTimeout
 
 
-abstract class SwipeToDeleteRecyclerViewAdapter<T, VH : SwipeToDeleteRecyclerViewAdapter.SwipeToDeleteRecyclerViewHolder<T>>(val context: Context) : AdvancedRecyclerViewAdapter<T, VH>(),
-        RecyclerItemTouchHelper.RecyclerItemTouchHelperListener<VH> {
+abstract class SwipeToDeleteRecyclerViewAdapter<T, VH : RecyclerViewAdapter.ViewHolder<T>>(val context: Context) :
+        RecyclerViewAdapter<T, VH>(), SwipeToDeleteAdapter {
 
-    var onDeleteItemAcceptedListener: (item: T) -> Unit = {}
-    var onDeleteItemListener: (item: T) -> Unit = {}
-    var onRestoreItemListener: (item: T) -> Unit = {}
-    var onDeleteSnackBarText: ((item: T) -> String)? = null
-    var onDeleteUndoActionText: (item: T) -> String = { "UNDO" }
+    var beforeDeleteItemListener: (item: T, position: Int) -> Boolean = { _, _ -> true }
+    var afterDeleteItemListener: (item: T, position: Int) -> Unit = { _, _ -> }
+    var afterRestoreItemListener: (item: T, position: Int) -> Unit = { _, _ -> }
 
-    private fun restoreItem(item: T, position: Int) {
+    fun restoreItem(item: T, position: Int) {
         addItem(item, position)
-        onRestoreItemListener(item)
+        afterRestoreItemListener(item, position)
     }
 
-    override fun onSwiped(viewHolder: VH, direction: Int, position: Int) {
-        // backup of removed item for undo purpose
-        val deletedItem = items[viewHolder.adapterPosition]
-        val deletedIndex = viewHolder.adapterPosition
-
-        // remove the item from recycler view
-        removeItem(viewHolder.adapterPosition)
-        onDeleteItemListener(deletedItem)
-        onDeleteSnackBarText?.invoke(deletedItem)?.let {
-            Snackbar.make(viewHolder.itemView, it, Snackbar.LENGTH_LONG).apply {
-                setAction(onDeleteUndoActionText(deletedItem)) { restoreItem(deletedItem, deletedIndex) }
-                setActionTextColor(Color.YELLOW)
-                onTimeout { onDeleteItemAcceptedListener(deletedItem) }
-            }.show()
+    override fun onDelete(position: Int) {
+        val item = items[position]
+        if (beforeDeleteItemListener(item, position)) {
+            removeItem(position)
+            afterDeleteItemListener(item, position)
         }
     }
 
+//    fun onSwiped(viewHolder: VH, direction: Int, position: Int) {
+//        // backup of removed item for undo purpose
+//        val deletedItem = items[viewHolder.adapterPosition]
+//        val deletedIndex = viewHolder.adapterPosition
+//
+//        // remove the item from recycler view
+//        removeItem(viewHolder.adapterPosition)
+//        beforeDeleteItemListener(deletedItem)
+//        onDeleteSnackBarText?.invoke(deletedItem)?.let {
+//            Snackbar.make(viewHolder.itemView, it, Snackbar.LENGTH_LONG).apply {
+//                setAction(onDeleteUndoActionText(deletedItem)) { restoreItem(deletedItem, deletedIndex) }
+//                setActionTextColor(Color.YELLOW)
+//                onTimeout { onDeleteItemAcceptedListener(deletedItem) }
+//            }.show()
+//        }
+//    }
+
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         super.onAttachedToRecyclerView(recyclerView)
-        val itemTouchHelperCallback = RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this)
-        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        ItemTouchHelper(SwipeToDeleteCallback(this, context)).attachToRecyclerView(recyclerView)
     }
-
-    abstract class SwipeToDeleteRecyclerViewHolder<T>(itemView: View) : ViewHolder<T>(itemView), ForegroundHolder
-
-    interface ForegroundHolder {
-        fun getForeground(): View
-    }
-
 
 }
 

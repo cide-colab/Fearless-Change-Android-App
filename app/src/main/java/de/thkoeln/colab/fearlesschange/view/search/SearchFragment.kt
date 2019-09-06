@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
@@ -28,7 +29,7 @@ class SearchFragment : PatternViewModelFragment<SearchViewModel>() {
         super.onActivityCreated(savedInstanceState)
 
         val resultAdapter = SearchPatternRecyclerViewAdapter()
-        resultAdapter.patternClickedListener = viewModel.patternCardClicked
+        resultAdapter.onItemClickedListener = viewModel.patternCardClicked
         search_results.adapter = resultAdapter
         viewModel.pattern.observe(this) { resultAdapter.setItemsNotEquals(it) }
 
@@ -44,10 +45,17 @@ class SearchFragment : PatternViewModelFragment<SearchViewModel>() {
         viewModel.unselectedKeywords.observe(this) { searchKeywordAdapter.updateKeywords(it) }
 
         val selectedKeywordsAdapter = SearchKeywordSwipeToDeleteRecyclerViewAdapter(requireContext())
-        selectedKeywordsAdapter.onDeleteSnackBarText = { getString(R.string.message_keyword_removed_from_filters, it.keyword) }
-        selectedKeywordsAdapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
-        selectedKeywordsAdapter.onDeleteItemListener = viewModel.onKeywordDeleted
-        selectedKeywordsAdapter.onRestoreItemListener = viewModel.onKeywordRestored
+        selectedKeywordsAdapter.afterDeleteItemListener = { item, index ->
+            viewModel.onKeywordDeleted(item)
+            Snackbar.make(activity_wrapper, R.string.message_keyword_removed_from_filters, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.action_undo) { selectedKeywordsAdapter.restoreItem(item, index) }
+                    .show()
+        }
+        selectedKeywordsAdapter.afterRestoreItemListener = { item, _ -> viewModel.onKeywordRestored(item) }
+//        selectedKeywordsAdapter.onDeleteSnackBarText = { getString(R.string.message_keyword_removed_from_filters, it.keyword) }
+//        selectedKeywordsAdapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
+//        selectedKeywordsAdapter.beforeDeleteItemListener = viewModel.onKeywordDeleted
+//        selectedKeywordsAdapter.onRestoreItemListener = viewModel.onKeywordRestored
         selected_keywords.adapter = selectedKeywordsAdapter
         viewModel.selectedKeywords.observe(this) { selectedKeywordsAdapter.setItemsNotEquals(it) }
 

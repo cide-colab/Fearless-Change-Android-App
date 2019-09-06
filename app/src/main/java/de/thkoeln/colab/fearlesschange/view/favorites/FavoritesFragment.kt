@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 import kotlinx.android.synthetic.main.favorites_fragment.*
 
 
@@ -24,10 +26,17 @@ class FavoritesFragment : PatternViewModelFragment<FavoritesViewModel>() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = FavoritesSwipeToDeleteAdapter(requireContext())
-        adapter.onDeleteSnackBarText = { getString(R.string.message_pattern_removed_from_fav, it.pattern.title) }
-        adapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
+        adapter.afterDeleteItemListener = { patternInfo: PatternInfo, position: Int ->
+            viewModel.toggleFavorite(patternInfo)
+            Snackbar.make(favorites_recycler_view, R.string.message_pattern_removed_from_fav, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.action_undo) {
+                        adapter.restoreItem(patternInfo, position)
+                        viewModel.toggleFavorite(patternInfo)
+                    }
+                    .show()
+        }
+
         adapter.onItemClickedListener = viewModel.patternCardClicked
-        adapter.onDeleteItemAcceptedListener = viewModel.patternDeleted
         favorites_recycler_view.adapter = adapter
 
         viewModel.pattern.observe(this) { adapter.setItemsNotEquals(it) }

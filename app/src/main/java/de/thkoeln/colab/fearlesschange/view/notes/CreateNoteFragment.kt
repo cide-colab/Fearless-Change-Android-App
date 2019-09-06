@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxItemDecoration
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import de.thkoeln.colab.fearlesschange.R
@@ -119,20 +118,18 @@ class CreateNoteFragment : Fragment() {
 //        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 //        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
 
-        val decoration = FlexboxItemDecoration(context)
-        decoration.setOrientation(0)
-
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
         val labelAdapter = LabelRecyclerAdapter(requireContext())
         label_container.adapter = labelAdapter
+//        label_container.layoutManager = GridLayoutManager(context, 2)
         label_container.layoutManager = layoutManager
 
-        repeat(label_container.itemDecorationCount) {
-            label_container.removeItemDecorationAt(0)
-        }
+//        repeat(label_container.itemDecorationCount) {
+//            label_container.removeItemDecorationAt(0)
+//        }
 
         val createCheckboxAdapter = CreateCheckboxRecyclerAdapter(requireContext())
         todo_container.adapter = createCheckboxAdapter
