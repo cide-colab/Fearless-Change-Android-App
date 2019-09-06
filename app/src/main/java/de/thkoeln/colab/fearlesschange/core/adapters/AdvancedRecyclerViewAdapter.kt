@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class AdvancedRecyclerViewAdapter<T, VH : AdvancedRecyclerViewAdapter.ViewHolder<T>> : RecyclerView.Adapter<VH>() {
 
-    protected val items = mutableListOf<T>()
+    val items = mutableListOf<T>()
     var onItemClickedListener: ((item: T) -> Unit)? = null
 
     fun setItems(items: List<T>) {

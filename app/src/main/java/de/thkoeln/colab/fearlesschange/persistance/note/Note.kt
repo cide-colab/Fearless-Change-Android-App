@@ -11,17 +11,17 @@ import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
  */
 @Entity(tableName = "note",
         indices = [Index("patternId")],
-        foreignKeys = [(ForeignKey(
+        foreignKeys = [ForeignKey(
                 entity = Pattern::class,
                 parentColumns = arrayOf("id"),
                 childColumns = arrayOf("patternId"),
                 onDelete = ForeignKey.CASCADE,
                 onUpdate = ForeignKey.CASCADE
-        ))]
+        )]
 )
 data class Note(
-        @PrimaryKey(autoGenerate = true)
-        val id: Long = 0,
         var text: String,
-        val patternId: Long
+        val patternId: Long,
+        @PrimaryKey(autoGenerate = true)
+        val id: Long = 0
 )

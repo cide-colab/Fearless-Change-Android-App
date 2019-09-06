@@ -10,20 +10,19 @@ import androidx.room.*
 interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg notes: Note)
+    suspend fun insert(notes: Note): Long
 
     @Update
-    fun update(vararg notes: Note)
+    suspend fun update(notes: Note): Long
 
     @Delete
-    fun delete(vararg notes: Note)
+    suspend fun delete(notes: Note)
 
     @Query("DELETE FROM note")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM note WHERE id = :id LIMIT 1")
     fun get(id: Long): LiveData<Note>
-
 
     @Query("SELECT * FROM note")
     fun getAll(): LiveData<List<Note>>

@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.adapters.SwipeToDeleteRecyclerViewAdapter
+import de.thkoeln.colab.fearlesschange.persistance.label.Label
 import kotlinx.android.synthetic.main.label_item.view.*
-
-data class Label(val name: String, val color: Int)
 
 class LabelRecyclerAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Label, LabelRecyclerAdapter.LabelViewHolder>(context) {
 

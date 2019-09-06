@@ -4,15 +4,31 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import de.thkoeln.colab.fearlesschange.persistance.label.Label
+import de.thkoeln.colab.fearlesschange.persistance.label.LabelRepository
 import de.thkoeln.colab.fearlesschange.persistance.note.Note
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
+import de.thkoeln.colab.fearlesschange.persistance.noteLabelJoin.NoteLabelJoinRepository
+import de.thkoeln.colab.fearlesschange.persistance.todos.CheckboxData
+import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
+import kotlinx.coroutines.runBlocking
 
 class CreateNoteViewModel(application: Application, private val args: CreateNoteFragmentArgs) : AndroidViewModel(application) {
 
     private val noteRepository = NoteRepository(application)
+    private val labelRepository = LabelRepository(application)
+    private val todoRepository = TodoRepository(application)
+    private val patternLabelTodoRepository = NoteLabelJoinRepository(application)
 
-    fun onSaveClicked(note: String) {
-        noteRepository.insert(Note(text = note, patternId = args.patternId))
+    fun onSaveClicked(labels: MutableList<Label>, note: String, todos: MutableList<CheckboxData>) {
+        runBlocking {
+            val noteId = noteRepository.insert(Note(patternId = args.patternId, text = note))
+            labelRepository.insert(labels)
+            todoRepository.insert(todos)
+            patternLabelTodoRepository.join(noteId, labels)
+        }
+
+
     }
 }
 

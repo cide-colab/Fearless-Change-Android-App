@@ -66,7 +66,7 @@ class ColorChipGroup @JvmOverloads constructor(context: Context, attrs: Attribut
         }
     }
 
-    fun getSelectedColor() = colorChips.find { it.isChecked }?.color ?: Color.TRANSPARENT
+    fun getSelectedColor() = colorChips.find { it.isChecked }?.color ?: Color.GRAY
 
     private val onCheckChanged: (chip: ColorChip) -> Unit = { changed ->
         if (changed.isChecked) {
