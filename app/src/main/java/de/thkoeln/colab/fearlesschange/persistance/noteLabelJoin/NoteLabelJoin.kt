@@ -9,15 +9,22 @@ import de.thkoeln.colab.fearlesschange.persistance.note.Note
 @Entity(tableName = "note_label_join",
         primaryKeys = ["noteId", "labelId"],
         indices = [Index("noteId"), Index("labelId")],
-        foreignKeys = [(ForeignKey(
-                entity = Note::class,
-                parentColumns = arrayOf("id"),
-                childColumns = arrayOf("noteId")
-        )), (ForeignKey(
-                entity = Label::class,
-                parentColumns = arrayOf("id"),
-                childColumns = arrayOf("labelId")
-        ))]
+        foreignKeys = [
+            ForeignKey(
+                    entity = Note::class,
+                    parentColumns = ["id"],
+                    childColumns = ["noteId"],
+                    onDelete = ForeignKey.CASCADE,
+                    onUpdate = ForeignKey.CASCADE
+            ),
+            ForeignKey(
+                    entity = Label::class,
+                    parentColumns = ["id"],
+                    childColumns = ["labelId"],
+                    onDelete = ForeignKey.CASCADE,
+                    onUpdate = ForeignKey.CASCADE
+            )
+        ]
 )
 
 data class NoteLabelJoin(

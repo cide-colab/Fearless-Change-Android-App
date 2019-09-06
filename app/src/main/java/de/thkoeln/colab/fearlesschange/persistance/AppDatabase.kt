@@ -23,7 +23,7 @@ import de.thkoeln.colab.fearlesschange.persistance.patternkeyword.PatternKeyword
 import de.thkoeln.colab.fearlesschange.persistance.statistic.Statistic
 import de.thkoeln.colab.fearlesschange.persistance.statistic.StatisticConverters
 import de.thkoeln.colab.fearlesschange.persistance.statistic.StatisticDao
-import de.thkoeln.colab.fearlesschange.persistance.todos.CheckboxData
+import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import de.thkoeln.colab.fearlesschange.persistance.todos.TodoDao
 
 /**
@@ -38,7 +38,7 @@ import de.thkoeln.colab.fearlesschange.persistance.todos.TodoDao
             Note::class,
             NoteLabelJoin::class,
             Label::class,
-            CheckboxData::class
+            Todo::class
         ],
         version = 1,
         exportSchema = false

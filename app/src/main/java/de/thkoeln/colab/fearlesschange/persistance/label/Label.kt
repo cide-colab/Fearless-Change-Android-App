@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "labels", indices = [Index("id")])
-
 data class Label(
         val name: String,
         val color: Int,

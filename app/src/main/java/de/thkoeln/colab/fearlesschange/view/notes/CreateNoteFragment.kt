@@ -19,7 +19,7 @@ import com.google.android.flexbox.JustifyContent
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.toPx
 import de.thkoeln.colab.fearlesschange.persistance.label.Label
-import de.thkoeln.colab.fearlesschange.persistance.todos.CheckboxData
+import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.android.synthetic.main.create_label_dialog.view.*
 import kotlinx.android.synthetic.main.create_note_fragment.*
@@ -127,6 +127,7 @@ class CreateNoteFragment : Fragment() {
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
         labelAdapter = LabelRecyclerAdapter(requireContext())
+
         label_container.adapter = labelAdapter
 //        label_container.layoutManager = GridLayoutManager(context, 2)
         label_container.layoutManager = layoutManager
@@ -141,7 +142,7 @@ class CreateNoteFragment : Fragment() {
 
         editor.setPlaceholder(getString(R.string.note_hint))
         editor_toolbar.editor = editor
-        editor_toolbar.addAction(R.drawable.ic_check_box_black_24dp, 0) { createCheckboxAdapter.addItem(CheckboxData(false, "", 0)) }
+        editor_toolbar.addAction(R.drawable.ic_check_box_black_24dp, 0) { createCheckboxAdapter.addItem(Todo(false, "", 0)) }
         editor_toolbar.addAction(R.drawable.ic_label_black_24dp, 1) { createLabel { labelAdapter.addItem(it) } }
 
 

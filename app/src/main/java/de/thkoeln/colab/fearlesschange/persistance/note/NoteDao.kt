@@ -28,10 +28,9 @@ interface NoteDao {
     fun getAll(): LiveData<List<Note>>
 
     @Query("SELECT * FROM note WHERE patternId = :id")
-    fun getNotesForPattern(id: Long): LiveData<List<Note>>
+    suspend fun getNotesForPattern(id: Long): List<Note>
 
     @Query("SELECT COUNT(*) FROM note")
     fun getCount(): LiveData<Long>
-
 
 }

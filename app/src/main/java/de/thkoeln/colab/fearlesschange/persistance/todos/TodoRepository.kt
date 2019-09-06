@@ -8,16 +8,16 @@ class TodoRepository(context: Context?) {
     private val dao = AppDatabase.getInstance(context
             ?: throw RuntimeException("Application is null")).todoDao()
 
-    suspend fun insert(todo: CheckboxData) = dao.insert(todo)
+    suspend fun insert(todo: Todo) = dao.insert(todo)
 
-    suspend fun insert(todos: List<CheckboxData>) = dao.insert(todos)
+    suspend fun insert(todos: List<Todo>) = dao.insert(todos)
 
-    suspend fun update(todo: CheckboxData) = dao.update(todo)
+    suspend fun update(todo: Todo) = dao.update(todo)
 
-    fun get(id: Long) = dao.get(id)
+    suspend fun get(id: Long) = dao.get(id)
 
     fun getAll() = dao.getAll()
 
-    fun getByNote(id: Long) = dao.getByNote(id)
+    suspend fun getByNote(id: Long) = dao.getByNote(id)
 
 }

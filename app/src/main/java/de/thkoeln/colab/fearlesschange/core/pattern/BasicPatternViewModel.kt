@@ -72,5 +72,4 @@ abstract class BasicPatternViewModel(application: Application) : AndroidViewMode
         }
         snackbarEvent.invoke(SnackBarMessage(message))
     }
-
 }

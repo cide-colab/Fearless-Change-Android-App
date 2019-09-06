@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.adapters.SwipeToDeleteRecyclerViewAdapter
 import de.thkoeln.colab.fearlesschange.persistance.label.Label
-import kotlinx.android.synthetic.main.label_item.view.*
+import kotlinx.android.synthetic.main.create_label_item.view.*
 
 class LabelRecyclerAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Label, LabelRecyclerAdapter.LabelViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelViewHolder {
-        return LabelViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.label_item, parent, false))
+        return LabelViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.create_label_item, parent, false))
     }
 
     class LabelViewHolder(itemView: View) : ViewHolder<Label>(itemView) {

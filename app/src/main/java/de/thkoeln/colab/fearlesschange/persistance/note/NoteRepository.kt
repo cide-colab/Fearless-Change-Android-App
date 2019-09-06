@@ -16,7 +16,6 @@ class NoteRepository(context: Context) {
     suspend fun deleteAll() = dao.deleteAll()
     fun get(id: Long) = dao.get(id)
     fun getAll() = dao.getAll()
-    fun getNotesForPattern(id: Long) = dao.getNotesForPattern(id)
+    suspend fun getNotesForPattern(id: Long) = dao.getNotesForPattern(id)
     fun getCount() = dao.getCount()
-
 }

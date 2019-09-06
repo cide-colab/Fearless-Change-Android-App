@@ -9,7 +9,7 @@ import de.thkoeln.colab.fearlesschange.persistance.label.LabelRepository
 import de.thkoeln.colab.fearlesschange.persistance.note.Note
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
 import de.thkoeln.colab.fearlesschange.persistance.noteLabelJoin.NoteLabelJoinRepository
-import de.thkoeln.colab.fearlesschange.persistance.todos.CheckboxData
+import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
 import kotlinx.coroutines.runBlocking
 
@@ -20,14 +20,14 @@ class CreateNoteViewModel(application: Application, private val args: CreateNote
     private val todoRepository = TodoRepository(application)
     private val patternLabelTodoRepository = NoteLabelJoinRepository(application)
 
-    fun onSaveClicked(labels: List<Label>, note: String, todosRaw: List<CheckboxData>) {
+    fun onSaveClicked(labels: List<Label>, note: String, todosRaw: List<Todo>) {
         runBlocking {
             val noteId = noteRepository.insert(Note(patternId = args.patternId, text = note))
             val todos = todosRaw.map { it.copy(noteId = noteId) }
             todoRepository.insert(todos)
             //TODO insert only if not exists!
-            labelRepository.insert(labels)
-            patternLabelTodoRepository.join(noteId, labels)
+            val labelIds = labelRepository.insert(labels)
+            patternLabelTodoRepository.join(noteId, labelIds)
         }
     }
 }

@@ -7,28 +7,28 @@ import androidx.room.*
 interface TodoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(todo: CheckboxData): Long
+    suspend fun insert(todo: Todo): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(todos: List<CheckboxData>): List<Long>
+    suspend fun insert(todos: List<Todo>): List<Long>
 
     @Update
-    suspend fun update(todos: CheckboxData)
+    suspend fun update(todos: Todo): Int
 
     @Delete
-    suspend fun delete(todos: CheckboxData)
+    suspend fun delete(todos: Todo)
 
     @Query("DELETE FROM todos")
     suspend fun deleteAll()
 
     @Query("SELECT * FROM todos WHERE id = :id LIMIT 1")
-    fun get(id: Long): LiveData<CheckboxData>
+    suspend fun get(id: Long): Todo
 
     @Query("SELECT * FROM todos")
-    fun getAll(): LiveData<List<CheckboxData>>
+    fun getAll(): LiveData<List<Todo>>
 
     @Query("SELECT * FROM todos WHERE noteId = :id")
-    fun getByNote(id: Long): LiveData<List<CheckboxData>>
+    suspend fun getByNote(id: Long): List<Todo>
 
     @Query("SELECT COUNT(*) FROM todos")
     fun getCount(): LiveData<Long>

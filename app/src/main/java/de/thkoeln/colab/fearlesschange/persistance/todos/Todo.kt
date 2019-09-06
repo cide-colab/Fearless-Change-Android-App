@@ -20,7 +20,7 @@ import de.thkoeln.colab.fearlesschange.persistance.note.Note
         ]
 )
 
-data class CheckboxData(
+data class Todo(
         var state: Boolean,
         var text: String,
         val noteId: Long,
