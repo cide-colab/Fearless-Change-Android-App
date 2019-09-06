@@ -5,6 +5,7 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
 import de.thkoeln.colab.fearlesschange.persistance.statistic.StatisticAction
+import kotlinx.coroutines.runBlocking
 
 class SettingsViewModel(application: Application) : BasicPatternViewModel(application) {
 
@@ -26,7 +27,9 @@ class SettingsViewModel(application: Application) : BasicPatternViewModel(applic
 
     fun resetNotesClicked() {
         requestConfirmation(R.string.message_request_confirmation_reset_note) {
-            noteRepository.deleteAll()
+            runBlocking {
+                noteRepository.deleteAll()
+            }
             notify(R.string.message_notes_reset)
         }
     }

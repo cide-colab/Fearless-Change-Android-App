@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.adapters.SwipeToDeleteRecyclerViewAdapter
-import de.thkoeln.colab.fearlesschange.persistance.CheckboxData
+import de.thkoeln.colab.fearlesschange.persistance.todos.CheckboxData
 import kotlinx.android.synthetic.main.create_checkbox_item.view.*
 
 class CreateCheckboxRecyclerAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<CheckboxData, CreateCheckboxRecyclerAdapter.CreateCheckboxViewHolder>(context) {

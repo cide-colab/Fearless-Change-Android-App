@@ -20,15 +20,15 @@ class CreateNoteViewModel(application: Application, private val args: CreateNote
     private val todoRepository = TodoRepository(application)
     private val patternLabelTodoRepository = NoteLabelJoinRepository(application)
 
-    fun onSaveClicked(labels: MutableList<Label>, note: String, todos: MutableList<CheckboxData>) {
+    fun onSaveClicked(labels: List<Label>, note: String, todosRaw: List<CheckboxData>) {
         runBlocking {
             val noteId = noteRepository.insert(Note(patternId = args.patternId, text = note))
-            labelRepository.insert(labels)
+            val todos = todosRaw.map { it.copy(noteId = noteId) }
             todoRepository.insert(todos)
+            //TODO insert only if not exists!
+            labelRepository.insert(labels)
             patternLabelTodoRepository.join(noteId, labels)
         }
-
-
     }
 }
 

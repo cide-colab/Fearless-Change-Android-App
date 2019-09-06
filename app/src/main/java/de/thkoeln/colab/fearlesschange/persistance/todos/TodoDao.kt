@@ -10,7 +10,7 @@ interface TodoDao {
     suspend fun insert(todo: CheckboxData): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(todos: List<CheckboxData>): Long
+    suspend fun insert(todos: List<CheckboxData>): List<Long>
 
     @Update
     suspend fun update(todos: CheckboxData)

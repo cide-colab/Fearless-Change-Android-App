@@ -5,49 +5,51 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class RecyclerViewAdapter<T, VH : RecyclerViewAdapter.ViewHolder<T>> : RecyclerView.Adapter<VH>() {
 
-    protected val items = mutableListOf<T>()
+    private val _items = mutableListOf<T>()
+    val items: List<T> = _items
+
     var onItemClickedListener: (item: T) -> Unit = {}
 
     fun setItems(items: List<T>) {
         val prevCount = itemCount
-        this.items.clear()
+        this._items.clear()
         notifyItemRangeRemoved(0, prevCount)
         items.forEach { addItem(it) }
     }
 
     fun setItemsNotEquals(items: List<T>) {
         items.forEachIndexed { index, item ->
-            if (this.items.getOrNull(index) != item) {
+            if (this._items.getOrNull(index) != item) {
                 addItem(item, index)
             }
         }
-        while (this.items.size > items.size) {
+        while (this._items.size > items.size) {
             removeLastItem()
         }
     }
 
     fun removeLastItem() {
-        removeItem(this.items.lastIndex)
+        removeItem(this._items.lastIndex)
     }
 
     fun removeItem(position: Int) {
-        this.items.removeAt(position)
+        this._items.removeAt(position)
         notifyItemRemoved(position)
     }
 
     fun addItem(item: T, position: Int) {
-        this.items.add(position, item)
+        this._items.add(position, item)
         notifyItemInserted(position)
     }
 
     fun addItem(item: T) {
-        addItem(item, this.items.size)
+        addItem(item, this._items.size)
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = _items.size
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val item = items[position]
+        val item = _items[position]
         holder.bind(item)
         holder.notifyItemClicked = onItemClickedListener
 //        onItemClickedListener?.let { holder.getClickableView().setOnClickListener { it(item) } }

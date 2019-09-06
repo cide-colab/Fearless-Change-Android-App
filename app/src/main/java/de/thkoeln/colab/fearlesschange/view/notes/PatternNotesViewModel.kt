@@ -7,6 +7,7 @@ import de.thkoeln.colab.fearlesschange.core.events.SingleActionLiveData
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.persistance.note.Note
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
+import kotlinx.coroutines.runBlocking
 
 class PatternNotesViewModel(application: Application, args: PatternNotesFragmentArgs) : BasicPatternViewModel(application) {
 
@@ -14,7 +15,11 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
 
     private val noteRepository = NoteRepository(application)
 
-    val onItemDeleteListener: (item: Note) -> Unit = { noteRepository.delete(it) }
+    val onItemDeleteListener: (item: Note) -> Unit = {
+        runBlocking {
+            noteRepository.delete(it)
+        }
+    }
 
     val notes = noteRepository.getNotesForPattern(id)
 

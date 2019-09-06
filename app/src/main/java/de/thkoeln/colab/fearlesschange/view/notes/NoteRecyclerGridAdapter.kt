@@ -19,7 +19,7 @@ class NoteRecyclerGridAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapt
 
     class NoteViewHolder(itemView: View) : ViewHolder<Note>(itemView) {
         override fun bind(item: Note) {
-            itemView.note_text.loadData(item.text, "text/html", "UTF8")
+//            itemView.note_text.loadData(item.text, "text/html", "UTF8")
         }
     }
 }

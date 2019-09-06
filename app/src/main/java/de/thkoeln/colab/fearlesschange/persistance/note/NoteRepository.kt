@@ -10,9 +10,9 @@ class NoteRepository(context: Context) {
 
     private val dao = AppDatabase.getInstance(context).noteDao()
 
-    suspend fun insert(vararg notes: Note) = dao.insert(*notes)
-    suspend fun update(vararg notes: Note) = dao.update(*notes)
-    suspend fun delete(vararg notes: Note) = dao.delete(*notes)
+    suspend fun insert(notes: Note) = dao.insert(notes)
+    suspend fun update(notes: Note) = dao.update(notes)
+    suspend fun delete(notes: Note) = dao.delete(notes)
     suspend fun deleteAll() = dao.deleteAll()
     fun get(id: Long) = dao.get(id)
     fun getAll() = dao.getAll()
