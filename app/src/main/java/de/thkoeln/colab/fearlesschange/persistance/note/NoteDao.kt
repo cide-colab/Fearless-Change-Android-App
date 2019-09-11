@@ -25,7 +25,7 @@ interface NoteDao {
     fun get(id: Long): LiveData<Note>
 
     @Query("SELECT * FROM note")
-    fun getAll(): LiveData<List<Note>>
+    suspend fun getAll(): List<Note>
 
     @Query("SELECT * FROM note WHERE patternId = :id")
     suspend fun getNotesForPattern(id: Long): List<Note>

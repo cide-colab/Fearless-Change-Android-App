@@ -15,19 +15,19 @@
         android:padding="@dimen/default_padding">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/note_grid_item.label_container"
+            android:id="@+id/pattern_note_item.label_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default_margin"
             android:background="@android:color/white"
             android:nestedScrollingEnabled="false"
-            app:layout_constraintBottom_toTopOf="@+id/note_grid_item.note_text"
+            app:layout_constraintBottom_toTopOf="@+id/pattern_note_item.note_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/note_grid_item.todo_container"
+            android:id="@+id/pattern_note_item.todo_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
@@ -35,19 +35,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/note_grid_item.note_text" />
+            app:layout_constraintTop_toBottomOf="@id/pattern_note_item.note_text" />
 
         <jp.wasabeef.richeditor.RichEditor
-            android:id="@+id/note_grid_item.note_text"
+            android:id="@+id/pattern_note_item.note_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:imeOptions="flagNoExtractUi"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@id/note_grid_item.note_text"
+            app:layout_constraintBottom_toTopOf="@id/pattern_note_item.note_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/note_grid_item.label_container" />
+            app:layout_constraintTop_toBottomOf="@+id/pattern_note_item.label_container" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

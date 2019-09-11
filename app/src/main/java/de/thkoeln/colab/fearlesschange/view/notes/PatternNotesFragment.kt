@@ -2,7 +2,6 @@ package de.thkoeln.colab.fearlesschange.view.notes
 
 
 import android.os.Bundle
-import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,7 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
         super.onActivityCreated(savedInstanceState)
 
 
-        val adapter = NoteRecyclerGridAdapter(requireContext(), updateTodo)
+        val adapter = PatternNoteRecyclerGridAdapter(requireContext(), updateTodo)
         adapter.afterDeleteItemListener = { item, index ->
             viewModel.deleteNote(item.note)
             Snackbar.make(pattern_notes_container, R.string.message_note_deleted, Snackbar.LENGTH_LONG)
@@ -45,7 +44,6 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
     }
 
     private val updateTodo: UpdateTodo = { todo: Todo, state: Boolean ->
-        d("UpdateTodo", " for Note ${todo.noteId} newState = $state")
         viewModel.updateTodo(todo, state)
     }
 

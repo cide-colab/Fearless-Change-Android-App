@@ -1,7 +1,6 @@
 package de.thkoeln.colab.fearlesschange.view.notes
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
@@ -69,13 +68,8 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
 //    fun getNoteTodos(note: Note) = todoRepository.getByNote(note.id)
 
     fun updateTodo(todo: Todo, state: Boolean) = runBlocking {
-        Log.d("Update TODO", "try ${todo.id} state $state")
-        val updated = todoRepository.update(todo.copy(state = state))
-        val dbTodo = todoRepository.get(todo.id)
-        Log.d("DB TODO", "db  $dbTodo")
-        Log.d("Update TODO", "updated  $updated rows")
-        Log.d("Update TODO", "done ${todo.id} state $state")
-
+        todoRepository.update(todo.copy(state = state))
+        todoRepository.get(todo.id)
     }
 
 

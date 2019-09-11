@@ -14,7 +14,7 @@ class PatternRepository(context: Context) {
 
     fun getAll() = dao.getAll()
     fun getAllInfo() = dao.getAllInfo()
-    fun get(id: Long) = dao.get(id)
+    suspend fun get(id: Long) = dao.get(id)
     fun get(ids: List<Long>) = dao.get(ids)
     fun getInfo(id: Long) = dao.getInfo(id)
     fun getInfos(ids: List<Long>) = dao.getInfos(ids)

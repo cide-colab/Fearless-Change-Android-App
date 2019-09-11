@@ -25,7 +25,7 @@ import java.io.FileOutputStream
 class ShareManager(private val activity: Activity) {
 
     fun sharePattern(pattern: Pattern) {
-        val view = LayoutInflater.from(activity).inflate(R.layout.note_grid_item, null, false)
+        val view = LayoutInflater.from(activity).inflate(R.layout.pattern_note_item, null, false)
         with(pattern) {
             val image = view.context.getDrawable(pictureName) ?: R.drawable.default_pattern_image
             view.print_front_title.text = title

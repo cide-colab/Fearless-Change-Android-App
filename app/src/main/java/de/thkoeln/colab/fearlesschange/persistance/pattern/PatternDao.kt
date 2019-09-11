@@ -14,7 +14,7 @@ interface PatternDao {
     fun getAll(): LiveData<List<Pattern>>
 
     @Query("SELECT * FROM pattern WHERE id = :id LIMIT 1")
-    fun get(id: Long): LiveData<Pattern>
+    suspend fun get(id: Long): Pattern
 
     @Query("SELECT * FROM pattern WHERE id IN (:ids)")
     fun get(ids: List<Long>): LiveData<List<Pattern>>
