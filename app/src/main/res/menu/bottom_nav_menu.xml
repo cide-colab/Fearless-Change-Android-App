@@ -17,9 +17,9 @@
         android:title="@string/label_nav_favorites"
         app:showAsAction="always" />
     <item
-        android:id="@+id/nav_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/label_nav_search"
+        android:id="@+id/nav_notes"
+        android:icon="@drawable/ic_note_white_24dp"
+        android:title="@string/action_notes"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/nav_settings"

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Cards -->
-    <style name="PatternCardView">
+    <style name="Pattern">
         <item name="android:clipChildren">true</item>
         <item name="cardCornerRadius">8dp</item>
         <item name="cardElevation">2dp</item>
-        <item name="cardPreventCornerOverlap">false</item>
-        <item name="layout_constraintDimensionRatio">55:86</item>
         <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="cardPreventCornerOverlap">true</item>
     </style>
+
+    <style name="PatternCardView" parent="Pattern">
+        <item name="layout_constraintDimensionRatio">55:86</item>
+    </style>
+
+    <style name="PatternCardShort" parent="Pattern"></style>
 
     <style name="PatternCardViewMainWrapper">
         <!--<item name="android:background">@drawable/card_bg</item>-->
