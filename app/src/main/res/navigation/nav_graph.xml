@@ -125,5 +125,9 @@
         <argument
             android:name="patternId"
             app:argType="long" />
+        <argument
+            android:name="hide_nav"
+            android:defaultValue="true"
+            app:argType="boolean" />
     </fragment>
 </navigation>
