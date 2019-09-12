@@ -1,5 +1,7 @@
 package de.thkoeln.colab.fearlesschange.view.settings
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import kotlinx.android.synthetic.main.settings_fragment.*
+
 
 class MoreFragment : PatternViewModelFragment<MoreViewModel>() {
 
@@ -27,6 +30,9 @@ class MoreFragment : PatternViewModelFragment<MoreViewModel>() {
         more_reset_notes_container.setOnClickListener { viewModel.resetNotesClicked() }
         more_reset_labels_container.setOnClickListener { viewModel.resetLabelsClicked() }
         more_reset_all_container.setOnClickListener { viewModel.resetToFactorySettingsClicked() }
+        more_more_btn.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://fearlesschangepatterns.com/")))
+        }
     }
 
     override fun createViewModel() = ViewModelProviders.of(this).get(MoreViewModel::class.java)

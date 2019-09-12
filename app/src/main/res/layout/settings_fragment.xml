@@ -69,12 +69,22 @@
                     app:layout_constraintStart_toEndOf="@id/more.ic_info"
                     app:layout_constraintTop_toTopOf="@id/more.ic_info" />
 
+                <Button
+                    android:id="@+id/more.more_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/more_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.info" />
+
                 <TextView
                     android:id="@+id/more.info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/info_fc"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/more.more_btn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/more.image_fc" />
