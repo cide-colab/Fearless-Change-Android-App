@@ -33,4 +33,6 @@ interface NoteDao {
     @Query("SELECT COUNT(*) FROM note")
     fun getCount(): LiveData<Long>
 
+    @Query("SELECT * FROM note WHERE text LIKE '%'||:query||'%'")
+    suspend fun getLike(query: String): List<Note>
 }

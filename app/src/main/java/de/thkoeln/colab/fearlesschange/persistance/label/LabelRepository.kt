@@ -18,7 +18,7 @@ class LabelRepository(context: Context?) {
             if (existing == null) {
                 insert(it)
             } else {
-                update(it.copy(id = existing.id, color = existing.color))
+                update(it.copy(id = existing.id))
                 existing.id
             }
         }
@@ -29,6 +29,8 @@ class LabelRepository(context: Context?) {
     fun get(id: Long) = dao.get(id)
 
     suspend fun getByName(name: String) = dao.getByName(name)
+
+    suspend fun getLike(name: String) = dao.getLike(name)
 
     suspend fun getAll() = dao.getAll()
 

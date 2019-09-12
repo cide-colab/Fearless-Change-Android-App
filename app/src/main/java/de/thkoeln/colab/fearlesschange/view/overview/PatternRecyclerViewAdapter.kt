@@ -11,7 +11,7 @@ import de.thkoeln.colab.fearlesschange.core.getResourceId
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 import kotlinx.android.synthetic.main.pattern_preview.view.*
 
-class CardsRecyclerViewAdapter : RecyclerViewAdapter<PatternInfo, CardsRecyclerViewAdapter.OverviewViewHolder>() {
+class PatternRecyclerViewAdapter : RecyclerViewAdapter<PatternInfo, PatternRecyclerViewAdapter.OverviewViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             OverviewViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.pattern_preview, parent, false))

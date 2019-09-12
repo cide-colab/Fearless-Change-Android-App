@@ -32,4 +32,8 @@ interface LabelDao {
 
     @Query("SELECT * FROM labels WHERE TRIM(LOWER(name)) = TRIM(LOWER(:name)) LIMIT 1")
     suspend fun getByName(name: String): Label?
+
+    @Query("SELECT * FROM labels WHERE name LIKE '%'||:name||'%'")
+    suspend fun getLike(name: String): List<Label>
+
 }

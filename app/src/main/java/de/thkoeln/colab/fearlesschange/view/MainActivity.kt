@@ -48,7 +48,9 @@ class MainActivity : AppCompatActivity() {
         }
         navHostFragment?.childFragmentManager?.apply {
             addOnBackStackChangedListener {
-                fragments.getOrNull(0)?.let { it as? SearchFragment }?.let { searchView?.setOnQueryTextListener(it) }
+                fragments.getOrNull(0)?.let { it as? SearchFragment }?.let {
+                    searchView?.setOnQueryTextListener(it)
+                } ?: searchView?.setOnQueryTextListener(null)
             }
         }
     }
@@ -59,16 +61,14 @@ class MainActivity : AppCompatActivity() {
         val searchManager = getSystemService(SEARCH_SERVICE) as SearchManager
 
         searchView = (menu.findItem(R.id.action_search).actionView as SearchView).apply {
+            isSubmitButtonEnabled = false
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
                 override fun onViewAttachedToWindow(arg0: View) {
                     navHostFragment?.navController?.navigate(R.id.nav_search)
                 }
 
-                override fun onViewDetachedFromWindow(arg0: View) {
-                    navHostFragment?.navController?.popBackStack()
-                    searchView?.setOnQueryTextListener(null)
-                }
+                override fun onViewDetachedFromWindow(arg0: View) {}
             })
 
         }

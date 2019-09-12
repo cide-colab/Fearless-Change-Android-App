@@ -25,7 +25,7 @@ class CardsFragment : PatternViewModelFragment<CardsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = CardsRecyclerViewAdapter()
+        val adapter = PatternRecyclerViewAdapter()
         pattern_cards_recycler_view.adapter = adapter
         pattern_cards_recycler_view.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
 

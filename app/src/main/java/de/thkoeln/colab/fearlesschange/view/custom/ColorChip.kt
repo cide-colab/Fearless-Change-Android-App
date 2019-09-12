@@ -20,16 +20,6 @@ typealias OnColorChipCheckChangedListener = (chip: ColorChip) -> Unit
 class ColorChipGroup @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FlexboxLayout(context, attrs, defStyleAttr) {
 
     var onColorChipCheckChangedListener: OnColorChipCheckChangedListener = {}
-//    init {
-//
-////        isClickable = true
-////        isFocusable = true
-//
-//    }
-//
-////    fun getColorChips() = children.mapNotNull { it as? ColorChip }
-////    fun getSelected() = getColorChips().find { it.isChecked }
-
     override fun addView(child: View) {
         super.addView(child)
         viewAdded(child)
@@ -66,7 +56,7 @@ class ColorChipGroup @JvmOverloads constructor(context: Context, attrs: Attribut
         }
     }
 
-    fun getSelectedColor() = colorChips.find { it.isChecked }?.color ?: Color.GRAY
+    fun getSelectedColor() = colorChips.find { it.isChecked }?.color
 
     private val onCheckChanged: (chip: ColorChip) -> Unit = { changed ->
         if (changed.isChecked) {
@@ -78,21 +68,6 @@ class ColorChipGroup @JvmOverloads constructor(context: Context, attrs: Attribut
         }
         onColorChipCheckChangedListener(changed)
     }
-
-
-//    fun addColor(color: Int) {
-//        val colorChip = ColorChip(context)
-//        val params = LayoutParams(48.toPx(), 48.toPx())
-//        params.setMargins(2.toPx())
-//        colorChip. layoutParams = params
-//        colorChip.color = color
-////        <de.thkoeln.colab.fearlesschange.view.custom.ColorChip
-////        android:id="@+id/create_label_dialog.color_group.holo_red_dark"
-////        android:layout_width="48dp"
-////        android:layout_height="48dp"
-////        android:layout_margin="2dp"
-////        app:color="@android:color/holo_red_dark"/>
-//    }
 
 }
 
@@ -163,26 +138,8 @@ class ColorChip @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
 
     override fun onDraw(canvas: Canvas) {
-//        canvas.save()
-//        canvas.restore()
-//        val save = canvas.save()
-//        canvas.clipPath(path)
-//        canvas.drawColor(color)
         canvas.drawPath(path, paint)
-//
-//        Log.d("CHECKED", isChecked.toString())
-//        if(isChecked) {
-//            val centerW = width / 2
-//            val centerH = height / 2
-//            Log.d("Draw", isChecked.toString())
-//            d.setBounds(centerW - 12, centerH - 12, centerW + 12, centerH + 12)
-//            d.draw(canvas)
-//        } else {
-//            Log.d("!Draw", isChecked.toString())
-//        }
-
         super.onDraw(canvas)
-//        canvas.restoreToCount(save)
 
     }
 

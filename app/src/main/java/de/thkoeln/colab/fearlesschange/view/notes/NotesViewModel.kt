@@ -5,7 +5,7 @@ import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.persistance.note.Note
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
 import de.thkoeln.colab.fearlesschange.persistance.noteLabelJoin.NoteLabelJoinRepository
-import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
 import kotlinx.coroutines.runBlocking
@@ -23,12 +23,11 @@ class NotesViewModel(application: Application) : BasicPatternViewModel(applicati
     val updateTodo: (todo: Todo, newState: Boolean) -> Unit = { todo, state ->
         runBlocking {
             todoRepo.update(todo.copy(state = state))
-            todoRepo.get(todo.id)
         }
     }
-    val patternClicked: (pattern: Pattern) -> Unit = {
+    val patternClicked: (pattern: PatternInfo) -> Unit = {
         notifyPatternClicked(it)
-        notifyAction(NotesFragmentDirections.actionNavNotesToPatternDetailSwipeFragment(longArrayOf(it.id), it.id))
+        notifyAction(NotesFragmentDirections.actionNavNotesToPatternDetailSwipeFragment(longArrayOf(it.pattern.id), it.pattern.id))
 
     }
 

@@ -15,6 +15,7 @@ class NoteRepository(context: Context) {
     suspend fun delete(notes: Note) = dao.delete(notes)
     suspend fun deleteAll() = dao.deleteAll()
     fun get(id: Long) = dao.get(id)
+    suspend fun getLike(query: String) = dao.getLike(query)
     suspend fun getAll() = dao.getAll()
     suspend fun getNotesForPattern(id: Long) = dao.getNotesForPattern(id)
     fun getCount() = dao.getCount()

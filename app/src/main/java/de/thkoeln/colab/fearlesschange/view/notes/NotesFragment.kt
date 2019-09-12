@@ -22,7 +22,7 @@ class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = NoteRecyclerGridAdapter(requireContext(), viewModel.updateTodo, viewModel.patternClicked)
+        val adapter = NoteRecyclerViewAdapter(requireContext(), viewModel.updateTodo, viewModel.patternClicked)
 
         adapter.afterDeleteItemListener = { item, index ->
             viewModel.deleteNote(item.note.note)

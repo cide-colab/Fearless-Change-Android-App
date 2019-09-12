@@ -11,5 +11,6 @@ class NoteLabelJoinRepository(context: Context?) {
     suspend fun join(noteId: Long, labelIds: List<Long>) = dao.insert(labelIds.map { NoteLabelJoin(noteId, it) })
 
     suspend fun getByNote(id: Long) = dao.getByNoteId(id)
+    suspend fun getByLabelLike(query: String) = dao.getByLabel(query)
 
 }

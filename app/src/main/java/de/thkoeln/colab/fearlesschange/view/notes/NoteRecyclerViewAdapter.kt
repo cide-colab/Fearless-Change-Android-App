@@ -10,17 +10,17 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.adapters.SwipeToDeleteRecyclerViewAdapter
 import de.thkoeln.colab.fearlesschange.core.getDrawable
-import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 import kotlinx.android.synthetic.main.note_item.view.*
 
-data class NoteData(val pattern: Pattern, val note: PatternNoteData)
+data class NoteData(val pattern: PatternInfo, val note: PatternNoteData)
 
-class NoteRecyclerGridAdapter(context: Context, private val updateTodo: UpdateTodo, private val patternClicked: (pattern: Pattern) -> Unit) : SwipeToDeleteRecyclerViewAdapter<NoteData, NoteRecyclerGridAdapter.NoteViewHolder>(context) {
+class NoteRecyclerViewAdapter(context: Context, private val updateTodo: UpdateTodo, private val patternClicked: (pattern: PatternInfo) -> Unit) : SwipeToDeleteRecyclerViewAdapter<NoteData, NoteRecyclerViewAdapter.NoteViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             NoteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false), updateTodo, patternClicked)
 
-    class NoteViewHolder(itemView: View, updateTodo: UpdateTodo, private val patternClicked: (pattern: Pattern) -> Unit) : ViewHolder<NoteData>(itemView) {
+    class NoteViewHolder(itemView: View, updateTodo: UpdateTodo, private val patternClicked: (pattern: PatternInfo) -> Unit) : ViewHolder<NoteData>(itemView) {
         private val labelAdapter = PatternNoteLabelRecyclerAdapter()
         private val todoAdapter = PatternNoteTodoRecyclerAdapter(updateTodo)
 
@@ -39,15 +39,16 @@ class NoteRecyclerGridAdapter(context: Context, private val updateTodo: UpdateTo
             todoAdapter.setItems(item.note.todos)
             itemView.note_item_note_text.html = item.note.note.text
 
-
-            with(item.pattern) {
-                val picture = itemView.context.getDrawable(pictureName)
-                        ?: R.drawable.default_pattern_image
-                itemView.note_item_pattern_image.setImageResource(picture)
-                itemView.note_item_pattern_title.text = title
-                itemView.note_item_pattern_summary.text = summary
-                itemView.note_item_pattern_cardview.setOnClickListener { patternClicked(this) }
-//                itemView.note_item_pattern_cardview.setOnClickListener { patternClickedListener(value) }
+            with(item.pattern.pattern) {
+                itemView.note_item_pattern_image?.setImageResource(itemView.context?.getDrawable(pictureName)
+                        ?: R.drawable.default_pattern_image)
+                itemView.note_item_pattern_title?.text = title
+                itemView.note_item_pattern_summary?.text = summary
+                itemView.note_item_pattern_favorite_icon.visibility = if (favorite) View.VISIBLE else View.GONE
+                itemView.note_item_pattern_notes_count.text = item.pattern.noteCount.toString()
+                itemView.note_item_pattern_notes_count.visibility = if (item.pattern.noteCount > 0) View.VISIBLE else View.GONE
+                itemView.note_item_pattern_notes_icon.visibility = if (item.pattern.noteCount > 0) View.VISIBLE else View.GONE
+                itemView.note_item_pattern_cardview.setOnClickListener { patternClicked(item.pattern) }
             }
         }
     }

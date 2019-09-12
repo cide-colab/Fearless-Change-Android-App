@@ -71,6 +71,10 @@
     <string name="note_hint">Note...</string>
     <string name="title_create_lable">Label</string>
     <string name="hint_create_label">Choose or create label</string>
+    <string name="labels">Labels</string>
+    <string name="notes">Notes</string>
+    <string name="cards">Cards</string>
+    <string name="search_in">Search in:</string>
 
 
 </resources>

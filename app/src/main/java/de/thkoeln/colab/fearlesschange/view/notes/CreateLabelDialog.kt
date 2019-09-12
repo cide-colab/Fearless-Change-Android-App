@@ -2,6 +2,7 @@ package de.thkoeln.colab.fearlesschange.view.notes
 
 import android.app.Activity
 import android.app.Dialog
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
@@ -58,7 +59,8 @@ class CreateLabelDialog(private val labels: List<Label>) : DialogFragment() {
                 if (view.create_label_dialog_name.text.toString().isNotBlank()) {
                     val text = view.create_label_dialog_name.text.toString().trim()
                     val color = view.create_label_dialog_color_group.getSelectedColor()
-                    onConfirm(getExistingLabel(text)?.copy(color = color) ?: Label(text, color))
+                    val label = getExistingLabel(text) ?: Label(text, Color.GRAY)
+                    onConfirm(color?.let { label.copy(color = it) } ?: label)
                     dialog.dismiss()
                 } else {
                     view.create_label_dialog_name.error = "Label name cannot be empty"

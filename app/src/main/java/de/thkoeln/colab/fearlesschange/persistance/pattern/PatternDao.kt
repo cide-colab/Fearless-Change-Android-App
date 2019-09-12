@@ -13,8 +13,12 @@ interface PatternDao {
     @Query("SELECT * FROM pattern")
     fun getAll(): LiveData<List<Pattern>>
 
-    @Query("SELECT * FROM pattern WHERE id = :id LIMIT 1")
-    suspend fun get(id: Long): Pattern
+    @Query("""
+        SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount 
+        FROM (SELECT * FROM pattern p LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId 
+        WHERE p.id = :id LIMIT 1)
+        """)
+    suspend fun get(id: Long): PatternInfo
 
     @Query("SELECT * FROM pattern WHERE id IN (:ids)")
     fun get(ids: List<Long>): LiveData<List<Pattern>>
@@ -25,11 +29,11 @@ interface PatternDao {
             ")")
     fun getAllInfo(): LiveData<List<PatternInfo>>
 
-    @Query("SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount FROM (" +
-            "SELECT * FROM pattern p" +
-            " LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId" +
-            "  WHERE p.id = :id LIMIT 1" +
-            ")")
+    @Query("""
+        SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount 
+        FROM (SELECT * FROM pattern p LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId 
+        WHERE p.id = :id LIMIT 1)
+        """)
     fun getInfo(id: Long): LiveData<PatternInfo>
 
     @Query("SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount FROM (" +
@@ -46,7 +50,7 @@ interface PatternDao {
     fun getFavorites(): LiveData<List<Pattern>>
 
     @Query("SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount FROM (" +
-            "SELECT * FROM pattern p"  +
+            "SELECT * FROM pattern p" +
             " LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId" +
             " WHERE favorite" +
             ")")
@@ -68,6 +72,10 @@ interface PatternDao {
     @Query("UPDATE pattern SET favorite = :flag")
     fun setAllFavorites(flag: Boolean)
 
-        @Query("SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount FROM (SELECT * FROM (SELECT c.* FROM pattern c, pattern_keyword ck WHERE c.id = ck.patternId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length) cards LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON cards.id = n.patternId)")
+    @Query("SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount FROM (SELECT * FROM (SELECT c.* FROM pattern c, pattern_keyword ck WHERE c.id = ck.patternId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length) cards LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON cards.id = n.patternId)")
     fun getByKeywordIds(keywordIds: List<Long>, length: Int = keywordIds.size): LiveData<List<PatternInfo>>
+
+
+    @Query("SELECT p.id, p.title, p.pictureName, p.problem, p.summary, p.solution, p.favorite, n.noteCount FROM pattern p LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON p.id = n.patternId WHERE problem LIKE '%'||:query||'%' OR solution LIKE '%'||:query||'%' OR summary LIKE '%'||:query||'%' OR title LIKE '%'||:query||'%'")
+    suspend fun getLike(query: String): List<PatternInfo>
 }
