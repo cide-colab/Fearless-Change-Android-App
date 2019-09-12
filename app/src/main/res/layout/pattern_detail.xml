@@ -49,7 +49,7 @@
                         style="@style/PatternCardContentIcon.Problem"
                         android:contentDescription="@string/image_description_problem" />
 
-                    <TextView
+                    <de.thkoeln.colab.fearlesschange.view.custom.ResponsiveTextView
                         android:id="@+id/pattern_detail_back_problem"
                         style="@style/PatternCardViewText.Detail.Back"
                         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                         style="@style/PatternCardContentIcon.Solution"
                         android:contentDescription="@string/image_description_solution" />
 
-                    <TextView
+                    <de.thkoeln.colab.fearlesschange.view.custom.ResponsiveTextView
                         android:id="@+id/pattern_detail_back_solution"
                         style="@style/PatternCardViewText.Detail.Back"
                         android:layout_width="match_parent"
@@ -135,11 +135,11 @@
                 app:layout_constraintVertical_bias="0">
 
 
-                <TextView
+                <de.thkoeln.colab.fearlesschange.view.custom.ResponsiveTextView
                     android:id="@+id/pattern_detail_front_summary"
                     style="@style/PatternCardViewText.Detail"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import kotlinx.android.synthetic.main.notes_fragment.*
 
 class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
@@ -25,7 +26,7 @@ class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
 
         adapter.afterDeleteItemListener = { item, index ->
             viewModel.deleteNote(item.note.note)
-            Snackbar.make(notes_fragment_recycler_view, R.string.message_note_deleted, Snackbar.LENGTH_LONG)
+            Snackbar.make(notes_fragment_recycler_view, resources.getString(R.string.message_note_deleted, item.note.note.text.subSequence(0, 10)), Snackbar.LENGTH_LONG)
                     .setAction(R.string.action_undo) {
                         viewModel.addNote(item.note.note)
                         adapter.restoreItem(item, index)
@@ -36,6 +37,7 @@ class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
 
         notes_fragment_recycler_view.layoutManager = LinearLayoutManager(requireContext())
         notes_fragment_recycler_view.adapter = adapter
+        notes_fragment_recycler_view.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
 
         viewModel.getNoteData { adapter.setItems(it) }
 

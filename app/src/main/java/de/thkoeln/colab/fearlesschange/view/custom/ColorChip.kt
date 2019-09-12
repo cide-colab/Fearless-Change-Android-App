@@ -1,4 +1,4 @@
-package de.thkoeln.colab.fearlesschange.view.notes
+package de.thkoeln.colab.fearlesschange.view.custom
 
 import android.content.Context
 import android.graphics.Canvas
@@ -86,7 +86,7 @@ class ColorChipGroup @JvmOverloads constructor(context: Context, attrs: Attribut
 //        params.setMargins(2.toPx())
 //        colorChip. layoutParams = params
 //        colorChip.color = color
-////        <de.thkoeln.colab.fearlesschange.view.notes.ColorChip
+////        <de.thkoeln.colab.fearlesschange.view.custom.ColorChip
 ////        android:id="@+id/create_label_dialog.color_group.holo_red_dark"
 ////        android:layout_width="48dp"
 ////        android:layout_height="48dp"

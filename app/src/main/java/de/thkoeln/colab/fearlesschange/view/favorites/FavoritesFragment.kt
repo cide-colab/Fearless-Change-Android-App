@@ -10,6 +10,7 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import kotlinx.android.synthetic.main.favorites_fragment.*
 
 
@@ -38,6 +39,7 @@ class FavoritesFragment : PatternViewModelFragment<FavoritesViewModel>() {
 
         adapter.onItemClickedListener = viewModel.patternCardClicked
         favorites_recycler_view.adapter = adapter
+        favorites_recycler_view.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
 
         viewModel.pattern.observe(this) { adapter.setItemsNotEquals(it) }
     }
