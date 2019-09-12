@@ -55,7 +55,7 @@
     <string name="massage_no_pattern_to_share">No Pattern found to share</string>
     <string name="message_pattern_removed_from_fav">The pattern %1$s was removed from favorites</string>
     <string name="message_keyword_removed_from_filters">The keyword %1$s was removed from filters</string>
-    <string name="message_note_deleted">Note %1$s was deleted</string>
+    <string name="message_note_deleted">Note was deleted</string>
 
     <!-- Share -->
     <string name="share_text">Look, I found the Pattern "%1$s". Maybe that\'s something for you.</string>

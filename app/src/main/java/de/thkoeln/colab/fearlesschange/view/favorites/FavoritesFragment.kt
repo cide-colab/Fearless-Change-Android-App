@@ -29,7 +29,7 @@ class FavoritesFragment : PatternViewModelFragment<FavoritesViewModel>() {
         val adapter = FavoritesSwipeToDeleteAdapter(requireContext())
         adapter.afterDeleteItemListener = { patternInfo: PatternInfo, position: Int ->
             viewModel.toggleFavorite(patternInfo)
-            Snackbar.make(favorites_recycler_view, R.string.message_pattern_removed_from_fav, Snackbar.LENGTH_LONG)
+            Snackbar.make(favorites_recycler_view, getString(R.string.message_pattern_removed_from_fav, patternInfo.pattern.title), Snackbar.LENGTH_LONG)
                     .setAction(R.string.action_undo) {
                         adapter.restoreItem(patternInfo, position)
                         viewModel.toggleFavorite(patternInfo)

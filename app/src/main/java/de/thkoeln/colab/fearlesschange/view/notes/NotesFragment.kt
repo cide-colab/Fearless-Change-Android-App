@@ -26,7 +26,7 @@ class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
 
         adapter.afterDeleteItemListener = { item, index ->
             viewModel.deleteNote(item.note.note)
-            Snackbar.make(notes_fragment_recycler_view, resources.getString(R.string.message_note_deleted, item.note.note.text.subSequence(0, 10)), Snackbar.LENGTH_LONG)
+            Snackbar.make(notes_fragment_recycler_view, R.string.message_note_deleted, Snackbar.LENGTH_LONG)
                     .setAction(R.string.action_undo) {
                         viewModel.addNote(item.note.note)
                         adapter.restoreItem(item, index)
