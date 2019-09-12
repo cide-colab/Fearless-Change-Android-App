@@ -9,10 +9,10 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import kotlinx.android.synthetic.main.settings_fragment.*
 
-class SettingsFragment : PatternViewModelFragment<SettingsViewModel>() {
+class MoreFragment : PatternViewModelFragment<MoreViewModel>() {
 
     companion object {
-        fun newInstance() = SettingsFragment()
+        fun newInstance() = MoreFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,11 +22,12 @@ class SettingsFragment : PatternViewModelFragment<SettingsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        reset_most_clicked_item.setOnClickListener { viewModel.resetMostClickedPatternClicked() }
-        reset_favorites_item.setOnClickListener { viewModel.resetFavoritesClicked() }
-        reset_notes_item.setOnClickListener { viewModel.resetNotesClicked() }
-        reset_to_factory_item.setOnClickListener { viewModel.resetToFactorySettingsClicked() }
+        more_reset_most_clicked_container.setOnClickListener { viewModel.resetMostClickedPatternClicked() }
+        more_reset_favorites_container.setOnClickListener { viewModel.resetFavoritesClicked() }
+        more_reset_notes_container.setOnClickListener { viewModel.resetNotesClicked() }
+        more_reset_labels_container.setOnClickListener { viewModel.resetLabelsClicked() }
+        more_reset_all_container.setOnClickListener { viewModel.resetToFactorySettingsClicked() }
     }
 
-    override fun createViewModel() = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+    override fun createViewModel() = ViewModelProviders.of(this).get(MoreViewModel::class.java)
 }

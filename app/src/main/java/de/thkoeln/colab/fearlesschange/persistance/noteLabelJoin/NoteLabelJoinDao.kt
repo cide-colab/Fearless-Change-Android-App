@@ -18,4 +18,8 @@ interface NoteLabelJoinDao {
 
     @Query("SELECT n.id, n.patternId, n.text FROM note n INNER JOIN note_label_join j ON n.id=j.noteId INNER JOIN labels l ON l.id=j.labelId WHERE l.name LIKE '%' || :query || '%'")
     suspend fun getByLabel(query: String): List<Note>
+
+    @Query("DELETE FROM note_label_join")
+    suspend fun deleteAll()
+
 }

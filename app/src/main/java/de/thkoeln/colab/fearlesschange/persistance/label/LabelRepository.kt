@@ -34,4 +34,6 @@ class LabelRepository(context: Context?) {
 
     suspend fun getAll() = dao.getAll()
 
+    suspend fun deleteAll() = dao.deleteAll()
+
 }

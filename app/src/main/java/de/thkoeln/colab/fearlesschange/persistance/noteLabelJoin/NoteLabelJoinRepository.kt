@@ -12,5 +12,6 @@ class NoteLabelJoinRepository(context: Context?) {
 
     suspend fun getByNote(id: Long) = dao.getByNoteId(id)
     suspend fun getByLabelLike(query: String) = dao.getByLabel(query)
+    suspend fun deleteAll() = dao.deleteAll()
 
 }
