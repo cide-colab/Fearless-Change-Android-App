@@ -11,6 +11,7 @@
         style="@style/PluginPatternContainer"
         android:layout_height="wrap_content"
         android:clipChildren="true"
+        android:padding="@dimen/default_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
