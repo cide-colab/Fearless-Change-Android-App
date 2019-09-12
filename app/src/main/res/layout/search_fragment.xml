@@ -1,48 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_wrapper"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-        android:id="@+id/search_keyword"
-        style="@style/Base.Widget.AppCompat.SearchView"
-        android:layout_margin="4dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_fragment.container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_filter_list_black_24dp"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:maxLines="1"
-        android:hint="@string/hint_search_keyword"
-        app:layout_constraintBottom_toTopOf="@id/selected_keywords"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="@dimen/default_padding">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/selected_keywords"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/search_results"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_keyword"
-        app:spanCount="4" />
+        <CheckBox
+            android:id="@+id/search_fragment.cb_labels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/labels"
+            app:layout_constraintBottom_toBottomOf="@id/search_fragment.search_in_text"
+            app:layout_constraintEnd_toStartOf="@id/search_fragment.cb_note"
+            app:layout_constraintStart_toEndOf="@id/search_fragment.search_in_text"
+            app:layout_constraintTop_toTopOf="@id/search_fragment.search_in_text" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_results"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/default_margin"
-        android:nestedScrollingEnabled="false"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selected_keywords"
-        app:spanCount="2" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <CheckBox
+            android:id="@+id/search_fragment.cb_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/notes"
+            app:layout_constraintBottom_toBottomOf="@id/search_fragment.cb_labels"
+            app:layout_constraintEnd_toStartOf="@id/search_fragment.cb_card"
+            app:layout_constraintStart_toEndOf="@id/search_fragment.cb_labels"
+            app:layout_constraintTop_toTopOf="@id/search_fragment.cb_labels" />
+
+        <CheckBox
+            android:id="@+id/search_fragment.cb_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/cards"
+            app:layout_constraintBottom_toBottomOf="@id/search_fragment.cb_labels"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/search_fragment.cb_note"
+            app:layout_constraintTop_toTopOf="@id/search_fragment.cb_labels" />
+
+        <TextView
+            android:id="@+id/search_fragment.search_in_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_in"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_fragment.notes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintBottom_toTopOf="@id/search_fragment.pattern"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_fragment.search_in_text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_fragment.pattern"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_fragment.notes" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

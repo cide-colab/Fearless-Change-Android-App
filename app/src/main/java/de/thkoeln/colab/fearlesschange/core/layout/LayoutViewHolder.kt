@@ -9,7 +9,8 @@ abstract class LayoutViewHolder<T>(val layout: Int) {
     private var view: View? = null
 
     fun inflate(parent: ViewGroup, attachToRoot: Boolean = false) = inflate(parent, parent.context, attachToRoot)
-    fun inflate(parent: ViewGroup?, context: Context, attachToRoot: Boolean = false) = LayoutInflater.from(context).inflate(layout, parent, attachToRoot).also { view = it }.also { afterViewCreated(it) }
+    fun inflate(parent: ViewGroup?, context: Context, attachToRoot: Boolean = false) = LayoutInflater.from(context).inflate(layout, parent, attachToRoot)
+            .also { view = it }.also { afterViewCreated(it) }.let { this }
 
     private fun setView(view: View) {
         this.view = view

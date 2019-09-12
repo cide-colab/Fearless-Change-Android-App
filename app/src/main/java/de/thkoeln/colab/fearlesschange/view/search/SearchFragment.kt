@@ -1,69 +1,93 @@
 package de.thkoeln.colab.fearlesschange.view.search
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
+import de.thkoeln.colab.fearlesschange.view.notes.NoteRecyclerViewAdapter
+import de.thkoeln.colab.fearlesschange.view.overview.PatternRecyclerViewAdapter
 import kotlinx.android.synthetic.main.search_fragment.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
-class SearchFragment : PatternViewModelFragment<SearchViewModel>() {
+class SearchFragment : PatternViewModelFragment<SearchViewModel>(), SearchView.OnQueryTextListener {
+
+    private var searchJob: Job? = null
+    private var searchText: String? = null
 
     companion object {
         fun newInstance() = SearchFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.search_fragment, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val resultAdapter = SearchPatternRecyclerViewAdapter()
-        resultAdapter.patternClickedListener = viewModel.patternCardClicked
-        search_results.adapter = resultAdapter
-        viewModel.pattern.observe(this) { resultAdapter.setItemsNotEquals(it) }
+        search_fragment_cb_card.setOnCheckedChangeListener { _, _ -> refreshSearch() }
+        search_fragment_cb_labels.setOnCheckedChangeListener { _, _ -> refreshSearch() }
+        search_fragment_cb_note.setOnCheckedChangeListener { _, _ -> refreshSearch() }
 
-        val searchKeywordAdapter = SearchKeywordAutocompleteAdapter(requireContext())
-        search_keyword.threshold = 1
-        search_keyword.setAdapter(searchKeywordAdapter)
-        search_keyword.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            searchKeywordAdapter.getItem(position)?.let { viewModel.keywordAddedListener(it) }
-            search_keyword.setText("")
-            hideKeyboard(requireActivity())
+        val noteAdapter = NoteRecyclerViewAdapter(requireContext(), viewModel.updateTodo, viewModel.patternCardClicked)
+        search_fragment_notes.layoutManager = LinearLayoutManager(requireContext())
+        search_fragment_notes.adapter = noteAdapter
+        search_fragment_notes.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
+        viewModel.notes.observe(this) {
+            noteAdapter.setItemsNotEquals(it)
         }
 
-        viewModel.unselectedKeywords.observe(this) { searchKeywordAdapter.updateKeywords(it) }
-
-        val selectedKeywordsAdapter = SearchKeywordSwipeToDeleteRecyclerViewAdapter(requireContext())
-        selectedKeywordsAdapter.onDeleteSnackBarText = { getString(R.string.message_keyword_removed_from_filters, it.keyword) }
-        selectedKeywordsAdapter.onDeleteUndoActionText = { getString(R.string.action_undo) }
-        selectedKeywordsAdapter.onDeleteItemListener = viewModel.onKeywordDeleted
-        selectedKeywordsAdapter.onRestoreItemListener = viewModel.onKeywordRestored
-        selected_keywords.adapter = selectedKeywordsAdapter
-        viewModel.selectedKeywords.observe(this) { selectedKeywordsAdapter.setItemsNotEquals(it) }
-
-    }
-
-    fun hideKeyboard(activity: Activity) {
-        val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        //Find the currently focused view, so we can grab the correct window token from it.
-        var view = activity.currentFocus
-        //If no view currently has focus, create a new one, just so we can grab a window token from it
-        if (view == null) {
-            view = View(activity)
+        val patternAdapter = PatternRecyclerViewAdapter()
+        patternAdapter.onItemClickedListener = viewModel.patternCardClicked
+        search_fragment_pattern.layoutManager = GridLayoutManager(requireContext(), 2)
+        search_fragment_pattern.adapter = patternAdapter
+        search_fragment_pattern.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
+        viewModel.pattern.observe(this) {
+            patternAdapter.setItemsNotEquals(it)
         }
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+
     }
 
     override fun createViewModel() = ViewModelProviders.of(this).get(SearchViewModel::class.java)
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        refreshSearch(newText)
+        return false
+    }
+
+    private fun refreshSearch(newText: String? = searchText) {
+        searchText = newText
+        searchJob?.cancel()
+        searchJob = lifecycleScope.launch {
+            newText?.let {
+                delay(200)
+                if (it.isEmpty()) {
+                    viewModel.resetSearch()
+                } else {
+                    viewModel.onQueryTextChange(it,
+                            search_fragment_cb_labels.isChecked,
+                            search_fragment_cb_card.isChecked,
+                            search_fragment_cb_note.isChecked
+                    )
+                }
+            }
+        }
+    }
+
 
 }

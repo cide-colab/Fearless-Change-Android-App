@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Cards -->
+
     <style name="PatternCardView">
+        <item name="layout_constraintDimensionRatio">55:86</item>
         <item name="android:clipChildren">true</item>
         <item name="cardCornerRadius">8dp</item>
         <item name="cardElevation">2dp</item>
-        <item name="cardPreventCornerOverlap">false</item>
-        <item name="layout_constraintDimensionRatio">55:86</item>
-        <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="cardPreventCornerOverlap">true</item>
     </style>
 
     <style name="PatternCardViewMainWrapper">
@@ -45,10 +45,14 @@
     <style name="PatternCardViewContentWrapper">
         <item name="android:background">@color/secondaryDark</item>
         <item name="android:layout_marginTop">20dp</item>
-        <item name="android:paddingTop">28dp</item>
-        <item name="android:paddingLeft">@dimen/default_padding</item>
-        <item name="android:paddingRight">@dimen/default_padding</item>
-        <item name="android:paddingBottom">@dimen/default_padding</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <style name="PatternCardViewContentWrapper.Back">
+        <item name="android:layout_marginTop">0dp</item>
     </style>
 
     <style name="PatternCardViewText">
@@ -110,5 +114,28 @@
 
     <style name="PatternCardContentSection">
         <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="QuickNote" parent="android:Widget.Material.EditText">
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:textColor">@color/primaryText</item>
+    </style>
+
+    <style name="QuickNoteContainer">
+        <item name="android:background">@drawable/round_bg</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+    <style name="NotesBtn">
+        <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="android:src">@drawable/ic_note_white_24dp</item>
+        <item name="backgroundTint">@color/note_color</item>
+    </style>
+
+    <style name="PatternDetailContainer">
+        <item name="android:padding">@dimen/default_padding</item>
     </style>
 </resources>

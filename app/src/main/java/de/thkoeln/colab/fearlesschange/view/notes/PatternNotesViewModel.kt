@@ -3,23 +3,75 @@ package de.thkoeln.colab.fearlesschange.view.notes
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.thkoeln.colab.fearlesschange.core.events.SingleActionLiveData
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.persistance.label.Label
+import de.thkoeln.colab.fearlesschange.persistance.label.LabelRepository
 import de.thkoeln.colab.fearlesschange.persistance.note.Note
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
+import de.thkoeln.colab.fearlesschange.persistance.noteLabelJoin.NoteLabelJoinRepository
+import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
+import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
+import kotlinx.coroutines.runBlocking
+
+
+data class PatternNoteData(val note: Note, val labels: List<Label>, val todos: List<Todo>)
 
 class PatternNotesViewModel(application: Application, args: PatternNotesFragmentArgs) : BasicPatternViewModel(application) {
-    val createNoteConfirmed: (title: String, description: String) -> Unit = { title, description ->
-        noteRepository.insert(Note(title = title, text = description, patternId = args.patternId))
-    }
+
+    private val id = args.patternId
 
     private val noteRepository = NoteRepository(application)
+    private val todoRepository = TodoRepository(application)
+    private val labelRepository = LabelRepository(application)
+    private val noteLabelJoinRepository = NoteLabelJoinRepository(application)
 
-    val addNoteButtonClicked: () -> Unit = { createDialogEvent.invoke(args.patternId) }
-    val onItemDeleteListener: (item: Note) -> Unit = { noteRepository.delete(it) }
+    fun deleteNote(note: Note) {
+        runBlocking {
+            noteRepository.delete(note)
+        }
+    }
 
-    val createDialogEvent = SingleActionLiveData<Long>()
-    val notes = noteRepository.getNotesForPattern(args.patternId)
+
+    fun addNote(note: Note) {
+        runBlocking {
+            noteRepository.insert(note)
+        }
+    }
+
+
+//    val notes = noteRepository.getNotesForPattern(id)
+
+    fun loadNotes(callback: (List<PatternNoteData>) -> Unit) {
+        runBlocking {
+            val notes = noteRepository.getNotesForPattern(id)
+            val result = notes.map {
+                PatternNoteData(
+                        it,
+                        noteLabelJoinRepository.getByNote(it.id),
+                        todoRepository.getByNote(it.id)
+                )
+            }
+            callback(result)
+        }
+    }
+
+    //TODO Get todos for note
+    //TODO Get label for note
+    //TODO Update TODO
+
+    fun createNoteButtonClicked() {
+        notifyAction(PatternNotesFragmentDirections.actionPatternNotesFragmentToCreateNoteFragment(id))
+    }
+
+//    fun getNoteLabels(note: Note) = noteLabelJoinRepository.getByNote(note.id)
+
+//    fun getNoteTodos(note: Note) = todoRepository.getByNote(note.id)
+
+    fun updateTodo(todo: Todo, state: Boolean) = runBlocking {
+        todoRepository.update(todo.copy(state = state))
+        todoRepository.get(todo.id)
+    }
+
 
 }
 

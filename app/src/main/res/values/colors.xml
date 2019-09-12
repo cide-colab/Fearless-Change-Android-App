@@ -35,6 +35,7 @@
     <color name="primaryLight">#ffffff</color>
     <color name="primaryDark">#bfbfbf</color>
     <color name="primaryText">#333333</color>
+    <!--    <color name="primaryText">#700007</color>-->
 
     <color name="secondary">#a6242f</color>
     <color name="secondaryLight">#dd5858</color>

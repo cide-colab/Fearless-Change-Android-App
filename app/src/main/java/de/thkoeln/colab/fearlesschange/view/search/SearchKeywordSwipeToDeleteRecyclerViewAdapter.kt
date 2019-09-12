@@ -7,26 +7,17 @@ import android.view.ViewGroup
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.adapters.SwipeToDeleteRecyclerViewAdapter
 import de.thkoeln.colab.fearlesschange.persistance.keyword.Keyword
-import kotlinx.android.synthetic.main.swipe_to_delete_wrapper.view.*
+import kotlinx.android.synthetic.main.filter_item.view.*
 
 
 class SearchKeywordSwipeToDeleteRecyclerViewAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Keyword, SearchKeywordSwipeToDeleteRecyclerViewAdapter.KeywordListViewHolder>(context) {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            KeywordListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.filter_item, parent, false))
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordListViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.swipe_to_delete_wrapper, parent, false)
-        return KeywordListViewHolder(view)
-    }
-
-    class KeywordListViewHolder(itemView: View) : SwipeToDeleteRecyclerViewHolder<Keyword>(itemView) {
-        private val adapter = KeywordViewHolder().apply {
-            inflate(itemView.swipe_to_delete_container, true)
-        }
-
+    class KeywordListViewHolder(itemView: View) : ViewHolder<Keyword>(itemView) {
         override fun bind(item: Keyword) {
-            adapter.bind(item)
+            itemView.filter_item_text.text = item.keyword
         }
-
-        override fun getForeground(): View = itemView.swipe_to_delete_container
     }
 }

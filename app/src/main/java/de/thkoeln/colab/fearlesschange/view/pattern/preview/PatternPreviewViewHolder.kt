@@ -7,6 +7,7 @@ import de.thkoeln.colab.fearlesschange.core.layout.LayoutViewHolder
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 import kotlinx.android.synthetic.main.pattern_preview.view.*
 
+
 class PatternPreviewViewHolder(var patternClickedListener: (patternInfo: PatternInfo) -> Unit = {}) : LayoutViewHolder<PatternInfo>(R.layout.pattern_preview) {
     override fun bind(view: View, value: PatternInfo) {
         with(value.pattern) {

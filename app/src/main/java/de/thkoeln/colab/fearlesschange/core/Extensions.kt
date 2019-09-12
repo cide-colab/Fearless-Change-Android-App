@@ -26,6 +26,15 @@ fun <T> LiveData<T?>.nonNullObserve(owner: LifecycleOwner, observer: (t: T) -> U
     })
 }
 
+fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    observe(lifecycleOwner, object : Observer<T> {
+        override fun onChanged(t: T?) {
+            observer.onChanged(t)
+            removeObserver(this)
+        }
+    })
+}
+
 fun Context.getResourceId(resName: String?, resIdentifier: String) =
         resName?.let {
             try {
@@ -100,7 +109,7 @@ fun ViewPager.onPageScrolled(listener: (position: Int, positionOffset: Float, po
     })
 }
 
-fun Snackbar.onTimeout(listener: () -> Unit) {
+fun Snackbar.onTimeout(listener: () -> Unit) = this.apply {
     addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
         override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
             if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
@@ -109,6 +118,9 @@ fun Snackbar.onTimeout(listener: () -> Unit) {
         }
     })
 }
+
+fun Context.getDrawable(name: String): Int? =
+        getResourceId(name, "drawable")
 
 
 fun Int.toDp() = (this / Resources.getSystem().displayMetrics.density).toInt()

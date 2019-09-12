@@ -20,10 +20,8 @@ class PatternDetailViewHolder : LayoutViewHolder<PatternInfo>(R.layout.pattern_d
         with(value.pattern) {
             val picture = loadImage(view, pictureName)
             view.pattern_detail_front_image.setImageResource(picture)
-            view.pattern_detail_back_image.setImageResource(picture)
             view.pattern_detail_front_title.text = title
             view.pattern_detail_front_summary.text = summary
-            view.pattern_detail_back_title.text = title
             view.pattern_detail_back_problem.text = problem
             view.pattern_detail_back_solution.text = solution
 

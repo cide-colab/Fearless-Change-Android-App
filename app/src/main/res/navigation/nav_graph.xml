@@ -24,8 +24,8 @@
             app:destination="@id/patternDetailSwipeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_settings"
-        android:name="de.thkoeln.colab.fearlesschange.view.settings.SettingsFragment"
+        android:id="@+id/nav_more"
+        android:name="de.thkoeln.colab.fearlesschange.view.settings.MoreFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/settings_fragment" />
     <fragment
@@ -48,6 +48,21 @@
         <argument
             android:name="currentPatternId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_patternDetailSwipeFragment_to_patternNotesFragment"
+            app:destination="@id/patternNotesFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_patternDetailSwipeFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/randomPatternFragment"
@@ -73,6 +88,13 @@
         <argument
             android:name="patternId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_patternNotesFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom" />
     </fragment>
     <fragment
         android:id="@+id/patternPreviewFragment"
@@ -93,6 +115,27 @@
         tools:layout="@layout/search_fragment">
         <action
             android:id="@+id/action_nav_search_to_patternDetailSwipeFragment"
+            app:destination="@id/patternDetailSwipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="de.thkoeln.colab.fearlesschange.view.notes.CreateNoteFragment"
+        android:label="create_note_fragment"
+        tools:layout="@layout/create_note_fragment" >
+        <argument
+            android:name="patternId"
+            app:argType="long" />
+        <argument
+            android:name="hide_nav"
+            android:defaultValue="true"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="de.thkoeln.colab.fearlesschange.view.notes.NotesFragment"
+        android:label="notes_fragment">
+        <action
+            android:id="@+id/action_nav_notes_to_patternDetailSwipeFragment"
             app:destination="@id/patternDetailSwipeFragment" />
     </fragment>
 </navigation>

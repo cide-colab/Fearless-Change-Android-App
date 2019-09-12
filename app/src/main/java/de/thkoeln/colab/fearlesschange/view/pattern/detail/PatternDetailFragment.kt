@@ -1,15 +1,16 @@
 package de.thkoeln.colab.fearlesschange.view.pattern.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import de.thkoeln.colab.fearlesschange.core.shareing.ShareManager
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
-import de.thkoeln.colab.fearlesschange.view.notes.PatternNotesFragment
 import kotlinx.android.synthetic.main.pattern_detail_fragment.*
 
 class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>() {
@@ -37,9 +38,13 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
             ShareManager(requireActivity()).sharePattern(it)
         }
 
+        pattern_detail_quick_note.setOnClickListener {
+            viewModel.createNoteButtonClicked()
+        }
 
-        childFragmentManager.beginTransaction().add(pattern_detail_notes_container.id, PatternNotesFragment.newInstance(viewModel.patternId)).commit()
-
+        pattern_detail_notes_btn.setOnClickListener {
+            viewModel.showNodesBtnClicked()
+        }
 
     }
 

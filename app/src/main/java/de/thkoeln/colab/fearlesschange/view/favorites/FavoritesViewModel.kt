@@ -8,7 +8,7 @@ class FavoritesViewModel(application: Application) : BasicPatternViewModel(appli
 
     val pattern = patternRepository.getFavoritesInfo()
 
-    val patternDeleted: (PatternInfo) -> Unit = { patternRepository.switchFavorite(it.pattern.id) }
+    val toggleFavorite: (PatternInfo) -> Unit = { patternRepository.switchFavorite(it.pattern.id) }
 
     val patternCardClicked: (PatternInfo?) -> Unit = { patternInfo ->
         patternInfo?.let { info ->
