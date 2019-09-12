@@ -2,11 +2,13 @@ package de.thkoeln.colab.fearlesschange.view.search
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
@@ -15,14 +17,17 @@ import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import kotlinx.android.synthetic.main.search_fragment.*
 
 
-class SearchFragment : PatternViewModelFragment<SearchViewModel>() {
-
+class SearchFragment : PatternViewModelFragment<SearchViewModel>(), SearchView.OnQueryTextListener {
     companion object {
         fun newInstance() = SearchFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
+        val view = inflater.inflate(R.layout.search_fragment, container, false)
+//        setHasOptionsMenu(true)
+
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -73,5 +78,32 @@ class SearchFragment : PatternViewModelFragment<SearchViewModel>() {
     }
 
     override fun createViewModel() = ViewModelProviders.of(this).get(SearchViewModel::class.java)
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        Log.d("SEARCH", "SUBMIT")
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        Log.d("SEARCH", "CHANGE")
+        return true
+    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+////        inflater.inflate(R.menu.search_action_menu, menu)
+//
+////        val searchManager = requireContext().getSystemService(SEARCH_SERVICE) as SearchManager
+//        val searchMenuItem = menu.findItem(R.id.action_search)
+//        val searchView = searchMenuItem.actionView as SearchView
+//
+////        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+//        searchView.isSubmitButtonEnabled = true
+//
+//        searchView.setOnQueryTextListener(this)
+//
+////        val searchView =  menu.findItem(R.id.action_search).actionView as SearchView
+////        Log.d("SEARCH", "ATTACHED")
+//
+//    }
 
 }
