@@ -15,7 +15,7 @@ class ResponsiveTextView @JvmOverloads constructor(context: Context, attrs: Attr
         val vPadding = max((h / 50), 1) * 1.toPx()
         setPadding(hPadding, vPadding, hPadding, vPadding)
 
-        maxLines = (h - 2 * vPadding) / lineHeight
+        maxLines = max((h - 2 * vPadding) / lineHeight, 1)
     }
 
 }
