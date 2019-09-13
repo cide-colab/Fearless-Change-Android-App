@@ -10,7 +10,7 @@ import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import kotlinx.android.synthetic.main.note_label_item.view.*
 import kotlinx.android.synthetic.main.note_todo_item.view.*
 
-class PatternNoteLabelRecyclerAdapter : RecyclerViewAdapter<Label, PatternNoteLabelRecyclerAdapter.NoteLabelViewHolder>() {
+class PatternNoteLabelRecyclerAdapter(swipeToDeleteEnabled: Boolean = false) : RecyclerViewAdapter<Label, PatternNoteLabelRecyclerAdapter.NoteLabelViewHolder>(swipeToDeleteEnabled) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteLabelViewHolder {
         return NoteLabelViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.note_label_item, parent, false))
@@ -24,17 +24,17 @@ class PatternNoteLabelRecyclerAdapter : RecyclerViewAdapter<Label, PatternNoteLa
     }
 }
 
-class PatternNoteTodoRecyclerAdapter(private val updateTodo: UpdateTodo) : RecyclerViewAdapter<Todo, PatternNoteTodoRecyclerAdapter.NoteTodoViewHolder>() {
+class PatternNoteTodoRecyclerAdapter(var onTodoChanged: OnTodoChanged = { _, _ -> }) : RecyclerViewAdapter<Todo, PatternNoteTodoRecyclerAdapter.NoteTodoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteTodoViewHolder {
-        return NoteTodoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.note_todo_item, parent, false), updateTodo)
+        return NoteTodoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.note_todo_item, parent, false), onTodoChanged)
     }
 
-    class NoteTodoViewHolder(itemView: View, private val updateTodo: UpdateTodo) : ViewHolder<Todo>(itemView) {
+    class NoteTodoViewHolder(itemView: View, private val onTodoChanged: OnTodoChanged) : ViewHolder<Todo>(itemView) {
         override fun bind(item: Todo) {
             itemView.note_todo_item_check.isChecked = item.state
             itemView.note_todo_item_check.text = item.text
-            itemView.note_todo_item_check.setOnCheckedChangeListener { _, isChecked -> updateTodo(item, isChecked) }
+            itemView.note_todo_item_check.setOnCheckedChangeListener { _, isChecked -> onTodoChanged(item, isChecked) }
         }
     }
 }

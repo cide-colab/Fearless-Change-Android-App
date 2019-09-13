@@ -1,16 +1,15 @@
 package de.thkoeln.colab.fearlesschange.view.notes
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.adapters.SwipeToDeleteRecyclerViewAdapter
+import de.thkoeln.colab.fearlesschange.core.adapters.RecyclerViewAdapter
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import kotlinx.android.synthetic.main.create_checkbox_item.view.*
 
-class CreateCheckboxRecyclerAdapter(context: Context) : SwipeToDeleteRecyclerViewAdapter<Todo, CreateCheckboxRecyclerAdapter.CreateCheckboxViewHolder>(context) {
+class CreateCheckboxRecyclerAdapter : RecyclerViewAdapter<Todo, CreateCheckboxRecyclerAdapter.CreateCheckboxViewHolder>(true) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreateCheckboxViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.create_checkbox_item, parent, false)

@@ -14,7 +14,7 @@ import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
 import kotlinx.coroutines.runBlocking
 
 
-data class PatternNoteData(val note: Note, val labels: List<Label>, val todos: List<Todo>)
+data class NoteData(val note: Note, val labels: List<Label>, val todos: List<Todo>)
 
 class PatternNotesViewModel(application: Application, args: PatternNotesFragmentArgs) : BasicPatternViewModel(application) {
 
@@ -41,11 +41,11 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
 
 //    val notes = noteRepository.getNotesForPattern(id)
 
-    fun loadNotes(callback: (List<PatternNoteData>) -> Unit) {
+    fun loadNotes(callback: (List<NoteData>) -> Unit) {
         runBlocking {
             val notes = noteRepository.getNotesForPattern(id)
             val result = notes.map {
-                PatternNoteData(
+                NoteData(
                         it,
                         noteLabelJoinRepository.getByNote(it.id),
                         todoRepository.getByNote(it.id)
@@ -55,17 +55,17 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
         }
     }
 
-    //TODO Get todos for note
-    //TODO Get label for note
+    //TODO Get todos for noteData
+    //TODO Get label for noteData
     //TODO Update TODO
 
     fun createNoteButtonClicked() {
         notifyAction(PatternNotesFragmentDirections.actionPatternNotesFragmentToCreateNoteFragment(id))
     }
 
-//    fun getNoteLabels(note: Note) = noteLabelJoinRepository.getByNote(note.id)
+//    fun getNoteLabels(noteData: Note) = noteLabelJoinRepository.getByNote(noteData.id)
 
-//    fun getNoteTodos(note: Note) = todoRepository.getByNote(note.id)
+//    fun getNoteTodos(noteData: Note) = todoRepository.getByNote(noteData.id)
 
     fun updateTodo(todo: Todo, state: Boolean) = runBlocking {
         todoRepository.update(todo.copy(state = state))

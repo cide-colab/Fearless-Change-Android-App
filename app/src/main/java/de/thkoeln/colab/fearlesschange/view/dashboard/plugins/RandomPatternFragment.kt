@@ -15,7 +15,7 @@ import de.thkoeln.colab.fearlesschange.core.nonNullObserve
 import de.thkoeln.colab.fearlesschange.core.onAnimationEnd
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import de.thkoeln.colab.fearlesschange.core.playSequentially
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import kotlinx.android.synthetic.main.random_pattern_fragment.*
 
 
@@ -35,9 +35,9 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        random_pattern_pattern_card_1.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_1.patternInfo) }
-        random_pattern_pattern_card_2.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_2.patternInfo) }
-        random_pattern_pattern_card_3.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_3.patternInfo) }
+        random_pattern_pattern_card_1.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_1.patternPreviewData) }
+        random_pattern_pattern_card_2.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_2.patternPreviewData) }
+        random_pattern_pattern_card_3.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_3.patternPreviewData) }
 
         viewModel.randomPattern.nonNullObserve(this) { info -> changeValues(info) }
 
@@ -45,22 +45,22 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
     }
 
 
-    private fun changeValues(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        if (viewModel.shouldAnimatePattern) animateAndChangePattern(info)
-        else changePattern(info)
+    private fun changeValues(previewData: Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>) {
+        if (viewModel.shouldAnimatePattern) animateAndChangePattern(previewData)
+        else changePattern(previewData)
 
     }
 
-    private fun changePattern(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        random_pattern_pattern_card_1.patternInfo = info.first
-        random_pattern_pattern_card_2.patternInfo = info.second
-        random_pattern_pattern_card_3.patternInfo = info.third
+    private fun changePattern(previewData: Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>) {
+        random_pattern_pattern_card_1.patternPreviewData = previewData.first
+        random_pattern_pattern_card_2.patternPreviewData = previewData.second
+        random_pattern_pattern_card_3.patternPreviewData = previewData.third
     }
 
-    private fun animateAndChangePattern(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        getAnimation(random_pattern_pattern_card_1, 0) { random_pattern_pattern_card_1.patternInfo = info.first }.start()
-        getAnimation(random_pattern_pattern_card_2, 1) { random_pattern_pattern_card_2.patternInfo = info.second }.start()
-        getAnimation(random_pattern_pattern_card_3, 2) { random_pattern_pattern_card_3.patternInfo = info.third }.start()
+    private fun animateAndChangePattern(previewData: Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>) {
+        getAnimation(random_pattern_pattern_card_1, 0) { random_pattern_pattern_card_1.patternPreviewData = previewData.first }.start()
+        getAnimation(random_pattern_pattern_card_2, 1) { random_pattern_pattern_card_2.patternPreviewData = previewData.second }.start()
+        getAnimation(random_pattern_pattern_card_3, 2) { random_pattern_pattern_card_3.patternPreviewData = previewData.third }.start()
     }
 
     private fun getAnimation(card: View, index: Int, delayBetweenAnimations: Long = 100, durationPerAnimation: Long = 100, run: () -> Unit): AnimatorSet {

@@ -24,10 +24,10 @@ class PatternOfTheDayFragment : PatternViewModelFragment<PatternOfTheDayViewMode
         super.onActivityCreated(savedInstanceState)
 
         pattern_of_the_day_pattern_card.setOnClickListener {
-            viewModel.patternCardClicked(pattern_of_the_day_pattern_card.patternInfo)
+            viewModel.patternCardClicked(pattern_of_the_day_pattern_card.patternPreviewData)
         }
-        viewModel.patternOfTheDay.observe(this) {
-            pattern_of_the_day_pattern_card.patternInfo = it
+        viewModel.patternOfTheDayData.observe(this) {
+            pattern_of_the_day_pattern_card.patternPreviewData = it
 
         }
     }

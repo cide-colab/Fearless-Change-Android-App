@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_dashboard">
+    app:startDestination="@+id/nav_dashboard">
 
     <fragment
         android:id="@+id/nav_dashboard"
@@ -40,14 +40,7 @@
     <fragment
         android:id="@+id/patternDetailSwipeFragment"
         android:name="de.thkoeln.colab.fearlesschange.view.pattern.swiper.PatternDetailSwiperFragment"
-        android:label="pattern_detail_fragment"
-        tools:layout="@layout/pattern_detail_swiper_fragment">
-        <argument
-            android:name="patternIds"
-            app:argType="long[]" />
-        <argument
-            android:name="currentPatternId"
-            app:argType="long" />
+        android:label="pattern_detail_fragment">
         <action
             android:id="@+id/action_patternDetailSwipeFragment_to_patternNotesFragment"
             app:destination="@id/patternNotesFragment"
@@ -63,6 +56,12 @@
             app:popEnterAnim="@anim/slide_in_top"
             app:popExitAnim="@anim/slide_out_bottom"
             app:popUpToInclusive="false" />
+        <argument
+            android:name="patternIds"
+            app:argType="long[]" />
+        <argument
+            android:name="currentPatternId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/randomPatternFragment"
@@ -75,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/patternDetailFragment"
-        android:name="de.thkoeln.colab.fearlesschange.view.pattern.detail.PatternDetailFragment"
+        android:name="de.thkoeln.colab.fearlesschange.view.patternData.detail.PatternDetailFragment"
         android:label="PatternDetailFragment">
         <argument
             android:name="patternId"
@@ -85,9 +84,6 @@
         android:id="@+id/patternNotesFragment"
         android:name="de.thkoeln.colab.fearlesschange.view.notes.PatternNotesFragment"
         android:label="PatternNotesFragment">
-        <argument
-            android:name="patternId"
-            app:argType="long" />
         <action
             android:id="@+id/action_patternNotesFragment_to_createNoteFragment"
             app:destination="@id/createNoteFragment"
@@ -95,18 +91,20 @@
             app:exitAnim="@anim/slide_out_top"
             app:popEnterAnim="@anim/slide_in_top"
             app:popExitAnim="@anim/slide_out_bottom" />
+        <argument
+            android:name="patternId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/patternPreviewFragment"
         android:name="de.thkoeln.colab.fearlesschange.view.pattern.preview.PatternPreviewFragment"
-        android:label="pattern_preview_fragment"
-        tools:layout="@layout/pattern_preview">
-        <argument
-            android:name="patternId"
-            app:argType="long" />
+        android:label="pattern_preview_fragment">
         <action
             android:id="@+id/action_patternPreviewFragment_to_patternDetailSwipeFragment"
             app:destination="@id/patternDetailSwipeFragment" />
+        <argument
+            android:name="patternId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/nav_search"
@@ -121,7 +119,7 @@
         android:id="@+id/createNoteFragment"
         android:name="de.thkoeln.colab.fearlesschange.view.notes.CreateNoteFragment"
         android:label="create_note_fragment"
-        tools:layout="@layout/create_note_fragment" >
+        tools:layout="@layout/create_note_fragment">
         <argument
             android:name="patternId"
             app:argType="long" />

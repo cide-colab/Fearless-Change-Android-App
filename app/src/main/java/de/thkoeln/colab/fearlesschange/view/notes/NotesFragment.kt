@@ -22,13 +22,15 @@ class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = NoteRecyclerViewAdapter(requireContext(), viewModel.updateTodo, viewModel.patternClicked)
+        val adapter = NoteRecyclerViewAdapter()
+        adapter.onTodoChanged = viewModel.updateTodo
+        adapter.patternClicked = viewModel.patternClicked
 
         adapter.afterDeleteItemListener = { item, index ->
-            viewModel.deleteNote(item.note.note)
+            viewModel.deleteNote(item.noteData.note)
             Snackbar.make(notes_fragment_recycler_view, R.string.message_note_deleted, Snackbar.LENGTH_LONG)
                     .setAction(R.string.action_undo) {
-                        viewModel.addNote(item.note.note)
+                        viewModel.addNote(item.noteData.note)
                         adapter.restoreItem(item, index)
                     }
                     .show()
@@ -40,8 +42,6 @@ class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
         notes_fragment_recycler_view.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
 
         viewModel.getNoteData { adapter.setItems(it) }
-
-//        pattern_notes_create_note.setOnClickListener { viewModel.createNoteButtonClicked() }
 
     }
 

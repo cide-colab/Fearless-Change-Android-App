@@ -4,16 +4,16 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.core.switchMap
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import de.thkoeln.colab.fearlesschange.view.dashboard.DashboardFragmentDirections
 
 class PatternOfTheDayViewModel(application: Application) : BasicPatternViewModel(application) {
 
-    val patternOfTheDay: LiveData<PatternInfo> = patternRepository.getAllIds().switchMap { ids ->
+    val patternOfTheDayData: LiveData<PatternPreviewData> = patternRepository.getAllIds().switchMap { ids ->
         calculatePatternOfTheDay(ids)?.let { id -> patternRepository.getInfo(id) }
     }
 
-    val patternCardClicked: (PatternInfo?) -> Unit = { patternInfo ->
+    val patternCardClicked: (PatternPreviewData?) -> Unit = { patternInfo ->
         patternInfo?.let {
             notifyPatternClicked(patternInfo)
             notifyAction(DashboardFragmentDirections.actionNavDashboardToPatternDetailFragment(longArrayOf(it.pattern.id), it.pattern.id))

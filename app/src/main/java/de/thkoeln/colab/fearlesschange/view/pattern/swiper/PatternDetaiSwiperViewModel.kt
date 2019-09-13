@@ -14,18 +14,18 @@ class PatternDetailSwiperViewModelFactory(private val application: Application, 
 
 class PatternDetailSwiperViewModel(application: Application, private var args: PatternDetailSwiperFragmentArgs) : BasicPatternViewModel(application) {
 
-    //val patternInfo: LiveData<List<PatternInfo>> = patternRepository.getInfos(args.patternIds.toList())
+    //val patternPreviewData: LiveData<List<PatternPreviewData>> = patternRepository.getInfos(args.patternIds.toList())
 
     //TODO pass id on return
     // private var currentPatternId = args.currentPatternId
     val currentPosition: Int = args.patternIds.indexOfFirst { it == args.currentPatternId }
     val patternIds = args.patternIds
-    //fun getCurrentPatternIndex() = patternInfo.value?.let { patternInfo -> patternInfo.indexOfFirst { it.patternInfo.id == currentPatternId } }
+    //fun getCurrentPatternIndex() = patternPreviewData.value?.let { patternPreviewData -> patternPreviewData.indexOfFirst { it.patternPreviewData.id == currentPatternId } }
 //
 //
 //    val sharePatternEvent = SingleActionLiveData<Pattern>()
 //
-//    private val currentPatternDynamic = DynamicLiveData<PatternInfo>()
+//    private val currentPatternDynamic = DynamicLiveData<PatternPreviewData>()
 //    val currentPattern = currentPatternDynamic.asLiveData()
 
 //    fun onSwipePager(position: Int) {
@@ -34,7 +34,7 @@ class PatternDetailSwiperViewModel(application: Application, private var args: P
 //    }
 
 //    val sharePressed: () -> Unit = {
-//        currentPattern.value?.patternInfo
+//        currentPattern.value?.patternPreviewData
 //                ?.let { sharePatternEvent.invoke(it) }
 //                ?:notify(R.string.massage_no_pattern_to_share)
 //    }

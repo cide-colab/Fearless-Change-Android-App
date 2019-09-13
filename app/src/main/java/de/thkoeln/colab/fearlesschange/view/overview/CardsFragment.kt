@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.view.PatternCardPreviewRecyclerAdapter
 import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import kotlinx.android.synthetic.main.pattern_cards_fragment.*
 
@@ -25,7 +26,7 @@ class CardsFragment : PatternViewModelFragment<CardsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = PatternRecyclerViewAdapter()
+        val adapter = PatternCardPreviewRecyclerAdapter()
         pattern_cards_recycler_view.adapter = adapter
         pattern_cards_recycler_view.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
 

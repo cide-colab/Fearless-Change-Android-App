@@ -8,7 +8,7 @@ import de.thkoeln.colab.fearlesschange.core.data.ConfirmationRequest
 import de.thkoeln.colab.fearlesschange.core.data.SnackBarMessage
 import de.thkoeln.colab.fearlesschange.core.events.SingleActionLiveData
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternRepository
 import de.thkoeln.colab.fearlesschange.persistance.statistic.Statistic
 import de.thkoeln.colab.fearlesschange.persistance.statistic.StatisticAction
@@ -58,8 +58,8 @@ abstract class BasicPatternViewModel(application: Application) : AndroidViewMode
     val actionEvent = SingleActionLiveData<NavDirections>()
     val snackbarEvent = SingleActionLiveData<SnackBarMessage>()
 
-    protected fun notifyPatternClicked(patternInfo: PatternInfo) {
-        notifyPatternClicked(patternInfo.pattern)
+    protected fun notifyPatternClicked(patternPreviewData: PatternPreviewData) {
+        notifyPatternClicked(patternPreviewData.pattern)
     }
 
     protected fun notifyPatternClicked(pattern: Pattern) {

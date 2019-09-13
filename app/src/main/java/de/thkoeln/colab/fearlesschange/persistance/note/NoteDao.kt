@@ -18,21 +18,21 @@ interface NoteDao {
     @Delete
     suspend fun delete(notes: Note)
 
-    @Query("DELETE FROM note")
+    @Query("DELETE FROM noteData")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM note WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM noteData WHERE id = :id LIMIT 1")
     fun get(id: Long): LiveData<Note>
 
-    @Query("SELECT * FROM note")
+    @Query("SELECT * FROM noteData")
     suspend fun getAll(): List<Note>
 
-    @Query("SELECT * FROM note WHERE patternId = :id")
+    @Query("SELECT * FROM noteData WHERE patternId = :id")
     suspend fun getNotesForPattern(id: Long): List<Note>
 
-    @Query("SELECT COUNT(*) FROM note")
+    @Query("SELECT COUNT(*) FROM noteData")
     fun getCount(): LiveData<Long>
 
-    @Query("SELECT * FROM note WHERE text LIKE '%'||:query||'%'")
+    @Query("SELECT * FROM noteData WHERE text LIKE '%'||:query||'%'")
     suspend fun getLike(query: String): List<Note>
 }

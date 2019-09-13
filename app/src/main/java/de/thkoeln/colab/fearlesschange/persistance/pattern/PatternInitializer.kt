@@ -2,7 +2,7 @@ package de.thkoeln.colab.fearlesschange.persistance.pattern
 
 import de.thkoeln.colab.fearlesschange.persistance.DataInitializer
 
-class PatternInitializer : DataInitializer<Pattern>("patternInfo") {
+class PatternInitializer : DataInitializer<Pattern>("patternPreviewData") {
     override fun getItemValues(item: Pattern?) = hashMapOf(
             "id" to item?.id,
             "title" to item?.title,

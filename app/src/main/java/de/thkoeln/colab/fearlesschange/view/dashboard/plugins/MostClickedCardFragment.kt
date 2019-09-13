@@ -22,8 +22,8 @@ class MostClickedCardFragment : PatternViewModelFragment<MostClickedCardViewMode
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        most_clicked_card_pattern_card.setOnClickListener { viewModel.patternCardClicked(most_clicked_card_pattern_card.patternInfo) }
-        viewModel.mostClickedPattern.nonNullObserve(this) { most_clicked_card_pattern_card.patternInfo = it }
+        most_clicked_card_pattern_card.setOnClickListener { viewModel.patternCardClicked(most_clicked_card_pattern_card.patternPreviewData) }
+        viewModel.mostClickedPatternData.nonNullObserve(this) { most_clicked_card_pattern_card.patternPreviewData = it }
     }
 
     override fun createViewModel() = ViewModelProviders.of(this).get(MostClickedCardViewModel::class.java)

@@ -8,14 +8,14 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import de.thkoeln.colab.fearlesschange.core.shareing.ShareManager
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
+import de.thkoeln.colab.fearlesschange.view.patternData.detail.PatternDetailFragmentArgs
 import kotlinx.android.synthetic.main.pattern_detail_fragment.*
 
 class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>() {
 
     private val args: PatternDetailFragmentArgs by navArgs()
     private var favButton: MenuItem? = null
-    private val adapter = PatternDetailViewHolder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,6 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter.inflate(pattern_detail_container, true)
 
         viewModel.pattern.observe(this) { updateView(it) }
         viewModel.sharePatternEvent.observe(this) {
@@ -46,8 +45,8 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
 
     }
 
-    private fun updateView(patternInfo: PatternInfo) {
-        adapter.bind(patternInfo)
+    private fun updateView(patternPreviewData: PatternPreviewData) {
+        pattern_detail_flippable_pattern_card.pattern = patternPreviewData.pattern
         syncFavBtn()
     }
 

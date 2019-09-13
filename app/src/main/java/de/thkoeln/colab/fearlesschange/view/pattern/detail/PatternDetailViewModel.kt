@@ -8,13 +8,14 @@ import de.thkoeln.colab.fearlesschange.core.events.SingleActionLiveData
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
 import de.thkoeln.colab.fearlesschange.view.pattern.swiper.PatternDetailSwiperFragmentDirections
+import de.thkoeln.colab.fearlesschange.view.patternData.detail.PatternDetailFragmentArgs
 
 class PatternDetailViewModel(application: Application, args: PatternDetailFragmentArgs) : BasicPatternViewModel(application) {
 
     val patternId = args.patternId
     val pattern = patternRepository.getInfo(patternId)
     val favButtonIcon: Int
-        get() = if (pattern.value?.pattern?.favorite == true) R.drawable.ic_nav_favorites else R.drawable.ic_toolbar_favorite
+        get() = if (pattern.value?.pattern?.favorite == true) R.drawable.ic_toolbar_favorite_full else R.drawable.ic_toolbar_favorite
 
     val sharePatternEvent = SingleActionLiveData<Pattern>()
 

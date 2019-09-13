@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 /**
  * Created by florianherborn on 30.07.18.
  */
-@Entity(tableName = "patternInfo",
+@Entity(tableName = "patternPreviewData",
         indices = [(Index("id"))])
 data class Pattern (
         @PrimaryKey(autoGenerate = false)

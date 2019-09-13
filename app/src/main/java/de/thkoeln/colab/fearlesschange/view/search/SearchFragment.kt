@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.view.PatternCardPreviewRecyclerAdapter
 import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import de.thkoeln.colab.fearlesschange.view.notes.NoteRecyclerViewAdapter
-import de.thkoeln.colab.fearlesschange.view.overview.PatternRecyclerViewAdapter
 import kotlinx.android.synthetic.main.search_fragment.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -40,7 +40,9 @@ class SearchFragment : PatternViewModelFragment<SearchViewModel>(), SearchView.O
         search_fragment_cb_labels.setOnCheckedChangeListener { _, _ -> refreshSearch() }
         search_fragment_cb_note.setOnCheckedChangeListener { _, _ -> refreshSearch() }
 
-        val noteAdapter = NoteRecyclerViewAdapter(requireContext(), viewModel.updateTodo, viewModel.patternCardClicked)
+        val noteAdapter = NoteRecyclerViewAdapter()
+        noteAdapter.onTodoChanged = viewModel.updateTodo
+        noteAdapter.patternClicked = viewModel.patternCardClicked
         search_fragment_notes.layoutManager = LinearLayoutManager(requireContext())
         search_fragment_notes.adapter = noteAdapter
         search_fragment_notes.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
@@ -48,12 +50,12 @@ class SearchFragment : PatternViewModelFragment<SearchViewModel>(), SearchView.O
             noteAdapter.setItemsNotEquals(it)
         }
 
-        val patternAdapter = PatternRecyclerViewAdapter()
+        val patternAdapter = PatternCardPreviewRecyclerAdapter()
         patternAdapter.onItemClickedListener = viewModel.patternCardClicked
         search_fragment_pattern.layoutManager = GridLayoutManager(requireContext(), 2)
         search_fragment_pattern.adapter = patternAdapter
         search_fragment_pattern.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
-        viewModel.pattern.observe(this) {
+        viewModel.patternData.observe(this) {
             patternAdapter.setItemsNotEquals(it)
         }
 

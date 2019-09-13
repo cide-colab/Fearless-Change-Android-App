@@ -9,7 +9,8 @@ import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
+import de.thkoeln.colab.fearlesschange.view.PatternCardPreviewRecyclerAdapter
 import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import kotlinx.android.synthetic.main.favorites_fragment.*
 
@@ -26,13 +27,13 @@ class FavoritesFragment : PatternViewModelFragment<FavoritesViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = FavoritesSwipeToDeleteAdapter(requireContext())
-        adapter.afterDeleteItemListener = { patternInfo: PatternInfo, position: Int ->
-            viewModel.toggleFavorite(patternInfo)
-            Snackbar.make(favorites_recycler_view, getString(R.string.message_pattern_removed_from_fav, patternInfo.pattern.title), Snackbar.LENGTH_LONG)
+        val adapter = PatternCardPreviewRecyclerAdapter(true)
+        adapter.afterDeleteItemListener = { patternPreviewData: PatternPreviewData, position: Int ->
+            viewModel.toggleFavorite(patternPreviewData)
+            Snackbar.make(favorites_recycler_view, getString(R.string.message_pattern_removed_from_fav, patternPreviewData.pattern.title), Snackbar.LENGTH_LONG)
                     .setAction(R.string.action_undo) {
-                        adapter.restoreItem(patternInfo, position)
-                        viewModel.toggleFavorite(patternInfo)
+                        adapter.restoreItem(patternPreviewData, position)
+                        viewModel.toggleFavorite(patternPreviewData)
                     }
                     .show()
         }

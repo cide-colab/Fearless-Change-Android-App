@@ -35,17 +35,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/more.image_fc"
+                <Button
+                    android:id="@+id/more.more_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/default_margin"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/fc"
-                    app:layout_constraintBottom_toTopOf="@id/more.info"
-                    app:layout_constraintEnd_toStartOf="@id/more.image_mfc"
+                    android:text="@string/more_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/more.ic_info" />
+                    app:layout_constraintTop_toBottomOf="@id/more.previewData" />
 
                 <ImageView
                     android:id="@+id/more.image_mfc"
@@ -69,18 +67,20 @@
                     app:layout_constraintStart_toEndOf="@id/more.ic_info"
                     app:layout_constraintTop_toTopOf="@id/more.ic_info" />
 
-                <Button
-                    android:id="@+id/more.more_btn"
+                <ImageView
+                    android:id="@+id/more.image_fc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/more_btn"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/fc"
+                    app:layout_constraintBottom_toTopOf="@id/more.previewData"
+                    app:layout_constraintEnd_toStartOf="@id/more.image_mfc"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/more.info" />
+                    app:layout_constraintTop_toBottomOf="@id/more.ic_info" />
 
                 <TextView
-                    android:id="@+id/more.info"
+                    android:id="@+id/more.previewData"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/info_fc"

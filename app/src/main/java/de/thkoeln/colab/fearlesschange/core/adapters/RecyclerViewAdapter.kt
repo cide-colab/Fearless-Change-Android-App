@@ -1,13 +1,18 @@
 package de.thkoeln.colab.fearlesschange.core.adapters
 
 import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class RecyclerViewAdapter<T, VH : RecyclerViewAdapter.ViewHolder<T>> : RecyclerView.Adapter<VH>() {
+abstract class RecyclerViewAdapter<T, VH : RecyclerViewAdapter.ViewHolder<T>>(private val swipeToDeleteEnabled: Boolean = false) : RecyclerView.Adapter<VH>(), SwipeToDeleteAdapter {
 
     private val _items = mutableListOf<T>()
     val items: List<T> = _items
 
+    var beforeDeleteItemListener: (item: T, position: Int) -> Boolean = { _, _ -> true }
+    var afterDeleteItemListener: (item: T, position: Int) -> Unit = { _, _ -> }
+    var afterRestoreItemListener: (item: T, position: Int) -> Unit = { _, _ -> }
     var onItemClickedListener: (item: T) -> Unit = {}
 
     fun setItems(items: List<T>) {
@@ -27,6 +32,20 @@ abstract class RecyclerViewAdapter<T, VH : RecyclerViewAdapter.ViewHolder<T>> : 
             removeLastItem()
         }
     }
+
+    fun restoreItem(item: T, position: Int) {
+        addItem(item, position)
+        afterRestoreItemListener(item, position)
+    }
+
+    override fun onDelete(position: Int) {
+        val item = items[position]
+        if (beforeDeleteItemListener(item, position)) {
+            removeItem(position)
+            afterDeleteItemListener(item, position)
+        }
+    }
+
 
     fun removeLastItem() {
         removeItem(this._items.lastIndex)
@@ -54,6 +73,14 @@ abstract class RecyclerViewAdapter<T, VH : RecyclerViewAdapter.ViewHolder<T>> : 
         holder.notifyItemClicked = onItemClickedListener
 //        onItemClickedListener?.let { holder.getClickableView().setOnClickListener { it(item) } }
 
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        if (swipeToDeleteEnabled) {
+            ItemTouchHelper(SwipeToDeleteCallback(this)).attachToRecyclerView(recyclerView)
+        }
     }
 
     abstract class ViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {

@@ -86,7 +86,7 @@
     <style name="PatternCardNotesIcon">
         <item name="android:elevation">3dp</item>
         <item name="android:rotation">6</item>
-        <item name="android:src">@drawable/bg_note_count</item>
+        <item name="android:src">@drawable/ic_note_count</item>
     </style>
 
     <style name="PatternCardNoteCount">

@@ -4,13 +4,13 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 
 class PatternPreviewViewModel(application: Application, args: PatternPreviewFragmentArgs) : BasicPatternViewModel(application) {
 
     val pattern = patternRepository.getInfo(args.patternId)
 
-    val patternCardClicked: (PatternInfo?) -> Unit = { patternInfo ->
+    val patternCardClicked: (PatternPreviewData?) -> Unit = { patternInfo ->
         patternInfo?.let {
             notifyPatternClicked(patternInfo)
             notifyAction(PatternPreviewFragmentDirections.actionPatternPreviewFragmentToPatternDetailSwipeFragment(longArrayOf(it.pattern.id), it.pattern.id))

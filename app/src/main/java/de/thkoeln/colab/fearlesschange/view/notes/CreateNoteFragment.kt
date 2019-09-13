@@ -126,7 +126,7 @@ class CreateNoteFragment : Fragment() {
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
-        labelAdapter = LabelRecyclerAdapter(requireContext())
+        labelAdapter = LabelRecyclerAdapter()
 
         label_container.adapter = labelAdapter
 //        label_container.layoutManager = GridLayoutManager(context, 2)
@@ -136,7 +136,7 @@ class CreateNoteFragment : Fragment() {
 //            label_container.removeItemDecorationAt(0)
 //        }
         viewModel.getLabels { labels = it }
-        createCheckboxAdapter = CreateCheckboxRecyclerAdapter(requireContext())
+        createCheckboxAdapter = CreateCheckboxRecyclerAdapter()
         todo_container.adapter = createCheckboxAdapter
         todo_container.layoutManager = GridLayoutManager(context, 2)
 

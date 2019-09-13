@@ -8,7 +8,7 @@ import de.thkoeln.colab.fearlesschange.core.asLiveData
 import de.thkoeln.colab.fearlesschange.core.events.DynamicLiveData
 import de.thkoeln.colab.fearlesschange.core.map
 import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import de.thkoeln.colab.fearlesschange.view.dashboard.DashboardFragmentDirections
 
 
@@ -22,9 +22,9 @@ class RandomPatternViewModelFactory(private val application: Application, privat
 
 class RandomPatternViewModel(application: Application, private val args: RandomPatternFragmentArgs) : BasicPatternViewModel(application) {
 
-    private val cachedPattern = hashMapOf<Int, Triple<PatternInfo, PatternInfo, PatternInfo>?>()
+    private val cachedPattern = hashMapOf<Int, Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>?>()
 
-    val patternCardClicked: (PatternInfo?) -> Unit = { patternInfo ->
+    val patternCardClicked: (PatternPreviewData?) -> Unit = { patternInfo ->
         patternInfo?.let {
             notifyPatternClicked(patternInfo)
             notifyAction(DashboardFragmentDirections.actionNavDashboardToPatternDetailFragment(getPatternForDetail(), it.pattern.id))
@@ -41,7 +41,7 @@ class RandomPatternViewModel(application: Application, private val args: RandomP
     var shouldAnimatePattern = false
         private set
 
-    private val randomPatternDynamic = DynamicLiveData<Triple<PatternInfo, PatternInfo, PatternInfo>?>()
+    private val randomPatternDynamic = DynamicLiveData<Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>?>()
     val randomPattern = randomPatternDynamic.asLiveData()
 
     init {
@@ -56,7 +56,7 @@ class RandomPatternViewModel(application: Application, private val args: RandomP
         }
     }
 
-    private fun getNewRandomPattern(): LiveData<Triple<PatternInfo, PatternInfo, PatternInfo>?> {
+    private fun getNewRandomPattern(): LiveData<Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>?> {
         return patternRepository.getRandom(3).map { list ->
             if (list.size < 0) return@map null
             Triple(list[0], list[1], list[2]).also { cachePattern(it) }
@@ -64,7 +64,7 @@ class RandomPatternViewModel(application: Application, private val args: RandomP
     }
 
     private fun getSavedPattern() = cachedPattern[args.groupId]
-    private fun cachePattern(triple: Triple<PatternInfo, PatternInfo, PatternInfo>) {
+    private fun cachePattern(triple: Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>) {
         cachedPattern[args.groupId] = triple
     }
 }

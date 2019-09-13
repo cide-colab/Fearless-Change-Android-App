@@ -8,7 +8,7 @@ import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
 import de.thkoeln.colab.fearlesschange.persistance.label.LabelRepository
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
 import de.thkoeln.colab.fearlesschange.persistance.noteLabelJoin.NoteLabelJoinRepository
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
 import de.thkoeln.colab.fearlesschange.view.notes.NoteData
@@ -23,10 +23,10 @@ class SearchViewModel(application: Application) : BasicPatternViewModel(applicat
     private val todoRepo = TodoRepository(application)
     private val noteLabelJoinRepo = NoteLabelJoinRepository(application)
 
-    val notes: LiveData<List<NoteData>> = MutableLiveData<List<NoteData>>()
-    val pattern: LiveData<List<PatternInfo>> = MutableLiveData<List<PatternInfo>>()
+    val notes: LiveData<List<PatternNoteData>> = MutableLiveData<List<PatternNoteData>>()
+    val patternData: LiveData<List<PatternPreviewData>> = MutableLiveData<List<PatternPreviewData>>()
 
-    val patternCardClicked: (PatternInfo?) -> Unit = { patternInfo ->
+    val patternCardClicked: (PatternPreviewData?) -> Unit = { patternInfo ->
         patternInfo?.let {
             notifyPatternClicked(patternInfo)
             notifyAction(SearchFragmentDirections.actionNavSearchToPatternDetailSwipeFragment(longArrayOf(it.pattern.id), it.pattern.id))
@@ -42,20 +42,20 @@ class SearchViewModel(application: Application) : BasicPatternViewModel(applicat
             val notes = if (searchInNotes) notesRepo.getLike(text) else listOf()
 
             val mergedNotes = (labelNotes + notes).distinct().map {
-                NoteData(
+                PatternNoteData(
                         patternRepository.get(it.patternId),
-                        PatternNoteData(it, noteLabelJoinRepo.getByNote(it.id), todoRepo.getByNote(it.id))
+                        NoteData(it, noteLabelJoinRepo.getByNote(it.id), todoRepo.getByNote(it.id))
                 )
             }
 
-            (this@SearchViewModel.notes as MutableLiveData<List<NoteData>>).postValue(mergedNotes)
-            (this@SearchViewModel.pattern as MutableLiveData<List<PatternInfo>>).postValue(pattern)
+            (this@SearchViewModel.notes as MutableLiveData<List<PatternNoteData>>).postValue(mergedNotes)
+            (this@SearchViewModel.patternData as MutableLiveData<List<PatternPreviewData>>).postValue(pattern)
         }
     }
 
     fun resetSearch() {
-        (this@SearchViewModel.notes as MutableLiveData<List<NoteData>>).postValue(listOf())
-        (this@SearchViewModel.pattern as MutableLiveData<List<PatternInfo>>).postValue(listOf())
+        (this@SearchViewModel.notes as MutableLiveData<List<PatternNoteData>>).postValue(listOf())
+        (this@SearchViewModel.patternData as MutableLiveData<List<PatternPreviewData>>).postValue(listOf())
     }
 
     val updateTodo: (todo: Todo, newState: Boolean) -> Unit = { todo, state ->
@@ -66,8 +66,8 @@ class SearchViewModel(application: Application) : BasicPatternViewModel(applicat
 
 //    private val keywordRepository = KeywordRepository(application)
 //
-//    private val patternDynamic = DynamicLiveData<List<PatternInfo>>()
-//    val patternInfo = patternDynamic.asLiveData()
+//    private val patternDynamic = DynamicLiveData<List<PatternPreviewData>>()
+//    val patternPreviewData = patternDynamic.asLiveData()
 //
 //    private val unselectedKeywordsDynamic = DynamicLiveData<List<Keyword>>()
 //    val unselectedKeywords = unselectedKeywordsDynamic.asLiveData()

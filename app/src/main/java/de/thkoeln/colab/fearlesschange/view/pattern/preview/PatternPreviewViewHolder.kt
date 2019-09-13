@@ -4,12 +4,12 @@ import android.view.View
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.getResourceId
 import de.thkoeln.colab.fearlesschange.core.layout.LayoutViewHolder
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import kotlinx.android.synthetic.main.pattern_preview.view.*
 
 
-class PatternPreviewViewHolder(var patternClickedListener: (patternInfo: PatternInfo) -> Unit = {}) : LayoutViewHolder<PatternInfo>(R.layout.pattern_preview) {
-    override fun bind(view: View, value: PatternInfo) {
+class PatternPreviewViewHolder(var patternClickedListener: (patternPreviewData: PatternPreviewData) -> Unit = {}) : LayoutViewHolder<PatternPreviewData>(R.layout.pattern_preview) {
+    override fun bind(view: View, value: PatternPreviewData) {
         with(value.pattern) {
             val picture = loadImage(view, pictureName)
             view.pattern_preview_image.setImageResource(picture)
