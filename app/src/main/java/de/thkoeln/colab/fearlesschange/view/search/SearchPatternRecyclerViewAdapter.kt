@@ -7,7 +7,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.adapters.RecyclerViewAdapter
-import de.thkoeln.colab.fearlesschange.core.getDrawable
+import de.thkoeln.colab.fearlesschange.core.getDrawableId
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 import kotlinx.android.synthetic.main.pattern_preview.view.*
 
@@ -20,7 +20,7 @@ class SearchPatternRecyclerViewAdapter : RecyclerViewAdapter<PatternInfo, Search
 
         override fun bind(item: PatternInfo) {
             with(item.pattern) {
-                val picture = itemView.context?.getDrawable(pictureName)
+                val picture = itemView.context?.getDrawableId(pictureName)
                         ?: R.drawable.default_pattern_image
                 itemView.pattern_preview_image.setImageResource(picture)
                 itemView.pattern_preview_title.text = title

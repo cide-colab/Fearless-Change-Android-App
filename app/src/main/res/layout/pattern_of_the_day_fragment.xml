@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/feature_card_of_the_day_container"
+    android:id="@+id/pattern_of_the_day.wrapper"
     style="@style/DashboardFeature"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <FrameLayout
-        style="@style/PluginPatternContainer"
-        android:padding="@dimen/default_padding"
-        android:id="@+id/card_of_the_day_pattern_container"
+    <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
+        android:id="@+id/pattern_of_the_day.pattern_card_preview"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         app:labelIcon="@drawable/ic_today_black"
         app:labelText="Daily Pattern"
-        app:layout_constraintEnd_toEndOf="@id/card_of_the_day_pattern_container"
-        app:layout_constraintTop_toTopOf="@id/card_of_the_day_pattern_container" />
+        app:layout_constraintEnd_toEndOf="@id/pattern_of_the_day.pattern_card_preview"
+        app:layout_constraintTop_toTopOf="@id/pattern_of_the_day.pattern_card_preview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

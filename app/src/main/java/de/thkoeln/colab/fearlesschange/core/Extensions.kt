@@ -119,7 +119,7 @@ fun Snackbar.onTimeout(listener: () -> Unit) = this.apply {
     })
 }
 
-fun Context.getDrawable(name: String): Int? =
+fun Context.getDrawableId(name: String): Int? =
         getResourceId(name, "drawable")
 
 

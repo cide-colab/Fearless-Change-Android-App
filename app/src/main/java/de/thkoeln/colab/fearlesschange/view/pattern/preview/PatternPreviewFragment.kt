@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.getDrawable
+import de.thkoeln.colab.fearlesschange.core.getDrawableId
 import de.thkoeln.colab.fearlesschange.core.observe
 import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
 import kotlinx.android.synthetic.main.pattern_preview.view.*
@@ -31,7 +31,7 @@ class PatternPreviewFragment : PatternViewModelFragment<PatternPreviewViewModel>
         super.onActivityCreated(savedInstanceState)
         viewModel.pattern.observe(this) { info ->
             with(info.pattern) {
-                view?.pattern_preview_image?.setImageResource(context?.getDrawable(pictureName)
+                view?.pattern_preview_image?.setImageResource(context?.getDrawableId(pictureName)
                         ?: R.drawable.default_pattern_image)
                 view?.pattern_preview_title?.text = title
                 view?.pattern_preview_summary?.text = summary

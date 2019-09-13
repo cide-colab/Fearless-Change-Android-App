@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#9E9E9E</color>
-    <color name="colorPrimaryDark">#616161</color>
-    <color name="colorAccent">#FF5722</color>
+    <color name="colorPrimary">#a6242f</color>
+    <color name="colorPrimaryDark">#700007</color>
+    <color name="colorAccent">#DE531F</color>
+
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="textColorSecondary">#ffffff</color>
+
+    <color name="activityBackground">#DDB589</color>
+
 
     <!-- Launcher -->
     <color name="ic_launcher_background">#FFFFFF</color>

@@ -109,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/image_description_pattern_image"
+                android:contentDescription="@string/pattern_card_image_description"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

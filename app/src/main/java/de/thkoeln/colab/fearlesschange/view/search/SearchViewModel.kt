@@ -67,7 +67,7 @@ class SearchViewModel(application: Application) : BasicPatternViewModel(applicat
 //    private val keywordRepository = KeywordRepository(application)
 //
 //    private val patternDynamic = DynamicLiveData<List<PatternInfo>>()
-//    val pattern = patternDynamic.asLiveData()
+//    val patternInfo = patternDynamic.asLiveData()
 //
 //    private val unselectedKeywordsDynamic = DynamicLiveData<List<Keyword>>()
 //    val unselectedKeywords = unselectedKeywordsDynamic.asLiveData()

@@ -14,13 +14,13 @@ class PatternDetailSwiperViewModelFactory(private val application: Application, 
 
 class PatternDetailSwiperViewModel(application: Application, private var args: PatternDetailSwiperFragmentArgs) : BasicPatternViewModel(application) {
 
-    //val pattern: LiveData<List<PatternInfo>> = patternRepository.getInfos(args.patternIds.toList())
+    //val patternInfo: LiveData<List<PatternInfo>> = patternRepository.getInfos(args.patternIds.toList())
 
     //TODO pass id on return
     // private var currentPatternId = args.currentPatternId
     val currentPosition: Int = args.patternIds.indexOfFirst { it == args.currentPatternId }
     val patternIds = args.patternIds
-    //fun getCurrentPatternIndex() = pattern.value?.let { pattern -> pattern.indexOfFirst { it.pattern.id == currentPatternId } }
+    //fun getCurrentPatternIndex() = patternInfo.value?.let { patternInfo -> patternInfo.indexOfFirst { it.patternInfo.id == currentPatternId } }
 //
 //
 //    val sharePatternEvent = SingleActionLiveData<Pattern>()
@@ -34,7 +34,7 @@ class PatternDetailSwiperViewModel(application: Application, private var args: P
 //    }
 
 //    val sharePressed: () -> Unit = {
-//        currentPattern.value?.pattern
+//        currentPattern.value?.patternInfo
 //                ?.let { sharePatternEvent.invoke(it) }
 //                ?:notify(R.string.massage_no_pattern_to_share)
 //    }

@@ -42,13 +42,13 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter1.patternClickedListener = viewModel.patternCardClicked
-        adapter2.patternClickedListener = viewModel.patternCardClicked
-        adapter3.patternClickedListener = viewModel.patternCardClicked
-
-        adapter1.inflate(random_cards_container_1, true)
-        adapter2.inflate(random_cards_container_2, true)
-        adapter3.inflate(random_cards_container_3, true)
+        random_cards_container_1.setOnClickListener { viewModel.patternCardClicked(random_cards_container_1.patternInfo) }
+        random_cards_container_2.setOnClickListener { viewModel.patternCardClicked(random_cards_container_2.patternInfo) }
+        random_cards_container_3.setOnClickListener { viewModel.patternCardClicked(random_cards_container_3.patternInfo) }
+//
+//        adapter1.inflate(random_cards_container_1, true)
+//        adapter2.inflate(random_cards_container_2, true)
+//        adapter3.inflate(random_cards_container_3, true)
 
         viewModel.randomPattern.nonNullObserve(this) { info -> changeValues(info) }
 
@@ -63,15 +63,15 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
     }
 
     private fun changePattern(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        adapter1.bind(info.first)
-        adapter2.bind(info.second)
-        adapter3.bind(info.third)
+        random_cards_container_1.patternInfo = info.first
+        random_cards_container_2.patternInfo = info.second
+        random_cards_container_3.patternInfo = info.third
     }
 
     private fun animateAndChangePattern(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        getAnimation(random_cards_container_1, 0) { adapter1.bind(info.first) }.start()
-        getAnimation(random_cards_container_2, 1) { adapter2.bind(info.second) }.start()
-        getAnimation(random_cards_container_3, 2) { adapter3.bind(info.third) }.start()
+        getAnimation(random_cards_container_1, 0) { random_cards_container_1.patternInfo = info.first }.start()
+        getAnimation(random_cards_container_2, 1) { random_cards_container_2.patternInfo = info.second }.start()
+        getAnimation(random_cards_container_3, 2) { random_cards_container_3.patternInfo = info.third }.start()
     }
 
     private fun getAnimation(card: View, index: Int, delayBetweenAnimations: Long = 100, durationPerAnimation: Long = 100, run: () -> Unit): AnimatorSet {

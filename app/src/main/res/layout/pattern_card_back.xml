@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pattern_card_back.container"
+    style="@style/PatternCard.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pattern_card_front.content_container"
+        style="@style/PatternCard.Content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/pattern_card_back.problem_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/image_description_problem"
+            android:src="@drawable/ic_problem_white"
+            app:layout_constraintBottom_toBottomOf="@id/pattern_card_back.problem"
+            app:layout_constraintEnd_toStartOf="@id/pattern_card_back.problem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pattern_card_back.problem" />
+
+        <ImageView
+            android:id="@+id/pattern_card_back.solution_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/image_description_solution"
+            android:src="@drawable/ic_solution_white"
+            app:layout_constraintBottom_toBottomOf="@id/pattern_card_back.solution"
+            app:layout_constraintEnd_toStartOf="@id/pattern_card_back.solution"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pattern_card_back.solution" />
+
+
+        <de.thkoeln.colab.fearlesschange.view.custom.ResponsiveTextView
+            android:id="@+id/pattern_card_back.problem"
+            style="@style/PatternCard.Text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/pattern_card_back.solution"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pattern_card_back.problem_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.thkoeln.colab.fearlesschange.view.custom.ResponsiveTextView
+            android:id="@+id/pattern_card_back.solution"
+            style="@style/PatternCard.Text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pattern_card_back.solution_icon"
+            app:layout_constraintTop_toBottomOf="@id/pattern_card_back.problem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

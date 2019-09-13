@@ -9,7 +9,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.adapters.SwipeToDeleteRecyclerViewAdapter
-import de.thkoeln.colab.fearlesschange.core.getDrawable
+import de.thkoeln.colab.fearlesschange.core.getDrawableId
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 import kotlinx.android.synthetic.main.note_item.view.*
 
@@ -40,7 +40,7 @@ class NoteRecyclerViewAdapter(context: Context, private val updateTodo: UpdateTo
             itemView.note_item_note_text.html = item.note.note.text
 
             with(item.pattern.pattern) {
-                itemView.note_item_pattern_image?.setImageResource(itemView.context?.getDrawable(pictureName)
+                itemView.note_item_pattern_image?.setImageResource(itemView.context?.getDrawableId(pictureName)
                         ?: R.drawable.default_pattern_image)
                 itemView.note_item_pattern_title?.text = title
                 itemView.note_item_pattern_summary?.text = summary
