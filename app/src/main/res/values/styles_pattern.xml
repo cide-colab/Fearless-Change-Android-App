@@ -80,7 +80,7 @@
         <item name="android:layout_height">32dp</item>
         <item name="android:elevation">3dp</item>
         <item name="android:rotation">-6</item>
-        <item name="android:src">@drawable/ic_favorite_full</item>
+        <item name="android:src">@drawable/ic_nav_favorites</item>
     </style>
 
     <style name="PatternCardNotesIcon">
@@ -131,7 +131,7 @@
 
     <style name="NotesBtn">
         <item name="android:layout_margin">@dimen/default_margin</item>
-        <item name="android:src">@drawable/ic_note_white_24dp</item>
+        <item name="android:src">@drawable/ic_nav_notes</item>
         <item name="backgroundTint">@color/note_color</item>
     </style>
 

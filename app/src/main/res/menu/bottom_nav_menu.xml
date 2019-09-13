@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_nav_dashboard"
         android:title="@string/label_nav_dashboard"
         app:showAsAction="always" />
     <item
         android:id="@+id/nav_cards"
-        android:icon="@drawable/ic_cards_black_24dp"
+        android:icon="@drawable/ic_nav_overview"
         android:title="@string/label_nav_cards"
         app:showAsAction="always" />
     <item
         android:id="@+id/nav_favorites"
-        android:icon="@drawable/ic_favorite_full"
+        android:icon="@drawable/ic_nav_favorites"
         android:title="@string/label_nav_favorites"
         app:showAsAction="always" />
     <item
         android:id="@+id/nav_notes"
-        android:icon="@drawable/ic_note_white_24dp"
+        android:icon="@drawable/ic_nav_notes"
         android:title="@string/action_notes"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/nav_more"
-        android:icon="@drawable/ic_more_horiz_black_24dp"
+        android:icon="@drawable/ic_nav_more"
         android:title="@string/label_nav_more"
         app:showAsAction="ifRoom" />
 </menu>

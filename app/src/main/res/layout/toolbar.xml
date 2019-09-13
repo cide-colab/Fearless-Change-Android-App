@@ -12,7 +12,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/activity.toolbar"
-        style="@style/AppToolBar"
+        android:layout_height="?actionBarSize"
+        android:background="?colorPrimary"
         android:layout_width="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_description_app"
-                android:src="@mipmap/ic_launcher_foreground"
+                android:padding="6dp"
+                android:src="@mipmap/ic_launcher"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/activity.title"
                 app:layout_constraintStart_toStartOf="parent"

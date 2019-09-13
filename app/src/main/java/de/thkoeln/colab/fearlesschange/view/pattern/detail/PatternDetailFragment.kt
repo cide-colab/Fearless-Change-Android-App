@@ -1,10 +1,8 @@
 package de.thkoeln.colab.fearlesschange.view.pattern.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.observe
@@ -55,7 +53,7 @@ class PatternDetailFragment : PatternViewModelFragment<PatternDetailViewModel>()
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.pattern_detail_action_menu, menu)
+        inflater.inflate(R.menu.pattern_action_menu, menu)
         favButton = menu.findItem(R.id.action_fav)
         syncFavBtn()
     }
