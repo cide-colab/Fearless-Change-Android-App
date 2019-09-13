@@ -16,8 +16,6 @@ class PatternOfTheDayFragment : PatternViewModelFragment<PatternOfTheDayViewMode
         fun newInstance() = PatternOfTheDayFragment()
     }
 
-//    private val cardPreviewAdapter = PatternPreviewViewHolder()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.pattern_of_the_day_fragment, container, false)
     }
@@ -25,14 +23,11 @@ class PatternOfTheDayFragment : PatternViewModelFragment<PatternOfTheDayViewMode
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        cardPreviewAdapter.patternClickedListener = viewModel.patternCardClicked
-//        cardPreviewAdapter.inflate(card_of_the_day_pattern_container, true)
-        pattern_of_the_day_pattern_card_preview.setOnClickListener {
-            viewModel.patternCardClicked(pattern_of_the_day_pattern_card_preview.patternInfo)
+        pattern_of_the_day_pattern_card.setOnClickListener {
+            viewModel.patternCardClicked(pattern_of_the_day_pattern_card.patternInfo)
         }
         viewModel.patternOfTheDay.observe(this) {
-            pattern_of_the_day_pattern_card_preview.patternInfo = it
-//            cardPreviewAdapter.bind(it)
+            pattern_of_the_day_pattern_card.patternInfo = it
 
         }
     }

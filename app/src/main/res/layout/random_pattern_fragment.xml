@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/feature_card_of_the_day_container"
-    style="@style/PluginContainer"
+    android:id="@+id/random_pattern.wrapper"
+    style="@style/DashboardPlugin.Wrapper"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/random_cards_container"
+        android:id="@+id/random_pattern.container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
-            android:id="@+id/random_cards_container_1"
+            android:id="@+id/random_pattern.pattern_card_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
-            android:id="@+id/random_cards_container_2"
+            android:id="@+id/random_pattern.pattern_card_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
-            android:id="@+id/random_cards_container_3"
+            android:id="@+id/random_pattern.pattern_card_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:rotation="30"
@@ -53,16 +53,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <de.thkoeln.colab.fearlesschange.view.label.Label
-        style="@style/PluginLabel"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:labelIcon="@drawable/ic_random_black"
-        app:labelText="Random Patterns"
-        app:layout_constraintEnd_toEndOf="@id/random_cards_container"
-        app:layout_constraintTop_toTopOf="@id/random_cards_container" />
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/random_cards_reload"
         style="@style/PluginAction"
@@ -70,7 +60,18 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_refresh_black"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <de.thkoeln.colab.fearlesschange.view.label.Label
+        style="@style/PluginLabel"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:labelIcon="@drawable/ic_random_black"
+        app:labelText="Random Patterns"
+        app:layout_constraintEnd_toEndOf="@id/random_pattern.container"
+        app:layout_constraintTop_toTopOf="@id/random_pattern.container" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

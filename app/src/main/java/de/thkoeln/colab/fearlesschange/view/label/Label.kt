@@ -1,26 +1,24 @@
 package de.thkoeln.colab.fearlesschange.view.label
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.thkoeln.colab.fearlesschange.R
 import kotlinx.android.synthetic.main.label.view.*
 
-/**
- * TODO: document your custom view class.
- */
 class Label : ConstraintLayout {
 
-    var icon: Int? = null
+    var icon: Drawable? = null
         set(value) {
             field = value
-            invalidateTextPaintAndMeasurements()
+            label_icon.setImageDrawable(field)
         }
 
     var text: String? = null
         set(value) {
             field = value
-            invalidateTextPaintAndMeasurements()
+            label_text.text = field
         }
 
     constructor(context: Context) : super(context) {
@@ -40,36 +38,11 @@ class Label : ConstraintLayout {
 
         val a = context.obtainStyledAttributes(attrs, R.styleable.Label, defStyle, 0)
 
-        label_text.text = a.getString(R.styleable.Label_labelText)
+        text = a.getString(R.styleable.Label_labelText)
 
-
-//        gradientTopColor = a.getColor(R.styleable.Label_gradientTopColor, gradientTop)
-//        gradientBottomColor = a.getColor(R.styleable.Label_gradientBottomColor,  gradientBottom)
-//        contentColor = a.getColor(R.styleable.Label_contentColor,  gradientBottom)
-//
         if (a.hasValue(R.styleable.Label_labelIcon)) {
-            label_icon.setImageDrawable(a.getDrawable(R.styleable.Label_labelIcon))
+            icon = a.getDrawable(R.styleable.Label_labelIcon)
         }
-//
         a.recycle()
-//
-//        // Set up a default TextPaint object
-//        textPaint = TextPaint().apply {
-//            flags = Paint.ANTI_ALIAS_FLAG
-//            textAlign = Paint.Align.LEFT
-//        }
-//
-//        // Update TextPaint and name measurements from attributes
-//        invalidateTextPaintAndMeasurements()
     }
-
-    private fun invalidateTextPaintAndMeasurements() {
-//        with(textPaint) {
-//            //textSize = exampleDimension
-//            color = contentColor
-//            textWidth = measureText(name)
-//            textHeight = fontMetrics.bottom
-//        }
-    }
-
 }
