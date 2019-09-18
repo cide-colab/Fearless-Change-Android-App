@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/activity_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin">
+
+                <ImageView
+                    android:id="@+id/more.ic_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/default_margin"
+                    android:src="@drawable/ic_info_outline_black_24dp"
+                    app:layout_constraintBottom_toTopOf="@id/more.image_fc"
+                    app:layout_constraintEnd_toStartOf="@id/more.title_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/more.more_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/more_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.previewData" />
+
+                <ImageView
+                    android:id="@+id/more.image_mfc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/mfc"
+                    app:layout_constraintBottom_toBottomOf="@id/more.image_fc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/more.image_fc"
+                    app:layout_constraintTop_toTopOf="@id/more.image_fc"
+                    app:layout_constraintVertical_bias="0" />
+
+                <TextView
+                    android:id="@+id/more.title_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_title"
+                    app:layout_constraintBottom_toBottomOf="@id/more.ic_info"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/more.ic_info"
+                    app:layout_constraintTop_toTopOf="@id/more.ic_info" />
+
+                <ImageView
+                    android:id="@+id/more.image_fc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/fc"
+                    app:layout_constraintBottom_toTopOf="@id/more.previewData"
+                    app:layout_constraintEnd_toStartOf="@id/more.image_mfc"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.ic_info" />
+
+                <TextView
+                    android:id="@+id/more.previewData"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_fc"
+                    app:layout_constraintBottom_toTopOf="@id/more.more_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.image_fc" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin">
+
+                <ImageView
+                    android:id="@+id/more.ic_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/default_margin"
+                    android:src="@drawable/ic_settings_black"
+                    app:layout_constraintBottom_toTopOf="@id/more.reset_most_clicked.container"
+                    app:layout_constraintEnd_toStartOf="@id/more.title_settings"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/more.title_settings"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_header"
+                    app:layout_constraintBottom_toBottomOf="@id/more.ic_settings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/more.ic_settings"
+                    app:layout_constraintTop_toTopOf="@id/more.ic_settings" />
+
+                <LinearLayout
+                    android:id="@+id/more.reset_most_clicked.container"
+                    style="@style/SettingsItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/more.reset_favorites.container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.ic_settings">
+
+                    <ImageView
+                        android:id="@+id/more.reset_most_clicked.icon"
+                        style="@style/SettingsIcon.UserSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_description_calendar"
+                        android:src="@drawable/ic_today_white" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/more.reset_most_clicked.text"
+                        style="@style/SettingsItemLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_item_reset_most_clicked_cards_label" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more.reset_favorites.container"
+                    style="@style/SettingsItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@id/more.reset_notes.container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.reset_most_clicked.container">
+
+                    <ImageView
+                        android:id="@+id/more.reset_favorites.icon"
+                        style="@style/SettingsIcon.UserSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_description_heart"
+                        android:src="@drawable/ic_toolbar_favorite" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/more.reset_favorites.text"
+                        style="@style/SettingsItemLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_item_reset_favorites_label" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/more.reset_notes.container"
+                    style="@style/SettingsItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@id/more.reset_labels.container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.reset_favorites.container">
+
+                    <ImageView
+                        android:id="@+id/more.reset_notes.icon"
+                        style="@style/SettingsIcon.UserSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_description_notes"
+                        android:src="@drawable/ic_assignment_white" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/more.reset_notes.text"
+                        style="@style/SettingsItemLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_item_reset_notes_label" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more.reset_labels.container"
+                    style="@style/SettingsItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@id/more.reset_all.container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.reset_notes.container">
+
+                    <ImageView
+                        android:id="@+id/more.reset_labels.icon"
+                        style="@style/SettingsIcon.UserSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_description_notes"
+                        android:src="@drawable/ic_label_black_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/more.reset_labels.text"
+                        style="@style/SettingsItemLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_item_reset_labels_label" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more.reset_all.container"
+                    style="@style/SettingsItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/more.reset_labels.container">
+
+                    <ImageView
+                        android:id="@+id/more.reset_all.icon"
+                        style="@style/SettingsIcon.SystemSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_description_reset"
+                        android:src="@drawable/ic_reset_white" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/more.reset_all.text"
+                        style="@style/SettingsItemLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_item_reset_to_factory_settings_label" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -13,8 +13,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.RelativeLayout
 import androidx.core.content.FileProvider
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.getDrawable
-import de.thkoeln.colab.fearlesschange.core.toPx
+import de.thkoeln.colab.fearlesschange.core.extensions.toPx
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
 import kotlinx.android.synthetic.main.pattern_print_layout.view.*
 import java.io.ByteArrayOutputStream
@@ -26,17 +25,9 @@ class ShareManager(private val activity: Activity) {
 
     fun sharePattern(pattern: Pattern) {
         val view = LayoutInflater.from(activity).inflate(R.layout.pattern_print_layout, null, false)
-        with(pattern) {
-            val image = view.context.getDrawable(pictureName) ?: R.drawable.default_pattern_image
-            view.print_front_title.text = title
-            view.print_front_summary.text = summary
-            view.print_front_image.setImageResource(image)
-            view.print_back_image.setImageResource(image)
-            view.print_back_title.text = title
-            view.print_back_problem.text = problem
-            view.print_back_solution.text = solution
-            view.layoutParams = RelativeLayout.LayoutParams(800.toPx(), WRAP_CONTENT)
-        }
+        view.print_front.pattern = pattern
+        view.print_back.pattern = pattern
+        view.layoutParams = RelativeLayout.LayoutParams(800.toPx(), WRAP_CONTENT)
         shareFile(ShareType.JPEG, getImageFileFrom(pattern.title, view), activity.getString(R.string.share_text, pattern.title))
 
     }

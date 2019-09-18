@@ -16,9 +16,12 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.toPx
+import de.thkoeln.colab.fearlesschange.core.extensions.toPx
 import de.thkoeln.colab.fearlesschange.persistance.label.Label
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
+import de.thkoeln.colab.fearlesschange.view.label.CreateLabelDialog
+import de.thkoeln.colab.fearlesschange.view.label.LabelRecyclerAdapter
+import de.thkoeln.colab.fearlesschange.view.todo.CreateTodoRecyclerAdapter
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.android.synthetic.main.create_note_fragment.*
 
@@ -96,7 +99,7 @@ class CreateNoteFragment : Fragment() {
     private val args: CreateNoteFragmentArgs by navArgs()
 
     private lateinit var labelAdapter: LabelRecyclerAdapter
-    private lateinit var createCheckboxAdapter: CreateCheckboxRecyclerAdapter
+    private lateinit var createCheckboxAdapter: CreateTodoRecyclerAdapter
 
     companion object {
         fun newInstance() = CreateNoteFragment()
@@ -126,7 +129,7 @@ class CreateNoteFragment : Fragment() {
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
-        labelAdapter = LabelRecyclerAdapter(requireContext())
+        labelAdapter = LabelRecyclerAdapter()
 
         label_container.adapter = labelAdapter
 //        label_container.layoutManager = GridLayoutManager(context, 2)
@@ -136,7 +139,7 @@ class CreateNoteFragment : Fragment() {
 //            label_container.removeItemDecorationAt(0)
 //        }
         viewModel.getLabels { labels = it }
-        createCheckboxAdapter = CreateCheckboxRecyclerAdapter(requireContext())
+        createCheckboxAdapter = CreateTodoRecyclerAdapter()
         todo_container.adapter = createCheckboxAdapter
         todo_container.layoutManager = GridLayoutManager(context, 2)
 
@@ -162,7 +165,7 @@ class CreateNoteFragment : Fragment() {
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.create_note_action_menu, menu)
+        inflater.inflate(R.menu.note_editor_action_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

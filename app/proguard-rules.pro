@@ -24,6 +24,7 @@
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
 -keepnames class kotlinx.coroutines.android.AndroidExceptionPreHandler {}
 -keepnames class kotlinx.coroutines.android.AndroidDispatcherFactory {}
+-keep class android.arch.lifecycle.** {*;}
 
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;

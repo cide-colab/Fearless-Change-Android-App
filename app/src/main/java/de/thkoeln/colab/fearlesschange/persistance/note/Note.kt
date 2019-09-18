@@ -9,7 +9,7 @@ import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
 /**
  * Created by florianherborn on 13.08.18.
  */
-@Entity(tableName = "note",
+@Entity(tableName = "noteData",
         indices = [Index("patternId"), Index("id")],
         foreignKeys = [ForeignKey(
                 entity = Pattern::class,

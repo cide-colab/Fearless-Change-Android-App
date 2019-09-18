@@ -11,48 +11,6 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding">
 
-        <CheckBox
-            android:id="@+id/search_fragment.cb_labels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/labels"
-            app:layout_constraintBottom_toBottomOf="@id/search_fragment.search_in_text"
-            app:layout_constraintEnd_toStartOf="@id/search_fragment.cb_note"
-            app:layout_constraintStart_toEndOf="@id/search_fragment.search_in_text"
-            app:layout_constraintTop_toTopOf="@id/search_fragment.search_in_text" />
-
-        <CheckBox
-            android:id="@+id/search_fragment.cb_note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/notes"
-            app:layout_constraintBottom_toBottomOf="@id/search_fragment.cb_labels"
-            app:layout_constraintEnd_toStartOf="@id/search_fragment.cb_card"
-            app:layout_constraintStart_toEndOf="@id/search_fragment.cb_labels"
-            app:layout_constraintTop_toTopOf="@id/search_fragment.cb_labels" />
-
-        <CheckBox
-            android:id="@+id/search_fragment.cb_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/cards"
-            app:layout_constraintBottom_toBottomOf="@id/search_fragment.cb_labels"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/search_fragment.cb_note"
-            app:layout_constraintTop_toTopOf="@id/search_fragment.cb_labels" />
-
-        <TextView
-            android:id="@+id/search_fragment.search_in_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_in"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_fragment.notes"
             android:layout_width="0dp"
@@ -62,7 +20,70 @@
             app:layout_constraintBottom_toTopOf="@id/search_fragment.pattern"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_fragment.search_in_text" />
+            app:layout_constraintTop_toBottomOf="@id/search_fragment.options" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/search_fragment.options"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/search_fragment.cb_labels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/labels"
+                    app:layout_constraintBottom_toBottomOf="@id/search_fragment.search_in_text"
+                    app:layout_constraintEnd_toStartOf="@id/search_fragment.cb_note"
+                    app:layout_constraintStart_toEndOf="@id/search_fragment.search_in_text"
+                    app:layout_constraintTop_toTopOf="@id/search_fragment.search_in_text" />
+
+
+                <CheckBox
+                    android:id="@+id/search_fragment.cb_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/notes"
+                    app:layout_constraintBottom_toBottomOf="@id/search_fragment.cb_labels"
+                    app:layout_constraintEnd_toStartOf="@id/search_fragment.cb_card"
+                    app:layout_constraintStart_toEndOf="@id/search_fragment.cb_labels"
+                    app:layout_constraintTop_toTopOf="@id/search_fragment.cb_labels" />
+
+                <CheckBox
+                    android:id="@+id/search_fragment.cb_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/cards"
+                    app:layout_constraintBottom_toBottomOf="@id/search_fragment.cb_labels"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/search_fragment.cb_note"
+                    app:layout_constraintTop_toTopOf="@id/search_fragment.cb_labels" />
+
+                <TextView
+                    android:id="@+id/search_fragment.search_in_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/search_in"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_fragment.pattern"

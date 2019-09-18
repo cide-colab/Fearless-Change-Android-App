@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="patternCardMargin">2dp</dimen>
+
+    <dimen name="patternCardCornerRadius">8dp</dimen>
+    <dimen name="patternCardElevation">2dp</dimen>
+    <dimen name="patternCardContentPadding">8dp</dimen>
+
+    <dimen name="patternCardTitlePadding">8dp</dimen>
+    <dimen name="patternCardTitleElevation">4dp</dimen>
+</resources>

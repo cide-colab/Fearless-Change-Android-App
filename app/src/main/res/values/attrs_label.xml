@@ -1,6 +1,0 @@
-<resources>
-    <declare-styleable name="Label">
-        <attr name="labelIcon" format="color|reference" />
-        <attr name="labelText" format="string" />
-    </declare-styleable>
-</resources>

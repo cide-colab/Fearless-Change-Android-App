@@ -7,8 +7,6 @@ import android.view.View
 import android.view.View.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
@@ -17,10 +15,6 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.view.search.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-
-
-fun FragmentManager.getCurrentNavigationFragment(): Fragment? =
-        primaryNavigationFragment?.childFragmentManager?.fragments?.first()
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(activity_toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
         setupNav()
 
 

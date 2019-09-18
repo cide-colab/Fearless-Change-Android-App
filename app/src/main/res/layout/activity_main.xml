@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity.container"
-    style="@style/Activity"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,33 +24,15 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
-        style="@style/BottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_height="?actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-    <!--<androidx.core.widget.NestedScrollView-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:fillViewport="true"-->
-    <!--app:layout_constraintBottom_toTopOf="@id/bottom_nav"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@id/activity.toolbar">-->
-
-    <!--</androidx.core.widget.NestedScrollView>-->
-
 
     <include
         android:id="@+id/activity_main.toolbar_container"
         layout="@layout/toolbar" />
-    <!--app:hideOnScroll="true"-->
-    <!--app:fabAlignmentMode="center"-->
-    <!--app:layout_scrollFlags="scroll|enterAlways"-->
-    <!--app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

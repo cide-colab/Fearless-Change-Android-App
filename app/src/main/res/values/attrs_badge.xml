@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="Badge">
+        <attr name="badgeIcon" format="color|reference" />
+        <attr name="badgeText" format="string" />
+    </declare-styleable>
+</resources>

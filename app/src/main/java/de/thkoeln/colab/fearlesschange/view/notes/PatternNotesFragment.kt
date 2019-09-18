@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import kotlinx.android.synthetic.main.pattern_notes_fragment.*
 
 
-class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
+class PatternNotesFragment : InteractiveFragment<PatternNotesViewModel>() {
 
     private val args: PatternNotesFragmentArgs by navArgs()
 
@@ -25,7 +25,8 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
         super.onActivityCreated(savedInstanceState)
 
 
-        val adapter = PatternNoteRecyclerGridAdapter(requireContext(), updateTodo)
+        val adapter = NoteRecyclerAdapter()
+        adapter.onTodoChanged = onTodoChanged
         adapter.afterDeleteItemListener = { item, index ->
             viewModel.deleteNote(item.note)
             Snackbar.make(pattern_notes_container, R.string.message_note_deleted, Snackbar.LENGTH_LONG)
@@ -39,11 +40,11 @@ class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
 
         viewModel.loadNotes { adapter.setItems(it) }
 
-        pattern_notes_create_note.setOnClickListener { viewModel.createNoteButtonClicked() }
+        pattern_notes_notes_create_note.setOnClickListener { viewModel.createNoteButtonClicked() }
 
     }
 
-    private val updateTodo: UpdateTodo = { todo: Todo, state: Boolean ->
+    private val onTodoChanged: OnTodoChanged = { todo: Todo, state: Boolean ->
         viewModel.updateTodo(todo, state)
     }
 

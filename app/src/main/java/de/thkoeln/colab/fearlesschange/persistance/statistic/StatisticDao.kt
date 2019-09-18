@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 
 /**
  * Created by florianherborn on 30.07.18.
@@ -14,7 +14,7 @@ import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
 interface StatisticDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg actions: Statistic)
+    suspend fun insert(vararg actions: Statistic)
 
     @Query("SELECT * FROM statistic")
     fun getAll(): LiveData<List<Statistic>>
@@ -28,10 +28,10 @@ interface StatisticDao {
     @Query("SELECT COUNT(*) FROM statistic WHERE `action` = :action")
     fun getActionCount(action: StatisticAction): LiveData<Long>
 
-    @Query("SELECT p.*, n.noteCount FROM (SELECT patternId, COUNT(`action`) as actions FROM statistic WHERE `action`=:action GROUP BY patternId ORDER BY actions DESC LIMIT 1) s LEFT JOIN pattern p ON s.patternId = p.id LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM note GROUP BY patternId) n ON s.patternId = n.patternId")
-    fun getMostCommonByAction(action: StatisticAction): LiveData<PatternInfo?>
+    @Query("SELECT p.*, n.noteCount FROM (SELECT patternId, COUNT(`action`) as actions FROM statistic WHERE `action`=:action GROUP BY patternId ORDER BY actions DESC LIMIT 1) s LEFT JOIN pattern p ON s.patternId = p.id LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM noteData GROUP BY patternId) n ON s.patternId = n.patternId")
+    fun getMostCommonByAction(action: StatisticAction): LiveData<PatternPreviewData?>
 
     @Query("DELETE FROM statistic WHERE `action` = :action")
-    fun deleteByAction(action: StatisticAction)
+    suspend fun deleteByAction(action: StatisticAction)
 
 }

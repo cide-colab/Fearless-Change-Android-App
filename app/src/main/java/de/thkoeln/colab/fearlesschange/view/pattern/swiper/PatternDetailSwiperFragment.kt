@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.view.pattern.detail.PatternDetailViewPagerAdapter
 import kotlinx.android.synthetic.main.pattern_detail_swiper_fragment.*
 
 
-class PatternDetailSwiperFragment : PatternViewModelFragment<PatternDetailSwiperViewModel>() {
+class PatternDetailSwiperFragment : InteractiveFragment<PatternDetailSwiperViewModel>() {
 
     companion object {
         fun newInstance(patternIds: LongArray, currentPattern: Long = patternIds.getOrNull(0) ?: throw Exception("No Pattern for detail passed")) = PatternDetailSwiperFragment().apply {

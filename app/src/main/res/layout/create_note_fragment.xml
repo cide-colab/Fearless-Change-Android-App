@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="?android:colorBackground"
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding"
+                android:minHeight="200dp"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintBottom_toTopOf="@id/todo_container"
                 app:layout_constraintEnd_toEndOf="parent"

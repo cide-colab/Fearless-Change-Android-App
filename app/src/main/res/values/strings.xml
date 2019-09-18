@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Fearless Change</string>
+    <string name="app_subtitle">Patterns for introducing new ideas</string>
 
 
     <!-- Actions -->
@@ -20,7 +21,7 @@
     <!-- Images -->
     <string name="image_description_back">Back</string>
     <string name="image_description_title_bg">Title Background</string>
-    <string name="image_description_pattern_image">Pattern Image</string>
+    <string name="pattern_card_image_description">Pattern Image</string>
     <string name="image_description_favorite">Favorite icon</string>
     <string name="image_description_notes">Notes icon</string>
     <string name="image_description_feature_icon">Feature Icon</string>
@@ -44,16 +45,18 @@
     <string name="settings_item_reset_labels_label">Reset all your labels</string>
 
     <!-- Messages -->
-    <string name="message_notes_reset">Your notes have been deleted</string>
-    <string name="message_labels_reset">Your labels have been deleted</string>
+    <string name="message_notes_reset">Your notes has been deleted</string>
+    <string name="message_labels_reset">Your labels has been deleted</string>
+    <string name="message_favorites_reset">Your favorites has been reset</string>
+    <string name="message_most_clicked_pattern_reset">The most clicked card has been reset!</string>
+    <string name="message_all_reset">Your data has been deleted</string>
     <string name="message_request_confirmation_reset_note">Do you really want to delete all notes? This action can not be undone!</string>
     <string name="message_request_confirmation_reset_labels">Do you really want to delete all labels? This action can not be undone!</string>
     <string name="message_request_confirmation_reset_favorites">Do you really want to reset your favorites? This action can not be undone!</string>
-    <string name="message_favorites_reset">Your favorites have been reset</string>
-    <string name="message_most_clicked_pattern_reset">The most clicked card has been reset!</string>
+    <string name="message_request_confirmation_reset_all">Do you really want to reset all your data? This action can not be undone!</string>
     <string name="message_request_confirmation_reset_most_clicked_pattern">Do you really want to reset your most clicked card? This action can not be undone!</string>
     <string name="massage_no_pattern_to_share">No Pattern found to share</string>
-    <string name="message_pattern_removed_from_fav">The pattern %1$s was removed from favorites</string>
+    <string name="message_pattern_removed_from_fav">The patternData %1$s was removed from favorites</string>
     <string name="message_keyword_removed_from_filters">The keyword %1$s was removed from filters</string>
     <string name="message_note_deleted">Note was deleted</string>
 
@@ -85,7 +88,7 @@
         These patterns are a collection of possible ways to support the change process. But to be successful
         in a change you do not have to meet all the patterns. Instead of that you must find the mixture of the
         right patterns and utilize them at the right time. The book ‘Fearless Change: Patterns for introducing New Ideas’
-        will help to understand the patterns and to figure out which pattern should be used to deal with a specific complication
+        will help to understand the patterns and to figure out which patternData should be used to deal with a specific complication
         in the change process. The approaches that can be conducted with the help of the patterns vary widely, due to the fact that
         every organization and project faces different complications during a change. This App supports project teams in a change
         situation by providing the fearless change patterns in the form of cards. With the help of that cards it is
@@ -93,6 +96,7 @@
     </string>
     <string name="info_title">Info about Fearless Change</string>
     <string name="more_btn">More...</string>
+    <string name="action_save">Save</string>
 
 
 </resources>

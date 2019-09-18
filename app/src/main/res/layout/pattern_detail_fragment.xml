@@ -6,32 +6,20 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/pattern_detail_container"
-        style="@style/ContentContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/pattern.detail.notes_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="@dimen/default_margin"
-        app:layout_constraintVertical_bias="0" />
-
-    <FrameLayout
-        android:id="@+id/pattern.detail.quick_note.container"
+        android:id="@+id/pattern_detail.quick_note.container"
         style="@style/QuickNoteContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/pattern.detail.notes_btn"
-        app:layout_constraintEnd_toStartOf="@id/pattern.detail.notes_btn"
+        app:layout_constraintBottom_toBottomOf="@id/pattern_detail.notes_btn"
+        app:layout_constraintEnd_toStartOf="@id/pattern_detail.notes_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/pattern.detail.notes_btn">
+        app:layout_constraintTop_toTopOf="@id/pattern_detail.notes_btn">
         <Button
-            android:id="@+id/pattern.detail.quick_note"
+            android:id="@+id/pattern_detail.quick_note"
             style="@style/QuickNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
             android:focusable="false"
             android:clickable="true"
             android:text="@string/take_a_note_btn_text"/>
@@ -39,12 +27,24 @@
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/pattern.detail.notes_btn"
+        android:id="@+id/pattern_detail.notes_btn"
         style="@style/NotesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/pattern.detail.quick_note.container" />
+        app:layout_constraintStart_toEndOf="@id/pattern_detail.quick_note.container" />
+
+    <de.thkoeln.colab.fearlesschange.view.custom.FlippablePatternCard
+        android:id="@+id/pattern_detail.flippable_pattern_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/pattern_detail.notes_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintVertical_bias="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

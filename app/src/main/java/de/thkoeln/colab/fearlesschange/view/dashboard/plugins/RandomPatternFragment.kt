@@ -8,32 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import androidx.core.animation.doOnEnd
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.nonNullObserve
-import de.thkoeln.colab.fearlesschange.core.onAnimationEnd
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
-import de.thkoeln.colab.fearlesschange.core.playSequentially
-import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternInfo
-import de.thkoeln.colab.fearlesschange.view.pattern.preview.PatternPreviewViewHolder
+import de.thkoeln.colab.fearlesschange.core.extensions.nonNullObserve
+import de.thkoeln.colab.fearlesschange.core.extensions.playSequentially
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import kotlinx.android.synthetic.main.random_pattern_fragment.*
 
 
-class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>() {
+class RandomPatternFragment : InteractiveFragment<RandomPatternViewModel>() {
 
     companion object {
         fun newInstance(groupId: Int = 0) = RandomPatternFragment().apply {
             arguments = RandomPatternFragmentArgs(groupId).toBundle()
         }
     }
-
-    private val adapter1 = PatternPreviewViewHolder()
-    private val adapter2 = PatternPreviewViewHolder()
-    private val adapter3 = PatternPreviewViewHolder()
-
     private val args: RandomPatternFragmentArgs by navArgs()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.random_pattern_fragment, container, false)
@@ -42,13 +35,9 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter1.patternClickedListener = viewModel.patternCardClicked
-        adapter2.patternClickedListener = viewModel.patternCardClicked
-        adapter3.patternClickedListener = viewModel.patternCardClicked
-
-        adapter1.inflate(random_cards_container_1, true)
-        adapter2.inflate(random_cards_container_2, true)
-        adapter3.inflate(random_cards_container_3, true)
+        random_pattern_pattern_card_1.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_1.patternPreviewData) }
+        random_pattern_pattern_card_2.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_2.patternPreviewData) }
+        random_pattern_pattern_card_3.setOnClickListener { viewModel.patternCardClicked(random_pattern_pattern_card_3.patternPreviewData) }
 
         viewModel.randomPattern.nonNullObserve(this) { info -> changeValues(info) }
 
@@ -56,22 +45,22 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
     }
 
 
-    private fun changeValues(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        if (viewModel.shouldAnimatePattern) animateAndChangePattern(info)
-        else changePattern(info)
+    private fun changeValues(previewData: Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>) {
+        if (viewModel.shouldAnimatePattern) animateAndChangePattern(previewData)
+        else changePattern(previewData)
 
     }
 
-    private fun changePattern(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        adapter1.bind(info.first)
-        adapter2.bind(info.second)
-        adapter3.bind(info.third)
+    private fun changePattern(previewData: Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>) {
+        random_pattern_pattern_card_1.patternPreviewData = previewData.first
+        random_pattern_pattern_card_2.patternPreviewData = previewData.second
+        random_pattern_pattern_card_3.patternPreviewData = previewData.third
     }
 
-    private fun animateAndChangePattern(info: Triple<PatternInfo, PatternInfo, PatternInfo>) {
-        getAnimation(random_cards_container_1, 0) { adapter1.bind(info.first) }.start()
-        getAnimation(random_cards_container_2, 1) { adapter2.bind(info.second) }.start()
-        getAnimation(random_cards_container_3, 2) { adapter3.bind(info.third) }.start()
+    private fun animateAndChangePattern(previewData: Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>) {
+        getAnimation(random_pattern_pattern_card_1, 0) { random_pattern_pattern_card_1.patternPreviewData = previewData.first }.start()
+        getAnimation(random_pattern_pattern_card_2, 1) { random_pattern_pattern_card_2.patternPreviewData = previewData.second }.start()
+        getAnimation(random_pattern_pattern_card_3, 2) { random_pattern_pattern_card_3.patternPreviewData = previewData.third }.start()
     }
 
     private fun getAnimation(card: View, index: Int, delayBetweenAnimations: Long = 100, durationPerAnimation: Long = 100, run: () -> Unit): AnimatorSet {
@@ -81,7 +70,7 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
         val oa3 = ObjectAnimator.ofFloat(card, "scaleX", 1f, 0f).apply { interpolator = DecelerateInterpolator() }
         val oa4 = ObjectAnimator.ofFloat(card, "scaleX", 0f, 1f).apply { interpolator = AccelerateDecelerateInterpolator() }
 
-        oa2.onAnimationEnd { run() }
+        oa2.doOnEnd { run() }
 
         return AnimatorSet().playSequentially(durationPerAnimation, delayBetweenAnimations * index, oa1, oa2, oa3, oa4)
     }
