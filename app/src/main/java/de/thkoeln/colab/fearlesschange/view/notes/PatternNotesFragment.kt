@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import kotlinx.android.synthetic.main.pattern_notes_fragment.*
 
 
-class PatternNotesFragment : PatternViewModelFragment<PatternNotesViewModel>() {
+class PatternNotesFragment : InteractiveFragment<PatternNotesViewModel>() {
 
     private val args: PatternNotesFragmentArgs by navArgs()
 

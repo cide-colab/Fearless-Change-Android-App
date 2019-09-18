@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.getDrawableId
-import de.thkoeln.colab.fearlesschange.core.observe
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.extensions.getDrawableId
+import de.thkoeln.colab.fearlesschange.core.extensions.observe
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import kotlinx.android.synthetic.main.pattern_preview.view.*
 
-class PatternPreviewFragment : PatternViewModelFragment<PatternPreviewViewModel>() {
+class PatternPreviewFragment : InteractiveFragment<PatternPreviewViewModel>() {
 
     companion object {
         fun newInstance(patternId: Long) = PatternPreviewFragment().apply {

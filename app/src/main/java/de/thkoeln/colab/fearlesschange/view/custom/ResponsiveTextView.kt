@@ -8,7 +8,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.TextView
 import androidx.core.view.setPadding
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.toPx
+import de.thkoeln.colab.fearlesschange.core.extensions.toPx
 import kotlin.math.max
 
 

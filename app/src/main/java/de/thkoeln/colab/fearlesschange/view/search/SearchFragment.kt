@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.observe
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.extensions.observe
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.view.PatternCardPreviewRecyclerAdapter
 import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import de.thkoeln.colab.fearlesschange.view.notes.NoteRecyclerViewAdapter
@@ -21,7 +21,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class SearchFragment : PatternViewModelFragment<SearchViewModel>(), SearchView.OnQueryTextListener {
+class SearchFragment : InteractiveFragment<SearchViewModel>(), SearchView.OnQueryTextListener {
 
     private var searchJob: Job? = null
     private var searchText: String? = null

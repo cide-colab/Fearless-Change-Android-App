@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.toPx
+import de.thkoeln.colab.fearlesschange.core.extensions.toPx
 
 interface SwipeToDeleteAdapter {
     fun onDelete(position: Int)

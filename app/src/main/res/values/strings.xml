@@ -45,13 +45,15 @@
     <string name="settings_item_reset_labels_label">Reset all your labels</string>
 
     <!-- Messages -->
-    <string name="message_notes_reset">Your notes have been deleted</string>
-    <string name="message_labels_reset">Your labels have been deleted</string>
+    <string name="message_notes_reset">Your notes has been deleted</string>
+    <string name="message_labels_reset">Your labels has been deleted</string>
+    <string name="message_favorites_reset">Your favorites has been reset</string>
+    <string name="message_most_clicked_pattern_reset">The most clicked card has been reset!</string>
+    <string name="message_all_reset">Your data has been deleted</string>
     <string name="message_request_confirmation_reset_note">Do you really want to delete all notes? This action can not be undone!</string>
     <string name="message_request_confirmation_reset_labels">Do you really want to delete all labels? This action can not be undone!</string>
     <string name="message_request_confirmation_reset_favorites">Do you really want to reset your favorites? This action can not be undone!</string>
-    <string name="message_favorites_reset">Your favorites have been reset</string>
-    <string name="message_most_clicked_pattern_reset">The most clicked card has been reset!</string>
+    <string name="message_request_confirmation_reset_all">Do you really want to reset all your data? This action can not be undone!</string>
     <string name="message_request_confirmation_reset_most_clicked_pattern">Do you really want to reset your most clicked card? This action can not be undone!</string>
     <string name="massage_no_pattern_to_share">No Pattern found to share</string>
     <string name="message_pattern_removed_from_fav">The patternData %1$s was removed from favorites</string>

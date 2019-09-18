@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.observe
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.extensions.observe
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import kotlinx.android.synthetic.main.pattern_of_the_day_fragment.*
 
-class PatternOfTheDayFragment : PatternViewModelFragment<PatternOfTheDayViewModel>() {
+class PatternOfTheDayFragment : InteractiveFragment<PatternOfTheDayViewModel>() {
 
     companion object {
         fun newInstance() = PatternOfTheDayFragment()

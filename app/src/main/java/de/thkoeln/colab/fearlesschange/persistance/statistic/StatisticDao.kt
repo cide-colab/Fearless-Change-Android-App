@@ -14,7 +14,7 @@ import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 interface StatisticDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg actions: Statistic)
+    suspend fun insert(vararg actions: Statistic)
 
     @Query("SELECT * FROM statistic")
     fun getAll(): LiveData<List<Statistic>>
@@ -32,6 +32,6 @@ interface StatisticDao {
     fun getMostCommonByAction(action: StatisticAction): LiveData<PatternPreviewData?>
 
     @Query("DELETE FROM statistic WHERE `action` = :action")
-    fun deleteByAction(action: StatisticAction)
+    suspend fun deleteByAction(action: StatisticAction)
 
 }

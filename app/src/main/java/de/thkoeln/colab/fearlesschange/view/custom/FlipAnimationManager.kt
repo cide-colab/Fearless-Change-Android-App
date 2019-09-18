@@ -1,4 +1,4 @@
-package de.thkoeln.colab.fearlesschange.core.animation
+package de.thkoeln.colab.fearlesschange.view.custom
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

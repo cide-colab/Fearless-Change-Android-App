@@ -9,7 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.toPx
+import de.thkoeln.colab.fearlesschange.core.extensions.toPx
 
 
 class LabelChip @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : TextView(context, attrs, defStyleAttr) {

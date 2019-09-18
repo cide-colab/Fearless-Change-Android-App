@@ -5,7 +5,6 @@ package de.thkoeln.colab.fearlesschange.view.custom
 import android.content.Context
 import android.util.AttributeSet
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.animation.FlipAnimationManager
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
 import kotlinx.android.synthetic.main.flippable_pattern_card.view.*
 

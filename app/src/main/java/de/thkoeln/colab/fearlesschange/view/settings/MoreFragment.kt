@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import kotlinx.android.synthetic.main.settings_fragment.*
 
 
-class MoreFragment : PatternViewModelFragment<MoreViewModel>() {
+class MoreFragment : InteractiveFragment<MoreViewModel>() {
 
     companion object {
         fun newInstance() = MoreFragment()

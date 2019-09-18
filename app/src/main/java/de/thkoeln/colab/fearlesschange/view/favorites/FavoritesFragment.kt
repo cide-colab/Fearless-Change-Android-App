@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.observe
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.extensions.observe
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import de.thkoeln.colab.fearlesschange.view.PatternCardPreviewRecyclerAdapter
 import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import kotlinx.android.synthetic.main.favorites_fragment.*
 
 
-class FavoritesFragment : PatternViewModelFragment<FavoritesViewModel>() {
+class FavoritesFragment : InteractiveFragment<FavoritesViewModel>() {
 
     companion object {
         fun newInstance() = FavoritesFragment()

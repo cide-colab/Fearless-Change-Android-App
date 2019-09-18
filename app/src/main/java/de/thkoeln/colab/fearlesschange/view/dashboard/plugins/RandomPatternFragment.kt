@@ -8,18 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import androidx.core.animation.doOnEnd
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.nonNullObserve
-import de.thkoeln.colab.fearlesschange.core.onAnimationEnd
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
-import de.thkoeln.colab.fearlesschange.core.playSequentially
+import de.thkoeln.colab.fearlesschange.core.extensions.nonNullObserve
+import de.thkoeln.colab.fearlesschange.core.extensions.playSequentially
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
 import kotlinx.android.synthetic.main.random_pattern_fragment.*
 
 
-class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>() {
+class RandomPatternFragment : InteractiveFragment<RandomPatternViewModel>() {
 
     companion object {
         fun newInstance(groupId: Int = 0) = RandomPatternFragment().apply {
@@ -70,7 +70,7 @@ class RandomPatternFragment : PatternViewModelFragment<RandomPatternViewModel>()
         val oa3 = ObjectAnimator.ofFloat(card, "scaleX", 1f, 0f).apply { interpolator = DecelerateInterpolator() }
         val oa4 = ObjectAnimator.ofFloat(card, "scaleX", 0f, 1f).apply { interpolator = AccelerateDecelerateInterpolator() }
 
-        oa2.onAnimationEnd { run() }
+        oa2.doOnEnd { run() }
 
         return AnimatorSet().playSequentially(durationPerAnimation, delayBetweenAnimations * index, oa1, oa2, oa3, oa4)
     }

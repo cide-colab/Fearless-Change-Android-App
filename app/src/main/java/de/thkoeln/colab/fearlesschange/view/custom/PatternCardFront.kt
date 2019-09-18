@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.getDrawableId
+import de.thkoeln.colab.fearlesschange.core.extensions.getDrawableId
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
 import kotlinx.android.synthetic.main.pattern_card_front.view.*
 

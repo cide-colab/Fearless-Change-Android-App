@@ -4,11 +4,12 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.thkoeln.colab.fearlesschange.core.asLiveData
 import de.thkoeln.colab.fearlesschange.core.events.DynamicLiveData
-import de.thkoeln.colab.fearlesschange.core.map
-import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.core.extensions.asLiveData
+import de.thkoeln.colab.fearlesschange.core.extensions.map
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveViewModel
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternRepository
 import de.thkoeln.colab.fearlesschange.view.dashboard.DashboardFragmentDirections
 
 
@@ -20,14 +21,19 @@ class RandomPatternViewModelFactory(private val application: Application, privat
 }
 
 
-class RandomPatternViewModel(application: Application, private val args: RandomPatternFragmentArgs) : BasicPatternViewModel(application) {
+class RandomPatternViewModel(application: Application, private val args: RandomPatternFragmentArgs) : InteractiveViewModel(application) {
+
+
+    private val patternRepository by lazy { PatternRepository(application) }
 
     private val cachedPattern = hashMapOf<Int, Triple<PatternPreviewData, PatternPreviewData, PatternPreviewData>?>()
 
     val patternCardClicked: (PatternPreviewData?) -> Unit = { patternInfo ->
         patternInfo?.let {
-            notifyPatternClicked(patternInfo)
-            notifyAction(DashboardFragmentDirections.actionNavDashboardToPatternDetailFragment(getPatternForDetail(), it.pattern.id))
+            notifyPatternClicked(patternInfo.pattern)
+            navigator {
+                navigate(DashboardFragmentDirections.actionNavDashboardToPatternDetailFragment(getPatternForDetail(), it.pattern.id))
+            }
         }
     }
 

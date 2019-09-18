@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.view.custom.MarginItemDecoration
 import kotlinx.android.synthetic.main.notes_fragment.*
 
-class NotesFragment : PatternViewModelFragment<NotesViewModel>() {
+class NotesFragment : InteractiveFragment<NotesViewModel>() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

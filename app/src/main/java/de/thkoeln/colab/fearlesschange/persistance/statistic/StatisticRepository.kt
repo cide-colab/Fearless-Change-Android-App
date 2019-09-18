@@ -1,7 +1,6 @@
 package de.thkoeln.colab.fearlesschange.persistance.statistic
 
 import android.content.Context
-import de.thkoeln.colab.fearlesschange.core.doAsync
 import de.thkoeln.colab.fearlesschange.persistance.AppDatabase
 
 
@@ -13,7 +12,7 @@ class StatisticRepository(context: Context) {
     private val database = AppDatabase.getInstance(context)
     private val dao = database.statisticDao()
 
-    fun insert(vararg actions: Statistic) = doAsync { dao.insert(*actions) }
+    suspend fun insert(vararg actions: Statistic) = dao.insert(*actions)
 
     fun getAll() = dao.getAll()
 
@@ -25,6 +24,6 @@ class StatisticRepository(context: Context) {
 
     fun getMostCommonByAction(action: StatisticAction) = dao.getMostCommonByAction(action)
 
-    fun deleteAllByAction(action: StatisticAction) = doAsync { dao.deleteByAction(action) }
+    suspend fun deleteAllByAction(action: StatisticAction) = dao.deleteByAction(action)
 
 }

@@ -4,11 +4,11 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
-import de.thkoeln.colab.fearlesschange.persistance.label.LabelRepository
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveViewModel
 import de.thkoeln.colab.fearlesschange.persistance.note.NoteRepository
 import de.thkoeln.colab.fearlesschange.persistance.noteLabelJoin.NoteLabelJoinRepository
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternRepository
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
 import de.thkoeln.colab.fearlesschange.view.notes.NoteData
@@ -16,9 +16,10 @@ import de.thkoeln.colab.fearlesschange.view.notes.PatternNoteData
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class SearchViewModel(application: Application) : BasicPatternViewModel(application) {
+class SearchViewModel(application: Application) : InteractiveViewModel(application) {
 
-    private val labelRepo = LabelRepository(application)
+
+    private val patternRepository by lazy { PatternRepository(application) }
     private val notesRepo = NoteRepository(application)
     private val todoRepo = TodoRepository(application)
     private val noteLabelJoinRepo = NoteLabelJoinRepository(application)
@@ -28,8 +29,10 @@ class SearchViewModel(application: Application) : BasicPatternViewModel(applicat
 
     val patternCardClicked: (PatternPreviewData?) -> Unit = { patternInfo ->
         patternInfo?.let {
-            notifyPatternClicked(patternInfo)
-            notifyAction(SearchFragmentDirections.actionNavSearchToPatternDetailSwipeFragment(longArrayOf(it.pattern.id), it.pattern.id))
+            notifyPatternClicked(patternInfo.pattern)
+            navigator {
+                navigate(SearchFragmentDirections.actionNavSearchToPatternDetailSwipeFragment(longArrayOf(it.pattern.id), it.pattern.id))
+            }
         }
     }
 
@@ -63,57 +66,5 @@ class SearchViewModel(application: Application) : BasicPatternViewModel(applicat
             todoRepo.update(todo.copy(state = state))
         }
     }
-
-//    private val keywordRepository = KeywordRepository(application)
-//
-//    private val patternDynamic = DynamicLiveData<List<PatternPreviewData>>()
-//    val patternPreviewData = patternDynamic.asLiveData()
-//
-//    private val unselectedKeywordsDynamic = DynamicLiveData<List<Keyword>>()
-//    val unselectedKeywords = unselectedKeywordsDynamic.asLiveData()
-//
-//    private val selectedKeywordsDynamic = DynamicLiveData<List<Keyword>>()
-//    val selectedKeywords = selectedKeywordsDynamic.asLiveData()
-//
-//    private val keywords = mutableListOf<Keyword>()
-
-//    val keywordAddedListener: (Keyword) -> Unit = { keyword ->
-//        keywords.add(keyword)
-//        refreshKeywords()
-//        refreshPattern()
-//    }
-//
-//    val onKeywordDeleted: (keyword: Keyword) -> Unit = { keyword ->
-//        keywords.remove(keyword)
-//        refreshKeywords()
-//        refreshPattern()
-//    }
-//
-//
-//    val onKeywordRestored: (keyword: Keyword) -> Unit = { keyword ->
-//        keywordAddedListener(keyword)
-//    }
-//
-//
-
-
-//    init {
-//        refreshKeywords()
-//        refreshPattern()
-//    }
-//
-//
-//    private fun refreshPattern() {
-//        patternDynamic.newSource(
-//                if (keywords.isEmpty()) patternRepository.getAllInfo()
-//                else patternRepository.getByKeywordIds(keywords.map { it.id }))
-//    }
-//
-//    private fun refreshKeywords() {
-//        selectedKeywordsDynamic.newSource(getFilteredKeywords { this.keywords.contains(it) })
-//        unselectedKeywordsDynamic.newSource(getFilteredKeywords { !this.keywords.contains(it) })
-//    }
-//
-//    private fun getFilteredKeywords(filter: (Keyword) -> Boolean) = keywordRepository.getAllKeywords().map { keywords -> keywords.filter(filter) }
 
 }

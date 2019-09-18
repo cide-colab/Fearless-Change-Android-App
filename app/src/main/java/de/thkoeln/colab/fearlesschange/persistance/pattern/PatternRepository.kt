@@ -1,7 +1,6 @@
 package de.thkoeln.colab.fearlesschange.persistance.pattern
 
 import android.content.Context
-import de.thkoeln.colab.fearlesschange.core.doAsync
 import de.thkoeln.colab.fearlesschange.persistance.AppDatabase
 
 /**
@@ -21,10 +20,10 @@ class PatternRepository(context: Context) {
     fun getCount() = dao.getCount()
     fun getFavorites() = dao.getFavorites()
     fun getFavoritesInfo() = dao.getFavoritesInfo()
-    fun switchFavorite(id: Long) = doAsync { dao.switchFavorite(id) }
+    suspend fun switchFavorite(id: Long) = dao.switchFavorite(id)
     fun getAllIds() = dao.getAllIds()
     fun getRandom(count: Int) = dao.getRandom(count)
-    fun setAllFavorites(flag: Boolean) = doAsync { dao.setAllFavorites(flag) }
+    suspend fun setAllFavorites(flag: Boolean) = dao.setAllFavorites(flag)
     fun getByKeywordIds(keywordIds: List<Long>) = dao.getByKeywordIds(keywordIds)
     suspend fun getLike(query: String) = dao.getLike(query)
 }

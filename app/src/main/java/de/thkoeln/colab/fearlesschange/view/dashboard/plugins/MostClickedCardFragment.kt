@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.nonNullObserve
-import de.thkoeln.colab.fearlesschange.core.pattern.PatternViewModelFragment
+import de.thkoeln.colab.fearlesschange.core.extensions.nonNullObserve
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import kotlinx.android.synthetic.main.most_clicked_card_fragment.*
 
-class MostClickedCardFragment : PatternViewModelFragment<MostClickedCardViewModel>() {
+class MostClickedCardFragment : InteractiveFragment<MostClickedCardViewModel>() {
 
     companion object {
         fun newInstance() = MostClickedCardFragment()

@@ -57,7 +57,7 @@ interface PatternDao {
     fun getFavoritesInfo(): LiveData<List<PatternPreviewData>>
 
     @Query("UPDATE patternPreviewData SET favorite = NOT favorite  WHERE id = :id")
-    fun switchFavorite(id: Long)
+    suspend fun switchFavorite(id: Long)
 
     @Query("SELECT id FROM patternPreviewData")
     fun getAllIds(): LiveData<List<Long>>
@@ -70,7 +70,7 @@ interface PatternDao {
     fun getRandom(count: Int): LiveData<List<PatternPreviewData>>
 
     @Query("UPDATE patternPreviewData SET favorite = :flag")
-    fun setAllFavorites(flag: Boolean)
+    suspend fun setAllFavorites(flag: Boolean)
 
     @Query("SELECT id, title, pictureName, problem, summary, solution, favorite, noteCount FROM (SELECT * FROM (SELECT c.* FROM patternPreviewData c, pattern_keyword ck WHERE c.id = ck.patternId AND ck.keywordId IN (:keywordIds) GROUP BY c.id HAVING COUNT(*) >= :length) cards LEFT JOIN (SELECT COUNT(patternId) as noteCount, patternId FROM noteData GROUP BY patternId) n ON cards.id = n.patternId)")
     fun getByKeywordIds(keywordIds: List<Long>, length: Int = keywordIds.size): LiveData<List<PatternPreviewData>>

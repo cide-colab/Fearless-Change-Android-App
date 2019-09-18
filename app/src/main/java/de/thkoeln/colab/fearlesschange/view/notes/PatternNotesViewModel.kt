@@ -3,7 +3,7 @@ package de.thkoeln.colab.fearlesschange.view.notes
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveViewModel
 import de.thkoeln.colab.fearlesschange.persistance.label.Label
 import de.thkoeln.colab.fearlesschange.persistance.label.LabelRepository
 import de.thkoeln.colab.fearlesschange.persistance.note.Note
@@ -16,7 +16,7 @@ import kotlinx.coroutines.runBlocking
 
 data class NoteData(val note: Note, val labels: List<Label>, val todos: List<Todo>)
 
-class PatternNotesViewModel(application: Application, args: PatternNotesFragmentArgs) : BasicPatternViewModel(application) {
+class PatternNotesViewModel(application: Application, args: PatternNotesFragmentArgs) : InteractiveViewModel(application) {
 
     private val id = args.patternId
 
@@ -60,7 +60,9 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
     //TODO Update TODO
 
     fun createNoteButtonClicked() {
-        notifyAction(PatternNotesFragmentDirections.actionPatternNotesFragmentToCreateNoteFragment(id))
+        navigator {
+            navigate(PatternNotesFragmentDirections.actionPatternNotesFragmentToCreateNoteFragment(id))
+        }
     }
 
 //    fun getNoteLabels(noteData: Note) = noteLabelJoinRepository.getByNote(noteData.id)

@@ -3,7 +3,7 @@ package de.thkoeln.colab.fearlesschange.view.pattern.swiper
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveViewModel
 
 @Suppress("UNCHECKED_CAST")
 class PatternDetailSwiperViewModelFactory(private val application: Application, private val args: PatternDetailSwiperFragmentArgs) : ViewModelProvider.Factory {
@@ -12,7 +12,7 @@ class PatternDetailSwiperViewModelFactory(private val application: Application, 
     }
 }
 
-class PatternDetailSwiperViewModel(application: Application, private var args: PatternDetailSwiperFragmentArgs) : BasicPatternViewModel(application) {
+class PatternDetailSwiperViewModel(application: Application, private var args: PatternDetailSwiperFragmentArgs) : InteractiveViewModel(application) {
 
     //val patternPreviewData: LiveData<List<PatternPreviewData>> = patternRepository.getInfos(args.patternIds.toList())
 
@@ -36,6 +36,6 @@ class PatternDetailSwiperViewModel(application: Application, private var args: P
 //    val sharePressed: () -> Unit = {
 //        currentPattern.value?.patternPreviewData
 //                ?.let { sharePatternEvent.invoke(it) }
-//                ?:notify(R.string.massage_no_pattern_to_share)
+//                ?:snackBar(R.string.massage_no_pattern_to_share)
 //    }
 }

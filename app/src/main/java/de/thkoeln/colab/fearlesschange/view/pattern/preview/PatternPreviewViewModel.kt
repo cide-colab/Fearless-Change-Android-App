@@ -3,17 +3,22 @@ package de.thkoeln.colab.fearlesschange.view.pattern.preview
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.thkoeln.colab.fearlesschange.core.pattern.BasicPatternViewModel
+import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveViewModel
 import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternPreviewData
+import de.thkoeln.colab.fearlesschange.persistance.pattern.PatternRepository
 
-class PatternPreviewViewModel(application: Application, args: PatternPreviewFragmentArgs) : BasicPatternViewModel(application) {
+class PatternPreviewViewModel(application: Application, args: PatternPreviewFragmentArgs) : InteractiveViewModel(application) {
 
+
+    private val patternRepository by lazy { PatternRepository(application) }
     val pattern = patternRepository.getInfo(args.patternId)
 
     val patternCardClicked: (PatternPreviewData?) -> Unit = { patternInfo ->
         patternInfo?.let {
-            notifyPatternClicked(patternInfo)
-            notifyAction(PatternPreviewFragmentDirections.actionPatternPreviewFragmentToPatternDetailSwipeFragment(longArrayOf(it.pattern.id), it.pattern.id))
+            notifyPatternClicked(patternInfo.pattern)
+            navigator {
+                navigate(PatternPreviewFragmentDirections.actionPatternPreviewFragmentToPatternDetailSwipeFragment(longArrayOf(it.pattern.id), it.pattern.id))
+            }
         }
     }
 
