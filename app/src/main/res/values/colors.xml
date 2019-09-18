@@ -8,7 +8,7 @@
     <color name="colorSurface">#ffffff</color>
 
     <color name="colorOnPrimary">#ffffff</color>
-    <color name="colorOnSecondary">@color/colorOnPrimary</color>
+    <color name="colorOnSecondary">#000000</color>
     <color name="colorOnBackground">@color/colorPrimary</color>
     <color name="colorOnError">@color/colorOnPrimary</color>
     <color name="colorOnSurface">#000000</color>

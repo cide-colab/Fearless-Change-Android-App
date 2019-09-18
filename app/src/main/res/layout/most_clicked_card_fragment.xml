@@ -6,6 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
+        android:id="@+id/most_clicked_card.pattern_card"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <de.thkoeln.colab.fearlesschange.view.custom.Badge
         style="@style/PluginLabel"
         android:layout_height="wrap_content"
@@ -14,16 +23,5 @@
         app:layout_constraintEnd_toEndOf="@id/most_clicked_card.pattern_card"
         app:layout_constraintTop_toTopOf="@id/most_clicked_card.pattern_card" />
 
-
-    <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
-        android:id="@+id/most_clicked_card.pattern_card"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:clipChildren="true"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
