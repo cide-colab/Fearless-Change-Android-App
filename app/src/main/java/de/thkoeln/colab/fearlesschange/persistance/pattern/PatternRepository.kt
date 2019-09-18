@@ -24,6 +24,5 @@ class PatternRepository(context: Context) {
     fun getAllIds() = dao.getAllIds()
     fun getRandom(count: Int) = dao.getRandom(count)
     suspend fun setAllFavorites(flag: Boolean) = dao.setAllFavorites(flag)
-    fun getByKeywordIds(keywordIds: List<Long>) = dao.getByKeywordIds(keywordIds)
     suspend fun getLike(query: String) = dao.getLike(query)
 }
