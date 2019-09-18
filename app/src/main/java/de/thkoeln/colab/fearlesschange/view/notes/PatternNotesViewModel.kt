@@ -56,7 +56,7 @@ class PatternNotesViewModel(application: Application, args: PatternNotesFragment
     }
 
     //TODO Get todos for noteData
-    //TODO Get label for noteData
+    //TODO Get badge for noteData
     //TODO Update TODO
 
     fun createNoteButtonClicked() {

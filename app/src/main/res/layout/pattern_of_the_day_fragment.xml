@@ -6,24 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <de.thkoeln.colab.fearlesschange.view.custom.Badge
+        style="@style/PluginLabel"
+        android:layout_height="wrap_content"
+        app:badgeIcon="@drawable/ic_today_black"
+        app:badgeText="Daily Pattern"
+        app:layout_constraintEnd_toEndOf="@id/pattern_of_the_day.pattern_card"
+        app:layout_constraintTop_toTopOf="@id/pattern_of_the_day.pattern_card" />
+
+
     <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
         android:id="@+id/pattern_of_the_day.pattern_card"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <de.thkoeln.colab.fearlesschange.view.label.Label
-        style="@style/PluginLabel"
-        android:layout_height="wrap_content"
-        app:labelIcon="@drawable/ic_today_black"
-        app:labelText="Daily Pattern"
-        app:layout_constraintEnd_toEndOf="@id/pattern_of_the_day.pattern_card"
-        app:layout_constraintTop_toTopOf="@id/pattern_of_the_day.pattern_card" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

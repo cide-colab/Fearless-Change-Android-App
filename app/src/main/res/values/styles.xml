@@ -1,29 +1,32 @@
 <resources>
 
     <!-- Base application theme. -->
-
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!--        <item name="android:windowActivityTransitions">true</item>-->
         <!--        <item name="android:windowEnterTransition">@android:transition/slide_right</item>-->
         <!--        <item name="android:windowExitTransition">@android:transition/slide_left</item>-->
 
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:textColorSecondary">@color/textColorSecondary</item>
-        <item name="android:windowBackground">@color/activityBackground</item>
-        <!--        <item name="android:colorBackground">@android:color/white</item>-->
-        <!--        <item name="colorError">@color/my_app_error_color</item>-->
-        <!-- New MaterialComponents attributes. -->
-        <!--        <item name="colorPrimaryVariant">@color/my_app_primary_variant_color</item>-->
-        <!--        <item name="colorSecondaryVariant">@color/my_app_secondary_variant_color</item>-->
-        <!--        <item name="colorSurface">@color/my_app_surface_color</item>-->
-        <!--        <item name="colorOnPrimary">@color/my_app_color_on_primary</item>-->
-        <!--        <item name="colorOnSecondary">@color/my_app_color_on_secondary</item>-->
-        <!--        <item name="colorOnBackground">@color/my_app_color_on_background</item>-->
-        <!--        <item name="colorOnError">@color/my_app_color_on_error</item>-->
-        <!--        <item name="colorOnSurface">@color/my_app_color_on_surface</item>-->
+        <item name="colorPrimaryDark">@color/colorPrimaryVariant</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="android:textColorPrimary">@color/colorOnPrimary</item>
+        <item name="android:textColorSecondary">@color/colorOnSecondary</item>
+        <item name="android:windowBackground">@drawable/bg_activity</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+
+        <!-- New MaterialComponents attributes.
+        https://github.com/material-components/material-components-android/blob/master/docs/getting-started.md -->
+
         <!--        <item name="scrimBackground">@color/mtrl_scrim_color</item>-->
         <!--        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>-->
         <!--        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>-->
@@ -42,12 +45,24 @@
 
     </style>
 
+    <!--App Bar-->
 
-    <!--OLD -->
+    <style name="AppTheme.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Primary">
 
-    <style name="AppButton" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textColor">@color/primaryText</item>
     </style>
+
+    <style name="AppTheme.ToolBar" parent="Widget.MaterialComponents.Toolbar.Primary">
+
+    </style>
+
+    <style name="AppTheme.ToolBarTitle">
+        <item name="android:textColor">?colorOnPrimary</item>
+    </style>
+
+    <style name="AppTheme.ToolBarIcon">
+    </style>
+
+    <!--End App Bar-->
 
     <style name="NoteCard" parent="Widget.MaterialComponents.CardView">
         <item name="strokeColor">#ffcccccc</item>
@@ -55,155 +70,5 @@
         <item name="cardPreventCornerOverlap">true</item>
         <item name="cardCornerRadius">4dp</item>
     </style>
-
-    <style name="CardTitle" parent="Base.TextAppearance.AppCompat.Title">
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:rotation">-2</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-    </style>
-
-    <style name="CardContentWrapper">
-        <item name="android:adjustViewBounds">true</item>
-        <item name="android:background">@drawable/card_content_bg</item>
-    </style>
-
-    <style name="CardButton" parent="Widget.Design.FloatingActionButton">
-        <item name="elevation">0dp</item>
-        <item name="fabCustomSize">64dp</item>
-    </style>
-
-
-    <style name="Card" parent="CardView">
-        <item name="android:clipChildren">true</item>
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">2dp</item>
-        <item name="cardPreventCornerOverlap">false</item>
-        <item name="layout_constraintDimensionRatio">55:86</item>
-    </style>
-
-    <style name="ActivitySection">
-        <item name="android:layout_marginTop">@dimen/feature_margin</item>
-        <item name="android:layout_marginLeft">@dimen/feature_margin</item>
-        <item name="android:layout_marginRight">@dimen/feature_margin</item>
-        <item name="android:padding">@dimen/feature_padding</item>
-    </style>
-
-    <style name="DashboardFeature" parent="ActivitySection" />
-
-    <style name="ActivityContent">
-        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
-        <item name="android:fillViewport">true</item>
-    </style>
-
-    <style name="ActivitySection.WithoutContentWrapper">
-        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
-        <item name="android:fillViewport">true</item>
-    </style>
-
-
-    <style name="AppActivity">
-        <item name="android:background">@drawable/app_bg</item>
-    </style>
-
-    <style name="CardWrapper">
-        <item name="android:background">@drawable/card_bg</item>
-    </style>
-
-    <!-- ShowcaseView -->
-
-    <!--<style name="AppShowcaseView" parent="ShowcaseView">-->
-        <!--<item name="sv_backgroundColor">#CC80DEEA</item>-->
-        <!--<item name="sv_showcaseColor">#045FB4</item>-->
-        <!--<item name="sv_buttonText">@string/tutorial_next_button_label</item>-->
-        <!--<item name="sv_titleTextAppearance">@style/ShowcaseTitle</item>-->
-        <!--<item name="sv_detailTextAppearance">@style/ShowcaseText</item>-->
-    <!--</style>-->
-
-    <!--<style name="FabShowcaseView" parent="AppShowcaseView">-->
-    <!--</style>-->
-    <!---->
-    <!--<style name="ShowcaseTitle" parent="TextAppearance.ShowcaseView.Title.Light">-->
-        <!--<item name="android:textColor">#1A237E</item>-->
-    <!--</style>-->
-
-    <!--<style name="ShowcaseText" parent="TextAppearance.ShowcaseView.Detail.Light">-->
-        <!--<item name="android:textColor">#303F9F</item>-->
-    <!--</style>-->
-
-    <style name="ListItemBigtext">
-        <item name="android:textColor">#25467A</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
-        <item name="android:textStyle">italic</item>
-    </style>
-
-    <style name="ListItemSubtext">
-        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="Chip">
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingEnd">8dp</item>
-        <item name="android:layout_margin">1dp</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:background">@drawable/chip_background</item>
-    </style>
-
-
-    <!-- CLEAN -->
-
-    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-        <item name="colorAccent">@color/secondary</item>
-        <item name="android:dialogTheme">@style/Dialog</item>
-    </style>
-
-    <style name="Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent
-        </item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowTitleStyle">@null</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="Activity">
-        <item name="android:background">@drawable/bg_activity</item>
-    </style>
-
-    <style name="AppIcon">
-        <item name="android:adjustViewBounds">true</item>
-    </style>
-
-
-    <style name="AppTitle" parent="android:TextAppearance.Material.Widget.ActionBar.Subtitle">
-    </style>
-
-    <style name="AppToolBar" parent="android:Widget.Material.Toolbar">
-        <item name="android:background">#ffffffff</item>
-        <item name="android:layout_height">?actionBarSize</item>
-    </style>
-
-    <style name="BottomNavigationView">
-        <item name="itemBackground">@color/primary</item>
-        <item name="itemIconTint">@color/primaryText</item>
-        <item name="itemTextColor">@color/primaryText</item>
-    </style>
-
-    <style name="ContentContainer">
-    </style>
-
 
 </resources>

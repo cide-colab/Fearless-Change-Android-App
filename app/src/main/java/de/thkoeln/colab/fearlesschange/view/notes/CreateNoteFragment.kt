@@ -19,6 +19,9 @@ import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.extensions.toPx
 import de.thkoeln.colab.fearlesschange.persistance.label.Label
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
+import de.thkoeln.colab.fearlesschange.view.label.CreateLabelDialog
+import de.thkoeln.colab.fearlesschange.view.label.LabelRecyclerAdapter
+import de.thkoeln.colab.fearlesschange.view.todo.CreateTodoRecyclerAdapter
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.android.synthetic.main.create_note_fragment.*
 
@@ -96,7 +99,7 @@ class CreateNoteFragment : Fragment() {
     private val args: CreateNoteFragmentArgs by navArgs()
 
     private lateinit var labelAdapter: LabelRecyclerAdapter
-    private lateinit var createCheckboxAdapter: CreateCheckboxRecyclerAdapter
+    private lateinit var createCheckboxAdapter: CreateTodoRecyclerAdapter
 
     companion object {
         fun newInstance() = CreateNoteFragment()
@@ -136,7 +139,7 @@ class CreateNoteFragment : Fragment() {
 //            label_container.removeItemDecorationAt(0)
 //        }
         viewModel.getLabels { labels = it }
-        createCheckboxAdapter = CreateCheckboxRecyclerAdapter()
+        createCheckboxAdapter = CreateTodoRecyclerAdapter()
         todo_container.adapter = createCheckboxAdapter
         todo_container.layoutManager = GridLayoutManager(context, 2)
 

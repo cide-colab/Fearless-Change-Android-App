@@ -4,191 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/print_back_container"
+    <de.thkoeln.colab.fearlesschange.view.custom.PatternCardBack
+        android:id="@+id/print_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/print_front_container"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@id/print_front"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/print_back"
-            style="@style/PatternCardView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/print_back_wrapper"
-                style="@style/PatternCardViewMainWrapper"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/print_back_image"
-                    style="@style/PatternCardViewImage"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/pattern_card_image_description"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/print_back_title"
-                    style="@style/PatternCardViewTitle.Detail.Back"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/print_back_image" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/print_back_content_wrapper"
-                    style="@style/PatternCardViewContentWrapper"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/print_back_title"
-                    app:layout_constraintVertical_bias="0">
-
-                    <LinearLayout
-                        android:id="@+id/print_back_problem_section"
-                        style="@style/PatternCardContentSection"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toTopOf="@id/print_back_solution_section"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/print_back_problem_header"
-                            style="@style/PatternCardContentIcon.Problem"
-                            android:contentDescription="@string/image_description_problem" />
-
-                        <TextView
-                            android:id="@+id/print_back_problem"
-                            style="@style/PatternCardViewText.Detail.Back"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/print_back_solution_section"
-                        style="@style/PatternCardContentSection"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/print_back_problem_section">
-
-                        <ImageView
-                            android:id="@+id/print_back_solution_header"
-                            style="@style/PatternCardContentIcon.Solution"
-                            android:contentDescription="@string/image_description_solution" />
-
-                        <TextView
-                            android:id="@+id/print_back_solution"
-                            style="@style/PatternCardViewText.Detail.Back"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/print_front_container"
+    <de.thkoeln.colab.fearlesschange.view.custom.PatternCardFront
+        android:id="@+id/print_front"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/print_back_container"
+        app:layout_constraintEnd_toStartOf="@id/print_back"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/print_front"
-            style="@style/PatternCardView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/print_front_wrapper"
-                style="@style/PatternCardViewMainWrapper"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/print_front_image"
-                    style="@style/PatternCardViewImage"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/pattern_card_image_description"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/print_front_title"
-                    style="@style/PatternCardViewTitle.Detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/print_front_image" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/print_front_content_wrapper"
-                    style="@style/PatternCardViewContentWrapper"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/print_front_title"
-                    app:layout_constraintVertical_bias="0">
-
-
-                    <TextView
-                        android:id="@+id/print_front_summary"
-                        style="@style/PatternCardViewText.Detail"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

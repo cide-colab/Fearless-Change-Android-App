@@ -12,7 +12,7 @@ import de.thkoeln.colab.fearlesschange.persistance.todos.TodoRepository
 import kotlinx.coroutines.runBlocking
 
 
-//data class NoteData(val noteData: Note, val labels: List<Label>, val todos: List<Todo>)
+//data class NoteData(val noteData: Note, val labels: List<Badge>, val todos: List<Todo>)
 
 class NotesViewModel(application: Application) : InteractiveViewModel(application) {
 

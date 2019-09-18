@@ -1,4 +1,4 @@
-package de.thkoeln.colab.fearlesschange.view.notes
+package de.thkoeln.colab.fearlesschange.view.todo
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import de.thkoeln.colab.fearlesschange.core.adapters.RecyclerViewAdapter
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import kotlinx.android.synthetic.main.create_checkbox_item.view.*
 
-class CreateCheckboxRecyclerAdapter : RecyclerViewAdapter<Todo, CreateCheckboxRecyclerAdapter.CreateCheckboxViewHolder>(true) {
+class CreateTodoRecyclerAdapter : RecyclerViewAdapter<Todo, CreateTodoRecyclerAdapter.CreateCheckboxViewHolder>(true) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreateCheckboxViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.create_checkbox_item, parent, false)

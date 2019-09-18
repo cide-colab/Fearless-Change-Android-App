@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.TextView
-import androidx.core.view.setPadding
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.extensions.toPx
 import kotlin.math.max
@@ -30,19 +29,32 @@ class ResponsiveTextView @JvmOverloads constructor(context: Context, attrs: Attr
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
+        if (w != oldw) {
+            refitMeasurements(w, h)
+        }
+    }
 
-        val padding = max((w / 50.toPx()), 1) * 2.toPx()
+    private fun refitMeasurements(textWidth: Int, h: Int? = null) {
+        if (textWidth <= 0) return
+        val hPadding = ((textWidth.toFloat() / 50.toPx()) * 2.toPx()).toInt()
+        setPadding(hPadding, paddingTop, hPadding, paddingBottom)
+        val targetWidth = textWidth - 2 * hPadding
 
-        val width = (w.toFloat() - 2 * padding)
-        val characterWidth = width / charactersPerRow
+        val characterWidth = (targetWidth / charactersPerRow)
+        setTextSize(TypedValue.COMPLEX_UNIT_DIP, characterWidth.toFloat())
 
-        setPadding(padding)
-        setTextSize(TypedValue.COMPLEX_UNIT_DIP, characterWidth)
-
-        if (layoutParams.height != WRAP_CONTENT) {
-            val height = (h.toFloat() - 2 * padding)
+        if (layoutParams.height != WRAP_CONTENT && h != null) {
+            val height = (h.toFloat() - paddingTop - paddingBottom)
             maxLines = max((height / lineHeight).toInt(), 1)
         }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val parentWidth = MeasureSpec.getSize(widthMeasureSpec)
+        val height = measuredHeight
+        refitMeasurements(parentWidth)
+        this.setMeasuredDimension(parentWidth, height)
     }
 
 }

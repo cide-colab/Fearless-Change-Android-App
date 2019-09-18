@@ -14,9 +14,6 @@ import kotlin.math.min
 
 typealias OnColorChipCheckChangedListener = (chip: ColorChip) -> Unit
 
-
-
-
 class ColorChip @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ImageView(context, attrs, defStyleAttr), Checkable {
 
     private val d = resources.getDrawable(R.drawable.ic_check_black_24dp, null)

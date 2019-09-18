@@ -24,7 +24,7 @@
 
     <de.thkoeln.colab.fearlesschange.view.custom.PatternCardPreview
         android:id="@+id/note_pattern_item.pattern_card"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

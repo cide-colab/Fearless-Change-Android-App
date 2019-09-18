@@ -25,9 +25,9 @@
     </fragment>
     <fragment
         android:id="@+id/nav_more"
-        android:name="de.thkoeln.colab.fearlesschange.view.settings.MoreFragment"
+        android:name="de.thkoeln.colab.fearlesschange.view.more.MoreFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/more_fragment" />
     <fragment
         android:id="@+id/nav_cards"
         android:name="de.thkoeln.colab.fearlesschange.view.overview.CardsFragment"
@@ -91,17 +91,6 @@
             app:exitAnim="@anim/slide_out_top"
             app:popEnterAnim="@anim/slide_in_top"
             app:popExitAnim="@anim/slide_out_bottom" />
-        <argument
-            android:name="patternId"
-            app:argType="long" />
-    </fragment>
-    <fragment
-        android:id="@+id/patternPreviewFragment"
-        android:name="de.thkoeln.colab.fearlesschange.view.pattern.preview.PatternPreviewFragment"
-        android:label="pattern_preview_fragment">
-        <action
-            android:id="@+id/action_patternPreviewFragment_to_patternDetailSwipeFragment"
-            app:destination="@id/patternDetailSwipeFragment" />
         <argument
             android:name="patternId"
             app:argType="long" />

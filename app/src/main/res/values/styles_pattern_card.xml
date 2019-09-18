@@ -10,8 +10,7 @@
     </style>
 
     <style name="PatternCard.CardView">
-        <item name="layout_constraintDimensionRatio">55:86</item>
-        <item name="android:clipChildren">true</item>
+        <item name="layout_constraintDimensionRatio">H,55:86</item>
         <item name="cardCornerRadius">@dimen/patternCardCornerRadius</item>
         <item name="cardElevation">@dimen/patternCardElevation</item>
         <item name="cardPreventCornerOverlap">true</item>
@@ -26,21 +25,57 @@
     </style>
 
     <style name="PatternCard.Title">
-        <item name="android:background">?android:colorPrimary</item>
-        <item name="android:padding">@dimen/patternCardTitlePadding</item>
-        <item name="charactersPerRow">40</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="charactersPerRow">38</item>
         <item name="android:gravity">center</item>
         <item name="android:elevation">@dimen/patternCardTitleElevation</item>
     </style>
 
     <style name="PatternCard.Content">
         <item name="android:padding">@dimen/patternCardContentPadding</item>
-        <item name="android:background">?android:colorPrimaryDark</item>
+        <item name="android:background">?colorPrimaryDark</item>
     </style>
 
     <style name="PatternCard.Text">
         <item name="android:gravity">center</item>
-        <item name="charactersPerRow">50</item>
+        <item name="charactersPerRow">40</item>
+    </style>
+
+    <style name="PatternCard.FavoriteIcon">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:elevation">3dp</item>
+        <item name="android:rotation">-6</item>
+        <item name="android:src">@drawable/ic_nav_favorites</item>
+    </style>
+
+    <style name="PatternCard.NotesIcon">
+        <item name="android:elevation">3dp</item>
+        <item name="android:rotation">6</item>
+        <item name="android:src">@drawable/ic_note_count</item>
+    </style>
+
+    <style name="QuickNote" parent="android:Widget.Material.EditText">
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:textColor">@color/primaryText</item>
+    </style>
+
+    <style name="QuickNoteContainer">
+        <item name="android:background">@drawable/round_bg</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+    <style name="NotesBtn">
+        <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="android:src">@drawable/ic_nav_notes</item>
+        <item name="backgroundTint">@color/note_color</item>
+    </style>
+
+    <style name="PatternDetailContainer">
+        <item name="android:padding">@dimen/default_padding</item>
     </style>
 
 </resources>

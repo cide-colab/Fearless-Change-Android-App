@@ -4,15 +4,24 @@ package de.thkoeln.colab.fearlesschange.view.custom
 
 import android.content.Context
 import android.util.AttributeSet
+import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
 import kotlinx.android.synthetic.main.flippable_pattern_card.view.*
 
-class FlippablePatternCard @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : PatternCard(context, attrs, defStyleAttr) {
+class FlippablePatternCard @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
-    override fun inflateParentView(context: Context) {
-        inflate(context, R.layout.flippable_pattern_card, this)
+    var pattern: Pattern? = null
+        set(value) {
+            field = value
+            applyAttributes(pattern)
+        }
+
+    init {
+        ConstraintLayout.inflate(context, R.layout.flippable_pattern_card, this)
         applyFlipAnimationHelper()
+
     }
 
     private fun applyFlipAnimationHelper() {
@@ -22,7 +31,7 @@ class FlippablePatternCard @JvmOverloads constructor(context: Context, attrs: At
         }
     }
 
-    override fun applyAttributes(pattern: Pattern?) {
+    private fun applyAttributes(pattern: Pattern?) {
         flippable_pattern_card_back.pattern = pattern
         flippable_pattern_card_front.pattern = pattern
     }

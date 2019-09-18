@@ -1,13 +1,13 @@
-package de.thkoeln.colab.fearlesschange.view.label
+package de.thkoeln.colab.fearlesschange.view.custom
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.thkoeln.colab.fearlesschange.R
-import kotlinx.android.synthetic.main.label.view.*
+import kotlinx.android.synthetic.main.badge.view.*
 
-class Label : ConstraintLayout {
+class Badge : ConstraintLayout {
 
     var icon: Drawable? = null
         set(value) {
@@ -34,14 +34,14 @@ class Label : ConstraintLayout {
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
-        inflate(context, R.layout.label, this)
+        inflate(context, R.layout.badge, this)
 
-        val a = context.obtainStyledAttributes(attrs, R.styleable.Label, defStyle, 0)
+        val a = context.obtainStyledAttributes(attrs, R.styleable.Badge, defStyle, 0)
 
-        text = a.getString(R.styleable.Label_labelText)
+        text = a.getString(R.styleable.Badge_badgeText)
 
-        if (a.hasValue(R.styleable.Label_labelIcon)) {
-            icon = a.getDrawable(R.styleable.Label_labelIcon)
+        if (a.hasValue(R.styleable.Badge_badgeIcon)) {
+            icon = a.getDrawable(R.styleable.Badge_badgeIcon)
         }
         a.recycle()
     }

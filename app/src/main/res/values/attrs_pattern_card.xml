@@ -1,5 +1,2 @@
 <resources>
-    <declare-styleable name="PatternCardFront"></declare-styleable>
-    <declare-styleable name="PatternCardBack"></declare-styleable>
-    <declare-styleable name="PatternCard"></declare-styleable>
 </resources>

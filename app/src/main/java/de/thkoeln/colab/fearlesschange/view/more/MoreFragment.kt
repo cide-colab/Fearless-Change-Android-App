@@ -1,4 +1,4 @@
-package de.thkoeln.colab.fearlesschange.view.settings
+package de.thkoeln.colab.fearlesschange.view.more
 
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
-import kotlinx.android.synthetic.main.settings_fragment.*
+import kotlinx.android.synthetic.main.more_fragment.*
 
 
 class MoreFragment : InteractiveFragment<MoreViewModel>() {
@@ -19,7 +19,7 @@ class MoreFragment : InteractiveFragment<MoreViewModel>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.settings_fragment, container, false)
+        return inflater.inflate(R.layout.more_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

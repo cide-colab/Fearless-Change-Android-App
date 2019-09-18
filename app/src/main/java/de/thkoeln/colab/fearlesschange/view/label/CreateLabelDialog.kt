@@ -1,4 +1,4 @@
-package de.thkoeln.colab.fearlesschange.view.notes
+package de.thkoeln.colab.fearlesschange.view.label
 
 import android.app.Activity
 import android.app.Dialog
@@ -63,7 +63,7 @@ class CreateLabelDialog(private val labels: List<Label>) : DialogFragment() {
                     onConfirm(color?.let { label.copy(color = it) } ?: label)
                     dialog.dismiss()
                 } else {
-                    view.create_label_dialog_name.error = "Label name cannot be empty"
+                    view.create_label_dialog_name.error = "Badge name cannot be empty"
                 }
             }
         }

@@ -10,10 +10,9 @@
     app:layout_constraintTop_toTopOf="parent"
     app:liftOnScroll="true">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/activity.toolbar"
         android:layout_height="?actionBarSize"
-        android:background="?colorPrimary"
         android:layout_width="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +25,6 @@
 
             <ImageView
                 android:id="@+id/activity.icon"
-                style="@style/AppIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_description_app"
@@ -37,18 +35,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/activity.title"
-                style="@style/AppTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:textColor="?colorOnPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/activity.icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.MaterialToolbar>
 
 </com.google.android.material.appbar.AppBarLayout>

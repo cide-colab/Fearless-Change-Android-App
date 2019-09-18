@@ -17,14 +17,7 @@ class PatternCardPreview @JvmOverloads constructor(context: Context, attrs: Attr
 
     init {
         inflate(context, R.layout.pattern_card_preview, this)
-        applyAttributes(context, attrs, defStyleAttr)
         prepareView()
-    }
-
-    private fun applyAttributes(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
-//        val a = context.obtainStyledAttributes(attrs, R.styleable.PatternCardFront, defStyleAttr, 0)
-//                color = a.getColor(R.styleable.ColorChip_color, color)
-//        a.recycle()
     }
 
     private fun applyAttributes(patternPreviewData: PatternPreviewData?) {

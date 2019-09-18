@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#a6242f</color>
-    <color name="colorPrimaryDark">#700007</color>
-    <color name="colorAccent">#DE531F</color>
+    <color name="colorPrimaryVariant">#700007</color>
+    <color name="colorSecondary">#DE531F</color>
+    <color name="colorSecondaryVariant">#7D2E12</color>
+    <color name="colorError">#B00020</color>
+    <color name="colorSurface">#ffffff</color>
 
-    <color name="textColorPrimary">#ffffff</color>
-    <color name="textColorSecondary">#ffffff</color>
+    <color name="colorOnPrimary">#ffffff</color>
+    <color name="colorOnSecondary">@color/colorOnPrimary</color>
+    <color name="colorOnBackground">@color/colorPrimary</color>
+    <color name="colorOnError">@color/colorOnPrimary</color>
+    <color name="colorOnSurface">#000000</color>
 
-    <color name="activityBackground">#DDB589</color>
+    <color name="colorBackground">#ffffff</color>
 
 
     <!-- Launcher -->
     <color name="ic_launcher_background">#FFFFFF</color>
-
-    <!-- Backgrounds -->
-    <color name="component_background">#77ffffff</color>
-    <color name="feature_background">@color/component_background</color>
-
-    <!-- Nav -->
-    <color name="nav_overview_bg">#cddc39</color>
-    <color name="nav_more_bg">@android:color/holo_purple</color>
-    <color name="nav_favorites_bg">@android:color/holo_blue_light</color>
-
-    <!-- Buttons -->
-    <color name="positive_button_color">#4CAF50</color>
-    <color name="negative_button_color">#F44336</color>
 
     <!-- Notes -->
     <color name="note_color">#FFEB3B</color>

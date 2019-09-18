@@ -1,4 +1,4 @@
-package de.thkoeln.colab.fearlesschange.view.notes
+package de.thkoeln.colab.fearlesschange.view.label
 
 import android.content.Context
 import android.view.LayoutInflater

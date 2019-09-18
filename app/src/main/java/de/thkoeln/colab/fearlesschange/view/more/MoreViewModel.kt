@@ -1,4 +1,4 @@
-package de.thkoeln.colab.fearlesschange.view.settings
+package de.thkoeln.colab.fearlesschange.view.more
 
 import android.app.Application
 import de.thkoeln.colab.fearlesschange.R
