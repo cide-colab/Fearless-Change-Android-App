@@ -39,7 +39,7 @@ class NoteCard @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         note_card_todo_container.layoutManager = LinearLayoutManager(context)
         note_card_todo_container.adapter = todoAdapter
 
-        note_card_text.setEditorFontColor(resources.getColor(R.color.primaryText))
+        note_card_text.setEditorFontColor(resources.getColor(R.color.colorOnSurface))
         note_card_text.isFocusable = false
         note_card_text.isClickable = true
     }
