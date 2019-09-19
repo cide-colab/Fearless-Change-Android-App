@@ -3,20 +3,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/pattern_card.card_view"
         style="@style/PatternCard.CardView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pattern_card_back.container"
             style="@style/PatternCard.Container"
             android:layout_width="match_parent"
@@ -34,10 +33,11 @@
 
                 <ImageView
                     android:id="@+id/pattern_card_back.problem_icon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:contentDescription="@string/image_description_problem"
                     android:src="@drawable/ic_problem_white"
+                    app:layout_constraintHorizontal_weight="10"
                     app:layout_constraintBottom_toBottomOf="@id/pattern_card_back.problem"
                     app:layout_constraintEnd_toStartOf="@id/pattern_card_back.problem"
                     app:layout_constraintStart_toStartOf="parent"
@@ -45,9 +45,10 @@
 
                 <ImageView
                     android:id="@+id/pattern_card_back.solution_icon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:contentDescription="@string/image_description_solution"
+                    app:layout_constraintHorizontal_weight="10"
                     android:src="@drawable/ic_solution_white"
                     app:layout_constraintBottom_toBottomOf="@id/pattern_card_back.solution"
                     app:layout_constraintEnd_toStartOf="@id/pattern_card_back.solution"
@@ -60,6 +61,7 @@
                     style="@style/PatternCard.Text"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    app:layout_constraintHorizontal_weight="90"
                     app:layout_constraintBottom_toTopOf="@id/pattern_card_back.solution"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/pattern_card_back.problem_icon"
@@ -70,6 +72,7 @@
                     style="@style/PatternCard.Text"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    app:layout_constraintHorizontal_weight="90"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/pattern_card_back.solution_icon"

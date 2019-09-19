@@ -2,6 +2,7 @@ package de.thkoeln.colab.fearlesschange.view.custom
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.thkoeln.colab.fearlesschange.R
 import de.thkoeln.colab.fearlesschange.persistance.pattern.Pattern
@@ -17,6 +18,7 @@ class PatternCardBack @JvmOverloads constructor(context: Context, attrs: Attribu
 
     init {
         inflate(context, R.layout.pattern_card_back, this)
+        layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
     }
 

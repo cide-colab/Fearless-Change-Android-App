@@ -5,11 +5,9 @@
     android:layout_height="match_parent">
 
     <de.thkoeln.colab.fearlesschange.view.custom.PatternCardBack
-        android:id="@+id/flippable_pattern_card-back"
+        android:id="@+id/flippable_pattern_card.back"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clickable="true"
-        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -19,8 +17,6 @@
         android:id="@+id/flippable_pattern_card.front"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clickable="true"
-        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

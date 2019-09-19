@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="patternCardMargin">2dp</dimen>
+    <dimen name="patternCardMargin">4dp</dimen>
 
     <dimen name="patternCardCornerRadius">8dp</dimen>
     <dimen name="patternCardElevation">2dp</dimen>

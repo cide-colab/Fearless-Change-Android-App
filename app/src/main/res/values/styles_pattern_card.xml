@@ -10,10 +10,11 @@
     </style>
 
     <style name="PatternCard.CardView">
-        <item name="layout_constraintDimensionRatio">H,55:86</item>
+        <item name="layout_constraintDimensionRatio">55:86</item>
         <item name="cardCornerRadius">@dimen/patternCardCornerRadius</item>
         <item name="cardElevation">@dimen/patternCardElevation</item>
         <item name="cardPreventCornerOverlap">true</item>
+        <item name="android:clipChildren">true</item>
         <item name="android:layout_margin">@dimen/patternCardMargin</item>
     </style>
 
