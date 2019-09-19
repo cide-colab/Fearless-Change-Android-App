@@ -6,20 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import de.thkoeln.colab.fearlesschange.R
+import de.thkoeln.colab.fearlesschange.core.FinishJobOnDestroy
 import de.thkoeln.colab.fearlesschange.core.pattern.InteractiveFragment
 import de.thkoeln.colab.fearlesschange.persistance.todos.Todo
 import kotlinx.android.synthetic.main.pattern_notes_fragment.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class PatternNotesFragment : InteractiveFragment<PatternNotesViewModel>() {
 
     private val args: PatternNotesFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.pattern_notes_fragment, container, false)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        lifecycle.addObserver(FinishJobOnDestroy())
+        return inflater.inflate(R.layout.pattern_notes_fragment, container, false)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -28,10 +35,15 @@ class PatternNotesFragment : InteractiveFragment<PatternNotesViewModel>() {
         val adapter = NoteRecyclerAdapter()
         adapter.onTodoChanged = onTodoChanged
         adapter.afterDeleteItemListener = { item, index ->
-            viewModel.deleteNote(item.note)
+            val duration = 1500
+            val job = lifecycleScope.launch {
+                delay(duration.toLong())
+                viewModel.deleteNote(item.note)
+            }
             Snackbar.make(pattern_notes_container, R.string.message_note_deleted, Snackbar.LENGTH_LONG)
+                    .setDuration(duration)
                     .setAction(R.string.action_undo) {
-                        viewModel.addNote(item.note)
+                        job.cancel()
                         adapter.restoreItem(item, index)
                     }
                     .show()
