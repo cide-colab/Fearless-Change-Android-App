@@ -27,8 +27,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         defaultConfig
-        versionCode 6
-        versionName "1.5"
+        versionCode 7
+        versionName "1.5.1"
         testInstrumentationRunner "android.support.name.runner.AndroidJUnitRunner"
     }
     buildTypes {
