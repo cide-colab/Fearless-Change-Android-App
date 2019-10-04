@@ -3,12 +3,12 @@ package de.thkoeln.colab.fearlesschange.view.custom
 import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
+import android.text.TextPaint
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.TextView
 import de.thkoeln.colab.fearlesschange.R
-import de.thkoeln.colab.fearlesschange.core.extensions.dp
 import kotlin.math.max
 
 
@@ -29,22 +29,27 @@ class ResponsiveTextView @JvmOverloads constructor(context: Context, attrs: Attr
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        if (w != oldw) {
+//        if (w != oldw) {
             refitMeasurements(w, h)
-        }
+//        }
+        super.onSizeChanged(w, h, oldw, oldh)
     }
 
-    private fun refitMeasurements(textWidth: Int, h: Int? = null) {
-        if (textWidth <= 0) return
-        val hPadding = ((textWidth / 50.dp()) * 2.dp()).toInt()
-        setPadding(hPadding, paddingTop, hPadding, paddingBottom)
-        val targetWidth = textWidth - 2 * hPadding
+    private fun refitMeasurements(textViewWidth: Int, h: Int? = null) {
+        if (textViewWidth <= 0) return
 
-        val ratio = textSize / paint.measureText("W")
+        val textPaint = TextPaint()
+        textPaint.textSize = 1f
 
-        val characterWidth = (targetWidth / charactersPerRow)
-        textSize = characterWidth * ratio
+        val ratio = 1f / textPaint.measureText("W")
+
+        val characterWidth = (textViewWidth.toFloat() / charactersPerRow)
+        val textSize = characterWidth * ratio
+
+        this.textSize = textSize
+
+        val padding = (characterWidth * 2).toInt()
+        setPadding(padding, paddingTop, padding, paddingBottom)
 
         if (layoutParams.height != WRAP_CONTENT && h != null) {
             val height = (h.toFloat() - paddingTop - paddingBottom)

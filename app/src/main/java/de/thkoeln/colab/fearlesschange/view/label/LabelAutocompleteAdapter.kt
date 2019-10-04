@@ -1,6 +1,7 @@
 package de.thkoeln.colab.fearlesschange.view.label
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,10 +37,12 @@ class LabelAutocompleteAdapter(context: Context, labels: List<Label> = listOf())
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = (convertView ?: let {
+        val view = ((convertView ?: let {
             val inflater = LayoutInflater.from(context)
             inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false)
-        }) as TextView
+        }) as TextView).apply {
+            setTextColor(Color.BLACK)
+        }
 
 
         getItem(position)?.let { labels ->
