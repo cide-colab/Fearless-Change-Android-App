@@ -1,0 +1,600 @@
+<!--
+  ~ Copyright (c) 2019. Florian Herborn & Sebastian Quast
+  -->
+
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>Fearless Change Android App</title>
+    <meta name="description" content="Die Architektur zur Fearless Change Android App">
+    <meta name="author" content="Florian Herborn & Sebastian Quast">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="assets/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+
+</head>
+<body id="scroll-container">
+
+<header>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+        <a class="navbar-brand section-link" href="#" data-section="intro">
+            <img src="assets/media/logo.png" width="30" height="30" alt="">
+            Fearless Change Android App
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a data-section="intro" class="nav-link section-link" href="#intro">Intro
+                    <span
+                            class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a data-section="developers" class="nav-link section-link" href="#">Developers</a></li>
+                <li class="nav-item"><a data-section="features" class="nav-link section-link" href="#">Features</a></li>
+                <li class="nav-item"><a data-section="framework" class="nav-link section-link" href="#">Framework</a>
+                </li>
+                <li class="nav-item"><a data-section="architecture" class="nav-link section-link"
+                                        href="#">Architektur</a></li>
+                <li class="nav-item"><a data-section="database" class="nav-link section-link" href="#">Datenbank</a>
+                </li>
+                <li class="nav-item"><a data-section="issues" class="nav-link section-link" href="#">Issues</a></li>
+                <li class="nav-item"><a data-section="conclusion" class="nav-link section-link" href="#">Conclusion</a></li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section id="intro" class="row">
+        <h2 class="col-12">Intro</h2>
+        <div class="col-12">
+            <p>
+                For many years Dr. Mary Lynn Manns and Dr. Linda Rising have research the field of change initiatives
+                and
+                change process. The result of their researches was a kind of framework for better and less conflictual
+                change process – the fearless change patterns. These patterns are a collection of possible ways to
+                support
+                the change process. But to be successful in a change you do not have to meet all the patterns. Instead
+                of
+                that you must find the mixture of the right patterns and utilize them at the right time. The book
+                ‘Fearless
+                Change: Patterns for introducing New Ideas’ will help to understand the patterns and to figure out which
+                pattern should be used to deal with a specific complication in the change process. The approaches that
+                can
+                be conducted with the help of the patterns vary widely, due to the fact that every organization and
+                project
+                faces different complications during a change. For example, the introduction of a new E-Mail System can
+                be
+                very difficult in an old fashion and strict company, whereas in a start-up a change like that will be
+                much
+                easier to be realized. This simple example reflects the fact, that the circumstances and the environment
+                of
+                the change have a high influence on the change process.
+            </p>
+            <p>
+                Due to this complications that can occur during a change process it would be great if every project
+                leader
+                of a change process would know all the patterns. But because there are over sixty patterns it is very
+                hard
+                to have all of them on your mind. And if you know there is a pattern for your problem but can not
+                remember
+                the content or the name of the pattern it is hard to figure out with pattern you must use. The only way
+                to
+                find the right pattern is to flick through the book until you find the pattern you are looking for.
+            </p>
+            <p>
+                For this purpose we have developed an app, which will be explained in the following chapters. This
+                documentation mainly deals with features, architecture and development problems.
+            </p>
+        </div>
+    </section>
+
+    <section id="developers" class="row">
+        <h2 class="col-12">Developers</h2>
+
+        <div class="col-md-4 offset-md-1 mt-4">
+            <div class="card text-center">
+                <div class="col-12 text-center">
+                    <img src="assets/media/fherborn.png" class="avatar" alt="florian herborn avatar">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Florian Herborn</h5>
+                    <p class="card-text">Software Developer und Master Student at University of applied Science Cologne - TH Köln.</p>
+                    <a href="https://github.com/fherborn"><img src="assets/media/github.png" alt="github icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 offset-md-1 mt-4">
+            <div class="card text-center">
+                <div class="col-12 text-center">
+                    <img src="assets/media/squast.png" class="avatar" alt="sebastian quast avatar">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Sebastian Quast</h5>
+                    <p class="card-text">Software Developer und Master Student at University of applied Science Cologne - TH Köln.</p>
+                    <a href="https://github.com/Sebastian-Quast"><img src="assets/media/github.png" alt="github icon"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="row">
+        <h2 class="col-12">Features</h2>
+
+        <div class="col-12">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe src="https://www.youtube.com/embed/GrgXBTnnIfM?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card feature">
+                <div class="row ">
+                    <div class="col-md-8 text-center text-md-left p-4">
+                        <div class="card-block">
+                            <h4 class="card-title">Dashboard</h4>
+                            <p class="card-text">The dashboard contains three features designed to inspire the user.
+                                These include the Daily Pattern, the Random Pattern and the Most Clicked Pattern
+                                feature. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="assets/media/dashboard.png" class="w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card feature">
+                <div class="row ">
+                    <div class="col-md-8 text-center text-md-left p-4">
+                        <div class="card-block">
+                            <h4 class="card-title">Overview</h4>
+                            <p class="card-text">The Overview feature provides the user with a quick overview of all
+                                patterns in the form of cards.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <video src="assets/media/overview_scroll.mp4" class="w-100" autoplay loop></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card feature">
+                <div class="row ">
+                    <div class="col-md-8  text-center text-md-left p-4">
+                        <div class="card-block">
+                            <h4 class="card-title">Detail</h4>
+                            <p class="card-text">The detailed view of a pattern is divided into the two sides of a card.
+                                A summary of the pattern is given on the front of the card and a problem and solution is
+                                given on the back.</p>
+                            <p class="card-text">The detailed view of a pattern is divided into the two sides of a card.
+                                A summary of the pattern is given on the front of the card and a problem and solution is
+                                given on the back.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <video src="assets/media/pattern_detail.mp4" class="w-100" autoplay loop></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card feature">
+                <div class="row ">
+                    <div class="col-md-8 text-center text-md-left p-4">
+                        <div class="card-block">
+                            <h4 class="card-title">Notes</h4>
+                            <p class="card-text">To record thoughts or TODO'S the app offers a note function. By adding
+                                labels, notes and patterns can be grouped.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <video src="assets/media/create_note.mp4" class="w-100" autoplay loop></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card feature">
+                <div class="row ">
+                    <div class="col-md-8 text-center text-md-left p-4">
+                        <div class="card-block">
+                            <h4 class="card-title">Notes Overview</h4>
+                            <p class="card-text">All created notes can be viewed in a note overview.</p>
+                            <p class="card-text">Furthermore, the corresponding patterns can be viewed from this
+                                overview.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="assets/media/notes.png" class="w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card feature">
+                <div class="row ">
+                    <div class="col-md-8 text-center text-md-left p-4">
+                        <div class="card-block">
+                            <h4 class="card-title">Favorites</h4>
+                            <p class="card-text">By marking a card as a favorite, it can be quickly found again.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="assets/media/favorites.png" class="w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card feature">
+                <div class="row ">
+                    <div class="col-md-8 text-center text-md-left p-4">
+                        <div class="card-block">
+                            <h4 class="card-title">Search</h4>
+                            <p class="card-text">The search function can be used to search for patterns, notes or
+                                labels. The search can be controlled using the checkboxes.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="assets/media/search.png" class="w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="framework" class="row">
+        <h2 class="col-12 framework-item">Framework</h2>
+
+        <div class="col-md-6 mt-4">
+            <div class="card framework-item">
+                <div class="card-body text-center">
+                    <img src="assets/media/kotlin.svg" class="card-img-top my-4" alt="...">
+                    <h5 class="card-title">Programming Language</h5>
+                    <p class="card-text"> As programming language Kotlin was choosen instead of Java. That is because
+                        Kotlin has some features that makes developing easier and faster than developing with Java for
+                        example the handling of Nullables. In addition Kotlin is meanwhile the official programming
+                        language for Android.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card framework-item">
+                <div class="card-body text-center">
+                    <img src="assets/media/android.png" class="card-img-top my-4" alt="...">
+                    <h5 class="card-title">Android SDK</h5>
+                    <p class="card-text"> For Android-Developing the Android-SDK is necessary. But what should be
+                        discussed is the minimum used version of the sdk. Newer versions offers more features but are
+                        not compatible with older Versions of Android. Lower API-Levels are more compatible but missing
+                        important features. So in this project is used the API-Level 21 as the minimum SDK-Version as
+                        good compromise between features and compatibility. The target SDK is API-Level 28.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mt-4">
+            <div class="card framework-item">
+                <div class="card-body text-center">
+                    <img src="assets/media/jetpack.svg" class="card-img-top my-4" alt="...">
+                    <h5 class="card-title">Android Jetpack</h5>
+                    <p class="card-text">
+                        Android Jetpack "is a collection of Android software components to make it
+                        easier for you to develop great Android apps. These components help you follow best practices,
+                        free you from writing boilerplate code, and simplify complex tasks, so you can focus on the code
+                        you care about." (https://developer.android.com/jetpack/) Because of this reasons, Jetpack is
+                        used in the app. But not every Jetpack component is used, only the following:
+
+                    <p>
+                        <strong>Lifecycles:</strong>
+                        This component manages the lifecycles of activities and fragments
+                        in the app. For
+                        example when navigating from the dashboard activity to the search acitivity, the
+                        lifecycle-status of both activities changes. The Lifecycles-Component helps to react to this
+                        changes and handle them.
+                    </p>
+
+                    <p>
+                        <strong>LiveData:</strong>
+                        LiveData is an observable to inform the activities and fragments about changes on the
+                        data in the database. But it is more then a classic observable. It works together with the
+                        Lifecylcles-Component and throws only, when the lifecycle is in active state. So it is not
+                        necessary to manually check if data is updated every time. For example when a pattern is markes
+                        as favorite in one activity, the other activity also knows this, when navigating back without a
+                        manual update.
+                    </p>
+
+                    <p>
+                        <strong>ViewModel:</strong>
+                        This component stores UI-Data and works also together with the lifecycle component.
+                        It helps to hold data when the component state changes or the configuration changes. For example
+                        when the user rotates the screen, the ViewModel holds the data and the developer have not to
+                        fetch the data again from database. This makes development easier and faster and increases the
+                        performance of the application, as well.
+                    </p>
+
+                    <p>
+                        <strong>Room:</strong>
+                        The data is saved in an Android-SQLite-Database. But there is an additional Layer above the
+                        database that we used. That is the "Room Persistence Library" which makes it easier to work with
+                        the database. More information about that library can be found
+                        <a href="https://developer.android.com/topic/libraries/architecture/room">here</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section id="architecture" class="row">
+        <h2 class="col-12 framework-item">Architektur</h2>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-2">
+                    <img class="framed-image w-100" src="assets/media/basic_architecture.svg">
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="row ">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Main Activity</h4>
+                                        <p class="card-text">
+                                            The app currently consists of one activity, since the individual contents are stored in
+                                            fragments. These fragments are placed on the main activity with the help of the Navigation
+                                            Manager of
+                                            Android Jetpack when navigating within the app.
+                                            This is because some components, like the BottomBar and the ActionBar, can be placed once on the
+                                            Main Activity and therefore do not have to be reloaded during navigation.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Fragment</h4>
+                                        <p class="card-text">
+                                            The individual screens of the app were implemented using fragments. These are placed on the Main
+                                            Activity if required. Each fragment has an associated ViewModel, which is responsible for
+                                            preparing and fetching the data. The data is then observed using LiveData in the corresponding
+                                            fragment.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <h4 class="card-title">ViewModel</h4>
+                                        <p class="card-text">
+                                            The ViewModels are responsible for fetching and preparing the data. It uses the repositories and
+                                            decides when and where the data is retrieved. Here it is possible to prepare additional data or
+                                            trigger further actions.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Repository</h4>
+                                        <p class="card-text">
+                                            Repositories provide the ViewModels with the data from the database. To do this, they use the
+                                            AppDatabase to access the daos of the individual entities. At this point it is possible to make
+                                            additions to the database logic that cannot be achieved with SQLite code.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Database</h4>
+                                        <p class="card-text">
+                                            The app database holds the instances of the daos and makes them available to the individual
+                                            repositories. The daos contain the entity specific SQLite queries that are partly generated by
+                                            Room. Pure query logic is converted here. The Structure of the database is described
+                                            <a href="#" class="section-link" data-section="database">here</a>.
+                                        </p>
+                                        <p class="card-text">
+                                            Two constructs are used to parallelize the individual database queries. Queries that are
+                                            intended to update when changes are made to the database are parallelized using LiveData, and
+                                            all other queries as well as update and delete queries are parallelized using Coroutines.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+            CardView
+        -->
+    </section>
+
+    <section id="database" class="row">
+        <h2 class="col-12 framework-item">Datenbank</h2>
+        <div class="col-6">
+            <img src="assets/media/db.svg" class="framed-image fit-width">
+        </div>
+        <div class="col-6">
+            <p>
+                The data is saved in an Android-SQLite-Database. But there is an additional Layer above the database
+                that we
+                used. That is the "Room Persistence Library" which makes it easier to work with the database. More
+                information about that library can be found
+                <a href="https://developer.android.com/topic/libraries/architecture/room">here</a>.
+            </p>
+            <h4>Entities:</h4>
+            <p>
+                The <strong>Patterns</strong> entity represents a Fearless Change pattern. This includes the title, the
+                problem, the solution, and the summary. It also has an image name that corresponds to a drawable name in
+                the source code. The ID is not stored here because it is not static. In addition, Pattern contains a
+                Boolean that indicates whether this pattern was preferred.
+            </p>
+            <p>
+                <strong>NodeData</strong> represents a note. It currently only consists of a text with HTML code to
+                enable rich text.
+            </p>
+            <p>
+                <strong>Todos</strong> represent a todo. It has a boolean state, which stores the state of the checkbox
+                and a text.
+            </p>
+            <p>
+                <strong>Label</strong> represent a label. It has a text and a color.
+            </p>
+            <p>
+                <strong>NoteLabelJoin</strong> connects a label with a node and consists only of the NodeID and the
+                LabelID.
+            </p>
+            <p>
+                <strong>Statistic</strong> represents an action used to implement features like the Most Clicked Card.
+                It consists of an action and a timestamp. It is also assigned to a pattern.
+            </p>
+
+            <p>
+                All entities are mapped as RoomEntities in KotlinCode.
+            </p>
+        </div>
+    </section>
+
+    <section id="issues" class="row">
+        <h2 class="col-12 framework-item">Issues</h2>
+
+        <div class="col-md-6 mt-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Spans</h5>
+                    <p class="card-text">
+                        During the implementation of the RichTextEditor for the Note feature some problems occurred.
+                        This is due to the fact that Android manipulates spans in an EditText during autocompletion. In
+                        the context of Android, spans are responsible for displaying text in various formats.
+                    </p>
+                    <p>
+                        For this reason it was decided to integrate a
+                        <a href="https://github.com/wasabeef/richeditor-android">richeditor-android</a>
+                        from
+                        <a href="https://github.com/wasabeef">Daichi Furiya</a>.
+                        This library
+                        saves the RichText as HTML, which solves the problem of incorrect spans.
+                        Therefore it was necessary to use WebViews to display the Notes. Loading these texts is
+                        unfortunately relatively slow. This problem has not been solved yet.
+                    </p>
+                    <p>
+                        The implementation, research and prototyping of the RichTextEditors took up most of the time in
+                        this project.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Todos</h5>
+                    <p class="card-text">
+                        The used RichTextEditor offers the possibility to create TODO's which can be used
+                        anywhere in the text. Unfortunately it was not considered when saving the Notes whether a TODO
+                        was marked as done or not.
+                    </p>
+                    <p>
+                        For this reason, a separate implementation based on native Android checkboxes was chosen for the
+                        implementation of the TODOs.
+                        This way it was possible for us to save todos as a separate entity together with the state.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">ResponsiveTextView</h5>
+                    <p class="card-text">
+                        Since the cards in the preview should look the same as in the larger detail view, it was
+                        necessary to scale the texts with the view.
+                    </p>
+                    <p>
+                        Android offers an AutoSizeTextView, but the scaling in this view is based on the amount of text.
+                        However, this leads to the fact that the texts on the different cards have different sizes.
+                    </p>
+                    <p>
+                        For this reason we developed our own ResponsiveTextView, which scales the text based on the
+                        number of characters per line <code>charactersPerRow</code>. Furthermore, this view
+                        automatically calculates the MaxLines and adds three dots to the end of the text if it is too
+                        long. The InstanceState ensures that the text view still has all settings even when reloaded.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="conclusion" class="row">
+        <h2 class="col-12 framework-item">Conclusion</h2>
+
+        <div class="col-md-12 mt-4">
+            <p>
+                The app offers a good foundation at the current state of the art (2019) for further developments. During
+                the
+                presentation to stakeholders at PLoP 2019 in Ottawa, further interesting features were mentioned, which
+                can be implemented in future projects. Small bugs were also uncovered, which should be fixed.
+            </p>
+            <p>
+                The app is in good condition for a beta release and an extended testing phase.
+                It also provides a good foundation for more Pattern Apps. By making small changes, design patterns or
+                others can also be displayed.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+</footer>
+</body>
+</html>

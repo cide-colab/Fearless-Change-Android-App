@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2019. Florian Herborn & Sebastian Quast
+ */
+
+body {
+    background: #262833;
+    color: white;
+    height: 100%;
+    padding-top: 70px;
+}
+.nav-spacer {
+    height: 56px;
+}
+
+.card {
+    color: #262833;
+    min-height: 100%;
+}
+
+.feature img {
+    width: 30%;
+    border-radius: 2px;
+}
+
+.framework-item img {
+    height: 56px;
+    width: auto;
+}
+
+.framed-image {
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.4);
+    padding: 8px;
+}
+
+.fit-width {
+    width: 100%;
+    height: auto;
+}
+
+.card {
+    border-radius: 0;
+}
+
+.empty-line {
+    display: block;
+    padding-top: 0.05em;
+}
+
+section {
+    padding-top: 80px;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+section h2::before {
+    display: inline-block;
+    content: '#';
+    margin-right: 16px;
+}
+
+.avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin: 16px;
+}
