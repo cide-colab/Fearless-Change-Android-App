@@ -10,28 +10,24 @@
     <meta name="description" content="Die Architektur zur Fearless Change Android App">
     <meta name="author" content="Florian Herborn & Sebastian Quast">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+
     <script src="assets/jquery.js"></script>
+    <script src="assets/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
+
+    <script src="assets/scripts.js"></script>
 
 </head>
 <body id="scroll-container">
 
-<header>
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
-        <a class="navbar-brand section-link" href="#" data-section="intro">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+    <div class="container">
+        <a class="navbar-brand section-link" href="#masthead">
             <img src="assets/media/logo.png" width="30" height="30" alt="">
-            Fearless Change Android App
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,27 +35,50 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a data-section="intro" class="nav-link section-link" href="#intro">Intro
-                    <span
-                            class="sr-only">(current)</span></a></li>
-                <li class="nav-item"><a data-section="developers" class="nav-link section-link" href="#">Developers</a></li>
-                <li class="nav-item"><a data-section="features" class="nav-link section-link" href="#">Features</a></li>
-                <li class="nav-item"><a data-section="framework" class="nav-link section-link" href="#">Framework</a>
+            <ul class="navbar-nav">
+                <li class="nav-item active"><a class="nav-link section-link" href="#intro">Intro<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item"><a data-section="architecture" class="nav-link section-link"
-                                        href="#">Architektur</a></li>
-                <li class="nav-item"><a data-section="database" class="nav-link section-link" href="#">Datenbank</a>
-                </li>
-                <li class="nav-item"><a data-section="issues" class="nav-link section-link" href="#">Issues</a></li>
-                <li class="nav-item"><a data-section="conclusion" class="nav-link section-link" href="#">Conclusion</a></li>
+                <li class="nav-item"><a class="nav-link section-link" href="#developers">Developers</a></li>
+                <li class="nav-item"><a class="nav-link section-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link section-link" href="#framework">Framework</a></li>
+                <li class="nav-item"><a class="nav-link section-link" href="#architecture">Architecture</a></li>
+                <li class="nav-item"><a class="nav-link section-link" href="#database">Database</a></li>
+                <li class="nav-item"><a class="nav-link section-link" href="#issues">Issues</a></li>
+                <li class="nav-item"><a class="nav-link section-link" href="#conclusion">Conclusion</a></li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<header id="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+<!--                <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>-->
+<!--                <p class="lead">A great starter layout for a landing page</p>-->
+            </div>
+        </div>
+    </div>
+    <svg style="pointer-events: none" class="wave header-decoration" width="100%" height="50px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
+        <defs>
+            <clipPath id="a">
+                <rect class="path1" width="1920" height="75"></rect>
+            </clipPath>
+        </defs>
+        <title>wave</title>
+        <g class="wave">
+            <path class="path2" d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48"></path>
+        </g>
+        <g class="wave">
+            <path class="path3" d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10"></path>
+        </g>
+        <g class="wave">
+            <path class="path3" d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24"></path>
+        </g>
+        <g class="wave">
+            <path class="path3" d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150"></path>
+        </g>
+    </svg>
 </header>
 
 <main class="container">
@@ -118,7 +137,8 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Florian Herborn</h5>
-                    <p class="card-text">Software Developer und Master Student at University of applied Science Cologne - TH Köln.</p>
+                    <p class="card-text">Software Developer und Master Student at University of applied Science Cologne
+                        - TH Köln.</p>
                     <a href="https://github.com/fherborn"><img src="assets/media/github.png" alt="github icon"></a>
                 </div>
             </div>
@@ -131,8 +151,10 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Sebastian Quast</h5>
-                    <p class="card-text">Software Developer und Master Student at University of applied Science Cologne - TH Köln.</p>
-                    <a href="https://github.com/Sebastian-Quast"><img src="assets/media/github.png" alt="github icon"></a>
+                    <p class="card-text">Software Developer und Master Student at University of applied Science Cologne
+                        - TH Köln.</p>
+                    <a href="https://github.com/Sebastian-Quast"><img src="assets/media/github.png"
+                                                                      alt="github icon"></a>
                 </div>
             </div>
         </div>
@@ -359,7 +381,7 @@
 
 
     <section id="architecture" class="row">
-        <h2 class="col-12 framework-item">Architektur</h2>
+        <h2 class="col-12 framework-item">Architecture</h2>
         <div class="col-12">
             <div class="row">
                 <div class="col-2">
@@ -373,11 +395,14 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Main Activity</h4>
                                         <p class="card-text">
-                                            The app currently consists of one activity, since the individual contents are stored in
-                                            fragments. These fragments are placed on the main activity with the help of the Navigation
+                                            The app currently consists of one activity, since the individual contents
+                                            are stored in
+                                            fragments. These fragments are placed on the main activity with the help of
+                                            the Navigation
                                             Manager of
                                             Android Jetpack when navigating within the app.
-                                            This is because some components, like the BottomBar and the ActionBar, can be placed once on the
+                                            This is because some components, like the BottomBar and the ActionBar, can
+                                            be placed once on the
                                             Main Activity and therefore do not have to be reloaded during navigation.
                                         </p>
                                     </div>
@@ -390,9 +415,12 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Fragment</h4>
                                         <p class="card-text">
-                                            The individual screens of the app were implemented using fragments. These are placed on the Main
-                                            Activity if required. Each fragment has an associated ViewModel, which is responsible for
-                                            preparing and fetching the data. The data is then observed using LiveData in the corresponding
+                                            The individual screens of the app were implemented using fragments. These
+                                            are placed on the Main
+                                            Activity if required. Each fragment has an associated ViewModel, which is
+                                            responsible for
+                                            preparing and fetching the data. The data is then observed using LiveData in
+                                            the corresponding
                                             fragment.
                                         </p>
                                     </div>
@@ -405,8 +433,10 @@
                                     <div class="card-body">
                                         <h4 class="card-title">ViewModel</h4>
                                         <p class="card-text">
-                                            The ViewModels are responsible for fetching and preparing the data. It uses the repositories and
-                                            decides when and where the data is retrieved. Here it is possible to prepare additional data or
+                                            The ViewModels are responsible for fetching and preparing the data. It uses
+                                            the repositories and
+                                            decides when and where the data is retrieved. Here it is possible to prepare
+                                            additional data or
                                             trigger further actions.
                                         </p>
                                     </div>
@@ -419,8 +449,10 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Repository</h4>
                                         <p class="card-text">
-                                            Repositories provide the ViewModels with the data from the database. To do this, they use the
-                                            AppDatabase to access the daos of the individual entities. At this point it is possible to make
+                                            Repositories provide the ViewModels with the data from the database. To do
+                                            this, they use the
+                                            AppDatabase to access the daos of the individual entities. At this point it
+                                            is possible to make
                                             additions to the database logic that cannot be achieved with SQLite code.
                                         </p>
                                     </div>
@@ -433,15 +465,21 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Database</h4>
                                         <p class="card-text">
-                                            The app database holds the instances of the daos and makes them available to the individual
-                                            repositories. The daos contain the entity specific SQLite queries that are partly generated by
-                                            Room. Pure query logic is converted here. The Structure of the database is described
-                                            <a href="#" class="section-link" data-section="database">here</a>.
+                                            The app database holds the instances of the daos and makes them available to
+                                            the individual
+                                            repositories. The daos contain the entity specific SQLite queries that are
+                                            partly generated by
+                                            Room. Pure query logic is converted here. The Structure of the database is
+                                            described
+                                            <a href="#database" class="section-link">here</a>.
                                         </p>
                                         <p class="card-text">
-                                            Two constructs are used to parallelize the individual database queries. Queries that are
-                                            intended to update when changes are made to the database are parallelized using LiveData, and
-                                            all other queries as well as update and delete queries are parallelized using Coroutines.
+                                            Two constructs are used to parallelize the individual database queries.
+                                            Queries that are
+                                            intended to update when changes are made to the database are parallelized
+                                            using LiveData, and
+                                            all other queries as well as update and delete queries are parallelized
+                                            using Coroutines.
                                         </p>
                                     </div>
                                 </div>
@@ -457,7 +495,7 @@
     </section>
 
     <section id="database" class="row">
-        <h2 class="col-12 framework-item">Datenbank</h2>
+        <h2 class="col-12 framework-item">Database</h2>
         <div class="col-6">
             <img src="assets/media/db.svg" class="framed-image fit-width">
         </div>

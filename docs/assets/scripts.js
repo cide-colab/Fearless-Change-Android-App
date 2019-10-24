@@ -5,13 +5,14 @@
 $(document).ready(function () {
     $(".section-link").on("click", function (e) {
         e.preventDefault();
-        const section = $(this).data('section');
-        const target = $('#' + section);
+        const target = $(this).attr('href');
+        const targetElement = $(target);
 
         const headerHeight = $('#navbar').outerHeight();
 
         $('html, body').animate({
-            scrollTop: target.offset().top - headerHeight
+            scrollTop: targetElement.offset().top - headerHeight
         }, 500);
     });
+
 });

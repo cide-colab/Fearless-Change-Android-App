@@ -6,12 +6,7 @@ body {
     background: #262833;
     color: white;
     height: 100%;
-    padding-top: 70px;
 }
-.nav-spacer {
-    height: 56px;
-}
-
 .card {
     color: #262833;
     min-height: 100%;
@@ -69,4 +64,50 @@ section h2::before {
     height: 128px;
     border-radius: 50%;
     margin: 16px;
+}
+
+nav {
+    transition: all ease-in 320ms;
+}
+
+#masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('media/header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 900px) {
+    #masthead{
+        height: 326px;
+    }
+}
+
+
+.header-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.path1 {
+    fill: none;
+}
+
+.wave {
+    clip-path: url(#a);
+}
+
+.path2,
+.path3 {
+    fill: #262833;
+}
+
+.path3 {
+    opacity: 0.5;
+    isolation: isolate;
 }
