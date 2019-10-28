@@ -71,6 +71,7 @@ nav {
 }
 
 #masthead {
+    position: relative;
     height: 100vh;
     min-height: 500px;
     background-image: url('media/header.jpg');

@@ -9,6 +9,7 @@
     <title>Fearless Change Android App</title>
     <meta name="description" content="Die Architektur zur Fearless Change Android App">
     <meta name="author" content="Florian Herborn & Sebastian Quast">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles.css">
@@ -54,12 +55,14 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12 text-center">
-<!--                <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>-->
-<!--                <p class="lead">A great starter layout for a landing page</p>-->
+                <!--                <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>-->
+                <!--                <p class="lead">A great starter layout for a landing page</p>-->
             </div>
         </div>
     </div>
-    <svg style="pointer-events: none" class="wave header-decoration" width="100%" height="50px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
+    <svg style="pointer-events: none" class="wave header-decoration" width="100%" height="50px"
+         preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         viewBox="0 0 1920 75">
         <defs>
             <clipPath id="a">
                 <rect class="path1" width="1920" height="75"></rect>
@@ -67,16 +70,20 @@
         </defs>
         <title>wave</title>
         <g class="wave">
-            <path class="path2" d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48"></path>
+            <path class="path2"
+                  d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48"></path>
         </g>
         <g class="wave">
-            <path class="path3" d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10"></path>
+            <path class="path3"
+                  d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10"></path>
         </g>
         <g class="wave">
-            <path class="path3" d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24"></path>
+            <path class="path3"
+                  d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24"></path>
         </g>
         <g class="wave">
-            <path class="path3" d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150"></path>
+            <path class="path3"
+                  d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150"></path>
         </g>
     </svg>
 </header>
@@ -144,7 +151,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 offset-md-1 mt-4">
+        <div class="col-md-4 offset-md-2 mt-4">
             <div class="card text-center">
                 <div class="col-12 text-center">
                     <img src="assets/media/squast.png" class="avatar" alt="sebastian quast avatar">
@@ -382,107 +389,103 @@
 
     <section id="architecture" class="row">
         <h2 class="col-12 framework-item">Architecture</h2>
-        <div class="col-12">
+        <div class="col-12 col-md-2">
+            <img class="framed-image w-100" src="assets/media/basic_architecture.svg">
+        </div>
+        <div class="col-12 col-md-10 mt-4 mt-md-0">
             <div class="row">
-                <div class="col-2">
-                    <img class="framed-image w-100" src="assets/media/basic_architecture.svg">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="row ">
+                            <div class="card-body">
+                                <h4 class="card-title">Main Activity</h4>
+                                <p class="card-text">
+                                    The app currently consists of one activity, since the individual contents
+                                    are stored in
+                                    fragments. These fragments are placed on the main activity with the help of
+                                    the Navigation
+                                    Manager of
+                                    Android Jetpack when navigating within the app.
+                                    This is because some components, like the BottomBar and the ActionBar, can
+                                    be placed once on the
+                                    Main Activity and therefore do not have to be reloaded during navigation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="row ">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Main Activity</h4>
-                                        <p class="card-text">
-                                            The app currently consists of one activity, since the individual contents
-                                            are stored in
-                                            fragments. These fragments are placed on the main activity with the help of
-                                            the Navigation
-                                            Manager of
-                                            Android Jetpack when navigating within the app.
-                                            This is because some components, like the BottomBar and the ActionBar, can
-                                            be placed once on the
-                                            Main Activity and therefore do not have to be reloaded during navigation.
-                                        </p>
-                                    </div>
-                                </div>
+                <div class="col-12 mt-2">
+                    <div class="card">
+                        <div class="row">
+                            <div class="card-body">
+                                <h4 class="card-title">Fragment</h4>
+                                <p class="card-text">
+                                    The individual screens of the app were implemented using fragments. These
+                                    are placed on the Main
+                                    Activity if required. Each fragment has an associated ViewModel, which is
+                                    responsible for
+                                    preparing and fetching the data. The data is then observed using LiveData in
+                                    the corresponding
+                                    fragment.
+                                </p>
                             </div>
                         </div>
-                        <div class="col-12 mt-2">
-                            <div class="card">
-                                <div class="row">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Fragment</h4>
-                                        <p class="card-text">
-                                            The individual screens of the app were implemented using fragments. These
-                                            are placed on the Main
-                                            Activity if required. Each fragment has an associated ViewModel, which is
-                                            responsible for
-                                            preparing and fetching the data. The data is then observed using LiveData in
-                                            the corresponding
-                                            fragment.
-                                        </p>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-2">
+                    <div class="card">
+                        <div class="row">
+                            <div class="card-body">
+                                <h4 class="card-title">ViewModel</h4>
+                                <p class="card-text">
+                                    The ViewModels are responsible for fetching and preparing the data. It uses
+                                    the repositories and
+                                    decides when and where the data is retrieved. Here it is possible to prepare
+                                    additional data or
+                                    trigger further actions.
+                                </p>
                             </div>
                         </div>
-                        <div class="col-12 mt-2">
-                            <div class="card">
-                                <div class="row">
-                                    <div class="card-body">
-                                        <h4 class="card-title">ViewModel</h4>
-                                        <p class="card-text">
-                                            The ViewModels are responsible for fetching and preparing the data. It uses
-                                            the repositories and
-                                            decides when and where the data is retrieved. Here it is possible to prepare
-                                            additional data or
-                                            trigger further actions.
-                                        </p>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-2">
+                    <div class="card">
+                        <div class="row">
+                            <div class="card-body">
+                                <h4 class="card-title">Repository</h4>
+                                <p class="card-text">
+                                    Repositories provide the ViewModels with the data from the database. To do
+                                    this, they use the
+                                    AppDatabase to access the daos of the individual entities. At this point it
+                                    is possible to make
+                                    additions to the database logic that cannot be achieved with SQLite code.
+                                </p>
                             </div>
                         </div>
-                        <div class="col-12 mt-2">
-                            <div class="card">
-                                <div class="row">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Repository</h4>
-                                        <p class="card-text">
-                                            Repositories provide the ViewModels with the data from the database. To do
-                                            this, they use the
-                                            AppDatabase to access the daos of the individual entities. At this point it
-                                            is possible to make
-                                            additions to the database logic that cannot be achieved with SQLite code.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-2">
-                            <div class="card">
-                                <div class="row">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Database</h4>
-                                        <p class="card-text">
-                                            The app database holds the instances of the daos and makes them available to
-                                            the individual
-                                            repositories. The daos contain the entity specific SQLite queries that are
-                                            partly generated by
-                                            Room. Pure query logic is converted here. The Structure of the database is
-                                            described
-                                            <a href="#database" class="section-link">here</a>.
-                                        </p>
-                                        <p class="card-text">
-                                            Two constructs are used to parallelize the individual database queries.
-                                            Queries that are
-                                            intended to update when changes are made to the database are parallelized
-                                            using LiveData, and
-                                            all other queries as well as update and delete queries are parallelized
-                                            using Coroutines.
-                                        </p>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-2">
+                    <div class="card">
+                        <div class="row">
+                            <div class="card-body">
+                                <h4 class="card-title">Database</h4>
+                                <p class="card-text">
+                                    The app database holds the instances of the daos and makes them available to
+                                    the individual
+                                    repositories. The daos contain the entity specific SQLite queries that are
+                                    partly generated by
+                                    Room. Pure query logic is converted here. The Structure of the database is
+                                    described
+                                    <a href="#database" class="section-link">here</a>.
+                                </p>
+                                <p class="card-text">
+                                    Two constructs are used to parallelize the individual database queries.
+                                    Queries that are
+                                    intended to update when changes are made to the database are parallelized
+                                    using LiveData, and
+                                    all other queries as well as update and delete queries are parallelized
+                                    using Coroutines.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -496,10 +499,10 @@
 
     <section id="database" class="row">
         <h2 class="col-12 framework-item">Database</h2>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <img src="assets/media/db.svg" class="framed-image fit-width">
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
             <p>
                 The data is saved in an Android-SQLite-Database. But there is an additional Layer above the database
                 that we
